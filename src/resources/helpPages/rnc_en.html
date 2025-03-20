@@ -1,0 +1,38 @@
+<html>
+<body>
+<h1>RNC</h1>
+<h2>Return if not carry</h2>
+<br>
+<p>If Carry = 0 return is performed.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>RNC</td>
+        <td>0xD0</td>
+        <td>1</td>
+        <td>11/5</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*length depends on action.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="color: lightblue">MVI</div> B,52
+  <div style="color: orange">CALL</div> label
+  <div style="color: purple">HLT</div>
+  <div><span style="color: dodgerblue">label: </span>B<span style="color: yellow">SUB </span>B</div>
+  <div style="color: orange">RNC</div>
+  </p>
+  After executing <span style="color: orange">CALL</span> instruction <span style="color: yellow">SUB </span>B will be performed. Because 0xF2 > 0x52 flag Carry will be set to 0 and instruction <span style="color: orange">RNC</span> will perform return operation. Next instruction that will be executed is <span style="color: purple">HLT</span>.
+</p>
+</body>
+</html>

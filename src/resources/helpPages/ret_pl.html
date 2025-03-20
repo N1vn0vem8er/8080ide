@@ -1,0 +1,37 @@
+<html>
+<body>
+<h1>RET</h1>
+<h2>Return</h2>
+<br>
+<p>Bezwarunkowa instrukcja powrotu z subprogramu.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>RET</td>
+        <td>0xC9</td>
+        <td>1</td>
+        <td>10</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="color: lightblue">MVI</div> B,52
+  <div style="color: orange">CALL</div> label
+  <div style="color: purple">HLT</div>
+  <div><span style="color: dodgerblue">label: </span>B<span style="color: yellow">SUB </span>B</div>
+  <div style="color: orange">RET</div>
+  </p>
+  Po wykonaniu instrukcji <span style="color: orange">CALL</span> wykona się instrukcja <span style="color: yellow">SUB </span>B. Następnie program powróci do miejsca wywołania subprogramu i wykona się następna instrukcja.
+</p>
+</body>
+</html>

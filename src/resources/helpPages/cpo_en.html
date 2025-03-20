@@ -1,0 +1,38 @@
+<html>
+<body>
+<h1>CPO</h1>
+<h2>Call if parity odd</h2>
+<br>
+<p>If Parity = 0 subroutine is called.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>CPO a16</td>
+        <td>0xE4</td>
+        <td>3</td>
+        <td>17/11</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 means 16 bits of address.</p>
+<p style="font-size: 10px;">*length depends on action.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> B,05
+  <div style="color: lightblue">MVI</div> A,10
+  <div style="color: yellow">SUB </div>B
+  <div style="color: orange">CPO</div> label
+  <div style="color: purple">HLT</div>
+  </p>
+  Because 0x10 - 0x05 = 0x0B which is not even and Parity is set to 0 so subroutine is called.
+</p>
+</body>
+</html>

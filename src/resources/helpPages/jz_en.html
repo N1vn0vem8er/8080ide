@@ -1,0 +1,36 @@
+<html>
+<body>
+<h1>JZ</h1>
+<h2>Jump if zero</h2>
+<br>
+<p>If Zero = 1 execution will continue on specified memory address.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>JZ a16</td>
+        <td>0xCA</td>
+        <td>3</td>
+        <td>10</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 means 16 bits of address.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> B,3F
+  <div><span style="color: dodgerblue">label: </span><span style="color: yellow">INR </span>B</div>
+  <div style="color: orange">JZ</div> label
+  <div style="color: purple">HLT</div>
+  </p>
+ Because register B after incrementation will contain 0x40 and flag Zero = 0 jump will not occur.
+</p>
+</body>
+</html>

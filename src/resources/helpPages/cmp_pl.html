@@ -1,0 +1,74 @@
+<html>
+<body>
+<h1>CMP</h1>
+<h2>Compare register or memory with accumulator</h2>
+<br>
+<p>Porównuje zawartość akumulatora z rejetrem lub pamięcią. W zależności od wyniku ustawia odpowiednie bity rejestru flagowego. Jeżeli bit Zero zostanie ustawiony na 1 oznacza to, że wartości są równe jeżeli na 0 to nie są równe. Jeżeli Carry zostanie ustawione na 1 to wartość w rejestrze jest większa od wartości w akumulatorze, jeżeli Carry zostanie ustawione na 0 to wartość w akumulatorze jest większa.</p>
+<p>Instrukcja ma efekt na bity: Carry, Zero, Sign, Parity, Auxiliary Carry.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>CMP B</td>
+        <td>0xB0</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>CMP C</td>
+        <td>0xB1</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>CMP D</td>
+        <td>0xB2</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>CMP E</td>
+        <td>0xB3</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>CMP H</td>
+        <td>0xB4</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>CMP L</td>
+        <td>0xB5</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>CMP M</td>
+        <td>0xB6</td>
+        <td>1</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>CMP A</td>
+        <td>0xB7</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="c olor: lightblue">MVI</div> B,04
+  <div style="color: yellow">CMP </div>B</p>
+  Po wykonaniu tych instrukcji Carry zostanie ustawione na 0 co oznacza, że zawartość akumulatora jest większa do zawartości rejestru.
+</body>
+</html>

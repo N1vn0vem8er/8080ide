@@ -1,0 +1,35 @@
+<html>
+<body>
+<h1>SBI</h1>
+<h2>Subtract immediate to accumulator with Carry</h2>
+<br>
+<p>Subtracts from accumulator immediate data with Carry.</p>
+<p>Condition bits affected: Carry, Sign, Zero, Parity, Auxiliary Carry</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>SBI d8</td>
+        <td>0xDE</td>
+        <td>2</td>
+        <td>7</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*d8 means 8 bits of data.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,05
+  <div style="color: yellow">SBI</div> 03
+  </p>
+  If Carry = 1, after executing these instructions accumulator will contain 0x01.
+</p>
+</body>
+</html>

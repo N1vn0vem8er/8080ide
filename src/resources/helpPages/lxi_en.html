@@ -1,0 +1,78 @@
+<html>
+<body>
+<h1>LXI</h1>
+<h2>Load register pair immediate</h2>
+<br>
+<p>Two bytes of immediate data are loaded into pair of registers or stack pointer.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+        <th>Description<th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>LXI B,d16</td>
+        <td>0x06</td>
+        <td>3</td>
+        <td>10</td>
+        <td>Data is loaded into B and C.</td>
+    </tr>
+    <tr>
+        <td>LXI D,d16</td>
+        <td>0x16</td>
+        <td>3</td>
+        <td>10</td>
+        <td>Data is loaded into D and E.</td>
+    </tr>
+    <tr>
+        <td>LXI H,d16</td>
+        <td>0x26</td>
+        <td>3</td>
+        <td>10</td>
+        <td>Data is loaded into H and L.</td>
+    </tr>
+    <tr>
+        <td>LXI SP,d16</td>
+        <td>0x36</td>
+        <td>3</td>
+        <td>10</td>
+        <td>Data is loaded into SP.</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*d16 means 16 bits of data.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightgreen">LXI</div> B,1243</p>
+  After executing these instructions register B will contain 0x12 and register C 0x43.
+</p>
+<h4>Example instruction in memory:</h4>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Address</th>
+        <th>Memory</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>0x0045</td>
+        <td>0x01</td>
+    </tr>
+    <tr>
+        <td>0x0046</td>
+        <td>0x12</td>
+    </tr>
+    <tr>
+        <td>0x0047</td>
+        <td>0x43</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

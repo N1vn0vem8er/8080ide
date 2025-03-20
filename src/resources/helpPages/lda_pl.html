@@ -1,0 +1,35 @@
+<html>
+<body>
+<h1>LDA</h1>
+<h2>Load accumulator direct</h2>
+<br>
+<p>Wczytuje z podanego adresu pamięci bajt danych i zapisuje go do akumulatora.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>LDA a16</td>
+        <td>0x3A</td>
+        <td>3</td>
+        <td>13</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 oznacza 16 bitów adresu.</p>
+<h3>Przykład</h3>
+<p>
+  <p>
+  <div><span style="color: dodgerblue">label: </span><span style="color: darkblue">DB </span>23</div>
+  <div style="color: orange">LDA</div> label
+  </p>
+ Do akumulatora zostanie zapisana wartość 0x23.
+</p>
+</body>
+</html>

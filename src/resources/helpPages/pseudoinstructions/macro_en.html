@@ -1,0 +1,23 @@
+<html>
+<body>
+<h1>MACRO</h1>
+<br>
+<p>Pseudo instruction creating macro. The following pseudo instructions cannot be used inside macro: <span style="color: darkslateblue">IF</span>, <span style="color: darkslateblue">ENDIF</span>, <span style="color: darkslateblue">EQU</span>, <span style="color: darkslateblue">SET</span> and definition of other macros. <span style="color: red">Warning</span> always use with <span style="color: darkslateblue">ENDM</span>.</p>
+<h3>Example</h3>
+<p>
+  <p>
+  <div><span style="color: dodgerblue">name:</span><span style="color: darkslateblue"> MACRO </span></div>
+  <div style="color: lightblue">MOV </div>A,B
+  <div style="color: lightblue">MVI </div> A,65
+  <div style="color: darkslateblue"> ENDM </div></p>
+  Macro named "name" will be created. It will contain instructions: <span style="color: lightblue">MOV </span>A,B i <span style="color: lightblue">MVI </span> A,65.
+  <p>
+    <div style="color: yellow">RRC </div>A,B
+    <div>name</div>
+    <div style="color: lightblue">MOV </div>B,C
+    <div style="color: lightblue">MVI </div> C,60
+  </p>
+  In the place of "name" macro will be inserted.
+</p>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+<body>
+<h1>SUI</h1>
+<h2>Subtract immediate to accumulator</h2>
+<br>
+<p>Bajt danych po kodzie instrukcji jest odejmowany od akumulatora.</p>
+<p>Instrukcja ma wpływ na flagi: Carry, Sign, Zero, Parity, Auxiliary Carry</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>SUI d8</td>
+        <td>0xD6</td>
+        <td>2</td>
+        <td>7</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*d8 oznacza 8 bitów danych.</p>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,05
+  <div style="color: yellow">SUI</div> 03
+  </p>
+  Po wykonaniu tych instrukcji zawartość akumulatora będzie 0x02.
+</p>
+</body>
+</html>

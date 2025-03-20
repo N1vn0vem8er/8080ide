@@ -1,0 +1,37 @@
+<html>
+<body>
+<h1>JNC</h1>
+<h2>Jump if not carry</h2>
+<br>
+<p>Jeżeli flaga Carry = 0 wykonywanie programu jest kontynułowane na podanym adresie pamięci.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>JNC a16</td>
+        <td>0xD2</td>
+        <td>3</td>
+        <td>10</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 oznacza 16 bitów adresu.</p>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> B,F2
+  <div style="color: lightblue">MVI</div> A,10
+  <div style="color: yellow">SUB </div>B
+  <div style="color: orange">JNC</div> label
+  <div style="color: purple">HLT</div>
+  </p>
+  Program nie będzie przechodził do adresu <span style="color: dodgerblue">label</span>, ponieważ przy 0x10 - 0xF2 więc bit Carry zostanie ustawiony na 1.
+</p>
+</body>
+</html>

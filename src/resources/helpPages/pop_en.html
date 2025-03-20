@@ -1,0 +1,58 @@
+<html>
+<body>
+<h1>POP</h1>
+<h2>Pop data off stack</h2>
+<br>
+<p>The values ​​indicated by the SP stack pointer are loaded into the pair of registers. Data from the memory address pointed to by SP is loaded into the second register of the pair, and date at an address one greater than SP is loaded into the first register of the pair. If the PSW register pair is used, the data at address SP plus one is used to set the value of the flag register, at address SP the contents of the accumulator. Finally, the value in SP is increased by 2.</p>
+<p>If POP PSW is used condition bits affected: Carry, Zero, Sign, Parity, Auxiliary Carry. Otherwise none bits affected.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+        <th>Description</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>POP B</td>
+        <td>0xC1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Data is loaded to registers B and C.</td>
+    </tr>
+    <tr>
+        <td>POP D</td>
+        <td>0xD1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Data is loaded to registers D and E.</td>
+    </tr>
+    <tr>
+        <td>POP H</td>
+        <td>0xE1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Data is loaded to registers H and L.</td>
+    </tr>
+    <tr>
+        <td>POP PSW</td>
+        <td>0xF1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Data is loaded to flags register and accumulator.</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> C,F2
+  <div style="color: lightblue">MVI</div> B,52
+  <div style="color: lightgreen">POP</div> B
+  </p>
+  If SP contains 0x1243 and memory under address 0x1243, and 0x1244 contain 0xAD, 0x20 after executing these instructions registers B, and C will contain 0x20, 0xAD, and SP = 0x1245.
+</p>
+</body>
+</html>

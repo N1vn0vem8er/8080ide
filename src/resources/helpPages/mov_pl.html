@@ -1,0 +1,489 @@
+<html>
+<body>
+<h1>MOV</h1>
+<br>
+<p>Zawartość jednego rejestru jest ładowana do innego rejestru</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+        <th>Opis</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>MOV B,B</td>
+        <td>0x40</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru B są ładowane do rejestru B.</td>
+    </tr>
+    <tr>
+        <td>MOV B,C</td>
+        <td>0x41</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru C są ładowane do rejestru B.</td>
+    </tr>
+    <tr>
+        <td>MOV B,D</td>
+        <td>0x42</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru D są ładowane do rejestru B.</td>
+    </tr>
+    <tr>
+        <td>MOV B,E</td>
+        <td>0x43</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru E są ładowane do rejestru B.</td>
+    </tr>
+    <tr>
+        <td>MOV B,H</td>
+        <td>0x44</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru H są ładowane do rejestru B.</td>
+    </tr>
+    <tr>
+        <td>MOV B,L</td>
+        <td>0x45</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru L są ładowane do rejestru B.</td>
+    </tr>
+    <tr>
+        <td>MOV B,M</td>
+        <td>0x46</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru M są ładowane do rejestru B.</td>
+    </tr>
+    <tr>
+        <td>MOV B,A</td>
+        <td>0x47</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru A są ładowane do rejestru B.</td>
+    </tr>
+    <tr>
+        <td>MOV C,B</td>
+        <td>0x48</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru B są ładowane do rejestru C.</td>
+    </tr>
+    <tr>
+        <td>MOV C,C</td>
+        <td>0x49</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru C są ładowane do rejestru C.</td>
+    </tr>
+    <tr>
+        <td>MOV C,D</td>
+        <td>0x4A</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru D są ładowane do rejestru C.</td>
+    </tr>
+    <tr>
+        <td>MOV C,E</td>
+        <td>0x4B</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru E są ładowane do rejestru C.</td>
+    </tr>
+    <tr>
+        <td>MOV C,H</td>
+        <td>0x4C</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru H są ładowane do rejestru C.</td>
+    </tr>
+    <tr>
+        <td>MOV C,L</td>
+        <td>0x4D</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru L są ładowane do rejestru C.</td>
+    </tr>
+    <tr>
+        <td>MOV C,M</td>
+        <td>0x4E</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru M są ładowane do rejestru C.</td>
+    </tr>
+    <tr>
+        <td>MOV C,A</td>
+        <td>0x4F</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru A są ładowane do rejestru C.</td>
+    </tr>
+    <tr>
+        <td>MOV D,B</td>
+        <td>0x50</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru B są ładowane do rejestru D.</td>
+    </tr>
+    <tr>
+        <td>MOV D,C</td>
+        <td>0x51</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru C są ładowane do rejestru D.</td>
+    </tr>
+    <tr>
+        <td>MOV D,D</td>
+        <td>0x52</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru D są ładowane do rejestru D.</td>
+    </tr>
+    <tr>
+        <td>MOV D,E</td>
+        <td>0x53</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru E są ładowane do rejestru D.</td>
+    </tr>
+    <tr>
+        <td>MOV D,H</td>
+        <td>0x54</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru H są ładowane do rejestru D.</td>
+    </tr>
+    <tr>
+        <td>MOV D,L</td>
+        <td>0x55</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru L są ładowane do rejestru D.</td>
+    </tr>
+    <tr>
+        <td>MOV D,M</td>
+        <td>0x56</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru M są ładowane do rejestru D.</td>
+    </tr>
+    <tr>
+        <td>MOV D,A</td>
+        <td>0x57</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru A są ładowane do rejestru D.</td>
+    </tr>
+    <tr>
+        <td>MOV E,B</td>
+        <td>0x58</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru B są ładowane do rejestru E.</td>
+    </tr>
+    <tr>
+        <td>MOV E,C</td>
+        <td>0x59</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru C są ładowane do rejestru E.</td>
+    </tr>
+    <tr>
+        <td>MOV E,D</td>
+        <td>0x5A</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru D są ładowane do rejestru E.</td>
+    </tr>
+    <tr>
+        <td>MOV E,E</td>
+        <td>0x5B</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru E są ładowane do rejestru E.</td>
+    </tr>
+    <tr>
+        <td>MOV E,H</td>
+        <td>0x5C</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru H są ładowane do rejestru E.</td>
+    </tr>
+    <tr>
+        <td>MOV E,L</td>
+        <td>0x5D</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru L są ładowane do rejestru E.</td>
+    </tr>
+    <tr>
+        <td>MOV E,M</td>
+        <td>0x5E</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru M są ładowane do rejestru E.</td>
+    </tr>
+    <tr>
+        <td>MOV E,A</td>
+        <td>0x5F</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru A są ładowane do rejestru E.</td>
+    </tr>
+    <tr>
+        <td>MOV H,B</td>
+        <td>0x60</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru B są ładowane do rejestru H.</td>
+    </tr>
+    <tr>
+        <td>MOV H,C</td>
+        <td>0x61</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru C są ładowane do rejestru H.</td>
+    </tr>
+    <tr>
+        <td>MOV H,D</td>
+        <td>0x62</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru D są ładowane do rejestru H.</td>
+    </tr>
+    <tr>
+        <td>MOV H,E</td>
+        <td>0x63</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru E są ładowane do rejestru H.</td>
+    </tr>
+    <tr>
+        <td>MOV H,H</td>
+        <td>0x64</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru H są ładowane do rejestru H.</td>
+    </tr>
+    <tr>
+        <td>MOV H,L</td>
+        <td>0x65</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru L są ładowane do rejestru H.</td>
+    </tr>
+    <tr>
+        <td>MOV H,M</td>
+        <td>0x66</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru M są ładowane do rejestru H.</td>
+    </tr>
+    <tr>
+        <td>MOV H,A</td>
+        <td>0x67</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru A są ładowane do rejestru H.</td>
+    </tr>
+    <tr>
+        <td>MOV L,B</td>
+        <td>0x68</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru B są ładowane do rejestru L.</td>
+    </tr>
+    <tr>
+        <td>MOV L,C</td>
+        <td>0x69</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru C są ładowane do rejestru L.</td>
+    </tr>
+    <tr>
+        <td>MOV L,D</td>
+        <td>0x6A</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru D są ładowane do rejestru L.</td>
+    </tr>
+    <tr>
+        <td>MOV L,E</td>
+        <td>0x6B</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru E są ładowane do rejestru L.</td>
+    </tr>
+    <tr>
+        <td>MOV L,H</td>
+        <td>0x6C</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru H są ładowane do rejestru L.</td>
+    </tr>
+    <tr>
+        <td>MOV L,L</td>
+        <td>0x6D</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru L są ładowane do rejestru L.</td>
+    </tr>
+    <tr>
+        <td>MOV L,M</td>
+        <td>0x6E</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru M są ładowane do rejestru L.</td>
+    </tr>
+    <tr>
+        <td>MOV L,A</td>
+        <td>0x6F</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru A są ładowane do rejestru L.</td>
+    </tr>
+    <tr>
+        <td>MOV M,B</td>
+        <td>0x70</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru B są ładowane do rejestru M.</td>
+    </tr>
+    <tr>
+        <td>MOV M,C</td>
+        <td>0x71</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru C są ładowane do rejestru M.</td>
+    </tr>
+    <tr>
+        <td>MOV M,D</td>
+        <td>0x72</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru D są ładowane do rejestru M.</td>
+    </tr>
+    <tr>
+        <td>MOV M,E</td>
+        <td>0x73</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru E są ładowane do rejestru M.</td>
+    </tr>
+    <tr>
+        <td>MOV M,H</td>
+        <td>0x74</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru H są ładowane do rejestru M.</td>
+    </tr>
+    <tr>
+        <td>MOV M,L</td>
+        <td>0x75</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru L są ładowane do rejestru M.</td>
+    </tr>
+    <tr>
+        <td>MOV M,M</td>
+        <td>0x76</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru M są ładowane do rejestru M.</td>
+    </tr>
+    <tr>
+        <td>MOV M,A</td>
+        <td>0x77</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru A są ładowane do rejestru M.</td>
+    </tr>
+    <tr>
+        <td>MOV A,B</td>
+        <td>0x78</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru B są ładowane do rejestru A.</td>
+    </tr>
+    <tr>
+        <td>MOV A,C</td>
+        <td>0x79</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru C są ładowane do rejestru A.</td>
+    </tr>
+    <tr>
+        <td>MOV A,D</td>
+        <td>0x7A</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru D są ładowane do rejestru A.</td>
+    </tr>
+    <tr>
+        <td>MOV A,E</td>
+        <td>0x7B</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru E są ładowane do rejestru A.</td>
+    </tr>
+    <tr>
+        <td>MOV A,H</td>
+        <td>0x7C</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru H są ładowane do rejestru A.</td>
+    </tr>
+    <tr>
+        <td>MOV A,L</td>
+        <td>0x7D</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru L są ładowane do rejestru A.</td>
+    </tr>
+    <tr>
+        <td>MOV A,M</td>
+        <td>0x7E</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Dane z rejestru M są ładowane do rejestru A.</td>
+    </tr>
+    <tr>
+        <td>MOV A,A</td>
+        <td>0x7F</td>
+        <td>1</td>
+        <td>5</td>
+        <td>Dane z rejestru A są ładowane do rejestru A.</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+<p>
+  Wartość w rejestrze A to 0x45, a rejestrze B to 0x21.
+  <p><div style="color: lightblue">MOV</div> B,A</p>
+  Po wykonaniu tej instrukcji w rejestrze B będzie znajdować się wartość z rejestru A. W rejestrze B będzie 0x45, w rejestrze A będzie 0x45.
+</p>
+<h4>Przykładowy zapis w pamięci</h4>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Adres</th>
+        <th>Pamięć</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>0x0045</td>
+        <td>0x47</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

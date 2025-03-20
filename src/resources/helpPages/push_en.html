@@ -1,0 +1,57 @@
+<html>
+<body>
+<h1>PUSH</h1>
+<h2>Push data onto stack</h2>
+<br>
+<p>The instruction places the contents of the specified register pair in memory at the address pointed to by the SP stack pointer. The contents of the first register are written at an address one less than the address stored in the SP, and the contents of the second register are written at an address two less than the contents of the SP. When PSW is used, the first byte saves the contents of the A register, the second one stores the contents of the flag register.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+        <th>Description</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>PUSH B</td>
+        <td>0xC1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Data from register pair B and C is loaded on stack.</td>
+    </tr>
+    <tr>
+        <td>PUSH D</td>
+        <td>0xD1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Data from register pair D and E is loaded on stack.</td>
+    </tr>
+    <tr>
+        <td>PUSH H</td>
+        <td>0xE1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Data from register pair H and L is loaded on stack.</td>
+    </tr>
+    <tr>
+        <td>PUSH PSW</td>
+        <td>0xF1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Data from flags register and accumulator is loaded on stack.</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> C,F2
+  <div style="color: lightblue">MVI</div> B,52
+  <div style="color: lightgreen">PUSH</div> B
+  </p>
+  If SP contains 0x1245 after executing these instructions under memory addresses 0x1244 and 0x1243 0x52, and 0xF2 will be saved. SP will be 0x1243.
+</p>
+</body>
+</html>

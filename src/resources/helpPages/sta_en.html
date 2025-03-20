@@ -1,0 +1,51 @@
+<html>
+<body>
+<h1>STA</h1>
+<h2>Store accumulator direct</h2>
+<br>
+<p>Saves contents of register A under memory address.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>STA a16</td>
+        <td>0x02</td>
+        <td>3</td>
+        <td>13</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 means 16 bits of address.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,AB
+  <div style="color: lightblue">STA</div> 0012</p>
+  After executing these instructions contents of register A will be saved under memory address 0x0012.
+  <p>
+  <table style="border-width: 1px;">
+  <thred>
+    <tr>
+        <th>Before STA</th>
+        <th>Address</th>
+        <th>After STA</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>0x00</td>
+        <td>0x0012</td>
+        <td>0xAB</td>
+    </tr>
+    </tbody>
+</table>
+  </p>
+</p>
+</body>
+</html>

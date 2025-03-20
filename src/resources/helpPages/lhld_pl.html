@@ -1,0 +1,54 @@
+<html>
+<body>
+<h1>LHLD</h1>
+<h2>Load H and L direct</h2>
+<br>
+<p>Ładuje rejestry H i L 16-bitami danych zapisanych pod adresem w pamięci zapisanym po kodzie instrukcji.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>LHLD a16</td>
+        <td>0x2A</td>
+        <td>3</td>
+        <td>16</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 oznacza 16 bitów adresu.</p>
+<h3>Przykład</h3>
+<p>
+  <p>
+  <div style="color: lightgreen">LHLD</div> 0013</p>
+  Jeżeli pamięć wygląda tak jak w tabeli poniżej to wykonanie instrukcji sprawi, że rejestr H zostanie załadowany liczbą 0xA6, a rejestr L 0x32.
+</p>
+<p>
+  <table style="border-width: 1px;">
+  <thred>
+    <tr>
+        <th>Adres</th>
+        <th>Pamięć</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>0x0013</td>
+        <td>0x32</td>
+    </tr>
+    <tr>
+        <td>0x0014</td>
+        <td>0xA6</td>
+    </tr>
+    </tbody>
+</table>
+  </p>
+</p>
+</body>
+</html>

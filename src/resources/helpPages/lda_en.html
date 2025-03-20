@@ -1,0 +1,35 @@
+<html>
+<body>
+<h1>LDA</h1>
+<h2>Load accumulator direct</h2>
+<br>
+<p>Loads accumulator with byte of data from given memory address.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cicles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>LDA a16</td>
+        <td>0x3A</td>
+        <td>3</td>
+        <td>13</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 means 16 bits of address.</p>
+<h3>Example</h3>
+<p>
+  <p>
+  <div><span style="color: dodgerblue">label: </span><span style="color: darkblue">DB </span>23</div>
+  <div style="color: orange">LDA</div> label
+  </p>
+ Loads accumulator with 0x23.
+</p>
+</body>
+</html>

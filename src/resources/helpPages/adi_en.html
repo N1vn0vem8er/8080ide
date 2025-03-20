@@ -1,0 +1,35 @@
+<html>
+<body>
+<h1>ADI</h1>
+<h2>Add immediate to accumulator</h2>
+<br>
+<p>Adds to contents of accumulator 8 bits of immediate data.</p>
+<p>Condition bits affected: Carry, Sign, Zero, Parity, Auxiliary Carry</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Lenght in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td><span style="color: yellow">ADI</span> d8</td>
+        <td>0xC6</td>
+        <td>2</td>
+        <td>7</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*d8 means 8 bits of data.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,05
+  <div style="color: yellow">ADI</div> 03
+  </p>
+  After executing these instructions the content of the accumulator will be 0x08.
+</p>
+</body>
+</html>

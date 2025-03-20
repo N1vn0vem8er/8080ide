@@ -1,0 +1,17 @@
+<html>
+<body>
+<h1>ENDIF</h1>
+<br>
+<p>This pseudo instruction is the end of <span style="color: darkslateblue">IF</span> statement. <span style="color: red">Warning</span> always use with <span style="color: darkslateblue">IF</span>.</p>
+<h3>Example</h3>
+<p>
+  <p>
+  <div><span style="color: dodgerblue">const:</span><span style="color: darkslateblue"> EQU </span> 0</div>
+  <div style="color: darkslateblue"> IF </div> const
+  <div style="color: lightblue">MOV </div>A,B
+  <div style="color: lightblue">MVI </div> A,65
+  <div style="color: darkslateblue"> ENDIF </div></p>
+  Constant "name" is set to 0 and code between <span style="color: darkslateblue">IF</span> and <span style="color: darkslateblue">ENDIF</span> will not be assembled.
+</p>
+</body>
+</html>

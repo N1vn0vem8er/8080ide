@@ -1,0 +1,38 @@
+<html>
+<body>
+<h1>CNC</h1>
+<h2>Call if not carry</h2>
+<br>
+<p>If Carry = 0 subroutine is called.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>CNC a16</td>
+        <td>0xD4</td>
+        <td>3</td>
+        <td>17/11</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 means 16 bits of address.</p>
+<p style="font-size: 10px;">*length depends on action.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> B,05
+  <div style="color: lightblue">MVI</div> A,10
+  <div style="color: yellow">SUB </div>B
+  <div style="color: orange">CNC</div> label
+  <div style="color: purple">HLT</div>
+  </p>
+  Because 0x10 - 0x05 subroutine will not be called.
+</p>
+</body>
+</html>

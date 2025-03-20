@@ -1,0 +1,58 @@
+<html>
+<body>
+<h1>POP</h1>
+<h2>Pop data off stack</h2>
+<br>
+<p>Do pary rejestrów zapisanych w instrukcji ładowane są wartości wskazywane przez wskaźnik stosu SP. Dane z adresu pamięci wskazywanego przez SP ją ładowane do drugiego rejestru pary, a date pod adresem o jeden większym niż SP do pierwszego rejestru pary. Jeżeli używana jest para rejestrów PSW dane pod adresem SP plus jeden są używane do ustawienia wartości rejestru flagowego, pod adresem SP zawartość akumulatora. Na koniec wartość w SP jest zwiększana o 2.</p>
+<p>Jeżeli instrukcja POP PSW jest wykonwyana to ma efekt na: Carry, Zero, Sign, Parity, Auxiliary Carry. W innych przypadkach POP nie ma efektu na rejestr flagowy.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+        <th>Opis</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>POP B</td>
+        <td>0xC1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Dane ze stosu ładowane są do pary rejestrów B i C.</td>
+    </tr>
+    <tr>
+        <td>POP D</td>
+        <td>0xD1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Dane ze stosu ładowane są do pary rejestrów D i E.</td>
+    </tr>
+    <tr>
+        <td>POP H</td>
+        <td>0xE1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Dane ze stosu ładowane są do pary rejestrów H i L.</td>
+    </tr>
+    <tr>
+        <td>POP PSW</td>
+        <td>0xF1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Dane ze stosu ładowane są do rejestru flagowego i akumulatora.</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> C,F2
+  <div style="color: lightblue">MVI</div> B,52
+  <div style="color: lightgreen">POP</div> B
+  </p>
+  Zakładając, że wskaźnik stosu zawiera 0x1243 i pod adresem 0x1243 i 0x1244 jest kolejno 0xAD, 0x20 to po wykonaniu tych instrukcji w rejestrach B i C będzie kolejno 0x20, 0xAD i SP = 0x1245.
+</p>
+</body>
+</html>

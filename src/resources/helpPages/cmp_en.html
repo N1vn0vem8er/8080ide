@@ -1,0 +1,74 @@
+<html>
+<body>
+<h1>CMP</h1>
+<h2>Compare register or memory with accumulator</h2>
+<br>
+<p>Compares the contents of the accumulator with the register or memory. Depending on the result, sets the appropriate bits of the flag register. If the Zero bit is set to 1, it means that the values ​​are equal, if to 0, they are not equal. If Carry is set to 1, the value in the register is greater than the value in the accumulator, if Carry is set to 0, the value in the accumulator is greater.</p>
+<p>Condition bits affected: Carry, Zero, Sign, Parity, Auxiliary Carry.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>CMP B</td>
+        <td>0xB0</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>CMP C</td>
+        <td>0xB1</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>CMP D</td>
+        <td>0xB2</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>CMP E</td>
+        <td>0xB3</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>CMP H</td>
+        <td>0xB4</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>CMP L</td>
+        <td>0xB5</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>CMP M</td>
+        <td>0xB6</td>
+        <td>1</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>CMP A</td>
+        <td>0xB7</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Example</h3>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="c olor: lightblue">MVI</div> B,04
+  <div style="color: yellow">CMP </div>B</p>
+  After executing these Instruction Carry will be set to 0 which means contents of accumulator are greater then contents of register B.
+</body>
+</html>

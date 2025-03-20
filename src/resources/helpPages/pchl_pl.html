@@ -1,0 +1,34 @@
+<html>
+<body>
+<h1>PCHL</h1>
+<h2>Load program counter</h2>
+<br>
+<p>Instrukcja skoku do adresu pamięci wskazywanego przez zawartość pary rejestrów H i L. Zawartość rejestru H zastępuje 8 najbardziej znaczących bitów licznika programu PC, a zawartość rejestru L 8 najmniej znaczących bitów PC.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>PCHL</td>
+        <td>0xE9</td>
+        <td>1</td>
+        <td>10</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> H,00
+  <div style="color: lightblue">MVI</div> L,2A
+  <div style="color: orange">PCHL</div>
+  </p>
+  Po wykonaniu tych instrukcji program skoczy do adresu 0x002A.
+</p>
+</body>
+</html>

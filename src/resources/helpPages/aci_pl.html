@@ -1,0 +1,35 @@
+<html>
+<body>
+<h1>ACI</h1>
+<h2>Add immediate to accumulator with Carry</h2>
+<br>
+<p>Dodaje do akumulatora dane po kodzie instrukcji z uwzględnieniem Carry.</p>
+<p>Instrukcja ma wpływ na flagi: Carry, Sign, Zero, Parity, Auxiliary Carry</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td><span="color: yellow">ACI</span> d8</td>
+        <td>0xCE</td>
+        <td>2</td>
+        <td>7</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*d8 oznacza 8 bitów danych.</p>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,05
+  <div style="color: yellow">ACI</div> 03
+  </p>
+  Zakładając, że Carry = 1, po wykonaniu tych instrukcji zawartość akumulatora będzie 0x09.
+</p>
+</body>
+</html>

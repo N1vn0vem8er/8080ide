@@ -1,0 +1,36 @@
+<html>
+<body>
+<h1>JMP</h1>
+<h2>Jump</h2>
+<br>
+<p>Bezwarunkowa instrukcja skoku. Wykonywanie programu jest kontynuowane na podanym adresie pamięci.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>JMP a16</td>
+        <td>0xC3</td>
+        <td>3</td>
+        <td>10</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 oznacza 16 bitów adresu.</p>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> B,F2
+  <div><span style="color: dodgerblue">label: </span><span style="color: yellow">INR </span>B</div>
+  <div style="color: orange">JMP</div> label
+  <div style="color: purple">HLT</div>
+  </p>
+  Program będzie przechodził do adresu <span style="color: dodgerblue">label</span> w nieskończoność.
+</p>
+</body>
+</html>

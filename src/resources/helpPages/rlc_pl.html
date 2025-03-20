@@ -1,0 +1,32 @@
+<html>
+<body>
+<h1>RLC</h1>
+<h2>Rotate accumulator left</h2>
+<br>
+<p>Zawartość akumulatora jest przesuwana o jedną pozycje w lewo. Najbardziej znaczący bit zapisywany jest w fladze Carry i umieszczany na najmniej znaczącej pozycji.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>RLC</td>
+        <td>0x07</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,F0
+  <div style="color: yellow">RLC</div></p>
+  Po wykonaniu tych instrukcji zawartośc rejestru A będzie 0xE1 i flaga Carry zostanie ustawiona na 1.
+</p>
+</body>
+</html>

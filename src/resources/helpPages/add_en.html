@@ -1,0 +1,74 @@
+<html>
+<body>
+<h1>ADD</h1>
+<h2>ADD register of memory to accumulator</h2>
+<br>
+<p>Adds to contents of accumulator the contents of register or memory.</p>
+<p>Condition bits affected: Carry, Sign, Zero, Parity, Auxiliary Carry</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Lenght in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td><span style="color: yellow">ADD</span> B</td>
+        <td>0x80</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADD</span> C</td>
+        <td>0x81</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADD</span> D</td>
+        <td>0x82</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADD</span> E</td>
+        <td>0x83</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADD</span> H</td>
+        <td>0x84</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADD</span> L</td>
+        <td>0x85</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADD</span> M</td>
+        <td>0x86</td>
+        <td>1</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADD</span> A</td>
+        <td>0x87</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Example</h3>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="color: lightblue">MVI</div> B,04
+  <div style="color: yellow">ADD </div>B</p>
+  After executing these instructions the content of the accumulator will be 0xF6.
+</body>
+</html>

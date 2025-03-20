@@ -1,0 +1,37 @@
+<html>
+<body>
+<h1>RET</h1>
+<h2>Return</h2>
+<br>
+<p>Return instruction from subprogram.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>RET</td>
+        <td>0xC9</td>
+        <td>1</td>
+        <td>10</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="color: lightblue">MVI</div> B,52
+  <div style="color: orange">CALL</div> label
+  <div style="color: purple">HLT</div>
+  <div><span style="color: dodgerblue">label: </span>B<span style="color: yellow">SUB </span>B</div>
+  <div style="color: orange">RET</div>
+  </p>
+  After executing <span style="color: orange">CALL</span> instruction <span style="color: yellow">SUB </span>B will be performed. Next program will return from subprogram.
+</p>
+</body>
+</html>

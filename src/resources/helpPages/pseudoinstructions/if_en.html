@@ -1,0 +1,17 @@
+<html>
+<body>
+<h1>IF</h1>
+<br>
+<p>Pseudo instruction checks constant and depending on its value assembler assembles of not instructions to pseudo instruction <span style="color: darkslateblue">ENDIF</span>. If constant value is H0000 instrutcions are not assembled otherwise they are. <span style="color: red">WARNING</span> Must be used with <span style="color: darkslateblue">ENDIF</span>.</p>
+<h3>Example</h3>
+<p>
+  <p>
+  <div><span style="color: dodgerblue">const:</span><span style="color: darkslateblue"> EQU </span> 0</div>
+  <div style="color: darkslateblue"> IF </div> const
+  <div style="color: lightblue">MOV </div>A,B
+  <div style="color: lightblue">MVI </div> A,65
+  <div style="color: darkslateblue"> ENDIF </div></p>
+ Constant "const" is set to 0x0 and instructions between <span style="color: darkslateblue">IF</span> and <span style="color: darkslateblue">ENDIF</span> will not be assembled.
+</p>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<html>
+<body>
+<h1>RAL</h1>
+<h2>Rotate accumulator left through carry</h2>
+<br>
+<p>Zawartość akumulatora jest przesuwana o jedną pozycje w lewo. Najbardziej znaczący bit zapisywany jest w fladze Carry i umieszczany na najmniej znaczącej pozycji.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>RAL</td>
+        <td>0x17</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,B5
+  <div style="color: yellow">RAL</div></p>
+  Flaga Carry jest ustawiona na 0. Po wykonaniu tych instrukcji zawartośc rejestru A będzie 0x6A i flaga Carry zostanie ustawiona na 1.
+  <h4>Przed wykonaniem</h4>
+  Carry = 0
+  <table>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+  </table>
+  <h4>Po wykonaniu</h4>
+  <table>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+  </table>
+  Carry = 1
+</p>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<html>
+<body>
+<h1>JPO</h1>
+<h2>Jump if parity odd</h2>
+<br>
+<p>If Parity = 0 execution will continue on specified memory address.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>JPO a16</td>
+        <td>0xE2</td>
+        <td>3</td>
+        <td>10</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 means 16 bits of address.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> B,F1
+  <div><span style="color: dodgerblue">label: </span><span style="color: yellow">INR </span>B</div>
+  <div style="color: orange">JPO</div> label
+  <div style="color: purple">HLT</div>
+  </p>
+  Program will jump to label 1 time. Rregister B will be incremented to 0xF2 and execution will continue at address of <span style="color: dodgerblue">label</span>. Then B will be incremented to 0xF3 and jump will not occur.
+</p>
+</body>
+</html>

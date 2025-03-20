@@ -1,0 +1,74 @@
+<html>
+<body>
+<h1>XRA</h1>
+<h2>Logical XOR register or memory with accumulator</h2>
+<br>
+<p>Logical XOR of accumulator and register or memory. Carry bit is always set to 0.</p>
+<p>Condition bits affected: Carry, Zero, Sign, Parity.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>XRA B</td>
+        <td>0xA8</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>XRA C</td>
+        <td>0xA9</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>XRA D</td>
+        <td>0xAA</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>XRA E</td>
+        <td>0xAB</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>XRA H</td>
+        <td>0xAC</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>XRA L</td>
+        <td>0xAD</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>XRA M</td>
+        <td>0xAE</td>
+        <td>1</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>XRA A</td>
+        <td>0xAF</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Example</h3>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="c olor: lightblue">MVI</div> B,04
+  <div style="color: yellow">XRA </div>B</p>
+  After executing these instructions accumulator will contain 0xF6.
+</body>
+</html>

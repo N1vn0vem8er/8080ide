@@ -1,0 +1,36 @@
+<html>
+<body>
+<h1>JM</h1>
+<h2>Jump if minus</h2>
+<br>
+<p>Jeżeli flaga Sign = 1 wykonywanie programu jest kontynułowane na podanym adresie pamięci.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>JM a16</td>
+        <td>0xFA</td>
+        <td>3</td>
+        <td>10</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 oznacza 16 bitów adresu.</p>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> B,H3F
+  <div><span style="color: dodgerblue">label: </span><span style="color: yellow">INR </span>B</div>
+  <div style="color: orange">JM</div> label
+  <div style="color: purple">HLT</div>
+  </p>
+ Ponieważ rejestr B po inkrementacji będzie wynosił 0x40 i flaga Sign = 0 skok nie zostanie wykonany.
+</p>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+<body>
+<h1>XRI</h1>
+<h2>Exclusive-Or immediate with accumulator</h2>
+<br>
+<p>Logical XOR on accumulator and immediate data. Carry bit is always set to 0.</p>
+<p>Condition bits affected: Carry, Sign, Zero, Parity</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>XRI d8</td>
+        <td>0xEC</td>
+        <td>2</td>
+        <td>7</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*d8 means 8 bits of data.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,05
+  <div style="color: yellow">XRI</div> 03
+  </p>
+  After executing these instructions accumulator will contain 0x06.
+</p>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<html>
+<body>
+<h1>XTHL</h1>
+<h2>Exchange Stack</h2>
+<br>
+<p>Zawartość rejestru L jest zamieniana z danymi pod adresem wskazywanym przez wskaźnik stosu SP. Zawartość rejestru H jest zamieniana z danymi pod adresem wskazywanym przez SP + 1.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>XTHL</td>
+        <td>0xE3</td>
+        <td>1</td>
+        <td>18</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+<p>
+  <p>
+  <div style="color: lightgreen">XTHL</div>
+  </p>
+  Zakładając że SP zawiera 0x10AD, rejestr H 0x0B i rejestr L 0x3C. Pamięć wygląda tak jak w tabeli poniżej. Po wykonaniu tej instrukcji rejestry H i L pędą zawierać kolejno 0x0D, i 0xF0.
+</p>
+<p>
+<table>
+<thred>
+    <tr>
+        <th>Pamięć przed</th>
+        <th>Adres</th>
+        <th>Pamięć po</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>FF</td>
+        <td>10AC</td>
+        <td>FF</td>
+    </tr>
+    <tr>
+        <td>F0</td>
+        <td>10AD</td>
+        <td>3C</td>
+    </tr>
+    <tr>
+        <td>0D</td>
+        <td>10AE</td>
+        <td>0B</td>
+    </tr>
+    <tr>
+        <td>FF</td>
+        <td>10AF</td>
+        <td>FF</td>
+    </tr>
+    </tbody>
+</table>
+</p>
+</body>
+</html>

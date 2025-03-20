@@ -1,0 +1,64 @@
+<html>
+<body>
+<h1>RRC</h1>
+<h2>Rotate accumulator right</h2>
+<br>
+<p>Contents of accumulator are rotated one bit left. Most important bit sets Carry.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>RRC</td>
+        <td>0x0F</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="color: yellow">RRC</div></p>
+  After executing these instruction register A will contain 0x79 and Carry will be set to 0.
+  <h4>Before</h4>
+  Carry = x
+  <table>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+  </table>
+  <h4>After</h4>
+  <table>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+  </table>
+  Carry = 0
+</p>
+</body>
+</html>

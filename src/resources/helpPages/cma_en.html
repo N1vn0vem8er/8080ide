@@ -1,0 +1,58 @@
+<html>
+<body>
+<h1>CMA</h1>
+<h2>Complement accumulator</h2>
+<br>
+<p>Accumulator is complemented.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>CMA</td>
+        <td>0x2F</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Example</h3>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="color: yellow">CMA</div></p>
+  After this instructions accumulator will contain 0x0D.
+
+  <table>
+  <tbody>
+    <tr>
+      <td>Before</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>After</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+  </table>
+
+</body>
+</html>

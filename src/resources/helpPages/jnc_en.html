@@ -1,0 +1,37 @@
+<html>
+<body>
+<h1>JNC</h1>
+<h2>Jump if not carry</h2>
+<br>
+<p>If Carry = 0 execution will continue on specified memory address.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>JNC a16</td>
+        <td>0xD2</td>
+        <td>3</td>
+        <td>10</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 means 16 bits of address.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> B,F2
+  <div style="color: lightblue">MVI</div> A,10
+  <div style="color: yellow">SUB </div>B
+  <div style="color: orange">JNC</div> label
+  <div style="color: purple">HLT</div>
+  </p>
+  Program will not jumt to address of <span style="color: dodgerblue">label</span>, becouse 0x10 - 0xF2 and Carry will be set to 1.
+</p>
+</body>
+</html>

@@ -1,0 +1,11 @@
+<html>
+<body>
+  <h1>Labels</h1>
+  <p>Labels can be added to lines of code. The assembler replaces the labels with the memory addresses of the instructions marked with those labels. Pseudo instructions such as EQU, SET and MACRO are also marked with labels, but in their case the labels are not converted into memory addresses but values.</p>
+  <p>
+    <div><span style="color: dodgerblue">label: </span><span style="color: darkblue">DB </span>23</div>
+    <div style="color: orange">LDA</div> label
+  </p>
+  <p>Label label in instruction LDA will be replaced with 0x23.</p>
+</body>
+</html>

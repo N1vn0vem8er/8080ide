@@ -1,0 +1,74 @@
+<html>
+<body>
+<h1>ORA</h1>
+<h2>Logical OR register or memory with accumulator</h2>
+<br>
+<p>Logical OR on accumulator and register or memory. Carry will always be set to 0.</p>
+<p>Condition bits affected: Carry, Zero, Sign, Parity.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>ORA B</td>
+        <td>0xB0</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>ORA C</td>
+        <td>0xB1</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>ORA D</td>
+        <td>0xB2</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>ORA E</td>
+        <td>0xB3</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>ORA H</td>
+        <td>0xB4</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>ORA L</td>
+        <td>0xB5</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>ORA M</td>
+        <td>0xB6</td>
+        <td>1</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td>ORA A</td>
+        <td>0xB7</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="c olor: lightblue">MVI</div> B,04
+  <div style="color: yellow">ORA </div>B</p>
+  After executing these instructions accumulator will contain 0xF6.
+</body>
+</html>

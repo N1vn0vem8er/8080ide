@@ -1,0 +1,35 @@
+<html>
+<body>
+<h1>CPI</h1>
+<h2>Compare immediate with accumulator</h2>
+<br>
+<p>Comperes accumulator and byte of immediate data after instruction code.</p>
+<p>Contition bits affected: Carry, Sign, Zero, Parity, Auxiliary Carry</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>CPI d8</td>
+        <td>0xFC</td>
+        <td>2</td>
+        <td>7</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*d8 means 8 bits of data.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,05
+  <div style="color: yellow">CPI</div> 03
+  </p>
+  After executing these instructions bit Zero will be set to 0, becaues values are not equal, Carry will be set to 0 informing, that contenst of accumulator are greater.
+</p>
+</body>
+</html>

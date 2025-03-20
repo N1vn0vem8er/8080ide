@@ -1,0 +1,74 @@
+<html>
+<body>
+<h1>ADD</h1>
+<h2>ADD register of memory to accumulator</h2>
+<br>
+<p>Dodaje zawartość rejestru lub pamięci do akumulatora.</p>
+<p>Instrukcja ma wpływ na flagi: Carry, Sign, Zero, Parity, Auxiliary Carry</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td><span style="color: yellow">ADD</span> B</td>
+        <td>0x80</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADD</span> C</td>
+        <td>0x81</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADD</span> D</td>
+        <td>0x82</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADD</span> E</td>
+        <td>0x83</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADD</span> H</td>
+        <td>0x84</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADD</span> L</td>
+        <td>0x85</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADD</span> M</td>
+        <td>0x86</td>
+        <td>1</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADD</span> A</td>
+        <td>0x87</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="color: lightblue">MVI</div> B,04
+  <div style="color: yellow">ADD </div>B</p>
+  Po wykonaniu tych instrukcji zawartość akumulatora będzie 0xF6.
+</body>
+</html>

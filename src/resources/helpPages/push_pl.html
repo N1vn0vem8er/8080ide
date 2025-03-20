@@ -1,0 +1,57 @@
+<html>
+<body>
+<h1>PUSH</h1>
+<h2>Push data onto stack</h2>
+<br>
+<p>Instrukcja umieszcza zawartość wskazanej pary rejestrów w pamięci pod adresem wskazywanym przez wskaźnik stosu SP. Zawartość pierwszego rejestru jest zapisywana pod adresem o jeden mniejszym niż adres zapisany w SP, a zawartość drugiego rejestru pod adresem o dwa mniejszym niż zawartość SP. W przypadku użycia PSW pierwszy bajt zapisuje zawartość rejestru A, drugi rejestru flagowego.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+        <th>Opis</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>PUSH B</td>
+        <td>0xC1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Dane z pary rejestrów B i C są ładowane na stos.</td>
+    </tr>
+    <tr>
+        <td>PUSH D</td>
+        <td>0xD1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Dane z pary rejestrów D i E są ładowane na stos.</td>
+    </tr>
+    <tr>
+        <td>PUSH H</td>
+        <td>0xE1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Dane z pary rejestrów H i L są ładowane na stos.</td>
+    </tr>
+    <tr>
+        <td>PUSH PSW</td>
+        <td>0xF1</td>
+        <td>1</td>
+        <td>10</td>
+        <td>Dane z rejestru flagowego są oraz akumulatora ładowane na stos.</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> C,F2
+  <div style="color: lightblue">MVI</div> B,52
+  <div style="color: lightgreen">PUSH</div> B
+  </p>
+  Zakładając, że wskaźnik stosu zawiera 0x1245 to po wykonaniu tych instrukcji w pamięci pod adresami 0x1244 i 0x1243 będzie kolejno 0x52, i 0xF2. SP będzie równy 0x1243.
+</p>
+</body>
+</html>

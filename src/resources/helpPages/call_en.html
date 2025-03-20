@@ -1,0 +1,37 @@
+<html>
+<body>
+<h1>CALL</h1>
+<h2>Call</h2>
+<br>
+<p>Unconditionally perform subroutine. Return address is pushed onto the stack and program jumps to address of subroutine. To return from subroutine use <span style="color: orange">RET</span>.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Lenght in bytes</th>
+        <th>Lenght in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>CALL a16</td>
+        <td>0xCD</td>
+        <td>3</td>
+        <td>17</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 means 16 bits of address.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> B,05
+  <div style="color: lightblue">MVI</div> A,10
+  <div style="color: yellow">SUB </div>B
+  <div style="color: orange">CALL</div> label
+  <div style="color: purple">HLT</div>
+  </p>
+  Subroutine will always be performed.
+</p>
+</body>
+</html>

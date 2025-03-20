@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>settings</class>
+ <widget class="QDialog" name="settings">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>955</width>
+    <height>582</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Settings</string>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,3">
+     <item>
+      <widget class="QListView" name="settingsSelector">
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QStackedWidget" name="stackedWidget">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="StyleSettingsPage" name="stylePage">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="SimSettingsPage" name="simPage">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="HelpSettings" name="helpSPage"/>
+       <widget class="SyntaxHighlightingSettings" name="syntaxPage"/>
+       <widget class="StartupSettingsPage" name="startupPage"/>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>StyleSettingsPage</class>
+   <extends>QWidget</extends>
+   <header>settingsPages/stylesettingspage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>HelpSettings</class>
+   <extends>QWidget</extends>
+   <header>settingsPages/helpsettings.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SyntaxHighlightingSettings</class>
+   <extends>QWidget</extends>
+   <header>settingsPages/syntaxhighlightingsettings.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>StartupSettingsPage</class>
+   <extends>QWidget</extends>
+   <header>settingsPages/startupsettingspage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>SimSettingsPage</class>
+   <extends>QWidget</extends>
+   <header>settingsPages/simsettingspage.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

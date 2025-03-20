@@ -1,0 +1,35 @@
+<html>
+<body>
+<h1>DB</h1>
+<br>
+<p>Zapisuje 8 bitów danych w pamięci.</p>
+<h3>Przykład</h3>
+<p>
+  <p>
+  <div style="color: lightblue">MOV</div> A,B
+  <div><span style="color: dodgerblue">ldata: </span><span style="color: darkslateblue">DB</span> 4F</p>
+  Dane podane w pseudo instrukcji zostaną zapisane w pamięci po instrukcji <div style="color: lightblue">MOV</div>.
+</p>
+<p>
+Zakładając, że kod instrukcji <span style="color: lightblue">MOV</span> A,B znajduję się w pamięci pod adresem 0x1001 pamięć będzie wyglądać następująco:
+  <table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Adres</th>
+        <th>Pamięć</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>0x1001</td>
+        <td>0x78</td>
+    </tr>
+    <tr>
+        <td>0x1002</td>
+        <td>0x4F</td>
+    </tr>
+    </tbody>
+</table>
+</p>
+</body>
+</html>

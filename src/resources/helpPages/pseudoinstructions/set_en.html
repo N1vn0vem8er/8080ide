@@ -1,0 +1,18 @@
+<html>
+<body>
+<h1>SET</h1>
+<br>
+<p>Pseudo instruction seting value to symbol. Value can be set multiple times. <span style="color: red">WARNING</span> Set before using.</p>
+<h3>Example</h3>
+<p>
+  <p>
+  <div><span style="color: dodgerblue">name:</span><span style="color: darkslateblue"> SET </span> 1002</div>
+  <div style="color: orange">JMP </div> name
+  <div><span style="color: dodgerblue">name:</span><span style="color: darkslateblue"> SET </span> 0B32</div>
+  <div style="color: orange">JMP </div> name</p>
+  "name" will be set to 0x1002 and first <span style="color: orange">JMP</span> will jump to this value, next "name" is set to 0x0B32 and second <span style="color: orange">JMP</span> will jump to address 0x0B32.
+  <div style="color: orange">JMP </div> 1002
+  <div style="color: orange">JMP </div> 0B32
+</p>
+</body>
+</html>

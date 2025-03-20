@@ -1,0 +1,18 @@
+<html>
+<body>
+<h1>SET</h1>
+<br>
+<p>Pseudo instrukcja ustawiająca wartość do symbolu. Wartość symbolu może być ustwaiona wiele razy. <span style="color: red">UWAGA</span> Należy ustawić przed jej użyciem.</p>
+<h3>Przykład</h3>
+<p>
+  <p>
+  <div><span style="color: dodgerblue">name:</span><span style="color: darkslateblue"> SET </span> 1002</div>
+  <div style="color: orange">JMP </div> name
+  <div><span style="color: dodgerblue">name:</span><span style="color: darkslateblue"> SET </span> 0B32</div>
+  <div style="color: orange">JMP </div> name</p>
+  Symbol "name" jest najpierw ustawiany na 0x1002 i pierwsza instrukcja <span style="color: orange">JMP</span> będzie skakała do tej wartości, następnie symbol "name" jest ustawiany na 0x0B32 przez co druga instrukcja <span style="color: orange">JMP</span> będzie skakać do adresu 0x0B32.
+  <div style="color: orange">JMP </div> 1002
+  <div style="color: orange">JMP </div> 0B32
+</p>
+</body>
+</html>

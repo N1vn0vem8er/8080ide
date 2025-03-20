@@ -1,0 +1,37 @@
+<html>
+<body>
+<h1>CALL</h1>
+<h2>Call</h2>
+<br>
+<p>Bezwarunkowa instrukcja wywołania podprogramu. Adres powrotu jest dawany na stos i program skacze do adresu pamięci zapisanego po kodzie instrukcji. Aby powrócić z subrutyny należy użyć instrukcji <span style="color: orange">RET</span>.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>CALL a16</td>
+        <td>0xCD</td>
+        <td>3</td>
+        <td>17</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 oznacza 16 bitów adresu.</p>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> B,05
+  <div style="color: lightblue">MVI</div> A,10
+  <div style="color: yellow">SUB </div>B
+  <div style="color: orange">CALL</div> label
+  <div style="color: purple">HLT</div>
+  </p>
+  Podprogram zawsze zostanie wywołany.
+</p>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<html>
+<body>
+<h1>INR</h1>
+<h2>Increment register or memory</h2>
+<br>
+<p>Zawartość rejestru wskazanego w instrukcji jest zwiększana o 1.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>INR B</td>
+        <td>0x04</td>
+        <td>1</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>INR D</td>
+        <td>0x14</td>
+        <td>1</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>INR H</td>
+        <td>0x24</td>
+        <td>1</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>INR M</td>
+        <td>0x34</td>
+        <td>1</td>
+        <td>10</td>
+    </tr>
+    <tr>
+        <td>INR C</td>
+        <td>0x0C</td>
+        <td>1</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>INR E</td>
+        <td>0x1C</td>
+        <td>1</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>INR L</td>
+        <td>0x2C</td>
+        <td>1</td>
+        <td>5</td>
+    </tr>
+    <tr>
+        <td>INR A</td>
+        <td>0x3C</td>
+        <td>1</td>
+        <td>5</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> B,00
+  <div style="color: yellow">INR</div> B</p>
+  Po wykonaniu tych instrukcji zawartośc rejestru B będzie 0x01.
+</p>
+</body>
+</html>

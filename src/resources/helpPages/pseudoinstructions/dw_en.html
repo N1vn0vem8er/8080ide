@@ -1,0 +1,39 @@
+<html>
+<body>
+<h1>DW</h1>
+<br>
+<p>8 least significant bits of data are stored in memory, 8 most significant bits are stored under next memory address.</p>
+<h3>Example</h3>
+<p>
+  <p>
+  <div style="color: lightblue">MOV</div> A,B
+  <div><span style="color: dodgerblue">ldata: </span><span style="color: darkslateblue">DW</span> 954F</p>
+  Data will be stored after code of <div style="color: lightblue">MOV</div>.
+</p>
+<p>
+If code of instruction <span style="color: lightblue">MOV</span> A,B is located in memory under address 0x1001 memory will look like this:
+  <table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Adres</th>
+        <th>Pamięć</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>0x1001</td>
+        <td>0x78</td>
+    </tr>
+    <tr>
+        <td>0x1002</td>
+        <td>0x4F</td>
+    </tr>
+    <tr>
+        <td>0x1003</td>
+        <td>0x95</td>
+    </tr>
+    </tbody>
+</table>
+</p>
+</body>
+</html>

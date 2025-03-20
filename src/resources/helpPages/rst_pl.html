@@ -1,0 +1,85 @@
+<html>
+<body>
+<h1>RST</h1>
+<h2>Restart</h2>
+<br>
+<p>Instrukcja restartu. Wykonany zostanie subprogram znajdujący się w pamięci pod jednym z określonych adresów.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+        <th>Opis</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>RST 0</td>
+        <td>0xC7</td>
+        <td>1</td>
+        <td>11</td>
+        <td>Wykonanie subprogramu pod adresem 0x0000</td>
+    </tr>
+    <tr>
+        <td>RST 1</td>
+        <td>0xCF</td>
+        <td>1</td>
+        <td>11</td>
+        <td>Wykonanie subprogramu pod adresem 0x0008</td>
+    </tr>
+    <tr>
+        <td>RST 2</td>
+        <td>0xD7</td>
+        <td>1</td>
+        <td>11</td>
+        <td>Wykonanie subprogramu pod adresem 0x0010</td>
+    </tr>
+    <tr>
+        <td>RST 3</td>
+        <td>0xDF</td>
+        <td>1</td>
+        <td>11</td>
+        <td>Wykonanie subprogramu pod adresem 0x0018</td>
+    </tr>
+    <tr>
+        <td>RST 4</td>
+        <td>0xE7</td>
+        <td>1</td>
+        <td>11</td>
+        <td>Wykonanie subprogramu pod adresem 0x0020</td>
+    </tr>
+    <tr>
+        <td>RST 5</td>
+        <td>0xEF</td>
+        <td>1</td>
+        <td>11</td>
+        <td>Wykonanie subprogramu pod adresem 0x0028</td>
+    </tr>
+    <tr>
+        <td>RST 6</td>
+        <td>0xF7</td>
+        <td>1</td>
+        <td>11</td>
+        <td>Wykonanie subprogramu pod adresem 0x0030</td>
+    </tr>
+    <tr>
+        <td>RST 7</td>
+        <td>0xFF</td>
+        <td>1</td>
+        <td>11</td>
+        <td>Wykonanie subprogramu pod adresem 0x0038</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+<p>
+  <p>
+  <div style="color: orange">RST</div> 1
+  <div style="color: lightblue">MOV</div> A,B
+  </p>
+  Wykonana zostanie subprogramu pod adresem 0x0008.
+</p>
+</body>
+</html>

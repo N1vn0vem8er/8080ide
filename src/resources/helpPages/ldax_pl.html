@@ -1,0 +1,43 @@
+<html>
+<body>
+<h1>LDAX</h1>
+<h2>Load accumulator</h2>
+<br>
+<p>Ładuje do akumulatora dane z pamięci. Adres pamięci wskazywany jest przez zawartość pary rejestrów zapisanych w instrukcji.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+        <th>Opis</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>LDAX B</td>
+        <td>0x0A</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Adres pamięci wskazywany jest przez rejestry B i C.</td>
+    </tr>
+    <tr>
+        <td>LDAX D</td>
+        <td>0x1A</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Adres pamięci wskazywany jest przez rejestry D i E.</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+<p>
+  <p>
+  <div style="color: lightblue">MVI</div> B,00
+  <div style="color: lightblue">MVI</div> C,10
+  <div style="color: lightblue">LDAX</div> B</p>
+  Po wykonaniu tych instrukcji do rejestru A zostanią zapisane dane z pamięci pod adresem 0x0010.
+</p>
+</body>
+</html>

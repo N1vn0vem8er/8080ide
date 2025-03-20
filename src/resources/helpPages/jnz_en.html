@@ -1,0 +1,36 @@
+<html>
+<body>
+<h1>JNZ</h1>
+<h2>Jump if not zero</h2>
+<br>
+<p>If Zero = 0 execution will continue on specified memory address.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>JNZ a16</td>
+        <td>0xC2</td>
+        <td>3</td>
+        <td>10</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 means 16 bits of address.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> B,03
+  <div><span style="color: dodgerblue">label: </span><span style="color: yellow">DCR </span>B</div>
+  <div style="color: orange">JNZ</div> label
+  <div style="color: purple">HLT</div>
+  </p>
+  Program will jump to address of <span style="color: dodgerblue">label</span> as long as register B will not contain 0.
+</p>
+</body>
+</html>

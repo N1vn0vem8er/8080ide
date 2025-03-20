@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>HelpWidget</class>
+ <widget class="QWidget" name="HelpWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>887</width>
+    <height>615</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Help</string>
+  </property>
+  <property name="locale">
+   <locale language="English" country="UnitedStates"/>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
+     <widget class="HelpIDEWidget" name="tab">
+      <attribute name="title">
+       <string>IDE</string>
+      </attribute>
+     </widget>
+     <widget class="HelpInstructionsWidget" name="tab_2">
+      <attribute name="title">
+       <string>Instructions</string>
+      </attribute>
+     </widget>
+     <widget class="HelpPseudoInstWidget" name="tab_3">
+      <attribute name="title">
+       <string>Pseudo Instructions</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>HelpInstructionsWidget</class>
+   <extends>QWidget</extends>
+   <header>widgets/help/helpinstructionswidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>HelpIDEWidget</class>
+   <extends>QWidget</extends>
+   <header>widgets/help/helpidewidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>HelpPseudoInstWidget</class>
+   <extends>QWidget</extends>
+   <header>widgets/help/helppseudoinstwidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

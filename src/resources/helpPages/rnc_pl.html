@@ -1,0 +1,38 @@
+<html>
+<body>
+<h1>RNC</h1>
+<h2>Return if not carry</h2>
+<br>
+<p>Jeżeli flaga Carry = 0 to operacja powrotu jest wykonywana</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>RNC</td>
+        <td>0xD0</td>
+        <td>1</td>
+        <td>11/5</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*długość zależy od wykonania lub nie wykonania akcji.</p>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="color: lightblue">MVI</div> B,52
+  <div style="color: orange">CALL</div> label
+  <div style="color: purple">HLT</div>
+  <div><span style="color: dodgerblue">label: </span>B<span style="color: yellow">SUB </span>B</div>
+  <div style="color: orange">RNC</div>
+  </p>
+  Po wykonaniu instrukcji <span style="color: orange">CALL</span> wykona się instrukcja <span style="color: yellow">SUB </span>B. Ponieważ 0xF2 > 0x52 flaga Carry zostanie ustawiona na 0 i instrukcja <span style="color: orange">RNC</span> sprawi, że program powróci do adresu instrukcji<span style="color: orange">CALL</span>. Następnie wykona się instrukcja <span style="color: purple">HLT</span>.
+</p>
+</body>
+</html>

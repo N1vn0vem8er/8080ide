@@ -1,0 +1,54 @@
+<html>
+<body>
+<h1>LHLD</h1>
+<h2>Load H and L direct</h2>
+<br>
+<p>Loads registers H and L with 16-bits of data saved at memory location addresed by 16-bits from after instruction code.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>LHLD a16</td>
+        <td>0x2A</td>
+        <td>3</td>
+        <td>16</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 means 16 bits of address.</p>
+<h3>Example</h3>
+<p>
+  <p>
+  <div style="color: lightgreen">LHLD</div> 0013</p>
+  If memory will look like below register H will be loaded with 0xA6, and register L with 0x32.
+</p>
+<p>
+  <table style="border-width: 1px;">
+  <thred>
+    <tr>
+        <th>Address</th>
+        <th>Memory</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>0x0013</td>
+        <td>0x32</td>
+    </tr>
+    <tr>
+        <td>0x0014</td>
+        <td>0xA6</td>
+    </tr>
+    </tbody>
+</table>
+  </p>
+</p>
+</body>
+</html>

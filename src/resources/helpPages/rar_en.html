@@ -1,0 +1,64 @@
+<html>
+<body>
+<h1>RAR</h1>
+<h2>Rotate accumulator right through carry</h2>
+<br>
+<p>Contents of accumulator are rotated one bit position right. Most important bit is saved in Carry and Carry bit from carry is saved on least important bit.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>RAR</td>
+        <td>0x1F</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,6A
+  <div style="color: yellow">RRC</div></p>
+  If carry contains 1. After executing these Instruction register A will contain 0xB5 and Carry will be set to 0.
+  <h4>Before</h4>
+  Carry = 1
+  <table>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+  </table>
+  <h4>After</h4>
+  <table>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+  </table>
+  Carry = 0
+</p>
+</body>
+</html>

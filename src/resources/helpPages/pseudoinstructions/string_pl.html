@@ -1,0 +1,71 @@
+<html>
+<body>
+<h1>STRING</h1>
+<br>
+<p>Pseudo instrukcja służąca do zapisania ciągu znaków w pamięci pod adresem ustawienia pseudo instrukcji. Ciąg znaków musi być zapisany pomiędzy <span style="color: darksalmon">""</span>.</p>
+<h3>Przykład</h3>
+<p>
+  <p>
+  <div style="color: lightblue">MOV</div> A,B
+  <div style="color: darkslateblue">STRING </div> <span style="color: darksalmon">"hello word"</span></p>
+  Ciąg znaków zostanie zapisany w pamięci po instrukcji <span style="color: lightblue">MOV</span> A,B.
+</p>
+<p>
+Zakładając, że kod instrukcji <span style="color: lightblue">MOV</span> A,B znajduję się w pamięci pod adresem 0x1001 pamięć będzie wyglądać następująco:
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Adres</th>
+        <th>Pamięć</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>0x1001</td>
+        <td>0x78</td>
+    </tr>
+    <tr>
+        <td>0x1002</td>
+        <td>0x68</td>
+    </tr>
+    <tr>
+        <td>0x1003</td>
+        <td>0x65</td>
+    </tr>
+    <tr>
+        <td>0x1004</td>
+        <td>0x6c</td>
+    </tr>
+    <tr>
+        <td>0x1005</td>
+        <td>0x6c</td>
+    </tr>
+    <tr>
+        <td>0x1006</td>
+        <td>0x6f</td>
+    </tr>
+    <tr>
+        <td>0x1007</td>
+        <td>0x20</td>
+    </tr>
+    <tr>
+        <td>0x1008</td>
+        <td>0x77</td>
+    </tr>
+    <tr>
+        <td>0x1009</td>
+        <td>0x6f</td>
+    </tr>
+    <tr>
+        <td>0x100A</td>
+        <td>0x72</td>
+    </tr>
+    <tr>
+        <td>0x100B</td>
+        <td>0x64</td>
+    </tr>
+    </tbody>
+</table>
+</p>
+</body>
+</html>

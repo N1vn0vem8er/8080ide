@@ -1,0 +1,23 @@
+<html>
+<body>
+<h1>ENDM</h1>
+<br>
+<p>This pseudo instruction marks the end of macro. <span style="color: red">WARNING</span> always use with <span style="color: darkslateblue">MACRO</span>.</p>
+<h3>Example</h3>
+<p>
+  <p>
+  <div><span style="color: dodgerblue">name:</span><span style="color: darkslateblue"> MACRO </span></div>
+  <div style="color: lightblue">MOV </div>A,B
+  <div style="color: lightblue">MVI </div> A,65
+  <div style="color: darkslateblue"> ENDM </div></p>
+  Macro named "name" will be created and and you can use it in code. This macro will contain <span style="color: lightblue">MOV </span>A,B and <span style="color: lightblue">MVI </span> A,65.
+  <p>
+    <div style="color: yellow">RRC </div>A,B
+    <div>name</div>
+    <div style="color: lightblue">MOV </div>B,C
+    <div style="color: lightblue">MVI </div> C,60
+  </p>
+  Code from macro will we inserted in the place of "name".
+</p>
+</body>
+</html>

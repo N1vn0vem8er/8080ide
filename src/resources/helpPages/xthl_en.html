@@ -1,0 +1,66 @@
+<html>
+<body>
+<h1>XTHL</h1>
+<h2>Exchange Stack</h2>
+<br>
+<p>Contents of register L are exchanged with data pointed by stack pointer SP. Contents of register H are exchanged with data pointed by SP + 1.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>XTHL</td>
+        <td>0xE3</td>
+        <td>1</td>
+        <td>18</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Example</h3>
+<p>
+  <p>
+  <div style="color: lightgreen">XTHL</div>
+  </p>
+  If SP contains 0x10AD, register H 0x0B and register L 0x3C. Memory looks like below. After executing this instruction registers H and L will contain 0x0D, and 0xF0.
+</p>
+<p>
+<table>
+<thred>
+    <tr>
+        <th>Memory before</th>
+        <th>Address</th>
+        <th>Memory after</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>FF</td>
+        <td>10AC</td>
+        <td>FF</td>
+    </tr>
+    <tr>
+        <td>F0</td>
+        <td>10AD</td>
+        <td>3C</td>
+    </tr>
+    <tr>
+        <td>0D</td>
+        <td>10AE</td>
+        <td>0B</td>
+    </tr>
+    <tr>
+        <td>FF</td>
+        <td>10AF</td>
+        <td>FF</td>
+    </tr>
+    </tbody>
+</table>
+</p>
+</body>
+</html>

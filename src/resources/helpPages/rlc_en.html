@@ -1,0 +1,32 @@
+<html>
+<body>
+<h1>RLC</h1>
+<h2>Rotate accumulator left</h2>
+<br>
+<p>Contents of accumulator are rotated one bit left. Most important bit sets Carry and it is beeing transfered to least important position.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>RLC</td>
+        <td>0x07</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,F0
+  <div style="color: yellow">RLC</div></p>
+  After executing these instructions register A will contain 0xE1 and Carry will be set to 1.
+</p>
+</body>
+</html>

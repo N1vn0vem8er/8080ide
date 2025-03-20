@@ -1,0 +1,35 @@
+<html>
+<body>
+<h1>CPI</h1>
+<h2>Compare immediate with accumulator</h2>
+<br>
+<p>Wykonuje operacje porównania akumulatora z danymi po kodzie instrukcji.</p>
+<p>Instrukcja ma wpływ na flagi: Carry, Sign, Zero, Parity, Auxiliary Carry</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>CPI d8</td>
+        <td>0xFC</td>
+        <td>2</td>
+        <td>7</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*d8 oznacza 8 bitów danych.</p>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,05
+  <div style="color: yellow">CPI</div> 03
+  </p>
+  Po wykonaniu tych instrukcji bit Zero zostanie ustawiony na 0, ponieważ liczby nie są równe, Carry zostanie ustawione na 0 inforumjąc, że liczba w akumulatorze jest większa niż liczba z danych.
+</p>
+</body>
+</html>

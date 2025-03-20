@@ -1,0 +1,43 @@
+<html>
+<body>
+<h1>STAX</h1>
+<h2>Store accumulator</h2>
+<br>
+<p>Stores contents of accumulator in memory. Memory address is pointed by register pair written in instruction.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+        <th>Description</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>STAX B</td>
+        <td>0x02</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Memory address is pointed by B and C.</td>
+    </tr>
+    <tr>
+        <td>STAX D</td>
+        <td>0x12</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Memory address is pointed by D and E.</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,AB
+  <div style="color: lightblue">MVI</div> B,00
+  <div style="color: lightblue">MVI</div> C,10
+  <div style="color: lightblue">STAX</div> B</p>
+  After executing these instructions contents of register A that is 0xAB will be saved under memory address 0x0010.
+</p>
+</body>
+</html>

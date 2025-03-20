@@ -1,0 +1,43 @@
+<html>
+<body>
+<h1>STAX</h1>
+<h2>Store accumulator</h2>
+<br>
+<p>Zapisuje zawartość akumulatora do pamięci. Adres pamięci wskazywany jest przez zawartość pary rejestrów zapisanych w instrukcji.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+        <th>Opis</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>STAX B</td>
+        <td>0x02</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Adres pamięci wskazywany jest przez rejestry B i C.</td>
+    </tr>
+    <tr>
+        <td>STAX D</td>
+        <td>0x12</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Adres pamięci wskazywany jest przez rejestry D i E.</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,AB
+  <div style="color: lightblue">MVI</div> B,00
+  <div style="color: lightblue">MVI</div> C,10
+  <div style="color: lightblue">STAX</div> B</p>
+  Po wykonaniu tych instrukcji zawartośc rejestru A czyli 0xAB zostanie zapisane w pamięci pod adresem 0x0010.
+</p>
+</body>
+</html>

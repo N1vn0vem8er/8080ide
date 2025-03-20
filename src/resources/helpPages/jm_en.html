@@ -1,0 +1,36 @@
+<html>
+<body>
+<h1>JM</h1>
+<h2>Jump if minus</h2>
+<br>
+<p>If Sign = 1 execution will continue on specified memory address.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>JM a16</td>
+        <td>0xFA</td>
+        <td>3</td>
+        <td>10</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 means 16 bits of data.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> B,H3F
+  <div><span style="color: dodgerblue">label: </span><span style="color: yellow">INR </span>B</div>
+  <div style="color: orange">JM</div> label
+  <div style="color: purple">HLT</div>
+  </p>
+ Becouse register B after incrementation will be 0x40 Sign = 0, so execution will not contiune on address of "label".
+</p>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+<body>
+<h1>XCHG</h1>
+<h2>Exchange Registers</h2>
+<br>
+<p>Exchange contents of registers H and L with contents of registers D, and E.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>XCHG</td>
+        <td>0xEB</td>
+        <td>1</td>
+        <td>5</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+<p>
+  <p>
+  <div style="color: lightblue">MVI H</div>,43
+  <div style="color: lightblue">MVI L</div>,05
+  <div style="color: lightblue">MVI D</div>,F3
+  <div style="color: lightblue">MVI E</div>,76
+  <div style="color: lightgreen">XCHG</div>
+  </p>
+  After executing these instructions registers will contain: H=0xF3, L=0x76, D=0x43, E=0x05.
+</p>
+</body>
+</html>

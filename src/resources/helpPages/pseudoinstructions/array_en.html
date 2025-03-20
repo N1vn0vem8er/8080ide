@@ -1,0 +1,55 @@
+<html>
+<body>
+<h1>ARRAY</h1>
+<br>
+<p>Pseudo instruction saving data as array. Data can only be written in hexadecimal number system.</p>
+<h3>Example</h3>
+<p>
+  <p>
+  <div style="color: lightblue">MOV</div> A,B
+  <div style="color: darkslateblue">ARRAY</div> 1234ABC54</p>
+  Data in pseudo instruction <span style="color: darkslateblue">ARRAY</span> will be saved after instruction <span style="color: lightblue">MOV</span>.
+</p>
+<p>
+If code of instruction <span style="color: lightblue">MOV</span> A,B is located in address 0x1001 memory will look like this:
+  <table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Address</th>
+        <th>Memory</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>0x1001</td>
+        <td>0x78</td>
+    </tr>
+    <tr>
+        <td>0x1002</td>
+        <td>0x12</td>
+    </tr>
+    <tr>
+        <td>0x1003</td>
+        <td>0x34</td>
+    </tr>
+    <tr>
+        <td>0x1004</td>
+        <td>0xAB</td>
+    </tr>
+    <tr>
+        <td>0x1005</td>
+        <td>0xC5</td>
+    </tr>
+    <tr>
+        <td>0x1006</td>
+        <td>0x04</td>
+    </tr>
+    </tbody>
+</table>
+Last digit 4 is saved as 0x04. If you want to save it as 0x54 you should put 0 in front like below.
+<p>
+ <div style="color: darkslateblue">ARRAY</div> 01234ABC54</p>
+</p>
+</p>
+</body>
+</html>

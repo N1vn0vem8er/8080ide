@@ -1,0 +1,38 @@
+<html>
+<body>
+<h1>RPE</h1>
+<h2>Return if parity even</h2>
+<br>
+<p>If Parity = 1 return will be performed.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>RPE</td>
+        <td>0xE8</td>
+        <td>1</td>
+        <td>11/5</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*length depends on action.</p>
+<h3>Example</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="color: lightblue">MVI</div> B,52
+  <div style="color: orange">CALL</div> label
+  <div style="color: purple">HLT</div>
+  <div><span style="color: dodgerblue">label: </span>B<span style="color: yellow">SUB </span>B</div>
+  <div style="color: orange">RPE</div>
+  </p>
+  After executing <span style="color: orange">CALL</span> instruction <span style="color: yellow">SUB </span>B will be performed. Because 0xF2 - 0x52 = 0xA0 flag Parity will be set to 1 and return operation will be performed. Next instruction that will be executed is <span style="color: purple">HLT</span>.
+</p>
+</body>
+</html>

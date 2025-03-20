@@ -1,0 +1,102 @@
+<html>
+<body>
+<h1>MVI</h1>
+<h2>Move immediate data</h2>
+<br>
+<p>Jeden bajt danych znajdujący się zaraz po kodzie instrukcji jest ładowany do rejestru zapisanego w instrukcji.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+        <th>Opis</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>MVI B,d8</td>
+        <td>0x06</td>
+        <td>2</td>
+        <td>7</td>
+        <td>Dane ładowane są do rejestru B.</td>
+    </tr>
+    <tr>
+        <td>MVI D,d8</td>
+        <td>0x16</td>
+        <td>2</td>
+        <td>7</td>
+        <td>Dane ładowane są do rejestru D.</td>
+    </tr>
+    <tr>
+        <td>MVI H,d8</td>
+        <td>0x26</td>
+        <td>2</td>
+        <td>7</td>
+        <td>Dane ładowane są do rejestru H.</td>
+    </tr>
+    <tr>
+        <td>MVI M,d8</td>
+        <td>0x36</td>
+        <td>2</td>
+        <td>10</td>
+        <td>Dane ładowane są do rejestru M.</td>
+    </tr>
+    <tr>
+        <td>MVI C,d8</td>
+        <td>0x0E</td>
+        <td>2</td>
+        <td>7</td>
+        <td>Dane ładowane są do rejestru C.</td>
+    </tr>
+    <tr>
+        <td>MVI E,d8</td>
+        <td>0x1E</td>
+        <td>2</td>
+        <td>7</td>
+        <td>Dane ładowane są do rejestru E.</td>
+    </tr>
+    <tr>
+        <td>MVI L,d8</td>
+        <td>0x2E</td>
+        <td>2</td>
+        <td>7</td>
+        <td>Dane ładowane są do rejestru L.</td>
+    </tr>
+    <tr>
+        <td>MVI A,d8</td>
+        <td>0x3E</td>
+        <td>2</td>
+        <td>7</td>
+        <td>Dane ładowane są do rejestru A.</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*d8 oznacza 8 bitów danych.</p>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> A,10</p>
+  Po wykonaniu tej instrukcji w rejestrze A będzie znajdować się wartość 0x10.
+</p>
+<h4>Przykładowy zapis w pamięci</h4>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Adres</th>
+        <th>Pamięć</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>0x0045</td>
+        <td>0x3E</td>
+    </tr>
+    <tr>
+        <td>0x0046</td>
+        <td>0x10</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

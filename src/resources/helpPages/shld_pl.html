@@ -1,0 +1,57 @@
+<html>
+<body>
+<h1>SHLD</h1>
+<h2>Store H and L direct</h2>
+<br>
+<p>Zawartość rejestrów H i L zapisywana jest pod adresem podanym po kodzie instrukcji.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>SHLD a16</td>
+        <td>0x02</td>
+        <td>3</td>
+        <td>16</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*a16 oznacza 16 bitów adresu.</p>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightblue">MVI</div> H,AB
+  <div style="color: lightblue">MVI</div> L,10
+  <div style="color: lightgreen">SHLD</div> 0012</p>
+  Po wykonaniu tych instrukcji zawartośc rejestru H zostanie zapisana w pamięci pod adresem 0x0013, a rejestru L pod adresem 0x0012.
+  <p>
+  <table style="border-width: 1px;">
+  <thred>
+    <tr>
+        <th>Pamięć przed SHLD</th>
+        <th>Adres</th>
+        <th>Pamięć po SHLD</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>0x00</td>
+        <td>0x0012</td>
+        <td>0x10</td>
+    </tr>
+    <tr>
+        <td>0x00</td>
+        <td>0x0013</td>
+        <td>0xAB</td>
+    </tr>
+    </tbody>
+</table>
+  </p>
+</p>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<html>
+<body>
+<h1>LXI</h1>
+<h2>Load register pair immediate</h2>
+<br>
+<p>Dwa bajty danych znajdujący się zaraz po kodzie instrukcji są ładowane do pary rejestrów wskazanych w instrukcji lub wskaźnika stosu.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+        <th>Opis</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>LXI B,d16</td>
+        <td>0x06</td>
+        <td>3</td>
+        <td>10</td>
+        <td>Dane ładowane są do pary rejestru B i C.</td>
+    </tr>
+    <tr>
+        <td>LXI D,d16</td>
+        <td>0x16</td>
+        <td>3</td>
+        <td>10</td>
+        <td>Dane ładowane są do pary rejestru D i E.</td>
+    </tr>
+    <tr>
+        <td>LXI H,d16</td>
+        <td>0x26</td>
+        <td>3</td>
+        <td>10</td>
+        <td>Dane ładowane są do pary rejestru H i L.</td>
+    </tr>
+    <tr>
+        <td>LXI SP,d16</td>
+        <td>0x36</td>
+        <td>3</td>
+        <td>10</td>
+        <td>Dane ładowane są do rejestru SP.</td>
+    </tr>
+    </tbody>
+</table>
+<p style="font-size: 10px;">*d16 oznacza 16 bitów danych.</p>
+<h3>Przykład</h3>
+<p>
+  <p><div style="color: lightgreen">LXI</div> B,1243</p>
+  Po wykonaniu tej instrukcji w rejestrze B znajdzię się 0x12, a w rejestrze C 0x43.
+</p>
+<h4>Przykładowy zapis w pamięci</h4>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Adres</th>
+        <th>Pamięć</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>0x0045</td>
+        <td>0x01</td>
+    </tr>
+    <tr>
+        <td>0x0046</td>
+        <td>0x12</td>
+    </tr>
+    <tr>
+        <td>0x0047</td>
+        <td>0x43</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

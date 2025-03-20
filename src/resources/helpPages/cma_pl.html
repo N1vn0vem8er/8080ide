@@ -1,0 +1,57 @@
+<html>
+<body>
+<h1>CMA</h1>
+<br>
+<p>Każdy bit akumulatora jest uzupełniany.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instrukcja</th>
+        <th>Kod hex</th>
+        <th>Długość w bajtach</th>
+        <th>Długość w cyklach</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>CMA</td>
+        <td>0x2F</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Przykład</h3>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="color: yellow">CMA</div></p>
+  Po wykonaniu tych instrukcji zawartość akumulatora będzie 0x0D.
+
+  <table>
+  <tbody>
+    <tr>
+      <td>Przed</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Po</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>0</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+  </table>
+
+</body>
+</html>

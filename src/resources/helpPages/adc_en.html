@@ -1,0 +1,73 @@
+<html>
+<body>
+<h1>ADC</h1>
+<h2>ADD register or memory to accumulator with carry</h2>
+<br>
+<p>Adds to contents of accumulator the contents of register or memory plus the contents of the Carry.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Lenght in bytes</th>
+        <th>Length in cycles</th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td><span style="color: yellow">ADC</span> B</td>
+        <td>0x88</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADC</span> C</td>
+        <td>0x89</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADC</span> D</td>
+        <td>0x8A</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADC</span> E</td>
+        <td>0x8B</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADC</span> H</td>
+        <td>0x8C</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADC</span> L</td>
+        <td>0x8D</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADC</span> M</td>
+        <td>0x8E</td>
+        <td>1</td>
+        <td>7</td>
+    </tr>
+    <tr>
+        <td><span style="color: yellow">ADC</span> A</td>
+        <td>0x8F</td>
+        <td>1</td>
+        <td>4</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Example</h3>
+  <p><div style="color: lightblue">MVI</div> A,F2
+  <div style="color: lightblue">MVI</div> B,04
+  <div style="color: yellow">ADC </div>B</p>
+  If Carry = 1, after executing these instructions the content of the accumulator will be 0xF7.
+</body>
+</html>

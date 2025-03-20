@@ -1,0 +1,43 @@
+<html>
+<body>
+<h1>LDAX</h1>
+<h2>Load accumulator</h2>
+<br>
+<p>Loads to accumulator data from memory location addresses by registers B and C or D, and E.</p>
+<table style="border-width: 1px;">
+<thred>
+    <tr>
+        <th>Instruction</th>
+        <th>Hex code</th>
+        <th>Length in bytes</th>
+        <th>Length in cycles</th>
+        <th>Description<th>
+    </tr>
+    </thred>
+    <tbody>
+    <tr>
+        <td>LDAX B</td>
+        <td>0x0A</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Address from registers B and C.</td>
+    </tr>
+    <tr>
+        <td>LDAX D</td>
+        <td>0x1A</td>
+        <td>1</td>
+        <td>7</td>
+        <td>Address from registers D and E.</td>
+    </tr>
+    </tbody>
+</table>
+<h3>Example</h3>
+<p>
+  <p>
+  <div style="color: lightblue">MVI</div> B,00
+  <div style="color: lightblue">MVI</div> C,10
+  <div style="color: lightblue">LDAX</div> B</p>
+  After executing these instruction accumulator will contain data from memory address 0x0010.
+</p>
+</body>
+</html>
