@@ -1105,14 +1105,14 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="823"/>
-        <source>8080 IDE is an integrated development enviroment from 8080 microprocessor.</source>
-        <oldsource>IDE is an integrated development enviroment from 8080 microprocessor.</oldsource>
+        <source>8080 IDE is an integrated development environment for 8080 microprocessor.</source>
+        <oldsource>8080 IDE is an integrated development enviroment from 8080 microprocessor.</oldsource>
         <translation>8080 IDE jest zintegrowanym środowiskiem programistycznym dla mikroprocesora 8080.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="823"/>
         <source>The environment includes many tools to help with programming.</source>
-        <translation>Środowisko zawiera wiel narzędzi pomagających w programowaniu.</translation>
+        <translation>Środowisko zawiera wiele narzędzi pomagających w programowaniu.</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="823"/>
