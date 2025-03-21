@@ -102,7 +102,7 @@
      <item>
       <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>16-bt load/store/move instructions</string>
+        <string>16-bit load/store/move instructions</string>
        </property>
       </widget>
      </item>

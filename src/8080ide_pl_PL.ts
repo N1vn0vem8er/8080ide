@@ -238,37 +238,45 @@
         <translation>Nowy Projekt</translation>
     </message>
     <message>
-        <location filename="dialogs/createprojectwindow.ui" line="27"/>
         <source>Project Name                            </source>
-        <translation>Nazwa projektu                            </translation>
+        <translation type="vanished">Nazwa projektu                            </translation>
     </message>
     <message>
-        <location filename="dialogs/createprojectwindow.ui" line="41"/>
+        <location filename="dialogs/createprojectwindow.ui" line="27"/>
+        <source>Project Name</source>
+        <translation>Nazwa Projektu</translation>
+    </message>
+    <message>
+        <location filename="dialogs/createprojectwindow.ui" line="37"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Incorrect name&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nieprawidłowa nazwa&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="dialogs/createprojectwindow.ui" line="52"/>
+        <location filename="dialogs/createprojectwindow.ui" line="57"/>
         <source>Simulator memory ammount</source>
         <translation>Ilość pamięci symulatora</translation>
     </message>
     <message>
-        <location filename="dialogs/createprojectwindow.ui" line="59"/>
+        <location filename="dialogs/createprojectwindow.ui" line="64"/>
         <source>1024</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="dialogs/createprojectwindow.ui" line="70"/>
-        <source>Location            </source>
-        <translation>Lokalizacja            </translation>
+        <location filename="dialogs/createprojectwindow.ui" line="73"/>
+        <source>Location</source>
+        <translation>Lokalizacja</translation>
     </message>
     <message>
-        <location filename="dialogs/createprojectwindow.ui" line="77"/>
+        <source>Location            </source>
+        <translation type="vanished">Lokalizacja            </translation>
+    </message>
+    <message>
+        <location filename="dialogs/createprojectwindow.ui" line="80"/>
         <source>Select</source>
         <translation>Wybierz</translation>
     </message>
     <message>
-        <location filename="dialogs/createprojectwindow.ui" line="94"/>
+        <location filename="dialogs/createprojectwindow.ui" line="95"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Incorrect location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nieprawidłowa lokalizacja&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -1171,7 +1179,8 @@
     </message>
     <message>
         <location filename="utils/numberconverterdialog.ui" line="23"/>
-        <source>Number befor conversion</source>
+        <source>Number before conversion</source>
+        <oldsource>Number befor conversion</oldsource>
         <translation>Liczba do konwersji</translation>
     </message>
     <message>
@@ -1671,8 +1680,9 @@
     </message>
     <message>
         <location filename="settingsPages/syntaxhighlightingsettings.ui" line="105"/>
-        <source>16-bt load/store/move instructions</source>
-        <translation>16--bitowe instrukcjie load/store/move</translation>
+        <source>16-bit load/store/move instructions</source>
+        <oldsource>16-bt load/store/move instructions</oldsource>
+        <translation>16-bitowe instrukcje load/store/move</translation>
     </message>
     <message>
         <location filename="settingsPages/syntaxhighlightingsettings.ui" line="112"/>

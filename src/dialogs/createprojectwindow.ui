@@ -20,72 +20,73 @@
    <item>
     <layout class="QVBoxLayout" name="locationLine">
      <item>
-      <layout class="QHBoxLayout" name="nameLine">
-       <item>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="2" column="0">
         <widget class="QLabel" name="nameLabel">
          <property name="text">
-          <string>Project Name                            </string>
+          <string>Project Name</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item row="2" column="1">
         <widget class="QLineEdit" name="projectName"/>
        </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="badNameLine">
-       <item>
+       <item row="3" column="0">
         <widget class="QLabel" name="badNameLabel">
          <property name="text">
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Incorrect name&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
        </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="memoryLine">
-       <item>
+       <item row="3" column="1">
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="4" column="0">
         <widget class="QLabel" name="memoryLabel">
          <property name="text">
           <string>Simulator memory ammount</string>
          </property>
         </widget>
        </item>
-       <item>
+       <item row="4" column="1">
         <widget class="QLineEdit" name="memorySize">
          <property name="text">
           <string>1024</string>
          </property>
         </widget>
        </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QLabel" name="locationLabel">
-         <property name="text">
-          <string>Location            </string>
-         </property>
-        </widget>
+       <item row="5" column="0">
+        <layout class="QHBoxLayout" name="horizontalLayout_3">
+         <item>
+          <widget class="QLabel" name="locationLabel">
+           <property name="text">
+            <string>Location</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="selectDirButton">
+           <property name="text">
+            <string>Select</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
-       <item>
-        <widget class="QPushButton" name="selectDirButton">
-         <property name="text">
-          <string>Select</string>
-         </property>
-        </widget>
-       </item>
-       <item>
+       <item row="5" column="1">
         <widget class="QLineEdit" name="locationPath"/>
        </item>
-      </layout>
-     </item>
-     <item>
-      <layout class="QHBoxLayout" name="locationInfoLine">
-       <item>
+       <item row="6" column="0">
         <widget class="QLabel" name="checkPathLabel">
          <property name="locale">
           <locale language="English" country="UnitedStates"/>
@@ -94,6 +95,19 @@
           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Incorrect location&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
          </property>
         </widget>
+       </item>
+       <item row="6" column="1">
+        <spacer name="horizontalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </item>

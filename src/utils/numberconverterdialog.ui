@@ -20,7 +20,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Number befor conversion</string>
+      <string>Number before conversion</string>
      </property>
     </widget>
    </item>
