@@ -61,7 +61,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionZamknij, &QAction::triggered, this, &MainWindow::quit);
     connect(ui->actionOpcje, &QAction::triggered, this, &MainWindow::settings);
     connect(ui->tabWidget, &QTabWidget::tabCloseRequested, this, &MainWindow::closeTab);
-    connect(ui->actionClose_Tab, &QAction::triggered, this, [this]{this->closeTab(currentTabIndex);});
+    connect(ui->actionClose_Tab, &QAction::triggered, this, &MainWindow::closeTab);
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::tabChanged);
     simHandeler->setReferencesToRegisters(ui->Areg, ui->Breg, ui->Creg, ui->Dreg, ui->Ereg, ui->Hreg, ui->Lreg, ui->Mreg, ui->PC, ui->Flagsreg, ui->SPreg);
     connect(ui->actionUndo, &QAction::triggered, this, &MainWindow::undo);
@@ -820,7 +820,7 @@ void MainWindow::openGitCommandDialog()
 void MainWindow::openAboutDialog()
 {
     QMessageBox::about(this, tr("About Application"), QString("<html><body><h2>%1</h2><p>%2%3</p><p>%4</p><p>%5</p><p>%6<a href=\"%7\">GPL 3</a></p><body></html>").arg("8080 IDE").arg(tr("Version: ")).arg("1.0.0")
-                                                               .arg(tr("IDE is an integrated development enviroment from 8080 microprocessor.")).arg(tr("The environment includes many tools to help with programming.")).arg(tr("License: ")).arg(LICENSELINK));
+                                                               .arg(tr("8080 IDE is an integrated development enviroment from 8080 microprocessor.")).arg(tr("The environment includes many tools to help with programming.")).arg(tr("License: ")).arg(LICENSELINK));
 }
 
 void MainWindow::openHelp()

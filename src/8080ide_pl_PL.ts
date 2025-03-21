@@ -1105,8 +1105,8 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="823"/>
-        <source>IDE is an integrated development enviroment from 8080 microprocessor.</source>
-        <oldsource>IDE is an integrated development enviroment from 8080 microprocessor</oldsource>
+        <source>8080 IDE is an integrated development enviroment from 8080 microprocessor.</source>
+        <oldsource>IDE is an integrated development enviroment from 8080 microprocessor.</oldsource>
         <translation>8080 IDE jest zintegrowanym środowiskiem programistycznym dla mikroprocesora 8080.</translation>
     </message>
     <message>
@@ -1275,70 +1275,70 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/registerseditor.ui" line="25"/>
+        <location filename="widgets/registerseditor.ui" line="27"/>
         <source>B = </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/registerseditor.ui" line="32"/>
-        <location filename="widgets/registerseditor.ui" line="49"/>
-        <location filename="widgets/registerseditor.ui" line="66"/>
-        <location filename="widgets/registerseditor.ui" line="87"/>
-        <location filename="widgets/registerseditor.ui" line="104"/>
-        <location filename="widgets/registerseditor.ui" line="121"/>
-        <location filename="widgets/registerseditor.ui" line="142"/>
-        <location filename="widgets/registerseditor.ui" line="159"/>
-        <location filename="widgets/registerseditor.ui" line="176"/>
+        <location filename="widgets/registerseditor.ui" line="34"/>
+        <location filename="widgets/registerseditor.ui" line="51"/>
+        <location filename="widgets/registerseditor.ui" line="68"/>
+        <location filename="widgets/registerseditor.ui" line="89"/>
+        <location filename="widgets/registerseditor.ui" line="106"/>
+        <location filename="widgets/registerseditor.ui" line="123"/>
+        <location filename="widgets/registerseditor.ui" line="144"/>
+        <location filename="widgets/registerseditor.ui" line="161"/>
+        <location filename="widgets/registerseditor.ui" line="178"/>
         <source>Hh</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/registerseditor.ui" line="42"/>
+        <location filename="widgets/registerseditor.ui" line="44"/>
         <source>C = </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/registerseditor.ui" line="59"/>
+        <location filename="widgets/registerseditor.ui" line="61"/>
         <source>A = </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/registerseditor.ui" line="80"/>
+        <location filename="widgets/registerseditor.ui" line="82"/>
         <source>D = </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/registerseditor.ui" line="97"/>
+        <location filename="widgets/registerseditor.ui" line="99"/>
         <source>E = </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/registerseditor.ui" line="114"/>
+        <location filename="widgets/registerseditor.ui" line="116"/>
         <source>PC = </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/registerseditor.ui" line="135"/>
+        <location filename="widgets/registerseditor.ui" line="137"/>
         <source>H = </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/registerseditor.ui" line="152"/>
+        <location filename="widgets/registerseditor.ui" line="154"/>
         <source>L = </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/registerseditor.ui" line="169"/>
+        <location filename="widgets/registerseditor.ui" line="171"/>
         <source>SP = </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/registerseditor.ui" line="188"/>
+        <location filename="widgets/registerseditor.ui" line="192"/>
         <source>Error out</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/registerseditor.ui" line="195"/>
+        <location filename="widgets/registerseditor.ui" line="199"/>
         <source>Apply</source>
         <translation>Zastosuj</translation>
     </message>
