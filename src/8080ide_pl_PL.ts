@@ -452,7 +452,7 @@
     <message>
         <location filename="settingsPages/helpsettings.ui" line="35"/>
         <source>Help after pressing F1 anywhere</source>
-        <translation>Pomoc po naciśnięciu F1 gdziekolowek</translation>
+        <translation>Pomoc po naciśnięciu F1 gdziekolwiek</translation>
     </message>
     <message>
         <location filename="settingsPages/helpsettings.ui" line="43"/>
@@ -536,7 +536,7 @@
     <message>
         <location filename="utils/instinmemorydialog.ui" line="25"/>
         <source>Line number</source>
-        <translation>Numer lini</translation>
+        <translation>Numer linii</translation>
     </message>
     <message>
         <location filename="utils/instinmemorydialog.ui" line="39"/>
@@ -1517,12 +1517,12 @@
     <message>
         <location filename="widgets/starttabwidget.cpp" line="103"/>
         <source>Are you sure you want to clear recent files?</source>
-        <translation>Czy na pewno chcesz wyczyścić historie plików?</translation>
+        <translation>Czy na pewno chcesz wyczyścić historię plików?</translation>
     </message>
     <message>
         <location filename="widgets/starttabwidget.cpp" line="122"/>
         <source>Are you sure you want to clear recent projects?</source>
-        <translation>Czy na pewno chcesz wyczyścić historie projektów?</translation>
+        <translation>Czy na pewno chcesz wyczyścić historię projektów?</translation>
     </message>
 </context>
 <context>
@@ -1840,7 +1840,7 @@ CTRL + W - Zamknij Plik</translation>
     <message>
         <location filename="dialogs/textinputdialog.ui" line="26"/>
         <source>Input name</source>
-        <translation>Wprowadź nazwe</translation>
+        <translation>Wprowadź nazwę</translation>
     </message>
 </context>
 </TS>

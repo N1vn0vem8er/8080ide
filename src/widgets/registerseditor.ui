@@ -120,10 +120,10 @@
        <item row="2" column="1">
         <widget class="QLineEdit" name="pcReg">
          <property name="inputMask">
-          <string>Hh</string>
+          <string>Hhhh</string>
          </property>
          <property name="maxLength">
-          <number>2</number>
+          <number>4</number>
          </property>
         </widget>
        </item>
@@ -175,10 +175,10 @@
        <item row="2" column="1">
         <widget class="QLineEdit" name="spReg">
          <property name="inputMask">
-          <string>Hh</string>
+          <string>Hhhh</string>
          </property>
          <property name="maxLength">
-          <number>2</number>
+          <number>4</number>
          </property>
         </widget>
        </item>
