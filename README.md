@@ -1,5 +1,5 @@
 # 8080 IDE
-Integrated development enviroment for Intel 8080 microprocessor.
+Integrated development environment for Intel 8080 microprocessor.
 
 ## Table of contents
 
@@ -10,7 +10,7 @@ Integrated development enviroment for Intel 8080 microprocessor.
 
 ## General info
 
-This is an integrated development enviroment for Linux that allows to create software for integrated simulator of 8080 microprocessor. It is meant for programmers who want to start learning assembly language.
+This is an integrated development environment for Linux that allows to create software for integrated simulator of 8080 microprocessor. It is meant for programmers who want to start learning assembly language.
 
 ## Features
 
