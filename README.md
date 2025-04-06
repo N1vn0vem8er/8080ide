@@ -19,7 +19,7 @@ This is an integrated development environment for Linux that allows to create so
 * Debugger
 * Code Editor with syntax highlighting
 * Git integration
-* Eazy to access microprocessor instructions descriptions
+* Easy to access microprocessor instructions descriptions
 
 ## Technologies
 
