@@ -27,7 +27,7 @@ void SimHandeler::updateRegistersLabels()
     hreg->setText("H = " + QString::fromStdString(tohexASCII(symulator->getHreg())));
     lreg->setText("L = " + QString::fromStdString(tohexASCII(symulator->getLreg())));
     pc->setText("PC = " + QString::fromStdString(tohexASCII(symulator->getPC())));
-    flags->setText(QString("C=%1 AC=%2 P=%3 S=%4 Z=%5").arg(QString::number(symulator->getCF())).arg(QString::number(symulator->getAC())).arg(QString::number(symulator->getP())).arg(QString::number(symulator->getS())).arg(QString::number(symulator->getZ())));
+    flags->setText(QString("C=%1 AC=%2 P=%3 S=%4 Z=%5").arg(QString::number(symulator->getCF()), QString::number(symulator->getAC()), QString::number(symulator->getP()), QString::number(symulator->getS()), QString::number(symulator->getZ())));
     mreg->setText("M = "+QString::fromStdString(tohexASCII(symulator->getMreg())));
     sp->setText("SP = "+QString::fromStdString(tohexASCII(symulator->getSP())));
     emit setRegisterValues(QString::fromStdString(tohexASCII(symulator->getAreg())), QString::fromStdString(tohexASCII(symulator->getBreg())), QString::fromStdString(tohexASCII(symulator->getCreg())),
@@ -260,7 +260,7 @@ void SimHandeler::registersChanged(QStringList registers)
     hreg->setText("H = " + registers[5]);
     lreg->setText("L = " + registers[6]);
     pc->setText("PC = " + registers[7]);
-    flags->setText(QString("C=%1 AC=%2 P=%3 S=%4 Z=%5").arg(registers[8]).arg(registers[9]).arg(registers[10]).arg(registers[11]).arg(registers[12]));
+    flags->setText(QString("C=%1 AC=%2 P=%3 S=%4 Z=%5").arg(registers[8], registers[9], registers[10], registers[11], registers[12]));
     mreg->setText("M = "+registers[13]);
     sp->setText("SP = "+registers[14]);
     emit setRegisterValues(registers[0], registers[1], registers[2], registers[3], registers[4], registers[5],registers[6], registers[7], registers[14]);
@@ -274,7 +274,7 @@ void SimHandeler::inputOut(char ch)
 void SimHandeler::breakpointCodeLocation(int line, unsigned short address)
 {
     QString fName;
-    for(const auto& i : fileMemoryRanges)
+    for(const auto& i : std::as_const(fileMemoryRanges))
     {
         if(address >= i.start && address <= i.end)
         {
@@ -296,7 +296,7 @@ void SimHandeler::memoryChangedByUser(QString &memory, int size)
         if(size == symulator->getMemSize() && !memory.isEmpty())
         {
             int index = 0;
-            for(const auto& i : memory)
+            for(const auto& i : std::as_const(memory))
             {
                 symulator->getMemory()[index] = i.cell();
                 index++;
@@ -397,7 +397,7 @@ void SimHandeler::next()
     updateRegistersLabels();
     emit memoryChanged(memoryToString(), symulator->getMemSize());
     QString fName;
-    for(const auto& i : fileMemoryRanges)
+    for(const auto& i : std::as_const(fileMemoryRanges))
     {
         if(symulator->getPC() >= i.start && symulator->getPC() <= i.end)
         {

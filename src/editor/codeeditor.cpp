@@ -418,7 +418,7 @@ void CodeEditor::updateWordsList(const QStringList &list)
         if(instructions.contains(i))
             return;
     }
-    for(const QString& i : previousLabelsList)
+    for(const QString& i : std::as_const(previousLabelsList))
     {
         if(!list.contains(i))
         {
@@ -475,7 +475,7 @@ QString CodeEditor::getInstructionFromSelectedLine()
     QTextCursor cursor = this->textCursor();
     QString line = document()->findBlock(cursor.position()).text();
     int index;
-    for(const auto& i : instructions)
+    for(const auto& i : std::as_const(instructions))
     {
         if(i == "IN" && line.indexOf("STRING") != -1) continue;
         if(i == "DI" && line.indexOf("ENDIF") != -1) continue;

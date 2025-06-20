@@ -31,7 +31,7 @@ void InstInMemoryDialog::count()
         if(line.contains("STRING"))
         {
             bool startCount = false;
-            for(const QChar& i : line)
+            for(const QChar& i : std::as_const(line))
             {
                 if(i == '\"')
                 {
@@ -47,7 +47,7 @@ void InstInMemoryDialog::count()
             }
             goto end;
         }
-        for(const QString& i : oneByteInsts)
+        for(const QString& i : std::as_const(oneByteInsts))
         {
             if(line.contains(i))
             {
@@ -55,7 +55,7 @@ void InstInMemoryDialog::count()
                 goto end;
             }
         }
-        for(const QString& i : twoByteInsts)
+        for(const QString& i : std::as_const(twoByteInsts))
         {
             if(line.contains(i))
             {
@@ -63,7 +63,7 @@ void InstInMemoryDialog::count()
                 goto end;
             }
         }
-        for(const QString& i : threeByteInsts)
+        for(const QString& i : std::as_const(threeByteInsts))
         {
             if(line.contains(i))
             {

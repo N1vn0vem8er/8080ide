@@ -238,7 +238,7 @@ void SyntaxHighLighter::updateLabels(const QStringList &resoults)
 {
     bool labelsChanged = false;
     HighlightingRule rule;
-    for(const QString& i : previousLabels)
+    for(const QString& i : std::as_const(previousLabels))
     {
         if(!resoults.contains(i))
         {

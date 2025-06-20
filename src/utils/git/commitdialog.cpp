@@ -33,7 +33,6 @@ void CommitDialog::init(QString path)
 {
     repoPath = path;
     QDirIterator it(path, QDir::Files, QDirIterator::Subdirectories);
-    QStringList list;
     QProcess* process = new QProcess();
     process->setWorkingDirectory(path);
     process->startCommand("git status --short");
@@ -42,7 +41,7 @@ void CommitDialog::init(QString path)
     auto resoult = process->readAllStandardOutput();
     QStringList sl;
     QString tmp;
-    for(auto i : resoult)
+    for(const auto& i : std::as_const(resoult))
     {
         if(i=='\n')
         {

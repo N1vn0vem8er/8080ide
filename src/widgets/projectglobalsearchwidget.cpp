@@ -24,7 +24,6 @@ void ProjectGlobalSearchWidget::search()
 {
     pathsLocations.clear();
     found.clear();
-    QString textToFind = ui->searchLine->text();
     QDirIterator it(projectPath, QStringList() << "*.asm", QDir::Files, QDirIterator::Subdirectories);
     while(it.hasNext())
     {
@@ -39,7 +38,7 @@ void ProjectGlobalSearchWidget::search()
     QStringList foundList;
     for(auto i : found.asKeyValueRange())
     {
-        for(auto j : i.second)
+        for(const auto& j : std::as_const(i.second))
         {
             QString text = i.first + tr(" on position: ") + QString::number(j);
             foundList.append(text);
@@ -55,7 +54,7 @@ void ProjectGlobalSearchWidget::replaceSelected()
     QModelIndexList selected = ui->resoultList->selectionModel()->selectedIndexes();
     if(!selected.isEmpty())
     {
-        for(QModelIndex i : selected)
+        for(const QModelIndex& i : std::as_const(selected))
         {
             QFile file(pathsLocations[i.row()].first);
             file.open(QIODevice::ReadWrite);

@@ -24,7 +24,7 @@ void StringTableGeneratorDialog::generate()
     if(!text.isEmpty())
     {
         QString out;
-        for(auto i : text)
+        for(const auto& i : std::as_const(text))
         {
             out += QString("DB ").append(toHex(i)).append('\n');
         }

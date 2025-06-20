@@ -67,7 +67,7 @@ void ProjectManager::readConfig(QString path)
             }
 
         }
-        for(auto i : varvalList)
+        for(const auto &i : varvalList)
         {
             decodeAndApply(i);
         }
@@ -88,7 +88,7 @@ void ProjectManager::decodeAndApply(std::pair<QString, QString> varvalPair)
         QString path = "";
         QString addr = "";
         bool first = true;
-        for(auto i : varvalPair.second)
+        for(auto i : std::as_const(varvalPair.second))
         {
             if(i == ',')
             {
@@ -126,7 +126,7 @@ unsigned char* ProjectManager::compile()
     Assembler a;
     std::vector<std::vector<std::string>> preComp;
     int index = 0;
-    for(auto p : compileQueue)
+    for(const auto &p : compileQueue)
     {
         int address = p.second;
         a.setAssemblerAddress(address);
@@ -268,7 +268,7 @@ QStringList ProjectManager::getBranches()
         QByteArray output = process->readAll();
         delete process;
         QString line = "";
-        for(auto i : output)
+        for(auto i : std::as_const(output))
         {
             if(i=='\n')
             {

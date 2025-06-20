@@ -9,26 +9,26 @@ SyntaxHighlightingSettings::SyntaxHighlightingSettings(QWidget *parent)
     , ui(new Ui::SyntaxHighlightingSettings)
 {
     ui->setupUi(this);
-    connect(ui->selectColor8lsm, &QPushButton::clicked, [=](){openColorPicker(ColorOptions::b8lsm);});
-    connect(ui->selectColor16lsm, &QPushButton::clicked, [=](){openColorPicker(ColorOptions::b16lsm);});
-    connect(ui->selectColor8al, &QPushButton::clicked, [=](){openColorPicker(ColorOptions::b8al);});
-    connect(ui->selectColor16al, &QPushButton::clicked, [=](){openColorPicker(ColorOptions::b16al);});
-    connect(ui->selectColorJMP, &QPushButton::clicked, [=](){openColorPicker(ColorOptions::jc);});
-    connect(ui->selectColormisc, &QPushButton::clicked, [=](){openColorPicker(ColorOptions::misc);});
-    connect(ui->selectColorpinst, &QPushButton::clicked, [=](){openColorPicker(ColorOptions::pinst);});
-    connect(ui->selectColorcomm, &QPushButton::clicked, [=](){openColorPicker(ColorOptions::comm);});
-    connect(ui->reset8lsm, &QPushButton::clicked, [=](){setColorToDefault(ColorOptions::b8lsm);});
-    connect(ui->reset16lsm, &QPushButton::clicked, [=](){setColorToDefault(ColorOptions::b16lsm);});
-    connect(ui->reset8al, &QPushButton::clicked, [=](){setColorToDefault(ColorOptions::b8al);});
-    connect(ui->reset16al, &QPushButton::clicked, [=](){setColorToDefault(ColorOptions::b16al);});
-    connect(ui->resetJMP, &QPushButton::clicked, [=](){setColorToDefault(ColorOptions::jc);});
-    connect(ui->resetmiscInst, &QPushButton::clicked, [=](){setColorToDefault(ColorOptions::misc);});
-    connect(ui->resetpInst, &QPushButton::clicked, [=](){setColorToDefault(ColorOptions::pinst);});
-    connect(ui->resetcomm, &QPushButton::clicked, [=](){setColorToDefault(ColorOptions::comm);});
-    connect(ui->selectColorChars, &QPushButton::clicked, [=](){openColorPicker(ColorOptions::ch);});
-    connect(ui->resetChars, &QPushButton::clicked, [=](){setColorToDefault(ColorOptions::ch);});
-    connect(ui->selectColorLabels, &QPushButton::clicked, [=](){openColorPicker(ColorOptions::label);});
-    connect(ui->resetLabels, &QPushButton::clicked, [=](){setColorToDefault(ColorOptions::label);});
+    connect(ui->selectColor8lsm, &QPushButton::clicked, this, [&](){openColorPicker(ColorOptions::b8lsm);});
+    connect(ui->selectColor16lsm, &QPushButton::clicked, this, [&](){openColorPicker(ColorOptions::b16lsm);});
+    connect(ui->selectColor8al, &QPushButton::clicked, this, [&](){openColorPicker(ColorOptions::b8al);});
+    connect(ui->selectColor16al, &QPushButton::clicked, this, [&](){openColorPicker(ColorOptions::b16al);});
+    connect(ui->selectColorJMP, &QPushButton::clicked, this, [&](){openColorPicker(ColorOptions::jc);});
+    connect(ui->selectColormisc, &QPushButton::clicked, this, [&](){openColorPicker(ColorOptions::misc);});
+    connect(ui->selectColorpinst, &QPushButton::clicked, this, [&](){openColorPicker(ColorOptions::pinst);});
+    connect(ui->selectColorcomm, &QPushButton::clicked, this, [&](){openColorPicker(ColorOptions::comm);});
+    connect(ui->reset8lsm, &QPushButton::clicked, this, [&](){setColorToDefault(ColorOptions::b8lsm);});
+    connect(ui->reset16lsm, &QPushButton::clicked, this, [&](){setColorToDefault(ColorOptions::b16lsm);});
+    connect(ui->reset8al, &QPushButton::clicked, this, [&](){setColorToDefault(ColorOptions::b8al);});
+    connect(ui->reset16al, &QPushButton::clicked, this, [&](){setColorToDefault(ColorOptions::b16al);});
+    connect(ui->resetJMP, &QPushButton::clicked, this, [&](){setColorToDefault(ColorOptions::jc);});
+    connect(ui->resetmiscInst, &QPushButton::clicked, this, [&](){setColorToDefault(ColorOptions::misc);});
+    connect(ui->resetpInst, &QPushButton::clicked, this, [&](){setColorToDefault(ColorOptions::pinst);});
+    connect(ui->resetcomm, &QPushButton::clicked, this, [&](){setColorToDefault(ColorOptions::comm);});
+    connect(ui->selectColorChars, &QPushButton::clicked, this, [&](){openColorPicker(ColorOptions::ch);});
+    connect(ui->resetChars, &QPushButton::clicked, this, [&](){setColorToDefault(ColorOptions::ch);});
+    connect(ui->selectColorLabels, &QPushButton::clicked, this, [&](){openColorPicker(ColorOptions::label);});
+    connect(ui->resetLabels, &QPushButton::clicked, this, [&](){setColorToDefault(ColorOptions::label);});
     connect(ui->applyButton, &QPushButton::clicked, this, &SyntaxHighlightingSettings::apply);
     updateColors();
 }
