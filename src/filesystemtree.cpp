@@ -4,9 +4,9 @@
 #include "dialogs/textinputdialog.h"
 #include <fstream>
 #include <qprocess.h>
-void FileSystemTree::init(QString path)
+void FileSystemTree::init(const QString& path)
 {
-    model = new QFileSystemModel();
+    model = new QFileSystemModel(this);
     model->setFilter(QDir::NoDotAndDotDot | QDir::AllDirs | QDir::Files);
     model->setRootPath(path);
     setModel(model);
@@ -15,7 +15,7 @@ void FileSystemTree::init(QString path)
     hideColumn(2);
     hideColumn(3);
     hideColumn(4);
-    contextMenu = new QMenu();
+    contextMenu = new QMenu(this);
     QAction* createFileAction = new QAction(tr("New File"), contextMenu);
     connect(createFileAction, &QAction::triggered, this, &FileSystemTree::createFile);
     contextMenu->addAction(createFileAction);
@@ -28,22 +28,21 @@ void FileSystemTree::init(QString path)
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &QTreeView::customContextMenuRequested, this, &FileSystemTree::openContextMenu);
 }
-void FileSystemTree::setDirectory(QString path)
+void FileSystemTree::setDirectory(const QString& path)
 {
     if(model != NULL)
         setRootIndex(model->index(path));
 }
-QString FileSystemTree::getSelectedItem(QModelIndex index)
+QString FileSystemTree::getSelectedItem(const QModelIndex& index)
 {
     return model->filePath(index);
 }
 
 FileSystemTree::~FileSystemTree()
 {
-    delete model;
-    delete contextMenu;
+
 }
-void FileSystemTree::openContextMenu(QPoint point)
+void FileSystemTree::openContextMenu(const QPoint& point)
 {
     contextMenu->popup(mapToGlobal(point));
 }

@@ -10,15 +10,15 @@ class FileSystemTree : public QTreeView
 private:
     QFileSystemModel* model;
     QMenu* contextMenu;
-    void openContextMenu(QPoint point);
+    void openContextMenu(const QPoint &point);
     void createFile();
     void createDir();
     void addToGitRepository();
 public:
     explicit FileSystemTree(QWidget* parent = nullptr) : QTreeView(parent){};
-    void init(QString path);
-    void setDirectory(QString path);
-    QString getSelectedItem(QModelIndex index);
+    void init(const QString &path);
+    void setDirectory(const QString &path);
+    QString getSelectedItem(const QModelIndex &index);
     ~FileSystemTree();
 };
 

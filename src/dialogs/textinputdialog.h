@@ -13,7 +13,7 @@ class TextInputDialog : public QDialog
 
 public:
     explicit TextInputDialog(QWidget *parent = nullptr);
-    QString getText();
+    QString getText() const;
     ~TextInputDialog();
 
 private:
