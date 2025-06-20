@@ -182,7 +182,7 @@ void CodeEditor::commentCurrentLine()
         int pos = cursor.position();
         cursor.movePosition(QTextCursor::StartOfLine);
         QTextBlock curretLine = this->document()->findBlockByLineNumber(cursor.blockNumber());
-        if(curretLine.text().length() >=2 && curretLine.text()[0] == '/' && curretLine.text()[1] == '/')
+        if(curretLine.text().length() >=2 && curretLine.text().at(0) == '/' && curretLine.text().at(1) == '/')
         {
             cursor.deleteChar();
             cursor.deleteChar();
@@ -382,7 +382,13 @@ void CodeEditor::dropEvent(QDropEvent *event)
     const QMimeData* mimeData = event->mimeData();
     if(mimeData->hasUrls())
     {
-        QString path = mimeData->urls()[0].toLocalFile();
+        QFile file(mimeData->urls().at(0).path());
+        file.open(QIODevice::ReadOnly);
+        if(file.isOpen())
+        {
+            appendPlainText(file.readAll());
+            file.close();
+        }
     }
     else if(mimeData->hasText())
     {
