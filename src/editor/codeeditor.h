@@ -38,6 +38,12 @@ public:
     void stepLineHightlight(int line);
     QString getInstructionFromSelectedLine();
     bool isSpellcheckEnabled() const;
+    void increaseFontSize();
+    void decreaseFontSize();
+    void setFontSize(int size);
+    void mergeSelectedLines();
+    void deleteSelected();
+    void deleteAll();
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
@@ -46,6 +52,8 @@ protected:
     void dropEvent(QDropEvent* event) override;
     void dragEnterEvent(QDragEnterEvent* event) override;
     void dragLeaveEvent(QDragLeaveEvent* event) override;
+    void wheelEvent(QWheelEvent *event) override;
+
 private slots:
     void insertCompletion(const QString& completion);
     void updateWordsList(const QStringList& list);
@@ -77,6 +85,10 @@ private:
     QVector<int> linesWithBreakpoint;
     void checkChanged();
     QString orginalContent;
+
+signals:
+    void fontSizeChanged(int size);
+
 };
 
 #endif // CODEEDITOR_H

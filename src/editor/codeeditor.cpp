@@ -406,6 +406,24 @@ void CodeEditor::dragLeaveEvent(QDragLeaveEvent *event)
     event->accept();
 }
 
+void CodeEditor::wheelEvent(QWheelEvent *event)
+{
+    if(event->modifiers() == Qt::ControlModifier)
+    {
+        if(event->angleDelta().y() > 0)
+        {
+            increaseFontSize();
+        }
+        else
+        {
+            decreaseFontSize();
+        }
+        event->accept();
+    }
+    else
+        QPlainTextEdit::wheelEvent(event);
+}
+
 void CodeEditor::insertCompletion(const QString &completion)
 {
     QTextCursor tc = textCursor();
@@ -497,6 +515,51 @@ QString CodeEditor::getInstructionFromSelectedLine()
 bool CodeEditor::isSpellcheckEnabled() const
 {
     return highLighter->getSpellcheckEnabled();
+}
+
+void CodeEditor::increaseFontSize()
+{
+    QFont font = this->font();
+    font.setPointSize(font.pointSize() + 1);
+    setFont(font);
+    emit fontSizeChanged(font.pointSize());
+}
+
+void CodeEditor::decreaseFontSize()
+{
+    QFont font = this->font();
+    font.setPointSize(font.pointSize() - 1);
+    setFont(font);
+    emit fontSizeChanged(font.pointSize());
+}
+
+void CodeEditor::setFontSize(int size)
+{
+    QFont font = this->font();
+    font.setPointSize(size);
+    setFont(font);
+    emit fontSizeChanged(font.pointSize());
+}
+
+void CodeEditor::mergeSelectedLines()
+{
+    QTextCursor cursor = textCursor();
+    if(cursor.hasSelection())
+    {
+        cursor.insertText(cursor.selectedText().replace(QChar(8233), ' '));
+        setTextCursor(cursor);
+    }
+}
+
+void CodeEditor::deleteSelected()
+{
+    textCursor().removeSelectedText();
+}
+
+void CodeEditor::deleteAll()
+{
+    selectAll();
+    textCursor().removeSelectedText();
 }
 
 void CodeEditor::setLineBreakpoint()

@@ -3,7 +3,7 @@
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="windowModality">
-   <enum>Qt::NonModal</enum>
+   <enum>Qt::WindowModality::NonModal</enum>
   </property>
   <property name="geometry">
    <rect>
@@ -27,7 +27,7 @@
    <bool>false</bool>
   </property>
   <property name="tabShape">
-   <enum>QTabWidget::Rounded</enum>
+   <enum>QTabWidget::TabShape::Rounded</enum>
   </property>
   <property name="dockNestingEnabled">
    <bool>false</bool>
@@ -42,7 +42,7 @@
       <item>
        <widget class="QSplitter" name="splitter">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
         <widget class="FileSystemTree" name="treeView"/>
         <widget class="QWidget" name="layoutWidget">
@@ -83,7 +83,7 @@
           <item>
            <widget class="QSplitter" name="splitter_2">
             <property name="orientation">
-             <enum>Qt::Vertical</enum>
+             <enum>Qt::Orientation::Vertical</enum>
             </property>
             <widget class="QPlainTextEdit" name="screen">
              <property name="readOnly">
@@ -350,7 +350,7 @@
       <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
-         <enum>Qt::Horizontal</enum>
+         <enum>Qt::Orientation::Horizontal</enum>
         </property>
         <property name="sizeHint" stdset="0">
          <size>
@@ -382,8 +382,15 @@
     <addaction name="actionOpenDir"/>
     <addaction name="actionZapisz"/>
     <addaction name="actionZapisz_jako"/>
-    <addaction name="actionZamknij"/>
+    <addaction name="actionPrint"/>
     <addaction name="separator"/>
+    <addaction name="actionReload"/>
+    <addaction name="actionReload_all"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose"/>
+    <addaction name="actionClose_All"/>
+    <addaction name="actionClose_all_but_this"/>
+    <addaction name="actionZamknij"/>
    </widget>
    <widget class="QMenu" name="menuEdycja">
     <property name="title">
@@ -391,6 +398,19 @@
     </property>
     <addaction name="actionUndo"/>
     <addaction name="actionRedo"/>
+    <addaction name="separator"/>
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="actionPaste_from_file"/>
+    <addaction name="actionDelete"/>
+    <addaction name="actionDelete_all"/>
+    <addaction name="actionSelect_All"/>
+    <addaction name="actionMerge_lines"/>
+    <addaction name="separator"/>
+    <addaction name="actionRead_only"/>
+    <addaction name="actionOverwrite_mode"/>
+    <addaction name="separator"/>
     <addaction name="actionOpcje"/>
     <addaction name="actionComment"/>
     <addaction name="actionEnableSyntaxHighLighting"/>
@@ -417,6 +437,12 @@
     <addaction name="actionStartPage"/>
     <addaction name="actionShowFiles"/>
     <addaction name="actionShowSim"/>
+    <addaction name="separator"/>
+    <addaction name="actionIncrease_font_size"/>
+    <addaction name="actionDecrease_font_size"/>
+    <addaction name="actionSet_font_size"/>
+    <addaction name="actionReset_font_size"/>
+    <addaction name="actionLine_wrap"/>
    </widget>
    <widget class="QMenu" name="menuGit">
     <property name="title">
@@ -537,7 +563,7 @@
     <iconset theme="application-exit"/>
    </property>
    <property name="text">
-    <string>C&amp;lose</string>
+    <string>&amp;Exit</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -868,6 +894,177 @@
    </property>
    <property name="shortcut">
     <string>F1</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="icon">
+    <iconset theme="edit-cut"/>
+   </property>
+   <property name="text">
+    <string>Cut</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="icon">
+    <iconset theme="edit-copy"/>
+   </property>
+   <property name="text">
+    <string>Copy</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="icon">
+    <iconset theme="edit-paste"/>
+   </property>
+   <property name="text">
+    <string>Paste</string>
+   </property>
+  </action>
+  <action name="actionPaste_from_file">
+   <property name="icon">
+    <iconset theme="edit-paste"/>
+   </property>
+   <property name="text">
+    <string>Paste from file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+V</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="icon">
+    <iconset theme="edit-delete"/>
+   </property>
+   <property name="text">
+    <string>Delete</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionDelete_all">
+   <property name="icon">
+    <iconset theme="edit-delete"/>
+   </property>
+   <property name="text">
+    <string>Delete all</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+D</string>
+   </property>
+  </action>
+  <action name="actionSelect_All">
+   <property name="icon">
+    <iconset theme="edit-select-all"/>
+   </property>
+   <property name="text">
+    <string>Select All</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionOverwrite_mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Overwrite mode</string>
+   </property>
+  </action>
+  <action name="actionRead_only">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Read only</string>
+   </property>
+  </action>
+  <action name="actionMerge_lines">
+   <property name="text">
+    <string>Merge lines</string>
+   </property>
+  </action>
+  <action name="actionIncrease_font_size">
+   <property name="text">
+    <string>Increase font size</string>
+   </property>
+  </action>
+  <action name="actionDecrease_font_size">
+   <property name="text">
+    <string>Decrease font size</string>
+   </property>
+  </action>
+  <action name="actionSet_font_size">
+   <property name="text">
+    <string>Set font size</string>
+   </property>
+  </action>
+  <action name="actionReset_font_size">
+   <property name="text">
+    <string>Reset font size</string>
+   </property>
+  </action>
+  <action name="actionLine_wrap">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Line wrap</string>
+   </property>
+  </action>
+  <action name="actionPrint">
+   <property name="icon">
+    <iconset theme="document-print"/>
+   </property>
+   <property name="text">
+    <string>Print</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
+  <action name="actionClose_All">
+   <property name="text">
+    <string>Close All</string>
+   </property>
+  </action>
+  <action name="actionClose_all_but_this">
+   <property name="text">
+    <string>Close all but this</string>
+   </property>
+  </action>
+  <action name="actionReload">
+   <property name="icon">
+    <iconset theme="view-refresh"/>
+   </property>
+   <property name="text">
+    <string>Reload</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="actionReload_all">
+   <property name="icon">
+    <iconset theme="view-refresh"/>
+   </property>
+   <property name="text">
+    <string>Reload all</string>
+   </property>
+   <property name="shortcut">
+    <string>Shift+F5</string>
    </property>
   </action>
  </widget>

@@ -1107,3 +1107,143 @@ MainWindow::~MainWindow()
     delete simHandeler;
 }
 
+
+
+void MainWindow::copy()
+{
+
+}
+
+
+
+void MainWindow::selectAll()
+{
+
+}
+
+
+
+void MainWindow::cut()
+{
+
+}
+
+
+
+void MainWindow::paste()
+{
+
+}
+
+
+
+void MainWindow::fontSizeChanged(int size)
+{
+
+}
+
+
+
+void MainWindow::openPasteFromFile()
+{
+
+}
+
+
+
+void MainWindow::setLineWrap(bool val)
+{
+
+}
+
+
+
+void MainWindow::increaseFontSize()
+{
+
+}
+
+
+
+void MainWindow::decreaseFontSize()
+{
+
+}
+
+
+
+void MainWindow::resetFontSize()
+{
+
+}
+
+
+
+void MainWindow::setFontSize()
+{
+
+}
+
+
+
+void MainWindow::closeAllButThis()
+{
+
+}
+
+
+
+void MainWindow::reloadCurrent()
+{
+
+}
+
+
+
+void MainWindow::reloadAll()
+{
+
+}
+
+
+
+void MainWindow::openPrint()
+{
+
+}
+
+
+
+void MainWindow::overwriteModeChanged(bool val)
+{
+
+}
+
+
+
+void MainWindow::readOnlyChanget(bool val)
+{
+
+}
+
+
+
+void MainWindow::mergeLines()
+{
+
+}
+
+
+
+void MainWindow::deleteSelected()
+{
+
+}
+
+
+
+void MainWindow::deleteAll()
+{
+
+}
+

@@ -99,6 +99,29 @@ private:
     void loadSettings();
     void setStyleFromSettings();
     void showHideRegistersEditor();
+
+private slots:
+    void copy();
+    void selectAll();
+    void cut();
+    void paste();
+    void fontSizeChanged(int size);
+    void openPasteFromFile();
+    void setLineWrap(bool val);
+    void increaseFontSize();
+    void decreaseFontSize();
+    void resetFontSize();
+    void setFontSize();
+    void closeAllButThis();
+    void reloadCurrent();
+    void reloadAll();
+    void openPrint();
+    void overwriteModeChanged(bool val);
+    void readOnlyChanget(bool val);
+    void mergeLines();
+    void deleteSelected();
+    void deleteAll();
+
 protected:
     void dropEvent(QDropEvent* event) override;
     void dragEnterEvent(QDragEnterEvent* event) override;
