@@ -44,6 +44,7 @@ public:
     void mergeSelectedLines();
     void deleteSelected();
     void deleteAll();
+    QString getName() const;
 
 protected:
     void resizeEvent(QResizeEvent *event) override;

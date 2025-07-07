@@ -99,6 +99,7 @@ private:
     void loadSettings();
     void setStyleFromSettings();
     void showHideRegistersEditor();
+    void openSaveWarningDialog(CodeEditor* editor);
 
 private slots:
     void copy();

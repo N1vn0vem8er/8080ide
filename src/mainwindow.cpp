@@ -30,6 +30,8 @@
 #include <QStyleFactory>
 #include "idesettings.h"
 #include <widgets/searchwidget.h>
+#include <QPrinter>
+#include <QPrintDialog>
 
 #define VERSION "1.0.0"
 #define LICENSELINK "https://www.gnu.org/licenses/gpl-3.0.html"
@@ -635,13 +637,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
         CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(i));
         if(tmp!=nullptr && !tmp->isSaved())
         {
-            SaveWarningDialog* dialog = new SaveWarningDialog();
-            dialog->setFilePath(tmp->getFilePath());
-            dialog->setAttribute(Qt::WA_DeleteOnClose);
-            if(dialog->exec() == QDialog::Accepted)
-            {
-                save(tmp);
-            }
+            openSaveWarningDialog(tmp);
         }
     }
     QMainWindow::closeEvent(event);
@@ -666,7 +662,11 @@ void MainWindow::showSearch()
 }
 void MainWindow::newFile()
 {
-    addTab(new CodeEditor(ui->tabWidget), "New File");
+    CodeEditor* tmp = new CodeEditor(ui->tabWidget);
+    ui->actionOverwrite_mode->setChecked(tmp->overwriteMode());
+    ui->actionRead_only->setChecked(tmp->isReadOnly());
+    ui->actionLine_wrap->setChecked(tmp->lineWrapMode() == CodeEditor::NoWrap ? false : true);
+    addTab(tmp, "New File");
 }
 void MainWindow::openFromTree()
 {
@@ -1063,7 +1063,7 @@ void MainWindow::tabChanged()
 {
     currentTabIndex = ui->tabWidget->currentIndex();
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(currentTabIndex));
-    if(tmp != nullptr)
+    if(tmp)
     {
         if(ui->searchWidget->isVisible())
         {
@@ -1073,6 +1073,9 @@ void MainWindow::tabChanged()
         {
             tmp->clearSearchFormatting();
         }
+        ui->actionOverwrite_mode->setChecked(tmp->overwriteMode());
+        ui->actionRead_only->setChecked(tmp->isReadOnly());
+        ui->actionLine_wrap->setChecked(tmp->lineWrapMode() == CodeEditor::NoWrap ? false : true);
     }
 }
 void MainWindow::undo()
@@ -1107,143 +1110,225 @@ MainWindow::~MainWindow()
     delete simHandeler;
 }
 
-
-
 void MainWindow::copy()
 {
-
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
+        widget->copy();
+    }
 }
-
-
 
 void MainWindow::selectAll()
 {
-
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
+        widget->selectAll();
+    }
 }
-
-
 
 void MainWindow::cut()
 {
-
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
+        widget->cut();
+    }
 }
-
-
 
 void MainWindow::paste()
 {
-
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
+        widget->paste();
+    }
 }
-
-
 
 void MainWindow::fontSizeChanged(int size)
 {
 
 }
 
-
-
 void MainWindow::openPasteFromFile()
 {
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
 
+    }
 }
-
-
 
 void MainWindow::setLineWrap(bool val)
 {
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
 
+    }
 }
-
-
 
 void MainWindow::increaseFontSize()
 {
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
 
+    }
 }
-
-
 
 void MainWindow::decreaseFontSize()
 {
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
 
+    }
 }
-
-
 
 void MainWindow::resetFontSize()
 {
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
 
+    }
 }
-
-
 
 void MainWindow::setFontSize()
 {
-
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
+        QDialog* dialog = new QDialog(this);
+        QVBoxLayout* mainLayout = new QVBoxLayout(dialog);
+        QLineEdit* lineEdit = new QLineEdit(dialog);
+        lineEdit->setPlaceholderText(tr("Enter font size"));
+        mainLayout->addWidget(lineEdit);
+        QPushButton* okButton = new QPushButton(dialog);
+        QPushButton* cancelButton = new QPushButton(dialog);
+        QHBoxLayout* buttonsLayout = new QHBoxLayout();
+        okButton->setText(tr("Ok"));
+        cancelButton->setText(tr("Cancel"));
+        buttonsLayout->addWidget(okButton);
+        buttonsLayout->addWidget(cancelButton);
+        mainLayout->addLayout(buttonsLayout);
+        connect(okButton, &QPushButton::clicked, dialog, &QDialog::accept);
+        connect(cancelButton, &QPushButton::clicked, dialog, &QDialog::reject);
+        if(dialog->exec() == QDialog::Accepted)
+        {
+            widget->setFontSize(lineEdit->text().toInt());
+        }
+        delete buttonsLayout;
+    }
 }
-
-
 
 void MainWindow::closeAllButThis()
 {
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
 
+    }
 }
-
-
 
 void MainWindow::reloadCurrent()
 {
-
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget && !widget->getFilePath().isEmpty())
+    {
+        if(!widget->isSaved())
+        {
+            openSaveWarningDialog(widget);
+        }
+        QFile file(widget->getFilePath());
+        file.open(QIODevice::ReadOnly);
+        if(file.isOpen())
+        {
+            widget->setPlainText(file.readAll());
+            file.close();
+            widget->setSaved(true);
+        }
+    }
 }
-
-
 
 void MainWindow::reloadAll()
 {
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
 
+    }
 }
-
-
 
 void MainWindow::openPrint()
 {
-
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
+        QPrinter printer(QPrinter::HighResolution);
+        QPrintDialog dialog(&printer, this);
+        if(dialog.exec() == QDialog::Accepted)
+        {
+            widget->print(&printer);
+        }
+    }
 }
-
-
 
 void MainWindow::overwriteModeChanged(bool val)
 {
-
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
+        widget->setOverwriteMode(val);
+    }
 }
-
-
 
 void MainWindow::readOnlyChanget(bool val)
 {
-
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
+        widget->setReadOnly(val);
+    }
 }
-
-
 
 void MainWindow::mergeLines()
 {
-
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
+        widget->mergeSelectedLines();
+    }
 }
-
-
 
 void MainWindow::deleteSelected()
 {
-
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
+        widget->deleteSelected();
+    }
 }
-
-
 
 void MainWindow::deleteAll()
 {
+    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(widget)
+    {
+        widget->deleteAll();
+    }
+}
 
+void MainWindow::openSaveWarningDialog(CodeEditor* editor)
+{
+    SaveWarningDialog* dialog = new SaveWarningDialog();
+    dialog->setFilePath(editor->getFilePath());
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    if(dialog->exec() == QDialog::Accepted)
+    {
+        save(editor);
+    }
 }
 

@@ -562,6 +562,11 @@ void CodeEditor::deleteAll()
     textCursor().removeSelectedText();
 }
 
+QString CodeEditor::getName() const
+{
+    return QFileInfo(filePath).fileName();
+}
+
 void CodeEditor::setLineBreakpoint()
 {
     int line = textCursor().blockNumber();
