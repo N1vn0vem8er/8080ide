@@ -88,7 +88,7 @@ void SimHandeler::closeProject()
 void SimHandeler::setBranchName()
 {
     if(projectGitBranchNameLabel == nullptr) return;
-    QProcess process = QProcess();
+    QProcess process;
     process.setWorkingDirectory(projectManager->getProjectAbsolutePath());
     process.startCommand("git rev-parse --abbrev-ref HEAD");
     process.waitForStarted(3000);
@@ -110,7 +110,7 @@ void SimHandeler::log(QString text)
 void SimHandeler::setBranch(QString name)
 {
     name.remove('\'');
-    QProcess process = QProcess();
+    QProcess process;
     process.setWorkingDirectory(projectManager->getProjectAbsolutePath());
     process.startCommand("git checkout "+name);
     process.waitForStarted(3000);

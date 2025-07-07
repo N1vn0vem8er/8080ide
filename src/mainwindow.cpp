@@ -31,7 +31,9 @@
 #include "idesettings.h"
 #include <widgets/searchwidget.h>
 
+#define VERSION "1.0.0"
 #define LICENSELINK "https://www.gnu.org/licenses/gpl-3.0.html"
+#define REPOLINK "https://github.com/N1vn0vem8er/8080ide"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -821,7 +823,18 @@ void MainWindow::openGitCommandDialog()
 
 void MainWindow::openAboutDialog()
 {
-    QMessageBox::about(this, tr("About Application"), QString("<html><body><h2>%1</h2><p>%2%3</p><p>%4</p><p>%5</p><p>%6<a href=\"%7\">GPL 3</a></p><body></html>").arg("8080 IDE", tr("Version: "), "1.0.0", tr("8080 IDE is an integrated development environment for 8080 microprocessor."), tr("The environment includes many tools to help with programming."), tr("License: "), LICENSELINK));
+    QMessageBox::about(this, tr("About Application"), tr(R"(
+    <html>
+        <body>
+            <h2>8080 IDE</h2>
+            <p>8080 IDE is an integrated development environment for 8080 microprocessor.</p>
+            <p>The environment includes many tools to help with programming.</p>
+            <p>Version: %1</p>
+            <p>License: <a href="%2">GPL 3</a></p>
+            <p><a href="%3">Repository</a></p>
+        <body>
+    </html>
+)").arg(VERSION, LICENSELINK, REPOLINK));
 }
 
 void MainWindow::openHelp()
@@ -961,13 +974,13 @@ void MainWindow::openDirPressed()
 void MainWindow::openDir(const QString &path)
 {
     ui->treeView->open(path);
-    std::unique_ptr<QProcess> process = std::make_unique<QProcess>();
-    process->setWorkingDirectory(path);
-    process->startCommand("git status");
-    process->waitForStarted();
-    process->waitForFinished();
-    process->waitForReadyRead();
-    ui->treeView->setHasGitRepository(process->readAllStandardError().isEmpty());
+    QProcess process;
+    process.setWorkingDirectory(path);
+    process.startCommand("git status");
+    process.waitForStarted();
+    process.waitForFinished();
+    process.waitForReadyRead();
+    ui->treeView->setHasGitRepository(process.readAllStandardError().isEmpty());
 }
 void MainWindow::saveas()
 {

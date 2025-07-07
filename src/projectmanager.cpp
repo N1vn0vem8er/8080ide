@@ -261,12 +261,13 @@ QStringList ProjectManager::getBranches()
     gitBranches.clear();
     if(hasGitRepository())
     {
-        QProcess* process = new QProcess();
-        process->setWorkingDirectory(projectAbsolutePath);
-        process->startCommand("git branch --format='%(refname:short)'");
-        process->waitForFinished();
-        QByteArray output = process->readAll();
-        delete process;
+        QProcess process;
+        process.setWorkingDirectory(projectAbsolutePath);
+        process.startCommand("git branch --format='%(refname:short)'");
+        process.waitForStarted();
+        process.waitForFinished();
+        process.waitForReadyRead();
+        QByteArray output = process.readAll();
         QString line = "";
         for(auto i : std::as_const(output))
         {
