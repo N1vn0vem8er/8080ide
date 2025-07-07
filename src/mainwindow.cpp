@@ -66,7 +66,6 @@ MainWindow::MainWindow(QWidget *parent)
     simHandeler->setReferencesToRegisters(ui->Areg, ui->Breg, ui->Creg, ui->Dreg, ui->Ereg, ui->Hreg, ui->Lreg, ui->Mreg, ui->PC, ui->Flagsreg, ui->SPreg);
     connect(ui->actionUndo, &QAction::triggered, this, &MainWindow::undo);
     connect(ui->actionRedo, &QAction::triggered, this, &MainWindow::redo);
-    connect(ui->treeView, &QAbstractItemView::doubleClicked, this, &MainWindow::openFromTree);
     connect(ui->actionOpenDir, &QAction::triggered, this, &MainWindow::openDir);
     connect(ui->actionOpenProject, &QAction::triggered, this, [=](){openProject();});
     connect(ui->actionnewProject, &QAction::triggered, this, &MainWindow::openNewProjectWindow);
@@ -110,9 +109,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->editRegistersButton, &QPushButton::clicked, this, &MainWindow::showHideRegistersEditor);
     connect(ui->registersEditor, &RegistersEditor::changeRegisters, simHandeler, &SimHandeler::changedRegisters);
     connect(simHandeler, &SimHandeler::setRegisterValues, ui->registersEditor, &RegistersEditor::setRegisterValues);
+    connect(ui->treeView, &FileSystemTree::openFile, this, &MainWindow::openFileInNewTab);
     currentTabIndex = 0;
     newFileLoaded = false;
-    ui->treeView->init(QDir::homePath());
+    ui->treeView->open(QDir::homePath());
     simHandeler->setLogsOutput(ui->logsOutputWidget);
 
     ui->registersEditor->setVisible(false);
@@ -672,7 +672,7 @@ void MainWindow::openFromTree()
    if(fi.isFile())
     openFileInNewTab(path);
 }
-void MainWindow::openFileInNewTab(QString path)
+void MainWindow::openFileInNewTab(const QString &path)
 {
    if(path != "")
    {

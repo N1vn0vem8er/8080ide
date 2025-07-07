@@ -49,7 +49,7 @@ private:
     void redo();
     void openFromTree();
     void openDir();
-    void openFileInNewTab(QString path);
+    void openFileInNewTab(const QString& path);
     void openCommitDialog();
     void openLogDialog();
     void openStatusDialog();

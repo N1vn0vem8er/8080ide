@@ -49,7 +49,7 @@ std::string SimHandeler::tohexASCII(unsigned short ch)
 
 SimHandeler::SimHandeler(QPlainTextEdit* screen, QObject* parent) : QObject{parent}
 {
-    this->symulator = new Symulator(256);
+    symulator = std::make_unique<Symulator>(256);
     this->screen = screen;
     projectManager = new ProjectManager();
     projectLoaded = false;
@@ -63,7 +63,6 @@ SimHandeler::~SimHandeler()
         delete sr;
     }
     delete projectManager;
-    delete symulator;
     delete[] compcode;
 }
 void SimHandeler::openProject(const QString &path)
@@ -183,7 +182,7 @@ void SimHandeler::clearBreakpoints()
 
 Symulator *SimHandeler::getSymulator()
 {
-    return symulator;
+    return symulator.get();
 }
 
 unsigned char *SimHandeler::getCompiled()
@@ -228,7 +227,7 @@ void SimHandeler::run()
     connect(sr, &SimRunner::memoryChanged, this, [=](QString memory, int size){emit memoryChanged(memory, size);});
     connect(this, &SimHandeler::memoryChangedByUserSignal, sr, &SimRunner::memoryChangedByUser);
     connect(this, &SimHandeler::changeRegisters, sr, &SimRunner::changeRegisters);
-    sr->setSymulator(this->symulator);
+    sr->setSymulator(this->symulator.get());
     sr->setBreakPoints(breakpointsLocations);
     sr->setLineAddrInsts(lineAddrInsts);
     if(!inputLine->text().isEmpty())
@@ -429,8 +428,8 @@ void SimHandeler::reset()
         sr = nullptr;
     }
     this->screen->clear();
-    delete symulator;
-    this->symulator = new Symulator(Ssettings::memSize);
+    symulator.reset();
+    this->symulator = std::make_unique<Symulator>(Ssettings::memSize);
     this->symulator->setPC(Ssettings::memStart);
     this->symulator->setSP(Ssettings::sp);
     if(inputLine) inputLine->clear();

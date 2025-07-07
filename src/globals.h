@@ -1,6 +1,7 @@
 #ifndef GLOBALS_H
 #define GLOBALS_H
 
+#include <QList>
 #include <QString>
 #endif // GLOBALS_H
 
@@ -17,4 +18,5 @@ struct FileMemoryStartEnd
 
 const QString SETTINGSFILENAME = "settings.ini";
 const QString SETTINGSDIRNAME = "8080ide";
+
 }

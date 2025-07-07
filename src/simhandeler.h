@@ -22,7 +22,7 @@ private:
     void updateRegistersLabels();
     std::string tohexASCII(unsigned char ch);
     std::string tohexASCII(unsigned short ch);
-    Symulator* symulator = nullptr;
+    std::unique_ptr<Symulator> symulator {nullptr};
     unsigned char* compcode = nullptr;
     int compcodeSize;
     QLabel* areg = nullptr;
