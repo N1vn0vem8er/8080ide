@@ -17,16 +17,7 @@ FileSystemTree::FileSystemTree(QWidget *parent) : QTreeView(parent)
     connect(this, &QTreeView::customContextMenuRequested, this, &FileSystemTree::openContextMenu);
     connect(this, &QTreeView::doubleClicked, this, &FileSystemTree::openFilePressed);
     setContextMenuPolicy(Qt::CustomContextMenu);
-    MimeFinderWorker* worker = new MimeFinderWorker();
-    mimeFinderThread = new QThread(this);
-    worker->moveToThread(mimeFinderThread);
-    connect(mimeFinderThread, &QThread::finished, worker, &QObject::deleteLater);
-    connect(this, &FileSystemTree::startMimeSearch, worker, &MimeFinderWorker::start);
-    connect(worker, &MimeFinderWorker::resultsReady, this, &FileSystemTree::mimeSearchResultsReady);
-    connect(worker, &MimeFinderWorker::finished, mimeFinderThread, &QThread::quit);
-    connect(mimeFinderThread, &QThread::finished, mimeFinderThread, &QThread::deleteLater);
-    mimeFinderThread->start();
-    emit startMimeSearch();
+    startSearch();
 }
 
 FileSystemTree::~FileSystemTree()
@@ -152,6 +143,20 @@ void FileSystemTree::openAnywhereContextMenu()
     contextMenu->addAction(createDirAction);
 }
 
+void FileSystemTree::startSearch()
+{
+    MimeFinderWorker* worker = new MimeFinderWorker();
+    mimeFinderThread = new QThread(this);
+    worker->moveToThread(mimeFinderThread);
+    connect(mimeFinderThread, &QThread::finished, worker, &QObject::deleteLater);
+    connect(this, &FileSystemTree::startMimeSearch, worker, &MimeFinderWorker::start);
+    connect(worker, &MimeFinderWorker::resultsReady, this, &FileSystemTree::mimeSearchResultsReady);
+    connect(worker, &MimeFinderWorker::finished, mimeFinderThread, &QThread::quit);
+    connect(mimeFinderThread, &QThread::finished, mimeFinderThread, &QThread::deleteLater);
+    mimeFinderThread->start();
+    emit startMimeSearch();
+}
+
 void FileSystemTree::openContextMenu(const QPoint& point)
 {
     const auto index = indexAt(point);
@@ -183,9 +188,9 @@ void FileSystemTree::createFile()
                 const QString name = dialog->getText();
                 if(!name.isEmpty())
                 {
-                    std::ofstream file;
-                    file.open(path.toStdString() + '/' + name.toStdString());
-                    if(file.is_open())
+                    QFile file(path + '/' + name);
+                    file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
+                    if(file.isOpen())
                     {
                         file.close();
                     }

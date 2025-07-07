@@ -33,6 +33,7 @@ private:
     void openAnywhereContextMenu();
     QList<MimeApplication> apps;
     QThread* mimeFinderThread {nullptr};
+    void startSearch();
 
 private slots:
     void openContextMenu(const QPoint &point);
