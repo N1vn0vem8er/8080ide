@@ -48,7 +48,8 @@ private:
     void undo();
     void redo();
     void openFromTree();
-    void openDir();
+    void openDirPressed();
+    void openDir(const QString& path);
     void openFileInNewTab(const QString& path);
     void openCommitDialog();
     void openLogDialog();

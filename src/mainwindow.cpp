@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "editor/codeeditor.h"
 #include "dialogs/createprojectwindow.h"
+#include "qprocess.h"
 #include "utils/git/commitdialog.h"
 #include "utils/git/gitdialog.h"
 #include "utils/memorywindow.h"
@@ -66,7 +67,7 @@ MainWindow::MainWindow(QWidget *parent)
     simHandeler->setReferencesToRegisters(ui->Areg, ui->Breg, ui->Creg, ui->Dreg, ui->Ereg, ui->Hreg, ui->Lreg, ui->Mreg, ui->PC, ui->Flagsreg, ui->SPreg);
     connect(ui->actionUndo, &QAction::triggered, this, &MainWindow::undo);
     connect(ui->actionRedo, &QAction::triggered, this, &MainWindow::redo);
-    connect(ui->actionOpenDir, &QAction::triggered, this, &MainWindow::openDir);
+    connect(ui->actionOpenDir, &QAction::triggered, this, &MainWindow::openDirPressed);
     connect(ui->actionOpenProject, &QAction::triggered, this, [=](){openProject();});
     connect(ui->actionnewProject, &QAction::triggered, this, &MainWindow::openNewProjectWindow);
     connect(ui->actionCloseProject, &QAction::triggered, this, &MainWindow::closeProject);
@@ -248,7 +249,7 @@ void MainWindow::openNewProjectWindow()
         {
             simHandeler->openProject(path);
             QFileInfo info(path);
-            ui->treeView->setDirectory(info.dir().path());
+            openDir(info.dir().path());
             ui->treeView->setVisible(true);
             saveProjectToRecentProjects(path);
         }
@@ -947,15 +948,26 @@ void MainWindow::open()
     QString path = QFileDialog::getOpenFileName(this, tr("Open File"), "./", tr("Files (*.asm)"));
     openFileInNewTab(path);
 }
-void MainWindow::openDir()
+void MainWindow::openDirPressed()
 {
     QString path = QFileDialog::getExistingDirectory(this, tr("Open Directory", "./"));
     if(path != "")
     {
-        ui->treeView->setDirectory(path);
+        openDir(path);
         ui->treeView->setVisible(true);
     }
+}
 
+void MainWindow::openDir(const QString &path)
+{
+    ui->treeView->open(path);
+    std::unique_ptr<QProcess> process = std::make_unique<QProcess>();
+    process->setWorkingDirectory(path);
+    process->startCommand("git status");
+    process->waitForStarted();
+    process->waitForFinished();
+    process->waitForReadyRead();
+    ui->treeView->setHasGitRepository(process->readAllStandardError().isEmpty());
 }
 void MainWindow::saveas()
 {
@@ -993,7 +1005,7 @@ void MainWindow::openProject(const QString &path)
     {
         simHandeler->openProject(path);
         QFileInfo info(path);
-        ui->treeView->setDirectory(info.dir().path());
+        openDir(info.dir().absolutePath());
         ui->treeView->setVisible(true);
         saveProjectToRecentProjects(path);
     }
@@ -1001,7 +1013,7 @@ void MainWindow::openProject(const QString &path)
 void MainWindow::closeProject()
 {
     simHandeler->closeProject();
-    ui->treeView->setDirectory(QDir::homePath());
+    openDir(QDir::homePath());
 }
 void MainWindow::quit()
 {
