@@ -271,7 +271,7 @@ void MainWindow::openStartTabWidget()
     connect(widget, &StartTabWidget::linkActivated, this, &MainWindow::handleStartTabLinks);
     connect(widget, &StartTabWidget::openFileFromPath, this, &MainWindow::openFileInNewTab);
     connect(widget, &StartTabWidget::openProjectFromPath, simHandeler, [=](const QString& path){openProject(path);});
-    ui->tabWidget->addTab(widget, "Start");
+    addTab(widget, "Start");
 }
 
 void MainWindow::handleStartTabLinks(const QString &link)
@@ -429,7 +429,7 @@ void MainWindow::openProjectSearch()
 {
     if(simHandeler->isProjectLoaded())
     {
-        ui->tabWidget->addTab(new ProjectGlobalSearchWidget(simHandeler->getProjectPath()), simHandeler->getProjectName());
+        addTab(new ProjectGlobalSearchWidget(simHandeler->getProjectPath()), simHandeler->getProjectName());
     }
 }
 
@@ -666,7 +666,7 @@ void MainWindow::showSearch()
 }
 void MainWindow::newFile()
 {
-    ui->tabWidget->addTab(new CodeEditor(ui->tabWidget), "New File");
+    addTab(new CodeEditor(ui->tabWidget), "New File");
 }
 void MainWindow::openFromTree()
 {
@@ -697,7 +697,7 @@ void MainWindow::openFileInNewTab(const QString &path)
                     ce->setProjectPath(simHandeler->getProjectPath());
                 }
                 ce->insertPlainText(QString::fromStdString(ss.str()));
-                ui->tabWidget->addTab(ce, info.fileName());
+                addTab(ce, info.fileName());
                 saveFileToRecentFiles(path);
             }
         } catch (...) {
@@ -864,7 +864,7 @@ void MainWindow::openHelpPageGeneral()
     if(IDESettings::showHelpTypeAny == IDESettings::tab)
     {
         HelpWidget* widget = new HelpWidget();
-        ui->tabWidget->addTab(widget, tr("Help"));
+        addTab(widget, tr("Help"));
     }
     else
     {
@@ -885,7 +885,7 @@ void MainWindow::openHelpPageInst(const QString &instruction)
     {
         HelpWidget* widget = new HelpWidget();
         widget->openHelp(instruction);
-        ui->tabWidget->addTab(widget, tr("Help"));
+        addTab(widget, tr("Help"));
         ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
     }
     else
@@ -1034,6 +1034,12 @@ void MainWindow::closeProject()
 void MainWindow::quit()
 {
     qApp->exit();
+}
+
+void MainWindow::addTab(QWidget *widget, const QString &title)
+{
+    ui->tabWidget->addTab(widget, title);
+    ui->tabWidget->setCurrentIndex(ui->tabWidget->count() - 1);
 }
 void MainWindow::closeTab(int index)
 {

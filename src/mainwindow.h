@@ -41,6 +41,7 @@ private:
     void open();
     void saveas();
     void quit();
+    void addTab(QWidget* widget, const QString& title);
     void closeTab(int index);
     int currentTabIndex;
     bool newFileLoaded;
