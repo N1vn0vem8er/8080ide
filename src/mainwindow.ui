@@ -308,6 +308,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QLabel" name="fontSizeLabel">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="openLogsOutputButtom">
         <property name="text">
          <string>Diagnostics</string>

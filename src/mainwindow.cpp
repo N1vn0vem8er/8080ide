@@ -1076,6 +1076,11 @@ void MainWindow::tabChanged()
         ui->actionOverwrite_mode->setChecked(tmp->overwriteMode());
         ui->actionRead_only->setChecked(tmp->isReadOnly());
         ui->actionLine_wrap->setChecked(tmp->lineWrapMode() == CodeEditor::NoWrap ? false : true);
+        ui->fontSizeLabel->setText(tr("Font Size: %1").arg(tmp->font().pointSize()));
+    }
+    else
+    {
+        ui->fontSizeLabel->setText("");
     }
 }
 void MainWindow::undo()
@@ -1148,7 +1153,7 @@ void MainWindow::paste()
 
 void MainWindow::fontSizeChanged(int size)
 {
-
+    ui->fontSizeLabel->setText(tr("Font Size: %1").arg(size));
 }
 
 void MainWindow::openPasteFromFile()
@@ -1156,7 +1161,20 @@ void MainWindow::openPasteFromFile()
     CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
-
+        const QStringList paths = QFileDialog::getOpenFileNames(this, tr("Paste from file"), QDir::homePath());
+        if(!paths.isEmpty())
+        {
+            for(const auto& path : paths)
+            {
+                QFile file(path);
+                file.open(QIODevice::ReadOnly);
+                if(file.isOpen())
+                {
+                    widget->appendPlainText(file.readAll());
+                    file.close();
+                }
+            }
+        }
     }
 }
 
@@ -1165,7 +1183,7 @@ void MainWindow::setLineWrap(bool val)
     CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
-
+        widget->setLineWidth(val ? CodeEditor::LineWrapMode::WidgetWidth : CodeEditor::LineWrapMode::NoWrap);
     }
 }
 
@@ -1174,7 +1192,7 @@ void MainWindow::increaseFontSize()
     CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
-
+        widget->increaseFontSize();
     }
 }
 
@@ -1183,7 +1201,7 @@ void MainWindow::decreaseFontSize()
     CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
-
+        widget->decreaseFontSize();
     }
 }
 
@@ -1192,7 +1210,7 @@ void MainWindow::resetFontSize()
     CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
-
+        widget->setFontSize(10);
     }
 }
 
@@ -1226,10 +1244,10 @@ void MainWindow::setFontSize()
 
 void MainWindow::closeAllButThis()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-    if(widget)
+    for(int i=ui->tabWidget->count()-1; i >= 0;--i)
     {
-
+        if(i != ui->tabWidget->currentIndex())
+            closeTab(i);
     }
 }
 
@@ -1255,10 +1273,24 @@ void MainWindow::reloadCurrent()
 
 void MainWindow::reloadAll()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-    if(widget)
+    for(int i=0; i<ui->tabWidget->count(); i++)
     {
-
+        CodeEditor* editor = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(i));
+        if(editor != nullptr && !editor->getFilePath().isEmpty())
+        {
+            if(!editor->isSaved())
+            {
+                openSaveWarningDialog(editor);
+            }
+            QFile file(editor->getFilePath());
+            file.open(QIODevice::ReadOnly);
+            if(file.isOpen())
+            {
+                editor->setPlainText(file.readAll());
+                file.close();
+                editor->setSaved(true);
+            }
+        }
     }
 }
 
