@@ -115,6 +115,28 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->registersEditor, &RegistersEditor::changeRegisters, simHandeler, &SimHandeler::changedRegisters);
     connect(simHandeler, &SimHandeler::setRegisterValues, ui->registersEditor, &RegistersEditor::setRegisterValues);
     connect(ui->treeView, &FileSystemTree::openFile, this, &MainWindow::openFileInNewTab);
+    connect(ui->actionCut, &QAction::triggered, this, &MainWindow::cut);
+    connect(ui->actionCopy, &QAction::triggered, this, &MainWindow::copy);
+    connect(ui->actionPaste, &QAction::triggered, this, &MainWindow::paste);
+    connect(ui->actionPaste_from_file, &QAction::triggered, this, &MainWindow::openPasteFromFile);
+    connect(ui->actionPrint, &QAction::triggered, this, &MainWindow::openPrint);
+    connect(ui->actionMerge_lines, &QAction::triggered, this, &MainWindow::mergeLines);
+    connect(ui->actionRead_only, &QAction::triggered, this, &MainWindow::readOnlyChanget);
+    connect(ui->actionLine_wrap, &QAction::triggered, this, &MainWindow::setLineWrap);
+    connect(ui->actionSelect_All, &QAction::triggered, this, &MainWindow::selectAll);
+    connect(ui->actionClose, &QAction::triggered, this, [&]{closeTab(ui->tabWidget->currentIndex());});
+    connect(ui->actionClose_All, &QAction::triggered, this, [&]{while(ui->tabWidget->count() > 0) closeTab(ui->tabWidget->currentIndex());});
+    connect(ui->actionClose_all_but_this, &QAction::triggered, this, &MainWindow::closeAllButThis);
+    connect(ui->actionReload, &QAction::triggered, this, &MainWindow::reloadCurrent);
+    connect(ui->actionReload_all, &QAction::triggered, this, &MainWindow::reloadAll);
+    connect(ui->actionIncrease_font_size, &QAction::triggered, this, &MainWindow::increaseFontSize);
+    connect(ui->actionDecrease_font_size, &QAction::triggered, this, &MainWindow::decreaseFontSize);
+    connect(ui->actionReset_font_size, &QAction::triggered, this, &MainWindow::resetFontSize);
+    connect(ui->actionSet_font_size, &QAction::triggered, this, &MainWindow::setFontSize);
+    connect(ui->actionOverwrite_mode, &QAction::triggered, this, &MainWindow::overwriteModeChanged);
+    connect(ui->actionDelete, &QAction::triggered, this, &MainWindow::deleteSelected);
+    connect(ui->actionDelete_all, &QAction::triggered, this, &MainWindow::deleteAll);
+
     currentTabIndex = 0;
     newFileLoaded = false;
     ui->treeView->open(QDir::homePath());
@@ -663,6 +685,7 @@ void MainWindow::showSearch()
 void MainWindow::newFile()
 {
     CodeEditor* tmp = new CodeEditor(ui->tabWidget);
+    connect(tmp, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
     ui->actionOverwrite_mode->setChecked(tmp->overwriteMode());
     ui->actionRead_only->setChecked(tmp->isReadOnly());
     ui->actionLine_wrap->setChecked(tmp->lineWrapMode() == CodeEditor::NoWrap ? false : true);
@@ -689,6 +712,7 @@ void MainWindow::openFileInNewTab(const QString &path)
                 ss << file.rdbuf();
                 file.close();
                 CodeEditor* ce = new CodeEditor();
+                connect(ce, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
                 ce->setFilePath(path);
                 simHandeler->setFilename(path);
                 if(simHandeler->getProjectFilesPaths().contains(path))
@@ -1183,7 +1207,7 @@ void MainWindow::setLineWrap(bool val)
     CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
-        widget->setLineWidth(val ? CodeEditor::LineWrapMode::WidgetWidth : CodeEditor::LineWrapMode::NoWrap);
+        widget->setLineWrapMode(val ? CodeEditor::LineWrapMode::WidgetWidth : CodeEditor::LineWrapMode::NoWrap);
     }
 }
 
