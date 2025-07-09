@@ -72,7 +72,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionUndo, &QAction::triggered, this, &MainWindow::undo);
     connect(ui->actionRedo, &QAction::triggered, this, &MainWindow::redo);
     connect(ui->actionOpenDir, &QAction::triggered, this, &MainWindow::openDirPressed);
-    connect(ui->actionOpenProject, &QAction::triggered, this, [=](){openProject();});
+    connect(ui->actionOpenProject, &QAction::triggered, this, qOverload<>(&MainWindow::openProject));
     connect(ui->actionnewProject, &QAction::triggered, this, &MainWindow::openNewProjectWindow);
     connect(ui->actionCloseProject, &QAction::triggered, this, &MainWindow::closeProject);
     connect(ui->actionGitCommit, &QAction::triggered, this, &MainWindow::openCommitDialog);
@@ -94,7 +94,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionProjectSearch, &QAction::triggered, this, &MainWindow::openProjectSearch);
     connect(ui->actionSetBreakpoint, &QAction::triggered, this, &MainWindow::setBreakpoint);
     connect(ui->continueButton, &QPushButton::clicked, simHandeler, &SimHandeler::breakpointContinue);
-    connect(ui->continueButton, &QPushButton::clicked, simHandeler, [=](){if(highlightedEditor!=nullptr)highlightedEditor->clearSearchFormatting(); highlightedEditor = nullptr;});
+    connect(ui->continueButton, &QPushButton::clicked, simHandeler, [&](){if(highlightedEditor!=nullptr)highlightedEditor->clearSearchFormatting(); highlightedEditor = nullptr;});
     connect(simHandeler, &SimHandeler::stepLineHighlight, this, &MainWindow::stepLineHighLight);
     connect(ui->actionOpenHexConverter, &QAction::triggered, this, &MainWindow::openNumberConverterDialog);
     connect(ui->actionOpenCalc, &QAction::triggered, this, &MainWindow::openCalc);
@@ -108,9 +108,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionGitPush, &QAction::triggered, this, &MainWindow::openGitPush);
     connect(ui->actionManualRun, &QAction::triggered, this, &MainWindow::openGitCommandDialog);
     connect(ui->actionAboutApplication, &QAction::triggered, this, &MainWindow::openAboutDialog);
-    connect(ui->actionAboutQt, &QAction::triggered, this, [=](){QMessageBox::aboutQt(this, tr("About Qt"));});
+    connect(ui->actionAboutQt, &QAction::triggered, this, [&](){QMessageBox::aboutQt(this, tr("About Qt"));});
     connect(ui->actionGetHelp, &QAction::triggered, this, &MainWindow::openHelp);
-    connect(ui->converterButton, &QPushButton::clicked, this, [=](){ui->numConverter->setVisible(ui->numConverter->isVisible() ? false : true);});
+    connect(ui->converterButton, &QPushButton::clicked, this, [&](){ui->numConverter->setVisible(ui->numConverter->isVisible() ? false : true);});
     connect(ui->editRegistersButton, &QPushButton::clicked, this, &MainWindow::showHideRegistersEditor);
     connect(ui->registersEditor, &RegistersEditor::changeRegisters, simHandeler, &SimHandeler::changedRegisters);
     connect(simHandeler, &SimHandeler::setRegisterValues, ui->registersEditor, &RegistersEditor::setRegisterValues);
@@ -294,7 +294,7 @@ void MainWindow::openStartTabWidget()
     StartTabWidget* widget = new StartTabWidget();
     connect(widget, &StartTabWidget::linkActivated, this, &MainWindow::handleStartTabLinks);
     connect(widget, &StartTabWidget::openFileFromPath, this, &MainWindow::openFileInNewTab);
-    connect(widget, &StartTabWidget::openProjectFromPath, simHandeler, [=](const QString& path){openProject(path);});
+    connect(widget, &StartTabWidget::openProjectFromPath, simHandeler, [this](const QString& path){openProject(path);});
     addTab(widget, "Start");
 }
 

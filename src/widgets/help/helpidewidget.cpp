@@ -11,7 +11,7 @@ HelpIDEWidget::HelpIDEWidget(QWidget *parent)
     QStringListModel* model = new QStringListModel(ui->listView);
     model->setStringList(translations);
     ui->listView->setModel(model);
-    connect(ui->listView, &QListView::clicked, this, [=](const QModelIndex& index){openInstructionHelp(helpPagesList[index.row()].toLower());});
+    connect(ui->listView, &QListView::clicked, this, [&](const QModelIndex& index){openInstructionHelp(helpPagesList[index.row()].toLower());});
     QLocale l;
     language = l.name() == "pl_PL" ? "_pl.html" : "_en.html";
 }

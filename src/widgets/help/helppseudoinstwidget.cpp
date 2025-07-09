@@ -11,7 +11,7 @@ HelpPseudoInstWidget::HelpPseudoInstWidget(QWidget *parent)
     QStringListModel* model = new QStringListModel(ui->listView);
     model->setStringList(instructionList);
     ui->listView->setModel(model);
-    connect(ui->listView, &QListView::clicked, this, [=](const QModelIndex& index){openInstructionHelp(ui->listView->model()->data(index).toString().toLower());});
+    connect(ui->listView, &QListView::clicked, this, [&](const QModelIndex& index){openInstructionHelp(ui->listView->model()->data(index).toString().toLower());});
     QLocale l;
     language = l.name() == "pl_PL" ? "_pl.html" : "_en.html";
 }

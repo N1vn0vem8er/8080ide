@@ -8,7 +8,7 @@ TableDataGeneratorDialog::TableDataGeneratorDialog(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->generateButton, &QPushButton::clicked, this, &TableDataGeneratorDialog::generate);
-    connect(ui->clearButton, &QPushButton::clicked, this, [=](){ui->output->clear(); ui->input->clear();});
+    connect(ui->clearButton, &QPushButton::clicked, this, [&](){ui->output->clear(); ui->input->clear();});
     connect(ui->copyButton, &QPushButton::clicked, this, &TableDataGeneratorDialog::copy);
 }
 

@@ -8,7 +8,7 @@ GitBranchDialog::GitBranchDialog(QString path, QStringList branches, QWidget *pa
     ui->setupUi(this);
     repoPath = path;
     ui->comboBox->addItems(branches);
-    connect(ui->pushButton, &QPushButton::clicked, this, [=](){emit setBranch(ui->comboBox->currentText());});
+    connect(ui->pushButton, &QPushButton::clicked, this, [&](){emit setBranch(ui->comboBox->currentText());});
 }
 
 GitBranchDialog::~GitBranchDialog()

@@ -9,7 +9,7 @@ StringTableGeneratorDialog::StringTableGeneratorDialog(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->generateButton, &QPushButton::clicked, this, &StringTableGeneratorDialog::generate);
-    connect(ui->clearButton, &QPushButton::clicked, this, [=](){ui->output->clear(); ui->input->clear();});
+    connect(ui->clearButton, &QPushButton::clicked, this, [&](){ui->output->clear(); ui->input->clear();});
     connect(ui->copyButton, &QPushButton::clicked, this, &StringTableGeneratorDialog::copy);
 }
 

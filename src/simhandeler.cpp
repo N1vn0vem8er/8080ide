@@ -224,7 +224,7 @@ void SimHandeler::run()
     connect(this, &SimHandeler::getMemoryFromSim, sr, &SimRunner::getMemoryFromSim);
     connect(this, &SimHandeler::simContinue, sr, &SimRunner::breakpointContinue);
     connect(sr, &SimRunner::breakpointStop, this, &SimHandeler::breakpointCodeLocation);
-    connect(sr, &SimRunner::memoryChanged, this, [=](QString memory, int size){emit memoryChanged(memory, size);});
+    connect(sr, &SimRunner::memoryChanged, this, [&](QString memory, int size){emit memoryChanged(memory, size);});
     connect(this, &SimHandeler::memoryChangedByUserSignal, sr, &SimRunner::memoryChangedByUser);
     connect(this, &SimHandeler::changeRegisters, sr, &SimRunner::changeRegisters);
     sr->setSymulator(this->symulator.get());
