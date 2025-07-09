@@ -3,7 +3,7 @@ printsupport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-CONFIG += c++17
+CONFIG += c++20
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -55,7 +55,11 @@ SOURCES += \
     widgets/help/helpidewidget.cpp \
     widgets/help/helpinstructionswidget.cpp \
     widgets/help/helppseudoinstwidget.cpp \
-    widgets/helpwidget.cpp
+    widgets/helpwidget.cpp \
+    utils/git/gitfilestatusitemdelegate.cpp \
+    utils/git/gitfilestatusmodel.cpp \
+    utils/git/gitwidget.cpp \
+    utils/git/gitfilesview.cpp
 
 HEADERS += \
     8080/assembler.h \
@@ -64,6 +68,7 @@ HEADERS += \
     idesettings.h \
     settingsPages/simsettingspage.h \
     settingsPages/startupsettingspage.h \
+    structs.h \
     utils/mimefinderworker.h \
     utils/numberconverterwidget.h \
     settingsPages/helpsettings.h \
@@ -104,7 +109,11 @@ HEADERS += \
     widgets/help/helpidewidget.h \
     widgets/help/helpinstructionswidget.h \
     widgets/help/helppseudoinstwidget.h \
-    widgets/helpwidget.h
+    widgets/helpwidget.h \
+    utils/git/gitfilestatusitemdelegate.h \
+    utils/git/gitfilestatusmodel.h \
+    utils/git/gitwidget.h \
+    utils/git/gitfilesview.h
 
 FORMS += \
     settingsPages/simsettingspage.ui \
@@ -138,7 +147,8 @@ FORMS += \
     widgets/help/helpidewidget.ui \
     widgets/help/helpinstructionswidget.ui \
     widgets/help/helppseudoinstwidget.ui \
-    widgets/helpwidget.ui
+    widgets/helpwidget.ui \
+    utils/git/gitwidget.ui
 
 TRANSLATIONS += \
     8080ide_pl_PL.ts
