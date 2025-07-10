@@ -139,6 +139,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionShowGit, &QAction::triggered, this, &MainWindow::showGitWidget);
     connect(ui->gitWidget, &GitWidget::addTab, this, &MainWindow::addTab);
     connect(ui->gitWidget, &GitWidget::openInEditor, this, &MainWindow::openInEditor);
+    connect(ui->gitWidget, &GitWidget::openFile, this, &MainWindow::openFileInNewTab);
 
 
     newFileLoaded = false;
@@ -1031,6 +1032,10 @@ void MainWindow::openDir(const QString &path)
     if(ui->treeView->getHasGitRepository())
     {
         ui->gitWidget->setRepositoryPath(path);
+    }
+    else
+    {
+        ui->gitWidget->noRepo();
     }
 }
 void MainWindow::saveas()
