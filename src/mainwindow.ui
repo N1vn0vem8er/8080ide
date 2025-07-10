@@ -44,7 +44,12 @@
         <property name="orientation">
          <enum>Qt::Orientation::Horizontal</enum>
         </property>
-        <widget class="FileSystemTree" name="treeView"/>
+        <widget class="QStackedWidget" name="stackedWidget">
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <widget class="FileSystemTree" name="treeView"/>
+        </widget>
         <widget class="QWidget" name="layoutWidget">
          <layout class="QVBoxLayout" name="textAndLogsLayout" stretch="1,0,0,0">
           <item>

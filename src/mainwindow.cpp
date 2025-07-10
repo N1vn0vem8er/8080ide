@@ -151,7 +151,7 @@ MainWindow::MainWindow(QWidget *parent)
     loadSettings();
     setStyleFromSettings();
 
-    ui->treeView->setVisible(false);
+    ui->stackedWidget->setVisible(false);
     ui->statusbar->setVisible(false);
     ui->searchWidget->setVisible(false);
     if(IDESettings::startupWidgetsVisibitity.startPage == IDESettings::show)
@@ -400,10 +400,8 @@ void MainWindow::hideSimulator()
 
 void MainWindow::hideFileSystemTree()
 {
-    if(ui->treeView->isVisible())
-        ui->treeView->setVisible(false);
-    else
-        ui->treeView->setVisible(true);
+    ui->stackedWidget->setVisible(ui->stackedWidget->currentIndex() == 0 && ui->stackedWidget->isVisible() ? false : true);
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::enableSyntaxHighLinhting()

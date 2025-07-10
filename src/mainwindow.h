@@ -77,8 +77,6 @@ private:
     void saveProjectToRecentProjects(const QString& projectPath);
     bool pathExists(std::string path, std::fstream &file);
     void loadLogs();
-    void hideSimulator();
-    void hideFileSystemTree();
     void enableSyntaxHighLinhting();
     void showSearch();
     void search(const QString& text);
@@ -121,6 +119,8 @@ private slots:
     void mergeLines();
     void deleteSelected();
     void deleteAll();
+    void hideSimulator();
+    void hideFileSystemTree();
 
 protected:
     void dropEvent(QDropEvent* event) override;
