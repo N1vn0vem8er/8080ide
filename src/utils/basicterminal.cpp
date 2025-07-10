@@ -18,6 +18,16 @@ BasicTerminal::~BasicTerminal()
     process->waitForFinished(3000);
 }
 
+void BasicTerminal::sigint()
+{
+    process->write("\x03");
+}
+
+void BasicTerminal::sigterm()
+{
+
+}
+
 void BasicTerminal::keyPressEvent(QKeyEvent *event)
 {
     switch(event->key())

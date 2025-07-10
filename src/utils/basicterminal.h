@@ -11,6 +11,10 @@ public:
     BasicTerminal(QWidget* parent = nullptr);
     ~BasicTerminal();
 
+public slots:
+    void sigint();
+    void sigterm();
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 

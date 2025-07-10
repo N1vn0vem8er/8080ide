@@ -82,7 +82,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionGitDiff, &QAction::triggered, this, &MainWindow::openDiffDialog);
     connect(ui->actionComment, &QAction::triggered, this, &MainWindow::commentLine);
     connect(ui->actionStartPage, &QAction::triggered, this, &MainWindow::openStartTabWidget);
-    connect(ui->openLogsOutputButtom, &QPushButton::released, this, &MainWindow::loadLogs);
+    connect(ui->openLogsOutputButtom, &QPushButton::released, this, &MainWindow::showDiagnostics);
     connect(ui->simulatorButton, &QPushButton::released, this, &MainWindow::hideSimulator);
     connect(ui->actionShowSim, &QAction::triggered, this, &MainWindow::hideSimulator);
     connect(ui->actionShowFiles, &QAction::triggered, this, &MainWindow::showFileSystemTree);
@@ -140,6 +140,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->gitWidget, &GitWidget::addTab, this, &MainWindow::addTab);
     connect(ui->gitWidget, &GitWidget::openInEditor, this, &MainWindow::openInEditor);
     connect(ui->gitWidget, &GitWidget::openFile, this, &MainWindow::openFileInNewTab);
+    connect(ui->terminalButton, &QPushButton::clicked, this, &MainWindow::showTerminal);
 
 
     newFileLoaded = false;
@@ -161,7 +162,7 @@ MainWindow::MainWindow(QWidget *parent)
     if(IDESettings::startupWidgetsVisibitity.startPage == IDESettings::show)
         openStartTabWidget();
     if(IDESettings::startupWidgetsVisibitity.diagnostics == IDESettings::hide)
-        ui->logsOutputWidget->setVisible(false);
+        ui->centralStackedWidget->setVisible(false);
     if(IDESettings::startupWidgetsVisibitity.simulator == IDESettings::hide)
         ui->simLayout->setVisible(false);
     if(IDESettings::startupWidgetsVisibitity.converter == IDESettings::hide)
@@ -386,14 +387,6 @@ bool MainWindow::pathExists(std::string path, std::fstream& file)
     return false;
 }
 
-void MainWindow::loadLogs()
-{
-    if(ui->logsOutputWidget->isVisible())
-        ui->logsOutputWidget->setVisible(false);
-    else
-        ui->logsOutputWidget->setVisible(true);
-}
-
 void MainWindow::hideSimulator()
 {
     if(ui->simLayout->isVisible())
@@ -412,6 +405,18 @@ void MainWindow::showGitWidget()
 {
     ui->stackedWidget->setVisible(ui->stackedWidget->currentIndex() == 1 && ui->stackedWidget->isVisible() ? false : true);
     ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::showDiagnostics()
+{
+    ui->centralStackedWidget->setVisible(ui->centralStackedWidget->currentIndex() == 0 && ui->centralStackedWidget->isVisible() ? false : true);
+    ui->centralStackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::showTerminal()
+{
+    ui->centralStackedWidget->setVisible(ui->centralStackedWidget->currentIndex() == 1 && ui->centralStackedWidget->isVisible() ? false : true);
+    ui->centralStackedWidget->setCurrentIndex(1);
 }
 
 void MainWindow::openInEditor(const QString &text, const QString &title, bool readOnly, bool spellChecking)

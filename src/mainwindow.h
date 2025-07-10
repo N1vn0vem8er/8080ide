@@ -76,7 +76,6 @@ private:
     void saveFileToRecentFiles(const QString& filePath);
     void saveProjectToRecentProjects(const QString& projectPath);
     bool pathExists(std::string path, std::fstream &file);
-    void loadLogs();
     void enableSyntaxHighLinhting();
     void showSearch();
     void search(const QString& text);
@@ -122,6 +121,8 @@ private slots:
     void hideSimulator();
     void showFileSystemTree();
     void showGitWidget();
+    void showDiagnostics();
+    void showTerminal();
     void openInEditor(const QString& text, const QString& title, bool readOnly = true, bool spellChecking = false);
 
 protected:

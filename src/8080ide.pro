@@ -15,6 +15,7 @@ SOURCES += \
     idesettings.cpp \
     settingsPages/simsettingspage.cpp \
     settingsPages/startupsettingspage.cpp \
+    widgets/terminalwidget.cpp \
     utils/mimefinderworker.cpp \
     utils/numberconverterwidget.cpp \
     settingsPages/helpsettings.cpp \
@@ -70,6 +71,7 @@ HEADERS += \
     settingsPages/simsettingspage.h \
     settingsPages/startupsettingspage.h \
     structs.h \
+    widgets/terminalwidget.h \
     utils/mimefinderworker.h \
     utils/numberconverterwidget.h \
     settingsPages/helpsettings.h \
@@ -120,6 +122,7 @@ HEADERS += \
 FORMS += \
     settingsPages/simsettingspage.ui \
     settingsPages/startupsettingspage.ui \
+    widgets/terminalwidget.ui \
     utils/numberconverterwidget.ui \
     settingsPages/helpsettings.ui \
     settingsPages/stylesettingspage.ui \

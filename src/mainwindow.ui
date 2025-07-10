@@ -70,13 +70,19 @@
            <widget class="NumberConverterWidget" name="numConverter" native="true"/>
           </item>
           <item>
-           <widget class="QPlainTextEdit" name="logsOutputWidget">
-            <property name="undoRedoEnabled">
-             <bool>false</bool>
+           <widget class="QStackedWidget" name="centralStackedWidget">
+            <property name="currentIndex">
+             <number>1</number>
             </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
+            <widget class="QPlainTextEdit" name="logsOutputWidget">
+             <property name="undoRedoEnabled">
+              <bool>false</bool>
+             </property>
+             <property name="readOnly">
+              <bool>true</bool>
+             </property>
+            </widget>
+            <widget class="TerminalWidget" name="terminalWidget"/>
            </widget>
           </item>
           <item>
@@ -334,6 +340,16 @@
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="terminalButton">
+        <property name="text">
+         <string>Terminal</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="simulatorButton">
         <property name="text">
          <string>Simulator</string>
@@ -486,19 +502,19 @@
      <addaction name="actionTable_DATA"/>
     </widget>
     <widget class="QMenu" name="menuGit">
-    <property name="title">
-     <string>Git</string>
-    </property>
-    <addaction name="actionGitCommit"/>
-    <addaction name="actionGitLog"/>
-    <addaction name="actionGitDiff"/>
-    <addaction name="actionGitBranch"/>
-    <addaction name="actionGitStatus"/>
-    <addaction name="actionGitFetch"/>
-    <addaction name="actionGitPull"/>
-    <addaction name="actionGitPush"/>
-    <addaction name="actionManualRun"/>
-   </widget>
+     <property name="title">
+      <string>Git</string>
+     </property>
+     <addaction name="actionGitCommit"/>
+     <addaction name="actionGitLog"/>
+     <addaction name="actionGitDiff"/>
+     <addaction name="actionGitBranch"/>
+     <addaction name="actionGitStatus"/>
+     <addaction name="actionGitFetch"/>
+     <addaction name="actionGitPull"/>
+     <addaction name="actionGitPush"/>
+     <addaction name="actionManualRun"/>
+    </widget>
     <addaction name="menuKonwertery"/>
     <addaction name="actionOpenCalc"/>
     <addaction name="menuGeneratory"/>
@@ -1121,6 +1137,12 @@
    <class>GitWidget</class>
    <extends>QWidget</extends>
    <header>utils/git/gitwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TerminalWidget</class>
+   <extends>QWidget</extends>
+   <header>widgets/terminalwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
