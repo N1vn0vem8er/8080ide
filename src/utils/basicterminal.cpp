@@ -44,6 +44,9 @@ void BasicTerminal::keyPressEvent(QKeyEvent *event)
             textCursor().deletePreviousChar();
         }
         break;
+    case Qt::Key_Tab:
+        process->write("\t");
+        break;
     default:
         process->write(event->text().toUtf8());
         insertPlainText(event->text());
