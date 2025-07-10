@@ -46,9 +46,10 @@
         </property>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="FileSystemTree" name="treeView"/>
+         <widget class="GitWidget" name="gitWidget"/>
         </widget>
         <widget class="QWidget" name="layoutWidget">
          <layout class="QVBoxLayout" name="textAndLogsLayout" stretch="1,0,0,0">
@@ -448,6 +449,7 @@
     <addaction name="actionClose_Tab"/>
     <addaction name="actionStartPage"/>
     <addaction name="actionShowFiles"/>
+    <addaction name="actionShowGit"/>
     <addaction name="actionShowSim"/>
     <addaction name="separator"/>
     <addaction name="actionIncrease_font_size"/>
@@ -1079,6 +1081,11 @@
     <string>Shift+F5</string>
    </property>
   </action>
+  <action name="actionShowGit">
+   <property name="text">
+    <string>Git</string>
+   </property>
+  </action>
  </widget>
  <customwidgets>
   <customwidget>
@@ -1108,6 +1115,12 @@
    <class>RegistersEditor</class>
    <extends>QWidget</extends>
    <header>widgets/registerseditor.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>GitWidget</class>
+   <extends>QWidget</extends>
+   <header>utils/git/gitwidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

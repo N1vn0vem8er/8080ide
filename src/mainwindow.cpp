@@ -85,7 +85,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->openLogsOutputButtom, &QPushButton::released, this, &MainWindow::loadLogs);
     connect(ui->simulatorButton, &QPushButton::released, this, &MainWindow::hideSimulator);
     connect(ui->actionShowSim, &QAction::triggered, this, &MainWindow::hideSimulator);
-    connect(ui->actionShowFiles, &QAction::triggered, this, &MainWindow::hideFileSystemTree);
+    connect(ui->actionShowFiles, &QAction::triggered, this, &MainWindow::showFileSystemTree);
     connect(ui->actionEnableSyntaxHighLighting, &QAction::triggered, this, &MainWindow::enableSyntaxHighLinhting);
     connect(ui->actionSpellcheck, &QAction::triggered, this, &MainWindow::enableSpellCheck);
     connect(ui->actionSearch, &QAction::triggered, this, &MainWindow::showSearch);
@@ -136,6 +136,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionOverwrite_mode, &QAction::triggered, this, &MainWindow::overwriteModeChanged);
     connect(ui->actionDelete, &QAction::triggered, this, &MainWindow::deleteSelected);
     connect(ui->actionDelete_all, &QAction::triggered, this, &MainWindow::deleteAll);
+    connect(ui->actionShowGit, &QAction::triggered, this, &MainWindow::showGitWidget);
+    connect(ui->gitWidget, &GitWidget::addTab, this, &MainWindow::addTab);
+    connect(ui->gitWidget, &GitWidget::openInEditor, this, &MainWindow::openInEditor);
 
 
     newFileLoaded = false;
@@ -276,7 +279,7 @@ void MainWindow::openNewProjectWindow()
             simHandeler->openProject(path);
             QFileInfo info(path);
             openDir(info.dir().path());
-            ui->treeView->setVisible(true);
+            showFileSystemTree();
             saveProjectToRecentProjects(path);
         }
     }
@@ -398,10 +401,29 @@ void MainWindow::hideSimulator()
         ui->simLayout->setVisible(true);
 }
 
-void MainWindow::hideFileSystemTree()
+void MainWindow::showFileSystemTree()
 {
     ui->stackedWidget->setVisible(ui->stackedWidget->currentIndex() == 0 && ui->stackedWidget->isVisible() ? false : true);
     ui->stackedWidget->setCurrentIndex(0);
+}
+
+void MainWindow::showGitWidget()
+{
+    ui->stackedWidget->setVisible(ui->stackedWidget->currentIndex() == 1 && ui->stackedWidget->isVisible() ? false : true);
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::openInEditor(const QString &text, const QString &title, bool readOnly, bool spellChecking)
+{
+    CodeEditor* editor = new CodeEditor(ui->tabWidget);
+    connect(editor, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
+    editor->setReadOnly(readOnly);
+    editor->setSpellCheckEnabled(spellChecking);
+    ui->actionOverwrite_mode->setChecked(editor->overwriteMode());
+    ui->actionRead_only->setChecked(editor->isReadOnly());
+    ui->actionLine_wrap->setChecked(editor->lineWrapMode() == CodeEditor::NoWrap ? false : true);
+    editor->appendPlainText(text);
+    addTab(editor, title);
 }
 
 void MainWindow::enableSyntaxHighLinhting()
@@ -992,7 +1014,7 @@ void MainWindow::openDirPressed()
     if(path != "")
     {
         openDir(path);
-        ui->treeView->setVisible(true);
+        showFileSystemTree();
     }
 }
 
@@ -1006,6 +1028,10 @@ void MainWindow::openDir(const QString &path)
     process.waitForFinished();
     process.waitForReadyRead();
     ui->treeView->setHasGitRepository(process.readAllStandardError().isEmpty());
+    if(ui->treeView->getHasGitRepository())
+    {
+        ui->gitWidget->setRepositoryPath(path);
+    }
 }
 void MainWindow::saveas()
 {
@@ -1044,7 +1070,7 @@ void MainWindow::openProject(const QString &path)
         simHandeler->openProject(path);
         QFileInfo info(path);
         openDir(info.dir().absolutePath());
-        ui->treeView->setVisible(true);
+        showFileSystemTree();
         saveProjectToRecentProjects(path);
     }
 }

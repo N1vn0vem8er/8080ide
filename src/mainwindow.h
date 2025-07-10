@@ -120,7 +120,9 @@ private slots:
     void deleteSelected();
     void deleteAll();
     void hideSimulator();
-    void hideFileSystemTree();
+    void showFileSystemTree();
+    void showGitWidget();
+    void openInEditor(const QString& text, const QString& title, bool readOnly = true, bool spellChecking = false);
 
 protected:
     void dropEvent(QDropEvent* event) override;
