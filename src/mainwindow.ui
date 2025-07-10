@@ -458,20 +458,6 @@
     <addaction name="actionReset_font_size"/>
     <addaction name="actionLine_wrap"/>
    </widget>
-   <widget class="QMenu" name="menuGit">
-    <property name="title">
-     <string>Git</string>
-    </property>
-    <addaction name="actionGitCommit"/>
-    <addaction name="actionGitLog"/>
-    <addaction name="actionGitDiff"/>
-    <addaction name="actionGitBranch"/>
-    <addaction name="actionGitStatus"/>
-    <addaction name="actionGitFetch"/>
-    <addaction name="actionGitPull"/>
-    <addaction name="actionGitPush"/>
-    <addaction name="actionManualRun"/>
-   </widget>
    <widget class="QMenu" name="menuProjekt">
     <property name="title">
      <string>Project</string>
@@ -499,9 +485,24 @@
      <addaction name="actionStringGenerator"/>
      <addaction name="actionTable_DATA"/>
     </widget>
+    <widget class="QMenu" name="menuGit">
+    <property name="title">
+     <string>Git</string>
+    </property>
+    <addaction name="actionGitCommit"/>
+    <addaction name="actionGitLog"/>
+    <addaction name="actionGitDiff"/>
+    <addaction name="actionGitBranch"/>
+    <addaction name="actionGitStatus"/>
+    <addaction name="actionGitFetch"/>
+    <addaction name="actionGitPull"/>
+    <addaction name="actionGitPush"/>
+    <addaction name="actionManualRun"/>
+   </widget>
     <addaction name="menuKonwertery"/>
     <addaction name="actionOpenCalc"/>
     <addaction name="menuGeneratory"/>
+    <addaction name="menuGit"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -516,7 +517,6 @@
    <addaction name="menuProjekt"/>
    <addaction name="menuWidok"/>
    <addaction name="menuSymulator"/>
-   <addaction name="menuGit"/>
    <addaction name="menuNarz_dzia"/>
    <addaction name="menuHelp"/>
   </widget>
