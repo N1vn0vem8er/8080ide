@@ -11,7 +11,7 @@ BasicTerminal::BasicTerminal(QWidget *parent) : QPlainTextEdit(parent)
 
 BasicTerminal::~BasicTerminal()
 {
-    process->write("exit");
+    process->write("exit\n");
     process->waitForFinished(3000);
     process->terminate();
     process->waitForFinished(3000);
@@ -58,4 +58,5 @@ void BasicTerminal::keyPressEvent(QKeyEvent *event)
 void BasicTerminal::output()
 {
     appendPlainText(process->readAllStandardOutput());
+    QPlainTextEdit::ensureCursorVisible();
 }
