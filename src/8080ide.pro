@@ -41,8 +41,6 @@ SOURCES += \
     widgets/starttabwidget.cpp \
     utils/git/gitbranchdialog.cpp \
     utils/git/gitfetchdialog.cpp \
-    utils/git/gitpulldialog.cpp \
-    utils/git/gitpushdialog.cpp \
     utils/instinmemorydialog.cpp \
     utils/tabledatageneratordialog.cpp \
     utils/stringtablegeneratordialog.cpp \
@@ -97,8 +95,6 @@ HEADERS += \
     widgets/starttabwidget.h \
     utils/git/gitbranchdialog.h \
     utils/git/gitfetchdialog.h \
-    utils/git/gitpulldialog.h \
-    utils/git/gitpushdialog.h \
     utils/instinmemorydialog.h \
     utils/tabledatageneratordialog.h \
     utils/stringtablegeneratordialog.h \
@@ -141,8 +137,6 @@ FORMS += \
     widgets/starttabwidget.ui \
     utils/git/gitbranchdialog.ui \
     utils/git/gitfetchdialog.ui \
-    utils/git/gitpulldialog.ui \
-    utils/git/gitpushdialog.ui \
     utils/instinmemorydialog.ui \
     utils/tabledatageneratordialog.ui \
     utils/stringtablegeneratordialog.ui \
