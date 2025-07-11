@@ -71,8 +71,8 @@ private slots:
     void openDirPressed();
     void openDir(const QString& path);
     void openFileInNewTab(const QString& path);
-    void openLogDialog();
-    void openStatusDialog();
+    void openGitLog();
+    void openGitStatus();
     void openGitFetch();
     void openGitPull();
     void openGitPush();

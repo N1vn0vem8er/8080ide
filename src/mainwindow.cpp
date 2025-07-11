@@ -17,8 +17,6 @@
 #include "utils/git/customgitcommanddialog.h"
 #include "utils/git/gitbranchdialog.h"
 #include "utils/git/gitfetchdialog.h"
-#include "utils/git/gitpulldialog.h"
-#include "utils/git/gitpushdialog.h"
 #include "utils/instinmemorydialog.h"
 #include "utils/numberconverterdialog.h"
 #include "utils/stringtablegeneratordialog.h"
@@ -75,8 +73,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionnewProject, &QAction::triggered, this, &MainWindow::openNewProjectWindow);
     connect(ui->actionCloseProject, &QAction::triggered, this, &MainWindow::closeProject);
     connect(ui->actionGitCommit, &QAction::triggered, this, &MainWindow::showGitWidget);
-    connect(ui->actionGitLog, &QAction::triggered, this, &MainWindow::openLogDialog);
-    connect(ui->actionGitStatus, &QAction::triggered, this, &MainWindow::openStatusDialog);
+    connect(ui->actionGitLog, &QAction::triggered, this, &MainWindow::openGitLog);
+    connect(ui->actionGitStatus, &QAction::triggered, this, &MainWindow::openGitStatus);
     connect(ui->inputButton, &QPushButton::released, this, &MainWindow::b_input);
     connect(ui->actionGitDiff, &QAction::triggered, this, &MainWindow::showGitWidget);
     connect(ui->actionComment, &QAction::triggered, this, &MainWindow::commentLine);
@@ -762,27 +760,21 @@ void MainWindow::openFileInNewTab(const QString &path)
    }
 }
 
-void MainWindow::openLogDialog()
+void MainWindow::openGitLog()
 {
     if(simHandeler->isProjectLoaded())
     {
-        GitDialog* dialog = new GitDialog();
-        dialog->setupForLog(simHandeler->getProjectPath());
-        dialog->setAttribute(Qt::WA_DeleteOnClose);
-        dialog->show();
+        ui->gitWidget->gitLog();
     }
     else
         openProjectInformationPopup();
 }
 
-void MainWindow::openStatusDialog()
+void MainWindow::openGitStatus()
 {
     if(simHandeler->isProjectLoaded())
     {
-        GitDialog* dialog = new GitDialog();
-        dialog->setupForStatus(simHandeler->getProjectPath());
-        dialog->setAttribute(Qt::WA_DeleteOnClose);
-        dialog->show();
+        ui->gitWidget->gitStatus();
     }
     else
         openProjectInformationPopup();
