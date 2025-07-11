@@ -74,11 +74,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionOpenProject, &QAction::triggered, this, qOverload<>(&MainWindow::openProject));
     connect(ui->actionnewProject, &QAction::triggered, this, &MainWindow::openNewProjectWindow);
     connect(ui->actionCloseProject, &QAction::triggered, this, &MainWindow::closeProject);
-    connect(ui->actionGitCommit, &QAction::triggered, this, &MainWindow::openCommitDialog);
+    connect(ui->actionGitCommit, &QAction::triggered, this, &MainWindow::showGitWidget);
     connect(ui->actionGitLog, &QAction::triggered, this, &MainWindow::openLogDialog);
     connect(ui->actionGitStatus, &QAction::triggered, this, &MainWindow::openStatusDialog);
     connect(ui->inputButton, &QPushButton::released, this, &MainWindow::b_input);
-    connect(ui->actionGitDiff, &QAction::triggered, this, &MainWindow::openDiffDialog);
+    connect(ui->actionGitDiff, &QAction::triggered, this, &MainWindow::showGitWidget);
     connect(ui->actionComment, &QAction::triggered, this, &MainWindow::commentLine);
     connect(ui->actionStartPage, &QAction::triggered, this, &MainWindow::openStartTabWidget);
     connect(ui->openLogsOutputButtom, &QPushButton::released, this, &MainWindow::showDiagnostics);
@@ -420,12 +420,13 @@ void MainWindow::showTerminal()
     ui->centralStackedWidget->setCurrentIndex(1);
 }
 
-void MainWindow::openInEditor(const QString &text, const QString &title, bool readOnly, bool spellChecking)
+void MainWindow::openInEditor(const QString &text, const QString &title, bool readOnly, bool spellChecking, bool disableSaveWarning)
 {
     CodeEditor* editor = new CodeEditor(ui->tabWidget);
     connect(editor, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
     editor->setReadOnly(readOnly);
     editor->setSpellCheckEnabled(spellChecking);
+    editor->setSaveWarningEnabled(!disableSaveWarning);
     ui->actionOverwrite_mode->setChecked(editor->overwriteMode());
     ui->actionRead_only->setChecked(editor->isReadOnly());
     ui->actionLine_wrap->setChecked(editor->lineWrapMode() == CodeEditor::NoWrap ? false : true);
@@ -760,18 +761,7 @@ void MainWindow::openFileInNewTab(const QString &path)
         }
    }
 }
-void MainWindow::openCommitDialog()
-{
-    if(simHandeler->isProjectLoaded())
-    {
-        CommitDialog* dialog = new CommitDialog();
-        dialog->setAttribute(Qt::WA_DeleteOnClose);
-        dialog->init(simHandeler->getProjectPath());
-        dialog->show();
-    }
-    else
-        openProjectInformationPopup();
-}
+
 void MainWindow::openLogDialog()
 {
     if(simHandeler->isProjectLoaded())
@@ -798,24 +788,6 @@ void MainWindow::openStatusDialog()
         openProjectInformationPopup();
 }
 
-void MainWindow::openDiffDialog()
-{
-    if(simHandeler->isProjectLoaded())
-    {
-        QWidget* ce = ui->tabWidget->currentWidget();
-        CodeEditor* c = dynamic_cast<CodeEditor*>(ce);
-        if(c != nullptr)
-        {
-            GitDialog* dialog = new GitDialog();
-            dialog->setupForDiff(simHandeler->getProjectPath(), c->getFilePath());
-            dialog->setAttribute(Qt::WA_DeleteOnClose);
-            dialog->show();
-        }
-    }
-    else
-        openProjectInformationPopup();
-}
-
 void MainWindow::openGitFetch()
 {
     if(simHandeler->isProjectLoaded())
@@ -832,9 +804,7 @@ void MainWindow::openGitPull()
 {
     if(simHandeler->isProjectLoaded())
     {
-        GitPullDialog* dialog = new GitPullDialog(simHandeler->getProjectPath(), this);
-        dialog->setAttribute(Qt::WA_DeleteOnClose);
-        dialog->show();
+        ui->gitWidget->gitPull();
     }
     else
         openProjectInformationPopup();
@@ -844,9 +814,7 @@ void MainWindow::openGitPush()
 {
     if(simHandeler->isProjectLoaded())
     {
-        GitPushDialog* dialog = new GitPushDialog(simHandeler->getProjectPath(), this);
-        dialog->setAttribute(Qt::WA_DeleteOnClose);
-        dialog->show();
+        ui->gitWidget->gitPush();
     }
     else
         openProjectInformationPopup();

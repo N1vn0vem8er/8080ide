@@ -17,6 +17,10 @@ public:
     ~GitWidget();
     void setRepositoryPath(const QString& path);
     void noRepo();
+    void gitPush();
+    void gitPull();
+    void gitStatus();
+    void gitLog();
 
 private:
     Ui::GitWidget *ui;
@@ -48,11 +52,9 @@ private slots:
     void openUntracked(const QModelIndex& index);
     void openGitCommit();
     void gitCommit(const QString& title, const QString& description);
-    void gitPush();
-    void gitPull();
 
 signals:
-    void openInEditor(const QString& text, const QString& title, bool readOnly = true, bool spellChecking = false);
+    void openInEditor(const QString& text, const QString& title, bool readOnly = true, bool spellChecking = false, bool disableSaveWarning = true);
     void openFile(const QString& absolutePath);
     void addTab(QWidget* widget, const QString& title);
 };

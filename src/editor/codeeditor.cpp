@@ -158,7 +158,10 @@ void CodeEditor::clearChearchFormattingAfterTextChanged()
 
 void CodeEditor::checkChanged()
 {
-    setSaved(toPlainText() == orginalContent ? true : false);
+    if(saveWarningEnabled)
+        setSaved(toPlainText() == orginalContent ? true : false);
+    else
+        setSaved(true);
 }
 
 void CodeEditor::resizeEvent(QResizeEvent *event)
@@ -565,6 +568,16 @@ void CodeEditor::deleteAll()
 QString CodeEditor::getName() const
 {
     return QFileInfo(filePath).fileName();
+}
+
+bool CodeEditor::isSaveWarningEnabled() const
+{
+    return saveWarningEnabled;
+}
+
+void CodeEditor::setSaveWarningEnabled(bool val)
+{
+    saveWarningEnabled = val;
 }
 
 void CodeEditor::setLineBreakpoint()

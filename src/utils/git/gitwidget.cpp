@@ -333,3 +333,13 @@ void GitWidget::gitPull()
     refresh();
     emit openInEditor(process->readAllStandardOutput() + process->readAllStandardError(), tr("Push resoults"));
 }
+
+void GitWidget::gitStatus()
+{
+
+}
+
+void GitWidget::gitLog()
+{
+
+}

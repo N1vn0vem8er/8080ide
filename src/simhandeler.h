@@ -116,6 +116,7 @@ signals:
     void changeRegisters(unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char h, unsigned char l, unsigned short pc, unsigned short sp);
     void setRegisterValues(const QString& a, const QString& b, const QString& c, const QString& d, const QString& e, const QString& h, const QString& l, const QString& PC, const QString& SP);
     void setCurrentBranchName(const QString& name);
+
 public slots:
     void print(char ch);
     void registersChanged(QStringList registers);

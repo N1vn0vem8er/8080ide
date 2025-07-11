@@ -45,6 +45,8 @@ public:
     void deleteSelected();
     void deleteAll();
     QString getName() const;
+    bool isSaveWarningEnabled() const;
+    void setSaveWarningEnabled(bool val);
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
@@ -64,6 +66,7 @@ private:
     void startGettingLabels();
     void updateBreakpoints(int newCount);
     int oldLineCount = 0;
+    bool saveWarningEnabled {true};
     QWidget* lineNumberArea;
     SyntaxHighLighter* highLighter = nullptr;
     QString filePath;
