@@ -87,7 +87,6 @@ void SimHandeler::closeProject()
 }
 void SimHandeler::setBranchName()
 {
-    if(projectGitBranchNameLabel == nullptr) return;
     QProcess process;
     process.setWorkingDirectory(projectManager->getProjectAbsolutePath());
     process.startCommand("git rev-parse --abbrev-ref HEAD");
@@ -96,7 +95,7 @@ void SimHandeler::setBranchName()
     QString output = process.readAllStandardOutput();
     output.remove('\n');
     if(output != "HEAD")
-        projectGitBranchNameLabel->setText(output);
+        emit setCurrentBranchName(output);
 }
 
 void SimHandeler::log(QString text)
@@ -203,11 +202,6 @@ int SimHandeler::getSimMemorySize() const
 void SimHandeler::setProjectNameLabel(QLabel* label)
 {
     this->projectNameLabel = label;
-}
-
-void SimHandeler::setProjectGitBranchNameLabel(QLabel *label)
-{
-    this->projectGitBranchNameLabel = label;
 }
 
 void SimHandeler::setInputLine(QLineEdit *lineEdit)

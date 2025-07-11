@@ -320,9 +320,12 @@
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="projectGitBranchLabel">
+       <widget class="QPushButton" name="gitBranchButton">
         <property name="text">
          <string/>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
         </property>
        </widget>
       </item>

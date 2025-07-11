@@ -45,7 +45,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     simHandeler = new SimHandeler(ui->screen);
     simHandeler->setProjectNameLabel(ui->projectInfoLabel);
-    simHandeler->setProjectGitBranchNameLabel(ui->projectGitBranchLabel);
     simHandeler->setInputLine(ui->simulatorInput);
     connect(ui->run_button, &QPushButton::released, this, &MainWindow::b_run);
     connect(ui->actionCompile, &QAction::triggered, this, &MainWindow::b_compile);
@@ -141,6 +140,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->gitWidget, &GitWidget::openInEditor, this, &MainWindow::openInEditor);
     connect(ui->gitWidget, &GitWidget::openFile, this, &MainWindow::openFileInNewTab);
     connect(ui->terminalButton, &QPushButton::clicked, this, &MainWindow::showTerminal);
+    connect(ui->gitBranchButton, &QPushButton::clicked, this, &MainWindow::openGitBranchDialog);
+    connect(simHandeler, &SimHandeler::setCurrentBranchName, this, &MainWindow::setCurrenchBranchName);
 
 
     newFileLoaded = false;
@@ -430,6 +431,11 @@ void MainWindow::openInEditor(const QString &text, const QString &title, bool re
     ui->actionLine_wrap->setChecked(editor->lineWrapMode() == CodeEditor::NoWrap ? false : true);
     editor->appendPlainText(text);
     addTab(editor, title);
+}
+
+void MainWindow::setCurrenchBranchName(const QString &name)
+{
+    ui->gitBranchButton->setText(name);
 }
 
 void MainWindow::enableSyntaxHighLinhting()

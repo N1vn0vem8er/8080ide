@@ -124,6 +124,7 @@ private slots:
     void showDiagnostics();
     void showTerminal();
     void openInEditor(const QString& text, const QString& title, bool readOnly = true, bool spellChecking = false);
+    void setCurrenchBranchName(const QString& name);
 
 protected:
     void dropEvent(QDropEvent* event) override;

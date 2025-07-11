@@ -2,6 +2,7 @@
 
 BasicTerminal::BasicTerminal(QWidget *parent) : QPlainTextEdit(parent)
 {
+    setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
     process = new QProcess(this);
     connect(process, &QProcess::readyRead, this, &BasicTerminal::output);
     process->start("/bin/bash", {"-i"});
