@@ -2,8 +2,7 @@
 #include "editor/codeeditor.h"
 #include "dialogs/createprojectwindow.h"
 #include "qprocess.h"
-#include "utils/git/commitdialog.h"
-#include "utils/git/gitdialog.h"
+#include "qscrollbar.h"
 #include "utils/memorywindow.h"
 #include "widgets/projectglobalsearchwidget.h"
 #include "qfilesystemmodel.h"
@@ -140,6 +139,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->terminalButton, &QPushButton::clicked, this, &MainWindow::showTerminal);
     connect(ui->gitBranchButton, &QPushButton::clicked, this, &MainWindow::openGitBranchDialog);
     connect(simHandeler, &SimHandeler::setCurrentBranchName, this, &MainWindow::setCurrenchBranchName);
+    connect(ui->actionGo_bottom, &QAction::triggered, this, &MainWindow::goBotton);
+    connect(ui->actionGo_top, &QAction::triggered, this, &MainWindow::goTop);
 
 
     newFileLoaded = false;
@@ -315,6 +316,24 @@ void MainWindow::handleStartTabLinks(const QString &link)
     else
         if(link == "createProject")
         this->openNewProjectWindow();
+}
+
+void MainWindow::goTop()
+{
+    CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(ce != nullptr)
+    {
+        ce->verticalScrollBar()->setValue(0);
+    }
+}
+
+void MainWindow::goBotton()
+{
+    CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(ce != nullptr)
+    {
+        ce->verticalScrollBar()->setValue(ce->verticalScrollBar()->maximum());
+    }
 }
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)

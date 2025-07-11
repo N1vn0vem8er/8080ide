@@ -123,6 +123,8 @@ private slots:
     void commentLine();
     void openStartTabWidget();
     void handleStartTabLinks(const QString& link);
+    void goTop();
+    void goBotton();
 
 protected:
     void dropEvent(QDropEvent* event) override;

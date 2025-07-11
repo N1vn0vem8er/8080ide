@@ -475,7 +475,11 @@
     <addaction name="actionDecrease_font_size"/>
     <addaction name="actionSet_font_size"/>
     <addaction name="actionReset_font_size"/>
+    <addaction name="separator"/>
     <addaction name="actionLine_wrap"/>
+    <addaction name="separator"/>
+    <addaction name="actionGo_top"/>
+    <addaction name="actionGo_bottom"/>
    </widget>
    <widget class="QMenu" name="menuProjekt">
     <property name="title">
@@ -1103,6 +1107,28 @@
   <action name="actionShowGit">
    <property name="text">
     <string>Git</string>
+   </property>
+  </action>
+  <action name="actionGo_top">
+   <property name="icon">
+    <iconset theme="go-top"/>
+   </property>
+   <property name="text">
+    <string>Go top</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
+   </property>
+  </action>
+  <action name="actionGo_bottom">
+   <property name="icon">
+    <iconset theme="go-bottom"/>
+   </property>
+   <property name="text">
+    <string>Go bottom</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+G</string>
    </property>
   </action>
  </widget>
