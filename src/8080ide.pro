@@ -21,11 +21,9 @@ SOURCES += \
     settingsPages/helpsettings.cpp \
     settingsPages/stylesettingspage.cpp \
     settingsPages/syntaxhighlightingsettings.cpp \
-    utils/git/commitdialog.cpp \
     dialogs/createprojectwindow.cpp \
     filesystemtree.cpp \
     utils/git/customgitcommanddialog.cpp \
-    utils/git/gitdialog.cpp \
     editor/labelfinder.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -40,7 +38,6 @@ SOURCES += \
     ssettings.cpp \
     widgets/starttabwidget.cpp \
     utils/git/gitbranchdialog.cpp \
-    utils/git/gitfetchdialog.cpp \
     utils/instinmemorydialog.cpp \
     utils/tabledatageneratordialog.cpp \
     utils/stringtablegeneratordialog.cpp \
@@ -75,11 +72,9 @@ HEADERS += \
     settingsPages/helpsettings.h \
     settingsPages/stylesettingspage.h \
     settingsPages/syntaxhighlightingsettings.h \
-    utils/git/commitdialog.h \
     dialogs/createprojectwindow.h \
     filesystemtree.h \
     utils/git/customgitcommanddialog.h \
-    utils/git/gitdialog.h \
     globals.h \
     editor/labelfinder.h \
     mainwindow.h \
@@ -94,7 +89,6 @@ HEADERS += \
     ssettings.h \
     widgets/starttabwidget.h \
     utils/git/gitbranchdialog.h \
-    utils/git/gitfetchdialog.h \
     utils/instinmemorydialog.h \
     utils/tabledatageneratordialog.h \
     utils/stringtablegeneratordialog.h \
@@ -123,10 +117,8 @@ FORMS += \
     settingsPages/helpsettings.ui \
     settingsPages/stylesettingspage.ui \
     settingsPages/syntaxhighlightingsettings.ui \
-    utils/git/commitdialog.ui \
     dialogs/createprojectwindow.ui \
     utils/git/customgitcommanddialog.ui \
-    utils/git/gitdialog.ui \
     mainwindow.ui \
     utils/memorywindow.ui \
     widgets/projectglobalsearchwidget.ui \
@@ -136,7 +128,6 @@ FORMS += \
     dialogs/settings.ui \
     widgets/starttabwidget.ui \
     utils/git/gitbranchdialog.ui \
-    utils/git/gitfetchdialog.ui \
     utils/instinmemorydialog.ui \
     utils/tabledatageneratordialog.ui \
     utils/stringtablegeneratordialog.ui \

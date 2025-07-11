@@ -21,6 +21,7 @@ public:
     void gitPull();
     void gitStatus();
     void gitLog();
+    void gitFetch();
 
 private:
     Ui::GitWidget *ui;

@@ -15,7 +15,6 @@
 #include "utils/calcdialog.h"
 #include "utils/git/customgitcommanddialog.h"
 #include "utils/git/gitbranchdialog.h"
-#include "utils/git/gitfetchdialog.h"
 #include "utils/instinmemorydialog.h"
 #include "utils/numberconverterdialog.h"
 #include "utils/stringtablegeneratordialog.h"
@@ -803,9 +802,7 @@ void MainWindow::openGitFetch()
 {
     if(simHandeler->isProjectLoaded())
     {
-        GitFetchDialog* dialog = new GitFetchDialog(simHandeler->getProjectPath(), this);
-        dialog->setAttribute(Qt::WA_DeleteOnClose);
-        dialog->show();
+        ui->gitWidget->gitFetch();
     }
     else
         openProjectInformationPopup();

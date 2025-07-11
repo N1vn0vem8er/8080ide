@@ -357,3 +357,15 @@ void GitWidget::gitLog()
     refresh();
     emit openInEditor(process.readAllStandardOutput() + process.readAllStandardError(), tr("Status results"));
 }
+
+void GitWidget::gitFetch()
+{
+    QProcess process;
+    process.setWorkingDirectory(repoPath);
+    process.start("git", {"fetch"});
+    process.waitForStarted();
+    process.waitForFinished();
+    process.waitForReadyRead();
+    refresh();
+    emit openInEditor(process.readAllStandardOutput() + process.readAllStandardError(), tr("Fetch results"));
+}
