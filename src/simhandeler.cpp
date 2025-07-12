@@ -98,7 +98,7 @@ void SimHandeler::setBranchName()
         emit setCurrentBranchName(output);
 }
 
-void SimHandeler::log(QString text)
+void SimHandeler::log(const QString &text)
 {
     if(logsOutput != nullptr)
     {
@@ -243,19 +243,19 @@ void SimHandeler::print(char ch)
     printOnScreen(ch);
 }
 
-void SimHandeler::registersChanged(QStringList registers)
+void SimHandeler::registersChanged(const QStringList &registers)
 {
-    areg->setText("A = " + registers[0]);
-    breg->setText("B = " + registers[1]);
-    creg->setText("C = " + registers[2]);
-    dreg->setText("D = " + registers[3]);
-    ereg->setText("E = " + registers[4]);
-    hreg->setText("H = " + registers[5]);
-    lreg->setText("L = " + registers[6]);
-    pc->setText("PC = " + registers[7]);
-    flags->setText(QString("C=%1 AC=%2 P=%3 S=%4 Z=%5").arg(registers[8], registers[9], registers[10], registers[11], registers[12]));
-    mreg->setText("M = "+registers[13]);
-    sp->setText("SP = "+registers[14]);
+    areg->setText("A = " + registers[RegistersIds::A]);
+    breg->setText("B = " + registers[RegistersIds::B]);
+    creg->setText("C = " + registers[RegistersIds::C]);
+    dreg->setText("D = " + registers[RegistersIds::D]);
+    ereg->setText("E = " + registers[RegistersIds::E]);
+    hreg->setText("H = " + registers[RegistersIds::H]);
+    lreg->setText("L = " + registers[RegistersIds::L]);
+    pc->setText("PC = " + registers[RegistersIds::PC]);
+    flags->setText(QString("C=%1 AC=%2 P=%3 S=%4 Z=%5").arg(registers[RegistersIds::CF], registers[RegistersIds::AC], registers[RegistersIds::P], registers[RegistersIds::S], registers[RegistersIds::Z]));
+    mreg->setText("M = "+registers[RegistersIds::M]);
+    sp->setText("SP = "+registers[RegistersIds::SP]);
     emit setRegisterValues(registers[0], registers[1], registers[2], registers[3], registers[4], registers[5],registers[6], registers[7], registers[14]);
 }
 
@@ -447,7 +447,7 @@ void SimHandeler::restart()
     updateRegistersLabels();
 }
 
-void SimHandeler::input(QString input)
+void SimHandeler::input(const QString &input)
 {
     symulator->setInBuffer((char) input.toStdString()[0]);
     emit inputToSim((char)input.toStdString()[0]);

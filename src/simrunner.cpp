@@ -36,13 +36,13 @@ QStringList SimRunner::getRegisterList(Symulator *sim)
     list << QString::fromStdString(tohexASCII(sim->getHreg()));
     list << QString::fromStdString(tohexASCII(sim->getLreg()));
     list << QString::fromStdString(tohexASCII(sim->getPC()));
+    list << QString::fromStdString(tohexASCII(sim->getSP()));
     list << QString::number(sim->getCF());
     list << QString::number(sim->getAC());
     list << QString::number(sim->getP());
     list << QString::number(sim->getS());
     list << QString::number(sim->getZ());
     list << QString::fromStdString(tohexASCII(sim->getMreg()));
-    list << QString::fromStdString(tohexASCII(sim->getSP()));
     return list;
 }
 

@@ -46,7 +46,7 @@ private:
     SimRunner* sr = nullptr;
     QLineEdit* inputLine = nullptr;
     QPlainTextEdit* logsOutput = nullptr;
-    void log(QString text);
+    void log(const QString& text);
     std::map<std::string, std::vector<int>> fileBreakpointsMap;
     std::vector<std::pair<unsigned short, int>> breakpointsLocations;
     std::vector<int> breakpoints;
@@ -65,7 +65,13 @@ public:
         H,
         L,
         PC,
-        SP
+        SP,
+        CF,
+        AC,
+        P,
+        S,
+        Z,
+        M
     };
     explicit SimHandeler(QPlainTextEdit* screen, QObject* parent = nullptr);
     ~SimHandeler();
@@ -81,7 +87,7 @@ public:
     void setScreen(QPlainTextEdit& screen);
     void reset();
     void restart();
-    void input(QString input);
+    void input(const QString& input);
     unsigned char *getMemory();
     void setReferencesToRegisters(QLabel* areg, QLabel* breg, QLabel* creg, QLabel* dreg, QLabel* ereg, QLabel* hreg, QLabel* lreg,  QLabel* mreg, QLabel* pc, QLabel* flags, QLabel *sp);
     void openProject(const QString& path);
@@ -109,7 +115,7 @@ signals:
     void inputToSim(char in);
     unsigned char* getMemoryFromSim();
     void simContinue();
-    void breakpointHighlightLine(QString file, int line);
+    void breakpointHighlightLine(const QString& file, int line);
     void stepLineHighlight(const QString& file, int line);
     void memoryChanged(QString memory, int size);
     void memoryChangedByUserSignal(QString memory, int size);
@@ -119,7 +125,7 @@ signals:
 
 public slots:
     void print(char ch);
-    void registersChanged(QStringList registers);
+    void registersChanged(const QStringList& registers);
     void inputOut(char ch);
     void breakpointCodeLocation(int line, unsigned short address);
     void memoryChangedByUser(QString& memory, int size);
