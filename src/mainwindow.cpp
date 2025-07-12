@@ -142,6 +142,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionGo_top, &QAction::triggered, this, &MainWindow::goTop);
 
 
+    ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
     ui->treeView->open(QDir::homePath());
     simHandeler->setLogsOutput(ui->logsOutputWidget);
@@ -452,6 +453,7 @@ void MainWindow::openInEditor(const QString &text, const QString &title, bool re
 
 void MainWindow::setCurrenchBranchName(const QString &name)
 {
+    ui->gitBranchButton->setVisible(!name.isEmpty());
     ui->gitBranchButton->setText(name);
 }
 
@@ -1023,6 +1025,7 @@ void MainWindow::openDir(const QString &path)
     else
     {
         ui->gitWidget->noRepo();
+        setCurrenchBranchName("");
     }
 }
 void MainWindow::saveas()
