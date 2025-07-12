@@ -27,9 +27,16 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="termButton">
+      <widget class="QPushButton" name="tstpButton">
        <property name="text">
-        <string>SIGTERM</string>
+        <string>SIGTSTP</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="quitButton">
+       <property name="text">
+        <string>SIGQUIT</string>
        </property>
       </widget>
      </item>

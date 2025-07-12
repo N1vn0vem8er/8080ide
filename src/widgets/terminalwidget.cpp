@@ -6,6 +6,9 @@ TerminalWidget::TerminalWidget(QWidget *parent)
     , ui(new Ui::TerminalWidget)
 {
     ui->setupUi(this);
+    connect(ui->intButton, &QPushButton::clicked, this, [&]{ui->plainTextEdit->sigint();});
+    connect(ui->tstpButton, &QPushButton::clicked, this, [&]{ui->plainTextEdit->sigtstp();});
+    connect(ui->quitButton, &QPushButton::clicked, this, [&]{ui->plainTextEdit->sigquit();});
 }
 
 TerminalWidget::~TerminalWidget()

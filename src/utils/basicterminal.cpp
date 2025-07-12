@@ -25,9 +25,14 @@ void BasicTerminal::sigint()
     process->write("\x03");
 }
 
-void BasicTerminal::sigterm()
+void BasicTerminal::sigtstp()
 {
+    process->write("\x1a");
+}
 
+void BasicTerminal::sigquit()
+{
+    process->write("\x1c");
 }
 
 void BasicTerminal::keyPressEvent(QKeyEvent *event)

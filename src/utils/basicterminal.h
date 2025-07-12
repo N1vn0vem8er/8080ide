@@ -13,7 +13,8 @@ public:
 
 public slots:
     void sigint();
-    void sigterm();
+    void sigtstp();
+    void sigquit();
 
 protected:
     void keyPressEvent(QKeyEvent *event) override;
