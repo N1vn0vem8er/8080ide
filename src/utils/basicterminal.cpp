@@ -4,6 +4,7 @@ BasicTerminal::BasicTerminal(QWidget *parent) : QPlainTextEdit(parent)
 {
     setFont(QFontDatabase::systemFont(QFontDatabase::FixedFont));
     process = new QProcess(this);
+    process->setProcessChannelMode(QProcess::MergedChannels);
     connect(process, &QProcess::readyRead, this, &BasicTerminal::output);
     process->start("/bin/bash", {"-i"});
     process->waitForStarted();
@@ -36,7 +37,6 @@ void BasicTerminal::keyPressEvent(QKeyEvent *event)
     case Qt::Key_Return:
     case Qt::Key_Enter:
         process->write("\n");
-        insertPlainText("\n");
         break;
     case Qt::Key_Backspace:
         process->write("\b");
@@ -50,13 +50,16 @@ void BasicTerminal::keyPressEvent(QKeyEvent *event)
         break;
     default:
         process->write(event->text().toUtf8());
-        insertPlainText(event->text());
         break;
     }
 }
 
 void BasicTerminal::output()
 {
-    appendPlainText(process->readAllStandardOutput());
+    QString out = process->readAllStandardOutput().removeIf([](QChar c){
+        return (c < QChar(32) || c > QChar(126)) && c != '\n' && c != '\t';
+    });
+    if(out != " ")
+        insertPlainText(out);
     QPlainTextEdit::ensureCursorVisible();
 }
