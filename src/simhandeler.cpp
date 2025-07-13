@@ -132,7 +132,7 @@ void SimHandeler::setFileBreakpoints(const std::vector<std::pair<QString, std::v
     fileBreakpoints = bp;
 }
 
-QStringList SimHandeler::getGitBranches()
+QStringList SimHandeler::getGitBranches() const
 {
     return projectManager->getBranches();
 }
@@ -142,17 +142,17 @@ void SimHandeler::setLogsOutput(QPlainTextEdit *output)
     this->logsOutput = output;
 }
 
-QString SimHandeler::getProjectName()
+QString SimHandeler::getProjectName() const
 {
     return projectManager->getName();
 }
 
-QStringList SimHandeler::getProjectFilesPaths()
+QStringList SimHandeler::getProjectFilesPaths() const
 {
     return projectManager->getProjectFilesPaths();
 }
 
-QString SimHandeler::getProjectPath()
+QString SimHandeler::getProjectPath() const
 {
     return projectManager->getProjectAbsolutePath();
 }
@@ -168,7 +168,7 @@ void SimHandeler::breakpointContinue()
     emit simContinue();
 }
 
-bool SimHandeler::hasBreakPoints()
+bool SimHandeler::hasBreakPoints() const
 {
     return hasBreakpoints;
 }
@@ -179,12 +179,12 @@ void SimHandeler::clearBreakpoints()
     breakpoints.clear();
 }
 
-Symulator *SimHandeler::getSymulator()
+Symulator *SimHandeler::getSymulator() const
 {
     return symulator.get();
 }
 
-unsigned char *SimHandeler::getCompiled()
+unsigned char *SimHandeler::getCompiled() const
 {
     return compcode;
 }
@@ -228,7 +228,7 @@ void SimHandeler::run()
         sr->input((char)inputLine->text().toStdString()[0]);
     sr->start();
 }
-QString SimHandeler::memoryToString()
+QString SimHandeler::memoryToString() const
 {
     QString mem = "";
     if(symulator!=nullptr)
@@ -408,9 +408,9 @@ void SimHandeler::next()
     }
 }
 
-void SimHandeler::setScreen(QPlainTextEdit &screen)
+void SimHandeler::setScreen(QPlainTextEdit *screen)
 {
-    this->screen = &screen;
+    this->screen = screen;
 }
 void SimHandeler::reset()
 {
@@ -478,7 +478,7 @@ void SimHandeler::setReferencesToRegisters(QLabel* areg, QLabel* breg, QLabel* c
     this->flags = flags;
     this->sp = sp;
 }
-bool SimHandeler::isProjectLoaded()
+bool SimHandeler::isProjectLoaded() const
 {
     return projectLoaded;
 }
