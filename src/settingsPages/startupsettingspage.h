@@ -17,7 +17,7 @@ public:
 
 private:
     Ui::StartupSettingsPage *ui;
-    void apply();
+    void apply() const;
 };
 
 #endif // STARTUPSETTINGSPAGE_H

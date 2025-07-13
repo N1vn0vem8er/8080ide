@@ -8,7 +8,7 @@ HelpWidget::HelpWidget(QWidget *parent)
     ui->setupUi(this);
 }
 
-void HelpWidget::openHelp(QString instruction)
+void HelpWidget::openHelp(QString instruction) const
 {
     if(helpInstructions.contains(instruction))
     {

@@ -27,7 +27,7 @@ void MimeFinderWorker::start()
     emit finished();
 }
 
-QList<FileSystemTree::MimeApplication> MimeFinderWorker::find(const QString &path)
+QList<FileSystemTree::MimeApplication> MimeFinderWorker::find(const QString &path) const
 {
     QList<FileSystemTree::MimeApplication> ret;
     const auto dirs = QDir(path).entryList(QStringList() << "*.desktop", QDir::Files);

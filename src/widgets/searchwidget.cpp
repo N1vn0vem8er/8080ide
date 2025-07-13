@@ -12,12 +12,12 @@ SearchWidget::SearchWidget(QWidget *parent)
     connect(ui->fieldTextReplaceButton, &QPushButton::clicked, this, [this](){auto tmp = ui->searchField->text(); ui->searchField->setText(ui->replaceField->text()); ui->replaceField->setText(tmp);});
 }
 
-QString SearchWidget::getSearchFieldText()
+QString SearchWidget::getSearchFieldText() const
 {
     return ui->searchField->text();
 }
 
-QString SearchWidget::getReplaceFiedldText()
+QString SearchWidget::getReplaceFiedldText() const
 {
     return ui->replaceField->text();
 }

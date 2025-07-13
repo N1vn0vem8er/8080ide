@@ -13,7 +13,7 @@ class HelpWidget : public QWidget
 
 public:
     explicit HelpWidget(QWidget *parent = nullptr);
-    void openHelp(QString instruction);
+    void openHelp(QString instruction) const;
     ~HelpWidget();
 
 private:

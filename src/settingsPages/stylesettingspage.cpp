@@ -22,7 +22,7 @@ StyleSettingsPage::~StyleSettingsPage()
     delete ui;
 }
 
-void StyleSettingsPage::apply()
+void StyleSettingsPage::apply() const
 {
     QApplication::setStyle(ui->comboBox->currentText());
     IDESettings s;

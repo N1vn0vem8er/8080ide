@@ -110,13 +110,13 @@ void GitWidget::setVisibility(bool val)
 
 void GitWidget::readStatus()
 {
-    QProcess* process = new QProcess(this);
-    process->setWorkingDirectory(repoPath);
-    process->startCommand("git status -s");
-    process->waitForStarted();
-    process->waitForFinished();
-    process->waitForReadyRead();
-    const QString results = process->readAllStandardOutput();
+    QProcess process;
+    process.setWorkingDirectory(repoPath);
+    process.startCommand("git status -s");
+    process.waitForStarted();
+    process.waitForFinished();
+    process.waitForReadyRead();
+    const QString results = process.readAllStandardOutput();
     untrackedFiles = getFilesStatus(QRegularExpression(R"(\?\?\s+(.*))"), results, "??");
     modifiedInIndex = getFilesStatus(QRegularExpression(R"(M.\s+(.*))"), results, "M ");
     modifiedInWorkingDirectory = getFilesStatus(QRegularExpression(R"(.M\s+(.*))"), results, " M");
@@ -125,7 +125,7 @@ void GitWidget::readStatus()
     deletedFromIndex = getFilesStatus(QRegularExpression(R"(D.\s+(.*))"), results, "D ");
     deletedFromWorkingDirectory = getFilesStatus(QRegularExpression(R"(.D\s+(.*))"), results, " D");
 
-    auto diff = readDiff();
+    const auto diff = readDiff();
 
     applyDiff(untrackedFiles, diff);
     applyDiff(modifiedInIndex, diff);
@@ -179,18 +179,18 @@ QList<GitFileStatus> GitWidget::getFilesStatus(const QRegularExpression &regex, 
     return ret;
 }
 
-QList<QPair<QString, QPair<QString, QString>>> GitWidget::readDiff()
+QList<QPair<QString, QPair<QString, QString>>> GitWidget::readDiff() const
 {
-    QProcess* process = new QProcess(this);
-    process->setWorkingDirectory(repoPath);
-    process->startCommand("git diff --numstat");
-    process->waitForStarted();
-    process->waitForFinished();
-    process->waitForReadyRead();
+    QProcess process;
+    process.setWorkingDirectory(repoPath);
+    process.startCommand("git diff --numstat");
+    process.waitForStarted();
+    process.waitForFinished();
+    process.waitForReadyRead();
 
     QList<QPair<QString, QPair<QString, QString>>> changed;
 
-    const QString results = process->readAllStandardOutput();
+    const QString results = process.readAllStandardOutput();
     QRegularExpressionMatchIterator iterator = QRegularExpression(R"((\d+)\t(\d+)\t(.+))").globalMatch(results);
     while(iterator.hasNext())
     {
@@ -206,7 +206,7 @@ QList<QPair<QString, QPair<QString, QString>>> GitWidget::readDiff()
     return changed;
 }
 
-void GitWidget::applyDiff(QList<GitFileStatus>& files, QList<QPair<QString, QPair<QString, QString>>>& diffs)
+void GitWidget::applyDiff(QList<GitFileStatus>& files, const QList<QPair<QString, QPair<QString, QString>>>& diffs) const
 {
     for(auto& i : files)
     {

@@ -18,7 +18,7 @@ StringTableGeneratorDialog::~StringTableGeneratorDialog()
     delete ui;
 }
 
-void StringTableGeneratorDialog::generate()
+void StringTableGeneratorDialog::generate() const
 {
     QString text = ui->input->toPlainText();
     if(!text.isEmpty())
@@ -32,7 +32,7 @@ void StringTableGeneratorDialog::generate()
     }
 }
 
-void StringTableGeneratorDialog::copy()
+void StringTableGeneratorDialog::copy() const
 {
     if(!ui->output->toPlainText().isEmpty())
     {
@@ -41,7 +41,7 @@ void StringTableGeneratorDialog::copy()
     }
 }
 
-QString StringTableGeneratorDialog::toHex(QChar ch)
+QString StringTableGeneratorDialog::toHex(QChar ch) const
 {
     std::stringstream ss;
     ss << std::hex << +ch.toLatin1();

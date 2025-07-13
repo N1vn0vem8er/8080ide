@@ -25,7 +25,7 @@ public:
 
     explicit HelpInstructionsWidget(QWidget *parent = nullptr);
     ~HelpInstructionsWidget();
-    void openInstructionHelp(QString instruction);
+    void openInstructionHelp(QString instruction) const;
 
 private:
     Ui::HelpInstructionsWidget *ui;

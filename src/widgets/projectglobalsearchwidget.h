@@ -22,8 +22,8 @@ private:
     void search();
     void replaceAll();
     void replaceSelected();
-    QMap<QString, QVector<int>> found;
-    QVector<int> findInFile(const QString& path, const QString& text);
+    QMap<QString, QList<int>> found;
+    QList<int> findInFile(const QString& path, const QString& text) const;
 };
 
 #endif // PROJECTGLOBALSEARCHWIDGET_H

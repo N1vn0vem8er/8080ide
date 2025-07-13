@@ -17,7 +17,7 @@ public:
 
 private:
     Ui::StyleSettingsPage *ui;
-    void apply();
+    void apply() const;
 };
 
 #endif // STYLESETTINGSPAGE_H

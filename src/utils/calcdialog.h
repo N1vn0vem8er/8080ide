@@ -46,7 +46,6 @@ private:
     void doMath();
     void displayResoults();
 
-    // QWidget interface
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 };

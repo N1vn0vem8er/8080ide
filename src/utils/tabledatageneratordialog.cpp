@@ -17,7 +17,7 @@ TableDataGeneratorDialog::~TableDataGeneratorDialog()
     delete ui;
 }
 
-void TableDataGeneratorDialog::generate()
+void TableDataGeneratorDialog::generate() const
 {
     QString text = ui->input->toPlainText();
     if(!text.isEmpty())
@@ -37,7 +37,7 @@ void TableDataGeneratorDialog::generate()
     }
 }
 
-void TableDataGeneratorDialog::copy()
+void TableDataGeneratorDialog::copy() const
 {
     if(!ui->output->toPlainText().isEmpty())
     {

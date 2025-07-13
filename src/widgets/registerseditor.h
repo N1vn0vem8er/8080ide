@@ -23,7 +23,7 @@ signals:
 private:
     Ui::RegistersEditor *ui;
     void apply();
-    void error(const QString& message);
+    void error(const QString& message) const;
 };
 
 #endif // REGISTERSEDITOR_H

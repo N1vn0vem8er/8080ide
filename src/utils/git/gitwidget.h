@@ -39,8 +39,8 @@ private:
     void setVisibility(bool val);
     void readStatus();
     QList<GitFileStatus> getFilesStatus(const QRegularExpression& regex, const QString& results, const QString& status) const;
-    QList<QPair<QString, QPair<QString, QString>>> readDiff();
-    void applyDiff(QList<GitFileStatus> &files, QList<QPair<QString, QPair<QString, QString> > > &diffs);
+    QList<QPair<QString, QPair<QString, QString>>> readDiff() const;
+    void applyDiff(QList<GitFileStatus> &files, const QList<QPair<QString, QPair<QString, QString> > > &diffs) const;
 
 private slots:
     void refresh();

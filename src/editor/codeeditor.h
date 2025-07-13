@@ -14,14 +14,14 @@ class CodeEditor : public QPlainTextEdit
 public:
     CodeEditor(QWidget *parent = nullptr);
     ~CodeEditor();
-    int lineNumberWidth();
-    void lineNumberAreaPaint(QPaintEvent* event);
-    QString getFilePath();
+    int lineNumberWidth() const;
+    void lineNumberAreaPaint(QPaintEvent* event) const;
+    QString getFilePath() const;
     void setFilePath(QString path);
     void commentCurrentLine();
     void setHighlighterEnabled(bool val);
     bool isHighlighterEnabled();
-    void commentMultiLine();
+    void commentMultiLine() const;
     void highlightTextSequence(const QString &text);
     void replaceTextSequence(const QString &find, const QString &replace);
     void clearSearchFormatting();
@@ -29,10 +29,10 @@ public:
     void setSaved(bool val);
     void setProjectPath(const QString& path);
     void setPartOfProject(bool val);
-    bool isSaved();
-    bool isPartOfProject();
+    bool isSaved() const;
+    bool isPartOfProject() const;
     void setLineBreakpoint();
-    bool hasBreakPoints();
+    bool hasBreakPoints() const;
     QVector<int> getBreakPoints();
     void highlightLine(int line);
     void stepLineHightlight(int line);
@@ -42,7 +42,7 @@ public:
     void decreaseFontSize();
     void setFontSize(int size);
     void mergeSelectedLines();
-    void deleteSelected();
+    void deleteSelected() const;
     void deleteAll();
     QString getName() const;
     bool isSaveWarningEnabled() const;

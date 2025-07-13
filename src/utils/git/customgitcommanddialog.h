@@ -17,7 +17,7 @@ public:
 
 private:
     Ui::CustomGitCommandDialog *ui;
-    void runCommand();
+    void runCommand() const;
     QString repoPath;
 };
 

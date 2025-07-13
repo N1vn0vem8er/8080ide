@@ -145,7 +145,7 @@ void RegistersEditor::apply()
     emit changeRegisters(a, b, c, d, e, h, l, pc, sp);
 }
 
-void RegistersEditor::error(const QString &message)
+void RegistersEditor::error(const QString &message) const
 {
     ui->errorOut->setText(message);
     ui->errorOut->setVisible(true);

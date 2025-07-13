@@ -20,7 +20,7 @@ HelpPseudoInstWidget::~HelpPseudoInstWidget()
 {
     delete ui;
 }
-void HelpPseudoInstWidget::openInstructionHelp(QString instruction)
+void HelpPseudoInstWidget::openInstructionHelp(QString instruction) const
 {
     QDirIterator iterator(":/pseudoinst/helpPages/pseudoinstructions", QDirIterator::Subdirectories);
     while(iterator.hasNext())

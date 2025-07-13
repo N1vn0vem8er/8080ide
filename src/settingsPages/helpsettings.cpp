@@ -17,7 +17,7 @@ HelpSettings::~HelpSettings()
     delete ui;
 }
 
-void HelpSettings::apply()
+void HelpSettings::apply() const
 {
     IDESettings::showHelpTypeCode = ui->helpCode->currentIndex() ? IDESettings::tab : IDESettings::window;
     IDESettings::showHelpTypeAny = ui->helpAnywhere->currentIndex() ? IDESettings::tab : IDESettings::window;

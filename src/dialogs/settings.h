@@ -17,7 +17,7 @@ public:
 
 private:
     Ui::settings *ui;
-    void changePage(const QModelIndex& index);
+    void changePage(const QModelIndex& index) const;
 };
 
 #endif // SETTINGS_H

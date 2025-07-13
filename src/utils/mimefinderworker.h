@@ -15,7 +15,7 @@ public slots:
     void start();
 
 private:
-    QList<FileSystemTree::MimeApplication> find(const QString& path);
+    QList<FileSystemTree::MimeApplication> find(const QString& path) const;
 
 signals:
     void resultsReady(QList<FileSystemTree::MimeApplication> ret);

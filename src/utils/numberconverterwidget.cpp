@@ -18,7 +18,7 @@ NumberConverterWidget::~NumberConverterWidget()
 {
     delete ui;
 }
-void NumberConverterWidget::input()
+void NumberConverterWidget::input() const
 {
     if(ui->input->text().isEmpty())
     {
@@ -98,7 +98,7 @@ void NumberConverterWidget::input()
     }
 }
 
-void NumberConverterWidget::changeMaxInLength()
+void NumberConverterWidget::changeMaxInLength() const
 {
     ui->input->clear();
     switch(ui->inComboBox->currentIndex())

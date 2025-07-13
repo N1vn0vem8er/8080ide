@@ -13,8 +13,8 @@ class SearchWidget : public QWidget
 
 public:
     explicit SearchWidget(QWidget *parent = nullptr);
-    QString getSearchFieldText();
-    QString getReplaceFiedldText();
+    QString getSearchFieldText() const;
+    QString getReplaceFiedldText() const;
     ~SearchWidget();
 
 private:

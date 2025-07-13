@@ -24,8 +24,8 @@ public:
 
 private:
     Ui::NumberConverterDialog *ui;
-    void input();
-    void changeMaxInLength();
+    void input() const;
+    void changeMaxInLength() const;
 };
 
 #endif // NUMBERCONVERTERDIALOG_H

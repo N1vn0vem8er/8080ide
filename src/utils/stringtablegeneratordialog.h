@@ -17,9 +17,9 @@ public:
 
 private:
     Ui::StringTableGeneratorDialog *ui;
-    void generate();
-    void copy();
-    QString toHex(QChar ch);
+    void generate() const;
+    void copy() const;
+    QString toHex(QChar ch) const;
 };
 
 #endif // STRINGTABLEGENERATORDIALOG_H

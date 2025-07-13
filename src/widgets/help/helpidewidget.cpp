@@ -20,7 +20,7 @@ HelpIDEWidget::~HelpIDEWidget()
 {
     delete ui;
 }
-void HelpIDEWidget::openInstructionHelp(QString instruction)
+void HelpIDEWidget::openInstructionHelp(QString instruction) const
 {
     QDirIterator iterator(":/ide/helpPages/ide", QDirIterator::Subdirectories);
     while(iterator.hasNext())

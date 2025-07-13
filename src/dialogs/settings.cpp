@@ -21,7 +21,7 @@ Settings::~Settings()
     delete ui;
 }
 
-void Settings::changePage(const QModelIndex &index)
+void Settings::changePage(const QModelIndex &index) const
 {
     ui->stackedWidget->setCurrentIndex(index.row());
 }

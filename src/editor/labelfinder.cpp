@@ -28,7 +28,7 @@ void LabelFinder::setProjectMode(bool val)
     projectMode = val;
 }
 
-bool LabelFinder::isProjectMode()
+bool LabelFinder::isProjectMode() const
 {
     return projectMode;
 }
@@ -56,7 +56,7 @@ void LabelFinder::run()
     emit resoultsReady(labels);
 }
 
-QStringList LabelFinder::readLabelsFromFile(const QString path)
+QStringList LabelFinder::readLabelsFromFile(const QString path) const
 {
     QStringList labels;
     QFile file(path);
@@ -78,7 +78,7 @@ QStringList LabelFinder::readLabelsFromFile(const QString path)
     return labels;
 }
 
-QStringList LabelFinder::readFromString(QString text)
+QStringList LabelFinder::readFromString(QString text) const
 {
     QStringList labels;
     if(text.length() <= 1) return labels;
@@ -93,10 +93,4 @@ QStringList LabelFinder::readFromString(QString text)
         }
     }
     return labels;
-}
-
-QStringList LabelFinder::readProjectFilesPaths()
-{
-    QStringList projectPaths;
-    return projectPaths;
 }

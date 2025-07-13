@@ -20,9 +20,9 @@ private:
     Ui::CreateProjectWindow *ui;
     void createProject();
     void openSelectFolder();
-    void checkDir();
-    void checkName();
-    void createGitRepo(const QString& path);
+    void checkDir() const;
+    void checkName() const;
+    void createGitRepo(const QString& path) const;
 };
 
 #endif // CREATEPROJECTWINDOW_H

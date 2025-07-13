@@ -40,7 +40,7 @@ void FileSystemTree::setDirectory(const QString& path)
         setRootIndex(model->index(path));
 }
 
-QString FileSystemTree::getSelectedItem(const QModelIndex& index)
+QString FileSystemTree::getSelectedItem(const QModelIndex& index) const
 {
     return model->filePath(index);
 }
@@ -175,7 +175,7 @@ void FileSystemTree::openContextMenu(const QPoint& point)
     contextMenu->popup(mapToGlobal(point));
 }
 
-void FileSystemTree::createFile()
+void FileSystemTree::createFile() const
 {
     if(selectionModel()->selectedIndexes().count() > 0)
     {
@@ -200,7 +200,7 @@ void FileSystemTree::createFile()
     }
 }
 
-void FileSystemTree::createDir()
+void FileSystemTree::createDir() const
 {
     if(selectionModel()->selectedIndexes().count() > 0)
     {
@@ -220,7 +220,7 @@ void FileSystemTree::createDir()
     }
 }
 
-void FileSystemTree::createDirInRoot()
+void FileSystemTree::createDirInRoot() const
 {
     const QString path = model->rootPath();
     if(QFileInfo(path).isDir())
@@ -237,7 +237,7 @@ void FileSystemTree::createDirInRoot()
     }
 }
 
-void FileSystemTree::createFileInRoot()
+void FileSystemTree::createFileInRoot() const
 {
     const QString path = model->rootPath();
     if(QFileInfo(path).isDir())
@@ -259,7 +259,7 @@ void FileSystemTree::createFileInRoot()
     }
 }
 
-void FileSystemTree::addToGitRepository()
+void FileSystemTree::addToGitRepository() const
 {
     if(selectionModel()->selectedIndexes().count() > 0)
     {
@@ -276,7 +276,7 @@ void FileSystemTree::addToGitRepository()
     }
 }
 
-void FileSystemTree::openIn(const QString& exec, const QString& path)
+void FileSystemTree::openIn(const QString& exec, const QString& path) const
 {
     std::system(QString("%1 %2").arg(exec, path).toStdString().c_str());
 }

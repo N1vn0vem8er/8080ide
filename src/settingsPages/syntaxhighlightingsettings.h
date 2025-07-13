@@ -30,10 +30,10 @@ private:
         label
     };
     Ui::SyntaxHighlightingSettings *ui;
-    void updateColors();
-    void openColorPicker(ColorOptions option);
+    void updateColors() const;
+    void openColorPicker(ColorOptions option) const;
     void setColorToDefault(ColorOptions option);
-    void apply();
+    void apply() const;
 };
 
 #endif // SYNTAXHIGHLIGHTINGSETTINGS_H

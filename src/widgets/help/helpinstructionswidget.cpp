@@ -21,7 +21,7 @@ HelpInstructionsWidget::~HelpInstructionsWidget()
     delete ui;
 }
 
-void HelpInstructionsWidget::openInstructionHelp(QString instruction)
+void HelpInstructionsWidget::openInstructionHelp(QString instruction) const
 {
     QDirIterator iterator(":/instructions/helpPages", QDirIterator::Subdirectories);
     while(iterator.hasNext())

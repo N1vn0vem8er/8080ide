@@ -38,7 +38,7 @@ SyntaxHighlightingSettings::~SyntaxHighlightingSettings()
     delete ui;
 }
 
-void SyntaxHighlightingSettings::updateColors()
+void SyntaxHighlightingSettings::updateColors() const
 {
     QPalette palette = ui->bit8lsmInstLabel->palette();
     palette.setColor(ui->bit8lsmInstLabel->foregroundRole(), QColor::fromRgba64(std::get<0>(IDESettings::syntaxHightlightingColors.lsm8bitInst),
@@ -92,7 +92,7 @@ void SyntaxHighlightingSettings::updateColors()
     ui->labelsLabel->setPalette(palette);
 }
 
-void SyntaxHighlightingSettings::openColorPicker(ColorOptions option)
+void SyntaxHighlightingSettings::openColorPicker(ColorOptions option) const
 {
     QColorDialog dialog;
     if(dialog.exec() == QDialog::Accepted)
@@ -174,7 +174,7 @@ void SyntaxHighlightingSettings::setColorToDefault(ColorOptions option)
     updateColors();
 }
 
-void SyntaxHighlightingSettings::apply()
+void SyntaxHighlightingSettings::apply() const
 {
     IDESettings s;
     s.saveSettings();

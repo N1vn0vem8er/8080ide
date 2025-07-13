@@ -88,9 +88,9 @@ void ProjectGlobalSearchWidget::replaceAll()
     }
 }
 
-QVector<int> ProjectGlobalSearchWidget::findInFile(const QString &path, const QString &text)
+QList<int> ProjectGlobalSearchWidget::findInFile(const QString &path, const QString &text) const
 {
-    QVector<int> found;
+    QList<int> found;
     QFile file(path);
     file.open(QIODevice::ReadOnly);
     if(file.isOpen())

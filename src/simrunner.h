@@ -18,8 +18,8 @@ public:
 private:
     QStringList getRegisterList(Symulator* sim);
 
-    std::string tohexASCII(unsigned short ch);
-    std::string tohexASCII(unsigned char ch);
+    std::string tohexASCII(unsigned short ch) const;
+    std::string tohexASCII(unsigned char ch) const;
     bool stopCalled;
     QStringList oldRegistersState;
     char oldInBuffer;
@@ -28,7 +28,7 @@ private:
     bool bpContinue;
     std::vector<std::pair<unsigned short, int>> breakpoints;
     std::vector<std::pair<unsigned short, int>> lineAddrInsts;
-    QString memoryToString();
+    QString memoryToString() const;
 public slots:
     void input(char in);
     unsigned char* getMemoryFromSim();
@@ -38,7 +38,7 @@ public slots:
     void changeRegisters(unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char h, unsigned char l, unsigned short pc, unsigned short sp);
 
 signals:
-    void stateChanged(QStringList registers);
+    void stateChanged(const QStringList& registers);
     void charOut(char ch);
     void inputOut(char ch);
     void breakpointStop(int line, unsigned short address);

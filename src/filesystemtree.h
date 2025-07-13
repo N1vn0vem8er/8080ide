@@ -20,7 +20,7 @@ public:
     };
     void open(const QString &path);
     void setDirectory(const QString &path);
-    QString getSelectedItem(const QModelIndex &index);
+    QString getSelectedItem(const QModelIndex &index) const;
     bool getHasGitRepository() const;
     void setHasGitRepository(bool newHasGitRepository);
 
@@ -37,12 +37,12 @@ private:
 
 private slots:
     void openContextMenu(const QPoint &point);
-    void createFile();
-    void createDir();
-    void createDirInRoot();
-    void createFileInRoot();
-    void addToGitRepository();
-    void openIn(const QString& exec, const QString& path);
+    void createFile() const;
+    void createDir() const;
+    void createDirInRoot() const;
+    void createFileInRoot() const;
+    void addToGitRepository() const;
+    void openIn(const QString& exec, const QString& path) const;
     void openFilePressed();
     void openDirPressed();
     void renamePressed();

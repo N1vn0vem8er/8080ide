@@ -14,7 +14,7 @@ class HelpIDEWidget : public QWidget
 public:
     explicit HelpIDEWidget(QWidget *parent = nullptr);
     ~HelpIDEWidget();
-    void openInstructionHelp(QString instruction);
+    void openInstructionHelp(QString instruction) const;
 
 private:
     Ui::HelpIDEWidget *ui;

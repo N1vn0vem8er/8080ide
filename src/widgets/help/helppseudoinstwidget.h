@@ -14,7 +14,7 @@ class HelpPseudoInstWidget : public QWidget
 public:
     explicit HelpPseudoInstWidget(QWidget *parent = nullptr);
     ~HelpPseudoInstWidget();
-    void openInstructionHelp(QString instruction);
+    void openInstructionHelp(QString instruction) const;
 
 private:
     Ui::HelpPseudoInstWidget *ui;

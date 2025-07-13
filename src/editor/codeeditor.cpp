@@ -53,7 +53,7 @@ CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
     startGettingLabels();
 }
 
-int CodeEditor::lineNumberWidth()
+int CodeEditor::lineNumberWidth() const
 {
     int digits = 1;
     int max = qMax(1, blockCount());
@@ -67,7 +67,7 @@ int CodeEditor::lineNumberWidth()
         space += fontMetrics().horizontalAdvance("●");
     return space;
 }
-void CodeEditor::lineNumberAreaPaint(QPaintEvent* event)
+void CodeEditor::lineNumberAreaPaint(QPaintEvent* event) const
 {
     QPainter painter(lineNumberArea);
     painter.fillRect(event->rect(), QColor::fromRgb(27, 25, 26));
@@ -225,7 +225,7 @@ bool CodeEditor::isHighlighterEnabled()
         return true;
 }
 
-void CodeEditor::commentMultiLine()
+void CodeEditor::commentMultiLine() const
 {
     QTextCursor cursor = this->textCursor();
     int pos = cursor.position();
@@ -324,12 +324,12 @@ void CodeEditor::setPartOfProject(bool val)
     partOfProject = val;
 }
 
-bool CodeEditor::isSaved()
+bool CodeEditor::isSaved() const
 {
     return saved;
 }
 
-bool CodeEditor::isPartOfProject()
+bool CodeEditor::isPartOfProject() const
 {
     return partOfProject;
 }
@@ -554,7 +554,7 @@ void CodeEditor::mergeSelectedLines()
     }
 }
 
-void CodeEditor::deleteSelected()
+void CodeEditor::deleteSelected() const
 {
     textCursor().removeSelectedText();
 }
@@ -595,7 +595,7 @@ void CodeEditor::setLineBreakpoint()
     updateLineNumberWidth(0);
 }
 
-bool CodeEditor::hasBreakPoints()
+bool CodeEditor::hasBreakPoints() const
 {
     return hasBreakpoints;
 }
@@ -605,7 +605,7 @@ QVector<int> CodeEditor::getBreakPoints()
     return linesWithBreakpoint;
 }
 
-QString CodeEditor::getFilePath()
+QString CodeEditor::getFilePath() const
 {
     return this->filePath;
 }

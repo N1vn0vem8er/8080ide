@@ -26,7 +26,7 @@ StartupSettingsPage::~StartupSettingsPage()
     delete ui;
 }
 
-void StartupSettingsPage::apply()
+void StartupSettingsPage::apply() const
 {
     IDESettings s;
     s.saveSettings();

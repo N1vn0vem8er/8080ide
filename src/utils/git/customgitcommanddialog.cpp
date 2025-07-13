@@ -16,15 +16,14 @@ CustomGitCommandDialog::~CustomGitCommandDialog()
     delete ui;
 }
 
-void CustomGitCommandDialog::runCommand()
+void CustomGitCommandDialog::runCommand() const
 {
-    QProcess* process = new QProcess();
-    process->setWorkingDirectory(repoPath);
-    process->startCommand(ui->input->text());
-    process->waitForStarted();
-    process->waitForFinished();
-    process->waitForReadyRead();
-    ui->output->appendPlainText(process->readAllStandardOutput());
-    ui->output->appendPlainText(process->readAllStandardError());
-    delete process;
+    QProcess process;
+    process.setWorkingDirectory(repoPath);
+    process.startCommand(ui->input->text());
+    process.waitForStarted();
+    process.waitForFinished();
+    process.waitForReadyRead();
+    ui->output->appendPlainText(process.readAllStandardOutput());
+    ui->output->appendPlainText(process.readAllStandardError());
 }

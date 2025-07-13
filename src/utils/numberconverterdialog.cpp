@@ -20,7 +20,7 @@ NumberConverterDialog::~NumberConverterDialog()
     delete ui;
 }
 
-void NumberConverterDialog::input()
+void NumberConverterDialog::input() const
 {
     if(ui->inLine->text().isEmpty())
     {
@@ -100,7 +100,7 @@ void NumberConverterDialog::input()
     }
 }
 
-void NumberConverterDialog::changeMaxInLength()
+void NumberConverterDialog::changeMaxInLength() const
 {
     ui->inLine->clear();
     switch(ui->inComboBox->currentIndex())

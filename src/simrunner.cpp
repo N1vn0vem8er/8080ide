@@ -46,14 +46,14 @@ QStringList SimRunner::getRegisterList(Symulator *sim)
     return list;
 }
 
-std::string SimRunner::tohexASCII(unsigned char ch)
+std::string SimRunner::tohexASCII(unsigned char ch) const
 {
     std::stringstream ss;
     ss << std::hex << +ch;
     return ss.str();
 }
 
-QString SimRunner::memoryToString()
+QString SimRunner::memoryToString() const
 {
     QString mem = "";
     if(sim!=nullptr)
@@ -68,7 +68,7 @@ void SimRunner::setLineAddrInsts(const std::vector<std::pair<unsigned short, int
 {
     lineAddrInsts = newLineAddrInsts;
 }
-std::string SimRunner::tohexASCII(unsigned short ch)
+std::string SimRunner::tohexASCII(unsigned short ch) const
 {
     std::stringstream ss;
     ss << std::hex << +ch;

@@ -5,7 +5,6 @@
 #include <QFileDialog>
 #include <QProcess>
 #include <QThread>
-#include <iostream>
 
 CreateProjectWindow::CreateProjectWindow(QWidget *parent) :
     QDialog(parent),
@@ -29,8 +28,8 @@ QString CreateProjectWindow::getProjectConfigPath()
 
 void CreateProjectWindow::createProject()
 {
-    QString name = ui->projectName->text();
-    QString memorySize = ui->memorySize->text();
+    const QString name = ui->projectName->text();
+    const QString memorySize = ui->memorySize->text();
     QString path = ui->locationPath->text();
     std::ofstream out;
     std::ofstream sampleCodeOut;
@@ -57,23 +56,23 @@ void CreateProjectWindow::createProject()
     }
 
 }
-void CreateProjectWindow::createGitRepo(const QString &path)
+void CreateProjectWindow::createGitRepo(const QString &path) const
 {
-    QProcess* process = new QProcess();
-    process->startCommand("git init " +path);
-    if(!process->waitForFinished(3000))
-        std::cerr<<"Could not initialize git repository"<<std::endl;
-    delete process;
+    QProcess process;
+    process.startCommand("git init " +path);
+    process.waitForStarted(3000);
+    if(!process.waitForFinished(3000))
+        qDebug() << "Could not initialize git repository";
 }
 void CreateProjectWindow::openSelectFolder()
 {
-    QString path = QFileDialog::getExistingDirectory(this, tr("Open Directory", "./"));
+    const QString path = QFileDialog::getExistingDirectory(this, tr("Open Directory", "./"));
     if(path != "")
     {
         ui->locationPath->setText(path);
     }
 }
-void CreateProjectWindow::checkDir()
+void CreateProjectWindow::checkDir() const
 {
     if(ui->locationPath->text().isEmpty() || !QDir(ui->locationPath->text()).exists())
     {
@@ -83,7 +82,7 @@ void CreateProjectWindow::checkDir()
         ui->checkPathLabel->setVisible(false);
     }
 }
-void CreateProjectWindow::checkName()
+void CreateProjectWindow::checkName() const
 {
     if(ui->locationPath->text().isEmpty() || QDir(ui->locationPath->text() + '/' + ui->projectName->text()).exists())
     {

@@ -17,8 +17,8 @@ public:
 
 private:
     Ui::TableDataGeneratorDialog *ui;
-    void generate();
-    void copy();
+    void generate() const;
+    void copy() const;
 };
 
 #endif // TABLEDATAGENERATORDIALOG_H
