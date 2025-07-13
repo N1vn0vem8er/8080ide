@@ -9,7 +9,7 @@ class Assembler
 {
 public:
     Assembler();
-    std::vector<std::string> toVector(std::string code);
+    std::vector<std::string> toVector(const std::string& code);
     std::vector<std::string> decodeConstants(const std::vector<std::string> &code);
     std::vector<std::string> decodeIfsAndMacros(const std::vector<std::string> &code);
     std::vector<std::string> applyMacros(const std::vector<std::string> &code);
@@ -20,16 +20,13 @@ public:
     std::vector<std::string> getErrorMessages() const;
     int getAssemblerAddress() const;
     void setAssemblerAddress(int newAssemblerAddress);
-
     std::vector<int> getBreakpoints() const;
     void setBreakpoints(const std::vector<int> &newBreakpoints);
-
     std::vector<std::pair<unsigned short, int>> getCodeBreakpoints() const;
     void setCodeBreakpoints(const std::vector<std::pair<unsigned short, int> > &newCodeBreakpoints);
     void clearErrorMessages();
     void clearCodeBreakpoints();
     void clearBreakpoints();
-
     std::vector<std::pair<unsigned short, int> > getLineAddrInsts() const;
     void resetLineAddrInsts();
 
@@ -48,21 +45,21 @@ private:
     bool assembleTwoargs(std::string currentinst, std::vector<unsigned char>& assembledCode);
     bool assembleCallsandjmps(std::string currentinst, std::vector<unsigned char>& assembledCode);
     bool assemblePInst(std::string currentinst, std::vector<unsigned char>& assembledCode);
-    bool contains(const std::string &string, const std::string &val);
-    bool contains(const std::string &string, const std::string &val, unsigned long& position);
-    void addEQUConstToLabels(std::string name, std::string val);
-    void addSETConstToLabels(std::string name, std::string val);
-    std::string getValueFormLabel(std::string label);
-    unsigned long fromHex(std::string hex);
-    std::string toHex(unsigned short val);
-    int getInstLength(std::string inst);
-    bool isOneArgs(std::string inst, int &length, unsigned long& pos);
-    bool isTwoArgs(std::string inst, int &length, unsigned long& pos);
-    bool isCallAndJmps(std::string inst, int &length, unsigned long& pos);
-    bool isPInst(std::string inst, int &length, unsigned long& pos);
-    std::string mathOperand(std::string operand);
+    bool contains(const std::string &string, const std::string &val) const;
+    bool contains(const std::string &string, const std::string &val, unsigned long& position) const;
+    void addEQUConstToLabels(const std::string& name, const std::string& val);
+    void addSETConstToLabels(const std::string& name, const std::string& val);
+    std::string getValueFormLabel(const std::string& label) const;
+    unsigned long fromHex(const std::string& hex) const;
+    std::string toHex(unsigned short val) const;
+    int getInstLength(const std::string& inst);
+    bool isOneArgs(const std::string& inst, int &length, unsigned long& pos) const;
+    bool isTwoArgs(const std::string& inst, int &length, unsigned long& pos) const;
+    bool isCallAndJmps(const std::string& inst, int &length, unsigned long& pos) const;
+    bool isPInst(const std::string& inst, int &length, unsigned long& pos) const;
+    std::string mathOperand(const std::string& operand);
     unsigned char* toUCharArray(const std::vector<unsigned char>& vector);
-    bool isNumber(std::string val);
+    bool isNumber(const std::string& val) const;
     int compCodeSize = 0;
 
 

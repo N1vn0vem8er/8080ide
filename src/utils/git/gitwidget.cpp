@@ -333,7 +333,7 @@ void GitWidget::gitPull()
     process.waitForFinished();
     process.waitForReadyRead();
     refresh();
-    emit openInEditor(process.readAllStandardOutput() + process.readAllStandardError(), tr("Push results"));
+    emit openInEditor(process.readAllStandardOutput() + process.readAllStandardError(), tr("Pull results"));
 }
 
 void GitWidget::gitStatus()

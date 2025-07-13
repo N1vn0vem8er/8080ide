@@ -7,7 +7,7 @@ Assembler::Assembler()
 
 }
 
-std::vector<std::string> Assembler::toVector(std::string code)
+std::vector<std::string> Assembler::toVector(const std::string &code)
 {
     std::vector<std::string> preprocesedCode;
     std::string line = "";
@@ -548,7 +548,7 @@ bool Assembler::assemblePInst(std::string currentinst, std::vector<unsigned char
     return false;
 }
 
-std::string Assembler::mathOperand(std::string operand)
+std::string Assembler::mathOperand(const std::string &operand)
 {
     std::string tmp = "";
     std::string partOne = "";
@@ -634,7 +634,7 @@ unsigned char *Assembler::toUCharArray(const std::vector<unsigned char> &vector)
     return ucharArray;
 }
 
-bool Assembler::isNumber(std::string val)
+bool Assembler::isNumber(const std::string &val) const
 {
     for(const auto& i : val)
     {
@@ -646,18 +646,18 @@ bool Assembler::isNumber(std::string val)
     return true;
 }
 
-bool Assembler::contains(const std::string& string, const std::string& val)
+bool Assembler::contains(const std::string& string, const std::string& val) const
 {
     return string.find(val) != std::string::npos;
 }
 
-bool Assembler::contains(const std::string& string, const std::string& val, unsigned long &position)
+bool Assembler::contains(const std::string& string, const std::string& val, unsigned long &position) const
 {
     position = string.find(val);
     return position != std::string::npos;
 }
 
-void Assembler::addEQUConstToLabels(std::string name, std::string val)
+void Assembler::addEQUConstToLabels(const std::string &name, const std::string &val)
 {
     bool found = false;
     for(const auto& i : labels)
@@ -672,7 +672,7 @@ void Assembler::addEQUConstToLabels(std::string name, std::string val)
         labels.push_back(std::make_pair(name, val));
 }
 
-void Assembler::addSETConstToLabels(std::string name, std::string val)
+void Assembler::addSETConstToLabels(const std::string &name, const std::string &val)
 {
     bool found = false;
     for(auto& i : labels)
@@ -688,7 +688,7 @@ void Assembler::addSETConstToLabels(std::string name, std::string val)
         labels.push_back(std::make_pair(name, val));
 }
 
-std::string Assembler::getValueFormLabel(std::string label)
+std::string Assembler::getValueFormLabel(const std::string& label) const
 {
     for(const auto& i : labels)
     {
@@ -698,19 +698,19 @@ std::string Assembler::getValueFormLabel(std::string label)
     return "";
 }
 
-unsigned long Assembler::fromHex(std::string hex)
+unsigned long Assembler::fromHex(const std::string &hex) const
 {
     return strtol(hex.c_str(), nullptr, 16);
 }
 
-std::string Assembler::toHex(unsigned short val)
+std::string Assembler::toHex(unsigned short val) const
 {
     std::stringstream ss;
     ss << std::hex << val;
     return ss.str();
 }
 
-int Assembler::getInstLength(std::string inst)
+int Assembler::getInstLength(const std::string &inst)
 {
     for(const auto& i : noargs)
     {
@@ -782,7 +782,7 @@ int Assembler::getInstLength(std::string inst)
     return -1;
 }
 
-bool Assembler::isOneArgs(std::string inst, int& length, unsigned long &pos)
+bool Assembler::isOneArgs(const std::string &inst, int& length, unsigned long &pos) const
 {
     if(contains(inst, "DB"))
     {
@@ -803,7 +803,7 @@ bool Assembler::isOneArgs(std::string inst, int& length, unsigned long &pos)
     return false;
 }
 
-bool Assembler::isTwoArgs(std::string inst, int& length, unsigned long &pos)
+bool Assembler::isTwoArgs(const std::string &inst, int& length, unsigned long &pos) const
 {
     if(contains(inst, "DW"))
     {
@@ -824,7 +824,7 @@ bool Assembler::isTwoArgs(std::string inst, int& length, unsigned long &pos)
     return false;
 }
 
-bool Assembler::isCallAndJmps(std::string inst, int &length, unsigned long &pos)
+bool Assembler::isCallAndJmps(const std::string &inst, int &length, unsigned long &pos) const
 {
     for(const auto& i : callsandjmps)
     {
@@ -839,7 +839,7 @@ bool Assembler::isCallAndJmps(std::string inst, int &length, unsigned long &pos)
     return false;
 }
 
-bool Assembler::isPInst(std::string inst, int &length, unsigned long &pos)
+bool Assembler::isPInst(const std::string &inst, int &length, unsigned long &pos) const
 {
     if(inst.length()>1)
     {
