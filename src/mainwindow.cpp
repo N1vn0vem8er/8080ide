@@ -272,10 +272,10 @@ void MainWindow::settings()
 }
 void MainWindow::openNewProjectWindow()
 {
-    CreateProjectWindow w = CreateProjectWindow();
+    CreateProjectWindow w;
     if(w.exec() == QDialog::Accepted)
     {
-        QString path = w.getProjectConfigPath();
+        const QString path = w.getProjectConfigPath();
         if(path!="")
         {
             simHandeler->openProject(path);
@@ -338,7 +338,7 @@ void MainWindow::goBotton()
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)
 {
-    QString path = QDir::homePath() + "/.ide8080ide.recentfiles";
+    const QString path = QDir::homePath() + "/.ide8080ide.recentfiles";
     if(std::filesystem::exists(path.toStdString()))
     {
         std::fstream file(path.toStdString(), std::ios_base::app | std::ios_base::in);
@@ -362,7 +362,7 @@ void MainWindow::saveFileToRecentFiles(const QString &filePath)
 
 void MainWindow::saveProjectToRecentProjects(const QString &projectPath)
 {
-    QString path = QDir::homePath() + "/.ide8080ide.recentprojects";
+    const QString path = QDir::homePath() + "/.ide8080ide.recentprojects";
     if(std::filesystem::exists(path.toStdString()))
     {
         std::fstream file(path.toStdString(), std::ios_base::app | std::ios_base::in);
@@ -631,7 +631,7 @@ void MainWindow::stepLineHighLight(const QString &file, int line)
     }
 }
 
-void MainWindow::loadSettings()
+void MainWindow::loadSettings() const
 {
     IDESettings s;
     s.loadSettings();
@@ -744,10 +744,10 @@ void MainWindow::newFile()
 }
 void MainWindow::openFromTree()
 {
-   QString path = ui->treeView->getSelectedItem(ui->treeView->selectionModel()->selectedIndexes()[0]);
+   const QString path = ui->treeView->getSelectedItem(ui->treeView->selectionModel()->selectedIndexes()[0]);
    QFileInfo fi(path);
    if(fi.isFile())
-    openFileInNewTab(path);
+       openFileInNewTab(path);
 }
 void MainWindow::openFileInNewTab(const QString &path)
 {
@@ -947,7 +947,7 @@ void MainWindow::save()
         {
             std::ofstream file;
             file.open(ce->getFilePath().toStdString());
-            file << getStdStringFromTab(ui->tabWidget->currentIndex());
+            file << getPlainTextFromTab(ui->tabWidget->currentIndex()).toStdString();
             file.close();
             saveFileToRecentFiles(ce->getFilePath());
             ce->setSaved(true);
@@ -992,15 +992,15 @@ void MainWindow::saveAs(CodeEditor *editor)
 }
 void MainWindow::open()
 {
-    QStringList paths = QFileDialog::getOpenFileNames(this, tr("Open File"), "./", tr("Files (*.asm)"));
-    for(const auto& path : std::as_const(paths))
+    const QStringList paths = QFileDialog::getOpenFileNames(this, tr("Open File"), "./", tr("Files (*.asm)"));
+    for(const auto& path : paths)
     {
         openFileInNewTab(path);
     }
 }
 void MainWindow::openDirPressed()
 {
-    QString path = QFileDialog::getExistingDirectory(this, tr("Open Directory", "./"));
+    const QString path = QFileDialog::getExistingDirectory(this, tr("Open Directory", "./"));
     if(path != "")
     {
         openDir(path);
@@ -1030,7 +1030,7 @@ void MainWindow::openDir(const QString &path)
 }
 void MainWindow::saveas()
 {
-    QString path = QFileDialog::getSaveFileName(this, tr("Save File As"), "./", tr("Files (*.asm)"));
+    const QString path = QFileDialog::getSaveFileName(this, tr("Save File As"), "./", tr("Files (*.asm)"));
     if(path != "")
     {
         std::ofstream file;
@@ -1038,7 +1038,7 @@ void MainWindow::saveas()
             file.open(path.toStdString());
         else
             file.open(path.toStdString()+".asm");
-        file << getStdStringFromTab(ui->tabWidget->currentIndex());
+        file << getPlainTextFromTab(ui->tabWidget->currentIndex()).toStdString();
         file.close();
         saveFileToRecentFiles(path);
         CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
@@ -1051,7 +1051,7 @@ void MainWindow::saveas()
 }
 void MainWindow::openProject()
 {
-    QString path = QFileDialog::getOpenFileName(this, tr("Open Project"), "./", tr("Files (*.config)"));
+    const QString path = QFileDialog::getOpenFileName(this, tr("Open Project"), "./", tr("Files (*.config)"));
     if(path!="")
     {
         openProject(path);
@@ -1137,10 +1137,7 @@ void MainWindow::redo()
     if(tmp != nullptr)
         tmp->redo();
 }
-std::string MainWindow::getStdStringFromTab(int index)
-{
-    return getPlainTextFromTab(index).toStdString();
-}
+
 QString MainWindow::getPlainTextFromTab(int index)
 {
     QWidget* ce = ui->tabWidget->widget(index);
