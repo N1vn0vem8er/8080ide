@@ -10,8 +10,8 @@ private:
     bool interruptsEnabled = false;
 	void executeInstruction(unsigned char inst);
 	void halt();
-	unsigned char mreg();
-	unsigned short maddr();
+    unsigned char mreg() const;
+    unsigned short maddr() const;
 	void doubleAdd(unsigned char reg1, unsigned char reg2);
 	void jump();
 	void call();

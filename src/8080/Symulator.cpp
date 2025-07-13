@@ -1,14 +1,14 @@
 #include "Symulator.h"
 #include <iostream>
 
-unsigned char Symulator::mreg()
+unsigned char Symulator::mreg() const
 {
     unsigned short memaddr = lreg;
     memaddr |= hreg << 8;
 	return memory[memaddr];
 }
 
-unsigned short Symulator::maddr()
+unsigned short Symulator::maddr() const
 {
     unsigned short memaddr = lreg;
     memaddr |= hreg << 8;
