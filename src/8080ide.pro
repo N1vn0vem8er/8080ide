@@ -55,8 +55,7 @@ SOURCES += \
     utils/git/gitfilestatusitemdelegate.cpp \
     utils/git/gitfilestatusmodel.cpp \
     utils/git/gitwidget.cpp \
-    utils/git/gitfilesview.cpp \
-    utils/basicterminal.cpp
+    utils/git/gitfilesview.cpp
 
 HEADERS += \
     8080/assembler.h \
@@ -106,8 +105,7 @@ HEADERS += \
     utils/git/gitfilestatusitemdelegate.h \
     utils/git/gitfilestatusmodel.h \
     utils/git/gitwidget.h \
-    utils/git/gitfilesview.h \
-    utils/basicterminal.h
+    utils/git/gitfilesview.h
 
 FORMS += \
     settingsPages/simsettingspage.ui \

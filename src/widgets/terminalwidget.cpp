@@ -1,5 +1,4 @@
 #include "terminalwidget.h"
-#include "qfontdatabase.h"
 #include "ui_terminalwidget.h"
 #include <csignal>
 #include <qtermwidget6/qtermwidget.h>
