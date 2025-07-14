@@ -147,6 +147,7 @@ CONFIG += embed_translations
 
 TARGET = 8080ide
 
+
 # Default rules for deployment.
 # qnx: target.path = /tmp/$${TARGET}/bin
 # else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -156,4 +157,6 @@ target.path = /usr/bin
 RESOURCES += \
     resources/helpPages.qrc \
     resources/icons/icons.qrc
+
+LIBS += -lqtermwidget6
 

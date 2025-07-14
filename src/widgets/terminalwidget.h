@@ -2,6 +2,7 @@
 #define TERMINALWIDGET_H
 
 #include <QWidget>
+#include <qtermwidget6/qtermwidget.h>
 
 namespace Ui {
 class TerminalWidget;
@@ -17,6 +18,7 @@ public:
 
 private:
     Ui::TerminalWidget *ui;
+    QTermWidget* terminal {nullptr};
 };
 
 #endif // TERMINALWIDGET_H

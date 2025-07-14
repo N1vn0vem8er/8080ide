@@ -55,18 +55,8 @@
      </item>
     </layout>
    </item>
-   <item>
-    <widget class="BasicTerminal" name="plainTextEdit"/>
-   </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>BasicTerminal</class>
-   <extends>QPlainTextEdit</extends>
-   <header>utils/basicterminal.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>
