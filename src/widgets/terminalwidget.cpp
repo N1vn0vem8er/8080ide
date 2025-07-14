@@ -8,6 +8,7 @@ TerminalWidget::TerminalWidget(QWidget *parent)
     , ui(new Ui::TerminalWidget)
 {
     ui->setupUi(this);
+    terminal = new QTermWidget(this);
     connect(ui->intButton, &QPushButton::clicked, this, [&]{
         int id = terminal->getForegroundProcessId();
         kill(id, SIGINT);
@@ -20,7 +21,9 @@ TerminalWidget::TerminalWidget(QWidget *parent)
         int id = terminal->getForegroundProcessId();
         kill(id, SIGTERM);
     });
-    terminal = new QTermWidget(this);
+    connect(ui->copyButton, &QPushButton::clicked, terminal, &QTermWidget::copyClipboard);
+    connect(ui->pasteButton, &QPushButton::clicked, terminal, &QTermWidget::pasteClipboard);
+
     if(terminal->availableColorSchemes().contains("BreezeModified"))
         terminal->setColorScheme("BreezeModified");
 

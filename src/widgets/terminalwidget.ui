@@ -20,6 +20,20 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
+      <widget class="QPushButton" name="copyButton">
+       <property name="text">
+        <string>Copy</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pasteButton">
+       <property name="text">
+        <string>Paste</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QPushButton" name="intButton">
        <property name="text">
         <string>SIGINT</string>
