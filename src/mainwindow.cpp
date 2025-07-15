@@ -89,7 +89,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionProjectSearch, &QAction::triggered, this, &MainWindow::openProjectSearch);
     connect(ui->actionSetBreakpoint, &QAction::triggered, this, &MainWindow::setBreakpoint);
     connect(ui->continueButton, &QPushButton::clicked, simHandeler, &SimHandeler::breakpointContinue);
-    connect(ui->continueButton, &QPushButton::clicked, simHandeler, [&](){if(highlightedEditor!=nullptr)highlightedEditor->clearSearchFormatting(); highlightedEditor = nullptr;});
+    connect(ui->continueButton, &QPushButton::clicked, simHandeler, [&](){if(highlightedEditor)highlightedEditor->clearSearchFormatting(); highlightedEditor = nullptr;});
     connect(simHandeler, &SimHandeler::stepLineHighlight, this, &MainWindow::stepLineHighLight);
     connect(ui->actionOpenHexConverter, &QAction::triggered, this, &MainWindow::openNumberConverterDialog);
     connect(ui->actionOpenCalc, &QAction::triggered, this, &MainWindow::openCalc);
@@ -189,7 +189,7 @@ void MainWindow::b_compile()
     {
         simHandeler->updateCode(getPlainTextFromTab(ui->tabWidget->currentIndex()));
         CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-        if(ce != nullptr)
+        if(ce)
         {
             if(ce->hasBreakPoints())
                 simHandeler->readBreakPoints(ce->getBreakPoints());
@@ -203,7 +203,7 @@ void MainWindow::b_compile()
         for(int i=0;i<ui->tabWidget->count();i++)
         {
             CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(i));
-            if(ce != nullptr && ce->hasBreakPoints())
+            if(ce && ce->hasBreakPoints())
             {
                 std::vector<int> lines;
                 const auto bps = ce->getBreakPoints();
@@ -234,7 +234,7 @@ void MainWindow::b_reset()
     for(int i=0;i<ui->tabWidget->count();i++)
     {
         CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(i));
-        if(ce != nullptr)
+        if(ce)
         {
             ce->clearSearchFormatting();
         }
@@ -276,7 +276,7 @@ void MainWindow::openNewProjectWindow()
     if(w.exec() == QDialog::Accepted)
     {
         const QString path = w.getProjectConfigPath();
-        if(path!="")
+        if(!path.isEmpty())
         {
             simHandeler->openProject(path);
             QFileInfo info(path);
@@ -290,7 +290,7 @@ void MainWindow::openNewProjectWindow()
 void MainWindow::commentLine()
 {
     CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-    if(ce != nullptr)
+    if(ce)
         ce->commentCurrentLine();
 }
 
@@ -321,7 +321,7 @@ void MainWindow::handleStartTabLinks(const QString &link)
 void MainWindow::goTop()
 {
     CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-    if(ce != nullptr)
+    if(ce)
     {
         ce->verticalScrollBar()->setValue(0);
     }
@@ -330,7 +330,7 @@ void MainWindow::goTop()
 void MainWindow::goBotton()
 {
     CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-    if(ce != nullptr)
+    if(ce)
     {
         ce->verticalScrollBar()->setValue(ce->verticalScrollBar()->maximum());
     }
@@ -460,7 +460,7 @@ void MainWindow::setCurrenchBranchName(const QString &name)
 void MainWindow::enableSyntaxHighLinhting()
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-    if(tmp != nullptr)
+    if(tmp)
     {
         if(tmp->isHighlighterEnabled())
         {
@@ -476,7 +476,7 @@ void MainWindow::enableSyntaxHighLinhting()
 void MainWindow::search(const QString &text)
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-    if(tmp != nullptr)
+    if(tmp)
     {
         tmp->highlightTextSequence(text);
     }
@@ -485,7 +485,7 @@ void MainWindow::search(const QString &text)
 void MainWindow::replace(const QString &text)
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-    if(tmp != nullptr)
+    if(tmp)
     {
         tmp->replaceTextSequence(ui->searchWidget->getSearchFieldText(), text);
     }
@@ -494,7 +494,7 @@ void MainWindow::replace(const QString &text)
 void MainWindow::enableSpellCheck()
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-    if(tmp != nullptr)
+    if(tmp)
     {
         tmp->setSpellCheckEnabled(tmp->isSpellcheckEnabled() ? false : true);
     }
@@ -511,7 +511,7 @@ void MainWindow::openProjectSearch()
 void MainWindow::setBreakpoint()
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-    if(tmp != nullptr)
+    if(tmp)
     {
         tmp->setLineBreakpoint();
     }
@@ -548,7 +548,7 @@ void MainWindow::openTableDataGenerator()
 void MainWindow::openLineToNumber()
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-    if(tmp != nullptr)
+    if(tmp)
     {
         InstInMemoryDialog* dialog = new InstInMemoryDialog(this);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
@@ -578,7 +578,7 @@ void MainWindow::highlightLine(QString file, int line)
         for(int i = 0; i<ui->tabWidget->count(); i++)
         {
             CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(i));
-            if(tmp != nullptr)
+            if(tmp)
             {
                 if(tmp->getFilePath() == file)
                 {
@@ -593,7 +593,7 @@ void MainWindow::highlightLine(QString file, int line)
     else
     {
         CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-        if(tmp != nullptr)
+        if(tmp)
         {
             tmp->highlightLine(line);
             highlightedEditor = tmp;
@@ -608,7 +608,7 @@ void MainWindow::stepLineHighLight(const QString &file, int line)
         for(int i = 0; i<ui->tabWidget->count(); i++)
         {
             CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(i));
-            if(tmp != nullptr)
+            if(tmp)
             {
                 if(tmp->getFilePath() == file)
                 {
@@ -623,7 +623,7 @@ void MainWindow::stepLineHighLight(const QString &file, int line)
     else
     {
         CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-        if(tmp != nullptr)
+        if(tmp)
         {
             tmp->stepLineHightlight(line);
             stepHighlightedEditor = tmp;
@@ -708,7 +708,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     for(int i = 0; i < ui->tabWidget->count(); i++)
     {
         CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(i));
-        if(tmp!=nullptr && !tmp->isSaved())
+        if(tmp && !tmp->isSaved())
         {
             openSaveWarningDialog(tmp);
         }
@@ -721,14 +721,14 @@ void MainWindow::showSearch()
     if(ui->searchWidget->isVisible())
     {
         CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-        if(tmp != nullptr)
+        if(tmp)
             tmp->clearSearchFormatting();
         ui->searchWidget->setVisible(false);
     }
     else
     {
         CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-        if(tmp != nullptr)
+        if(tmp)
             tmp->highlightTextSequence(ui->searchWidget->getSearchFieldText());
         ui->searchWidget->setVisible(true);
     }
@@ -876,7 +876,7 @@ void MainWindow::openHelp()
     if(ui->tabWidget->count() > 0)
     {
         CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-        if(tmp != nullptr)
+        if(tmp)
         {
             QString instruction = tmp->getInstructionFromSelectedLine();
             if(!instruction.isEmpty())
@@ -973,7 +973,7 @@ void MainWindow::open()
 void MainWindow::openDirPressed()
 {
     const QString path = QFileDialog::getExistingDirectory(this, tr("Open Directory", "./"));
-    if(path != "")
+    if(!path.isEmpty())
     {
         openDir(path);
         showFileSystemTree();
@@ -1003,7 +1003,7 @@ void MainWindow::openDir(const QString &path)
 void MainWindow::saveas()
 {
     const QString path = QFileDialog::getSaveFileName(this, tr("Save File As"), "./", tr("Files (*.asm)"));
-    if(path != "")
+    if(!path.isEmpty())
     {
         QFile file(path);
         file.open(QIODevice::WriteOnly);
@@ -1013,7 +1013,7 @@ void MainWindow::saveas()
             file.close();
             saveFileToRecentFiles(path);
             CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-            if(ce != nullptr)
+            if(ce)
             {
                 ce->setFilePath(path);
                 ce->setSaved(true);
@@ -1029,7 +1029,7 @@ void MainWindow::saveas()
 void MainWindow::openProject()
 {
     const QString path = QFileDialog::getOpenFileName(this, tr("Open Project"), "./", tr("Files (*.config)"));
-    if(path!="")
+    if(!path.isEmpty())
     {
         openProject(path);
     }
@@ -1037,7 +1037,7 @@ void MainWindow::openProject()
 
 void MainWindow::openProject(const QString &path)
 {
-    if(path!="")
+    if(!path.isEmpty())
     {
         simHandeler->openProject(path);
         QFileInfo info(path);
@@ -1065,7 +1065,7 @@ void MainWindow::closeTab(int index)
 {
     QWidget* widget = ui->tabWidget->widget(index);
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(widget);
-    if(tmp!=nullptr && !tmp->isSaved())
+    if(tmp && !tmp->isSaved())
     {
         SaveWarningDialog* dialog = new SaveWarningDialog();
         dialog->setAttribute(Qt::WA_DeleteOnClose);
@@ -1105,13 +1105,13 @@ void MainWindow::tabChanged()
 void MainWindow::undo()
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-    if(tmp != nullptr)
+    if(tmp)
         tmp->undo();
 }
 void MainWindow::redo()
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-    if(tmp != nullptr)
+    if(tmp)
         tmp->redo();
 }
 
@@ -1119,7 +1119,7 @@ QString MainWindow::getPlainTextFromTab(int index)
 {
     QWidget* ce = ui->tabWidget->widget(index);
     CodeEditor* c = dynamic_cast<CodeEditor*>(ce);
-    if(c != nullptr)
+    if(c)
         return c->toPlainText();
     else
         return "";
@@ -1292,7 +1292,7 @@ void MainWindow::reloadAll()
     for(int i=0; i<ui->tabWidget->count(); i++)
     {
         CodeEditor* editor = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(i));
-        if(editor != nullptr && !editor->getFilePath().isEmpty())
+        if(editor && !editor->getFilePath().isEmpty())
         {
             if(!editor->isSaved())
             {
