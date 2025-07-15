@@ -24,7 +24,6 @@ private:
     CodeEditor* highlightedEditor = nullptr;
     CodeEditor* stepHighlightedEditor = nullptr;
     void save(CodeEditor* editor);
-    void saveAs(CodeEditor* editor);
     void addTab(QWidget* widget, const QString& title);
     bool newFileLoaded;
     std::string getStdStringFromTab(int index);
@@ -36,6 +35,7 @@ private:
     void loadSettings() const;
     void setStyleFromSettings();
     void openSaveWarningDialog(CodeEditor* editor);
+    void openFailedToOpenDialog(const QString& path, const QString& errorMessage);
 
 private slots:
     void copy();

@@ -751,31 +751,31 @@ void MainWindow::openFromTree()
 }
 void MainWindow::openFileInNewTab(const QString &path)
 {
-   if(path != "")
+   if(!path.isEmpty())
    {
-        try {
-            std::ifstream file;
-            file.open(path.toStdString());
-            if(file.is_open())
+        QFile file(path);
+        file.open(QIODevice::ReadOnly);
+        if(file.isOpen())
+        {
+            QFileInfo info(path);
+            const QString content = file.readAll();
+            file.close();
+            CodeEditor* ce = new CodeEditor();
+            connect(ce, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
+            ce->setFilePath(path);
+            simHandeler->setFilename(path);
+            if(simHandeler->getProjectFilesPaths().contains(path))
             {
-                QFileInfo info(path);
-                std::stringstream ss;
-                ss << file.rdbuf();
-                file.close();
-                CodeEditor* ce = new CodeEditor();
-                connect(ce, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
-                ce->setFilePath(path);
-                simHandeler->setFilename(path);
-                if(simHandeler->getProjectFilesPaths().contains(path))
-                {
-                    ce->setPartOfProject(true);
-                    ce->setProjectPath(simHandeler->getProjectPath());
-                }
-                ce->insertPlainText(QString::fromStdString(ss.str()));
-                addTab(ce, info.fileName());
-                saveFileToRecentFiles(path);
+                ce->setPartOfProject(true);
+                ce->setProjectPath(simHandeler->getProjectPath());
             }
-        } catch (...) {
+            ce->insertPlainText(content);
+            addTab(ce, info.fileName());
+            saveFileToRecentFiles(path);
+        }
+        else
+        {
+            openFailedToOpenDialog(path, file.errorString());
         }
    }
 }
@@ -939,25 +939,15 @@ void MainWindow::openHelpPageInst(const QString &instruction)
 void MainWindow::save()
 {
     CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-    if(ce != nullptr)
+    if(ce)
     {
-        if(ce->getFilePath() == "")
-            saveas();
-        else
-        {
-            std::ofstream file;
-            file.open(ce->getFilePath().toStdString());
-            file << getPlainTextFromTab(ui->tabWidget->currentIndex()).toStdString();
-            file.close();
-            saveFileToRecentFiles(ce->getFilePath());
-            ce->setSaved(true);
-        }
+        save(ce);
     }
 }
 
 void MainWindow::save(CodeEditor *editor)
 {
-    if(editor->getFilePath() == "")
+    if(editor->getFilePath().isEmpty())
         saveas();
     else
     {
@@ -972,24 +962,6 @@ void MainWindow::save(CodeEditor *editor)
     }
 }
 
-void MainWindow::saveAs(CodeEditor *editor)
-{
-    QString path = QFileDialog::getSaveFileName(this, tr("Save File As"), "./", tr("Files (*.asm)"));
-    if(path != "")
-    {
-        if(QFileInfo(path).completeSuffix() == "asm")
-            path+=".asm";
-        QFile file(path);
-        if(file.isOpen())
-        {
-            file.write(editor->toPlainText().toLatin1());
-            file.close();
-            editor->setSaved(true);
-            editor->setFilePath(path);
-            saveFileToRecentFiles(path);
-        }
-    }
-}
 void MainWindow::open()
 {
     const QStringList paths = QFileDialog::getOpenFileNames(this, tr("Open File"), "./", tr("Files (*.asm)"));
@@ -1033,19 +1005,24 @@ void MainWindow::saveas()
     const QString path = QFileDialog::getSaveFileName(this, tr("Save File As"), "./", tr("Files (*.asm)"));
     if(path != "")
     {
-        std::ofstream file;
-        if(QFileInfo(path).completeSuffix() == "asm")
-            file.open(path.toStdString());
-        else
-            file.open(path.toStdString()+".asm");
-        file << getPlainTextFromTab(ui->tabWidget->currentIndex()).toStdString();
-        file.close();
-        saveFileToRecentFiles(path);
-        CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
-        if(ce != nullptr)
+        QFile file(path);
+        file.open(QIODevice::WriteOnly);
+        if(file.isOpen())
         {
-            ce->setFilePath(path);
-            ce->setSaved(true);
+            file.write(getPlainTextFromTab(ui->tabWidget->currentIndex()).toUtf8());
+            file.close();
+            saveFileToRecentFiles(path);
+            CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+            if(ce != nullptr)
+            {
+                ce->setFilePath(path);
+                ce->setSaved(true);
+                ui->tabWidget->setTabText(ui->tabWidget->currentIndex(), QFileInfo(path).fileName());
+            }
+        }
+        else
+        {
+            openFailedToOpenDialog(path, file.errorString());
         }
     }
 }
@@ -1401,5 +1378,13 @@ void MainWindow::openSaveWarningDialog(CodeEditor* editor)
     {
         save(editor);
     }
+}
+
+void MainWindow::openFailedToOpenDialog(const QString &path, const QString &errorMessage)
+{
+    QMessageBox::critical(this, tr("Error"), tr(R"(
+    Could't open %1
+    %2
+)").arg(path, errorMessage));
 }
 
