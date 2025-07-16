@@ -36,6 +36,8 @@ private:
     void setStyleFromSettings();
     void openSaveWarningDialog(CodeEditor* editor);
     void openFailedToOpenDialog(const QString& path, const QString& errorMessage);
+    void loadTerminalThemesMenu();
+    void setTermTheme(const QString& name);
 
 private slots:
     void copy();
@@ -125,6 +127,7 @@ private slots:
     void handleStartTabLinks(const QString& link);
     void goTop();
     void goBotton();
+    void openTerminalSetFontSize();
 
 protected:
     void dropEvent(QDropEvent* event) override;

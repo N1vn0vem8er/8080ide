@@ -52,38 +52,38 @@
          <widget class="GitWidget" name="gitWidget"/>
         </widget>
         <widget class="QWidget" name="layoutWidget">
-         <layout class="QVBoxLayout" name="textAndLogsLayout" stretch="1,0,0,0">
+         <layout class="QVBoxLayout" name="textAndLogsLayout" stretch="1,0,0">
           <item>
-            <widget class="QSplitter" name="splitter_3">
+           <widget class="QSplitter" name="splitter_3">
             <property name="orientation">
              <enum>Qt::Orientation::Vertical</enum>
             </property>
-           <widget class="TabView" name="tabWidget">
-            <property name="currentIndex">
-             <number>-1</number>
-            </property>
-            <property name="tabsClosable">
-             <bool>true</bool>
-            </property>
-            <property name="movable">
-             <bool>true</bool>
-            </property>
-           </widget>
-           <widget class="QStackedWidget" name="centralStackedWidget">
-            <property name="currentIndex">
-             <number>1</number>
-            </property>
-            <widget class="QPlainTextEdit" name="logsOutputWidget">
-             <property name="undoRedoEnabled">
-              <bool>false</bool>
+            <widget class="TabView" name="tabWidget">
+             <property name="currentIndex">
+              <number>-1</number>
              </property>
-             <property name="readOnly">
+             <property name="tabsClosable">
+              <bool>true</bool>
+             </property>
+             <property name="movable">
               <bool>true</bool>
              </property>
             </widget>
-            <widget class="TerminalWidget" name="terminalWidget"/>
+            <widget class="QStackedWidget" name="centralStackedWidget">
+             <property name="currentIndex">
+              <number>1</number>
+             </property>
+             <widget class="QPlainTextEdit" name="logsOutputWidget">
+              <property name="undoRedoEnabled">
+               <bool>false</bool>
+              </property>
+              <property name="readOnly">
+               <bool>true</bool>
+              </property>
+             </widget>
+             <widget class="TerminalWidget" name="terminalWidget"/>
+            </widget>
            </widget>
-         </widget>
           </item>
           <item>
            <widget class="NumberConverterWidget" name="numConverter" native="true"/>
@@ -525,10 +525,42 @@
      <addaction name="actionGitPush"/>
      <addaction name="actionManualRun"/>
     </widget>
+    <widget class="QMenu" name="menuTerminal">
+     <property name="title">
+      <string>Terminal</string>
+     </property>
+     <widget class="QMenu" name="menuSend_signal">
+      <property name="title">
+       <string>Send signal</string>
+      </property>
+      <addaction name="actionSIGINT"/>
+      <addaction name="actionSIGTERM"/>
+     </widget>
+     <widget class="QMenu" name="menuTermTheme">
+      <property name="title">
+       <string>Theme</string>
+      </property>
+      <addaction name="actionno_themes"/>
+     </widget>
+     <addaction name="menuSend_signal"/>
+     <addaction name="actionTermCopy"/>
+     <addaction name="actionTermPaste"/>
+     <addaction name="actionTermPasteSelected"/>
+     <addaction name="separator"/>
+     <addaction name="actionTermIncreaseFontSize"/>
+     <addaction name="actionTermDecreaseFontSize"/>
+     <addaction name="actionTermResetFontSize"/>
+     <addaction name="actionTermSetFontSize"/>
+     <addaction name="separator"/>
+     <addaction name="actionTermScrollToEnd"/>
+     <addaction name="separator"/>
+     <addaction name="menuTermTheme"/>
+    </widget>
     <addaction name="menuKonwertery"/>
     <addaction name="actionOpenCalc"/>
     <addaction name="menuGeneratory"/>
     <addaction name="menuGit"/>
+    <addaction name="menuTerminal"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -1132,6 +1164,73 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+G</string>
+   </property>
+  </action>
+  <action name="actionSIGINT">
+   <property name="text">
+    <string>SIGINT</string>
+   </property>
+  </action>
+  <action name="actionSIGTERM">
+   <property name="text">
+    <string>SIGTERM</string>
+   </property>
+  </action>
+  <action name="actionno_themes">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>no themes</string>
+   </property>
+  </action>
+  <action name="actionTermIncreaseFontSize">
+   <property name="text">
+    <string>Increase font size</string>
+   </property>
+  </action>
+  <action name="actionTermDecreaseFontSize">
+   <property name="text">
+    <string>Decrease font size</string>
+   </property>
+  </action>
+  <action name="actionTermResetFontSize">
+   <property name="text">
+    <string>Reset font size</string>
+   </property>
+  </action>
+  <action name="actionTermSetFontSize">
+   <property name="text">
+    <string>Set font size</string>
+   </property>
+  </action>
+  <action name="actionTermCopy">
+   <property name="icon">
+    <iconset theme="edit-copy"/>
+   </property>
+   <property name="text">
+    <string>Copy</string>
+   </property>
+  </action>
+  <action name="actionTermPaste">
+   <property name="icon">
+    <iconset theme="edit-paste"/>
+   </property>
+   <property name="text">
+    <string>Paste</string>
+   </property>
+  </action>
+  <action name="actionTermPasteSelected">
+   <property name="icon">
+    <iconset theme="edit-paste"/>
+   </property>
+   <property name="text">
+    <string>Paste selected</string>
+   </property>
+  </action>
+  <action name="actionTermScrollToEnd">
+   <property name="text">
+    <string>Scroll to end</string>
    </property>
   </action>
  </widget>

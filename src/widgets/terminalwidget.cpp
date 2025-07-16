@@ -36,3 +36,73 @@ TerminalWidget::~TerminalWidget()
 {
     delete ui;
 }
+
+QStringList TerminalWidget::getThemes()
+{
+    return terminal->getAvailableColorSchemes();
+}
+
+void TerminalWidget::setTheme(const QString &theme)
+{
+    terminal->setColorScheme(theme);
+}
+
+void TerminalWidget::increaseFontSize()
+{
+    terminal->zoomIn();
+}
+
+void TerminalWidget::decreaseFontSize()
+{
+    terminal->zoomOut();
+}
+
+void TerminalWidget::resetFontSize()
+{
+    setFontSize(10);
+}
+
+void TerminalWidget::setFontSize(int size)
+{
+    QFont font = terminal->getTerminalFont();
+    font.setPointSize(size);
+    terminal->setTerminalFont(font);
+}
+
+void TerminalWidget::copy()
+{
+    terminal->copyClipboard();
+}
+
+void TerminalWidget::paste()
+{
+    terminal->pasteClipboard();
+}
+
+void TerminalWidget::pasteSelected()
+{
+    terminal->pasteSelection();
+}
+
+void TerminalWidget::scrollToEnd()
+{
+    terminal->scrollToEnd();
+}
+
+void TerminalWidget::wheelEvent(QWheelEvent *event)
+{
+    if(event->modifiers() == Qt::ControlModifier)
+    {
+        if(event->angleDelta().y() > 0)
+        {
+            increaseFontSize();
+        }
+        else
+        {
+            decreaseFontSize();
+        }
+        event->accept();
+    }
+    else
+        QWidget::wheelEvent(event);
+}

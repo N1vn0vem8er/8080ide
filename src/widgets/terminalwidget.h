@@ -15,10 +15,25 @@ class TerminalWidget : public QWidget
 public:
     explicit TerminalWidget(QWidget *parent = nullptr);
     ~TerminalWidget();
+    QStringList getThemes();
+    void setTheme(const QString& theme);
+
+public slots:
+    void increaseFontSize();
+    void decreaseFontSize();
+    void resetFontSize();
+    void setFontSize(int size);
+    void copy();
+    void paste();
+    void pasteSelected();
+    void scrollToEnd();
 
 private:
     Ui::TerminalWidget *ui;
     QTermWidget* terminal {nullptr};
+
+protected:
+    void wheelEvent(QWheelEvent *event) override;
 };
 
 #endif // TERMINALWIDGET_H

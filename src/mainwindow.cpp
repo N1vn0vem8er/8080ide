@@ -140,6 +140,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(simHandeler, &SimHandeler::setCurrentBranchName, this, &MainWindow::setCurrenchBranchName);
     connect(ui->actionGo_bottom, &QAction::triggered, this, &MainWindow::goBotton);
     connect(ui->actionGo_top, &QAction::triggered, this, &MainWindow::goTop);
+    connect(ui->actionTermSetFontSize, &QAction::triggered, this, &MainWindow::openTerminalSetFontSize);
+    connect(ui->actionTermResetFontSize, &QAction::triggered, ui->terminalWidget, &TerminalWidget::resetFontSize);
+    connect(ui->actionTermIncreaseFontSize, &QAction::triggered, ui->terminalWidget, &TerminalWidget::increaseFontSize);
+    connect(ui->actionTermDecreaseFontSize, &QAction::triggered, ui->terminalWidget, &TerminalWidget::decreaseFontSize);
+    connect(ui->actionTermCopy, &QAction::triggered, ui->terminalWidget, &TerminalWidget::copy);
+    connect(ui->actionTermPaste, &QAction::triggered, ui->terminalWidget, &TerminalWidget::paste);
+    connect(ui->actionTermPasteSelected, &QAction::triggered, ui->terminalWidget, &TerminalWidget::pasteSelected);
+    connect(ui->actionTermScrollToEnd, &QAction::triggered, ui->terminalWidget, &TerminalWidget::scrollToEnd);
 
 
     ui->gitBranchButton->setVisible(false);
@@ -154,6 +162,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     setAcceptDrops(true);
     loadSettings();
+    loadTerminalThemesMenu();
     setStyleFromSettings();
 
     ui->stackedWidget->setVisible(false);
@@ -333,6 +342,30 @@ void MainWindow::goBotton()
     if(ce)
     {
         ce->verticalScrollBar()->setValue(ce->verticalScrollBar()->maximum());
+    }
+}
+
+void MainWindow::openTerminalSetFontSize()
+{
+    QDialog* dialog = new QDialog(this);
+    dialog->setWindowTitle(tr("Set font size"));
+    QVBoxLayout* mainLayout = new QVBoxLayout(dialog);
+    QLineEdit* lineEdit = new QLineEdit(dialog);
+    lineEdit->setPlaceholderText(tr("Enter font size"));
+    mainLayout->addWidget(lineEdit);
+    QPushButton* okButton = new QPushButton(dialog);
+    QPushButton* cancelButton = new QPushButton(dialog);
+    std::unique_ptr<QHBoxLayout> buttonsLayout = std::make_unique<QHBoxLayout>();
+    okButton->setText(tr("Ok"));
+    cancelButton->setText(tr("Cancel"));
+    buttonsLayout->addWidget(okButton);
+    buttonsLayout->addWidget(cancelButton);
+    mainLayout->addLayout(buttonsLayout.get());
+    connect(okButton, &QPushButton::clicked, dialog, &QDialog::accept);
+    connect(cancelButton, &QPushButton::clicked, dialog, &QDialog::reject);
+    if(dialog->exec() == QDialog::Accepted)
+    {
+        ui->terminalWidget->setFontSize(lineEdit->text().toInt());
     }
 }
 
@@ -1236,25 +1269,25 @@ void MainWindow::setFontSize()
     if(widget)
     {
         QDialog* dialog = new QDialog(this);
+        dialog->setWindowTitle(tr("Set font size"));
         QVBoxLayout* mainLayout = new QVBoxLayout(dialog);
         QLineEdit* lineEdit = new QLineEdit(dialog);
         lineEdit->setPlaceholderText(tr("Enter font size"));
         mainLayout->addWidget(lineEdit);
         QPushButton* okButton = new QPushButton(dialog);
         QPushButton* cancelButton = new QPushButton(dialog);
-        QHBoxLayout* buttonsLayout = new QHBoxLayout();
+        std::unique_ptr<QHBoxLayout> buttonsLayout = std::make_unique<QHBoxLayout>();
         okButton->setText(tr("Ok"));
         cancelButton->setText(tr("Cancel"));
         buttonsLayout->addWidget(okButton);
         buttonsLayout->addWidget(cancelButton);
-        mainLayout->addLayout(buttonsLayout);
+        mainLayout->addLayout(buttonsLayout.get());
         connect(okButton, &QPushButton::clicked, dialog, &QDialog::accept);
         connect(cancelButton, &QPushButton::clicked, dialog, &QDialog::reject);
         if(dialog->exec() == QDialog::Accepted)
         {
             widget->setFontSize(lineEdit->text().toInt());
         }
-        delete buttonsLayout;
     }
 }
 
@@ -1386,5 +1419,22 @@ void MainWindow::openFailedToOpenDialog(const QString &path, const QString &erro
     Could't open %1
     %2
 )").arg(path, errorMessage));
+}
+
+void MainWindow::loadTerminalThemesMenu()
+{
+    ui->menuTermTheme->clear();
+    const QStringList themes = ui->terminalWidget->getThemes();
+    for(const auto& i : themes)
+    {
+        QAction* action = new QAction(i, ui->menuTermTheme);
+        connect(action, &QAction::triggered, this, [this, i]{setTermTheme(i);});
+        ui->menuTermTheme->addAction(action);
+    }
+}
+
+void MainWindow::setTermTheme(const QString &name)
+{
+    ui->terminalWidget->setTheme(name);
 }
 
