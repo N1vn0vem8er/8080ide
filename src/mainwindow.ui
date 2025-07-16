@@ -533,8 +533,13 @@
       <property name="title">
        <string>Send signal</string>
       </property>
-      <addaction name="actionSIGINT"/>
-      <addaction name="actionSIGTERM"/>
+      <addaction name="actionTermSIGINT"/>
+      <addaction name="actionTermSIGTSTP"/>
+      <addaction name="actionTermSIGTERM"/>
+      <addaction name="actionTermSIGQUIT"/>
+      <addaction name="actionTermSIGHUP"/>
+      <addaction name="actionTermSIGKILL"/>
+      <addaction name="actionTermSIGSTOP"/>
      </widget>
      <widget class="QMenu" name="menuTermTheme">
       <property name="title">
@@ -1166,12 +1171,12 @@
     <string>Ctrl+Shift+G</string>
    </property>
   </action>
-  <action name="actionSIGINT">
+  <action name="actionTermSIGINT">
    <property name="text">
     <string>SIGINT</string>
    </property>
   </action>
-  <action name="actionSIGTERM">
+  <action name="actionTermSIGTERM">
    <property name="text">
     <string>SIGTERM</string>
    </property>
@@ -1231,6 +1236,36 @@
   <action name="actionTermScrollToEnd">
    <property name="text">
     <string>Scroll to end</string>
+   </property>
+  </action>
+  <action name="actionTermSIGQUIT">
+   <property name="text">
+    <string>SIGQUIT</string>
+   </property>
+  </action>
+  <action name="actionTermSIGHUP">
+   <property name="text">
+    <string>SIGHUP</string>
+   </property>
+  </action>
+  <action name="actionTermSIGKILL">
+   <property name="text">
+    <string>SIGKILL</string>
+   </property>
+  </action>
+  <action name="actionTermSIGSTOP">
+   <property name="text">
+    <string>SIGSTOP</string>
+   </property>
+  </action>
+  <action name="actionTermSIGCONT">
+   <property name="text">
+    <string>SIGCONT</string>
+   </property>
+  </action>
+  <action name="actionTermSIGTSTP">
+   <property name="text">
+    <string>SIGTSTP</string>
    </property>
   </action>
  </widget>

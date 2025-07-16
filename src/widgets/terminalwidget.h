@@ -27,6 +27,13 @@ public slots:
     void paste();
     void pasteSelected();
     void scrollToEnd();
+    void sigstop();
+    void sigint();
+    void sigterm();
+    void sigkill();
+    void sigquit();
+    void sighup();
+    void sigtstp();
 
 private:
     Ui::TerminalWidget *ui;

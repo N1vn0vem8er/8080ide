@@ -148,7 +148,13 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionTermPaste, &QAction::triggered, ui->terminalWidget, &TerminalWidget::paste);
     connect(ui->actionTermPasteSelected, &QAction::triggered, ui->terminalWidget, &TerminalWidget::pasteSelected);
     connect(ui->actionTermScrollToEnd, &QAction::triggered, ui->terminalWidget, &TerminalWidget::scrollToEnd);
-
+    connect(ui->actionTermSIGINT, &QAction::triggered, ui->terminalWidget, &TerminalWidget::sigint);
+    connect(ui->actionTermSIGKILL, &QAction::triggered, ui->terminalWidget, &TerminalWidget::sigkill);
+    connect(ui->actionTermSIGTERM, &QAction::triggered, ui->terminalWidget, &TerminalWidget::sigterm);
+    connect(ui->actionTermSIGHUP, &QAction::triggered, ui->terminalWidget, &TerminalWidget::sighup);
+    connect(ui->actionTermSIGSTOP, &QAction::triggered, ui->terminalWidget, &TerminalWidget::sigstop);
+    connect(ui->actionTermSIGTSTP, &QAction::triggered, ui->terminalWidget, &TerminalWidget::sigtstp);
+    connect(ui->actionTermSIGQUIT, &QAction::triggered, ui->terminalWidget, &TerminalWidget::sigquit);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;

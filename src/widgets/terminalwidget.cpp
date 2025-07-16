@@ -9,18 +9,9 @@ TerminalWidget::TerminalWidget(QWidget *parent)
 {
     ui->setupUi(this);
     terminal = new QTermWidget(this);
-    connect(ui->intButton, &QPushButton::clicked, this, [&]{
-        int id = terminal->getForegroundProcessId();
-        kill(id, SIGINT);
-    });
-    connect(ui->tstpButton, &QPushButton::clicked, this, [&]{
-        int id = terminal->getForegroundProcessId();
-        kill(id, SIGTSTP);
-    });
-    connect(ui->quitButton, &QPushButton::clicked, this, [&]{
-        int id = terminal->getForegroundProcessId();
-        kill(id, SIGTERM);
-    });
+    connect(ui->intButton, &QPushButton::clicked, this, &TerminalWidget::sigint);
+    connect(ui->tstpButton, &QPushButton::clicked, this, &TerminalWidget::sigtstp);
+    connect(ui->quitButton, &QPushButton::clicked, this, &TerminalWidget::sigterm);
     connect(ui->copyButton, &QPushButton::clicked, terminal, &QTermWidget::copyClipboard);
     connect(ui->pasteButton, &QPushButton::clicked, terminal, &QTermWidget::pasteClipboard);
 
@@ -87,6 +78,48 @@ void TerminalWidget::pasteSelected()
 void TerminalWidget::scrollToEnd()
 {
     terminal->scrollToEnd();
+}
+
+void TerminalWidget::sigstop()
+{
+    int id = terminal->getForegroundProcessId();
+    kill(id, SIGSTOP);
+}
+
+void TerminalWidget::sigint()
+{
+    int id = terminal->getForegroundProcessId();
+    kill(id, SIGINT);
+}
+
+void TerminalWidget::sigterm()
+{
+    int id = terminal->getForegroundProcessId();
+    kill(id, SIGTERM);
+}
+
+void TerminalWidget::sigkill()
+{
+    int id = terminal->getForegroundProcessId();
+    kill(id, SIGKILL);
+}
+
+void TerminalWidget::sigquit()
+{
+    int id = terminal->getForegroundProcessId();
+    kill(id, SIGQUIT);
+}
+
+void TerminalWidget::sighup()
+{
+    int id = terminal->getForegroundProcessId();
+    kill(id, SIGHUP);
+}
+
+void TerminalWidget::sigtstp()
+{
+    int id = terminal->getForegroundProcessId();
+    kill(id, SIGTSTP);
 }
 
 void TerminalWidget::wheelEvent(QWheelEvent *event)
