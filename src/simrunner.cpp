@@ -127,7 +127,7 @@ void SimRunner::run()
     QStringList registersState;
     if(sim != nullptr)
     {
-        sim->setHLTType(0);
+        sim->setHLTType(Symulator::SetHTLFlag);
         while(!sim->getHLT() && sim->getPC() <= sim->getMemSize() && !QThread::currentThread()->isInterruptionRequested())
         {
             auto tmp = std::find_if(breakpoints.begin(), breakpoints.end(), [this](const std::pair<unsigned short, int>& element){return element.first == sim->getPC();});

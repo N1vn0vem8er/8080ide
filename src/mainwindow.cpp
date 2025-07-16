@@ -40,8 +40,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     simHandeler = new SimHandeler(ui->screen);
-    simHandeler->setProjectNameLabel(ui->projectInfoLabel);
+    projectInfoLabel = new QLabel(ui->statusbar);
+    ui->statusbar->addPermanentWidget(projectInfoLabel);
+    simHandeler->setProjectNameLabel(projectInfoLabel);
     simHandeler->setInputLine(ui->simulatorInput);
+
     connect(ui->run_button, &QPushButton::released, this, &MainWindow::b_run);
     connect(ui->actionCompile, &QAction::triggered, this, &MainWindow::b_compile);
     connect(ui->c_button, &QPushButton::released, this, &MainWindow::b_compile);
@@ -171,7 +174,7 @@ MainWindow::MainWindow(QWidget *parent)
     setStyleFromSettings();
 
     ui->stackedWidget->setVisible(false);
-    ui->statusbar->setVisible(false);
+
     ui->searchWidget->setVisible(false);
     if(IDESettings::startupWidgetsVisibitity.startPage == IDESettings::show)
         openStartTabWidget();
@@ -495,7 +498,7 @@ void MainWindow::openInEditor(const QString &text, const QString &title, bool re
 void MainWindow::setCurrenctBranchName(const QString &name)
 {
     ui->gitBranchButton->setVisible(!name.isEmpty());
-    ui->gitBranchButton->setText(name);
+    ui->gitBranchButton->setText(tr("Branch: %1").arg(name));
 }
 
 void MainWindow::enableSyntaxHighLinhting()
@@ -1137,11 +1140,7 @@ void MainWindow::tabChanged()
         ui->actionOverwrite_mode->setChecked(tmp->overwriteMode());
         ui->actionRead_only->setChecked(tmp->isReadOnly());
         ui->actionLine_wrap->setChecked(tmp->lineWrapMode() == CodeEditor::NoWrap ? false : true);
-        ui->fontSizeLabel->setText(tr("Font Size: %1").arg(tmp->font().pointSize()));
-    }
-    else
-    {
-        ui->fontSizeLabel->setText("");
+        ui->statusbar->showMessage(tr("Font Size: %1").arg(tmp->font().pointSize()), 5000);
     }
 }
 void MainWindow::undo()
@@ -1211,7 +1210,7 @@ void MainWindow::paste()
 
 void MainWindow::fontSizeChanged(int size)
 {
-    ui->fontSizeLabel->setText(tr("Font Size: %1").arg(size));
+    ui->statusbar->showMessage(tr("Font Size: %1").arg(size), 5000);
 }
 
 void MainWindow::openPasteFromFile()

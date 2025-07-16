@@ -26,6 +26,7 @@ private:
     void save(CodeEditor* editor);
     void addTab(QWidget* widget, const QString& title);
     bool newFileLoaded;
+    QLabel* projectInfoLabel {nullptr};
     std::string getStdStringFromTab(int index);
     QString getPlainTextFromTab(int index);
     void openProject(const QString& path);

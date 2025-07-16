@@ -38,6 +38,11 @@ private:
 public:
 	Symulator(unsigned short memorySize);
     ~Symulator();
+    enum HltType{
+        SetHTLFlag,
+        WhileLoop
+    };
+
 	void load(unsigned char* instructions, int size);
 	void start();
 	void nextInst();

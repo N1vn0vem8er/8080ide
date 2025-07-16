@@ -353,7 +353,7 @@ void SimHandeler::clr()
 void SimHandeler::next()
 {
     if(symulator->getHLT()) return;
-    this->symulator->setHLTType(0);
+    this->symulator->setHLTType(Symulator::SetHTLFlag);
     symulator->nextInst();
     printOnScreen(symulator->getOutBuffer());
     symulator->setOutBuffer('\0');
