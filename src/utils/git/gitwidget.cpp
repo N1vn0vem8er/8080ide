@@ -90,6 +90,11 @@ void GitWidget::noRepo()
     repoPath.clear();
 }
 
+bool GitWidget::hasRepository() const
+{
+    return !repoPath.isEmpty();
+}
+
 void GitWidget::setVisibility(bool val)
 {
     ui->gitPullButton->setVisible(val);
@@ -370,4 +375,24 @@ void GitWidget::gitFetch()
     process.waitForReadyRead();
     refresh();
     emit openInEditor(process.readAllStandardOutput() + process.readAllStandardError(), tr("Fetch results"));
+}
+
+QString GitWidget::getRepoPath() const
+{
+    return repoPath;
+}
+
+QString GitWidget::getBranchName() const
+{
+
+}
+
+QStringList GitWidget::getBranches() const
+{
+    QProcess process;
+    process.setWorkingDirectory(repoPath);
+    process.startCommand("git branch --format='%(refname:short)'");
+    process.waitForStarted();
+    process.waitForFinished();
+    process.waitForReadyRead();
 }

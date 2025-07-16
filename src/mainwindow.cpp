@@ -873,9 +873,9 @@ void MainWindow::openGitPush()
 
 void MainWindow::openGitBranchDialog()
 {
-    if(simHandeler->isProjectLoaded())
+    if(simHandeler->isProjectLoaded() || ui->gitWidget->hasRepository())
     {
-        GitBranchDialog* dialog = new GitBranchDialog(simHandeler->getProjectPath(), simHandeler->getGitBranches(), this);
+        GitBranchDialog* dialog = new GitBranchDialog(simHandeler->isProjectLoaded() ? simHandeler->getProjectPath() : ui->gitWidget->getRepoPath(), simHandeler->getGitBranches(), this);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
         connect(dialog, &GitBranchDialog::setBranch, simHandeler, &SimHandeler::setBranch);
         dialog->show();
@@ -886,9 +886,9 @@ void MainWindow::openGitBranchDialog()
 
 void MainWindow::openGitCommandDialog()
 {
-    if(simHandeler->isProjectLoaded())
+    if(simHandeler->isProjectLoaded() || ui->gitWidget->hasRepository())
     {
-        CustomGitCommandDialog* dialog = new CustomGitCommandDialog(simHandeler->getProjectPath(), this);
+        CustomGitCommandDialog* dialog = new CustomGitCommandDialog(simHandeler->isProjectLoaded() ? simHandeler->getProjectPath() : ui->gitWidget->getRepoPath(), this);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
         dialog->show();
     }

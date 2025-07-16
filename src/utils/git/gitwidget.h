@@ -17,11 +17,15 @@ public:
     ~GitWidget();
     void setRepositoryPath(const QString& path);
     void noRepo();
+    bool hasRepository() const;
     void gitPush();
     void gitPull();
     void gitStatus();
     void gitLog();
     void gitFetch();
+    QString getRepoPath() const;
+    QString getBranchName() const;
+    QStringList getBranches() const;
 
 private:
     Ui::GitWidget *ui;
