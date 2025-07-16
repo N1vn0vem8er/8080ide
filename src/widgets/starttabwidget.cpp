@@ -22,13 +22,18 @@ StartTabWidget::StartTabWidget(QWidget *parent)
     connect(ui->clearRecentProjectsButton, &QPushButton::clicked, this, &StartTabWidget::clearRecentProjects);
     connect(ui->refreshFilesButton, &QPushButton::clicked, this, &StartTabWidget::loadRecentFilesList);
     connect(ui->refreshProjectsButton, &QPushButton::clicked, this, &StartTabWidget::loadRecentProjectsList);
-    loadRecentFilesList();
-    loadRecentProjectsList();
+    refresh();
 }
 
 StartTabWidget::~StartTabWidget()
 {
     delete ui;
+}
+
+void StartTabWidget::refresh()
+{
+    loadRecentFilesList();
+    loadRecentProjectsList();
 }
 
 void StartTabWidget::linkClicked(const QString &link)

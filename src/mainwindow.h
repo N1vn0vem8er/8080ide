@@ -133,8 +133,10 @@ protected:
     void dropEvent(QDropEvent* event) override;
     void dragEnterEvent(QDragEnterEvent* event) override;
     void dragLeaveEvent(QDragLeaveEvent* event) override;
-
-protected:
     void closeEvent(QCloseEvent *event) override;
+
+signals:
+    void refreshStartTab();
+
 };
 #endif // MAINWINDOW_H

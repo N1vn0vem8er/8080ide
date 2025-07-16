@@ -15,6 +15,9 @@ public:
     explicit StartTabWidget(QWidget *parent = nullptr);
     ~StartTabWidget();
 
+public slots:
+    void refresh();
+
 private:
     Ui::StartTabWidget *ui;
     void linkClicked(const QString& link);

@@ -314,6 +314,7 @@ void MainWindow::openStartTabWidget()
     connect(widget, &StartTabWidget::linkActivated, this, &MainWindow::handleStartTabLinks);
     connect(widget, &StartTabWidget::openFileFromPath, this, &MainWindow::openFileInNewTab);
     connect(widget, &StartTabWidget::openProjectFromPath, simHandeler, [this](const QString& path){openProject(path);});
+    connect(this, &MainWindow::refreshStartTab, widget, &StartTabWidget::refresh);
     addTab(widget, "Start");
 }
 
@@ -396,6 +397,7 @@ void MainWindow::saveFileToRecentFiles(const QString &filePath)
             file.close();
         }
     }
+    emit refreshStartTab();
 }
 
 void MainWindow::saveProjectToRecentProjects(const QString &projectPath)
@@ -420,6 +422,7 @@ void MainWindow::saveProjectToRecentProjects(const QString &projectPath)
             file.close();
         }
     }
+    emit refreshStartTab();
 }
 
 bool MainWindow::pathExists(std::string path, std::fstream& file)
