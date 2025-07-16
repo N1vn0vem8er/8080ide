@@ -468,7 +468,6 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
-    <addaction name="actionClose_Tab"/>
     <addaction name="actionStartPage"/>
     <addaction name="actionShowFiles"/>
     <addaction name="actionShowGit"/>
@@ -1108,18 +1107,36 @@
    </property>
   </action>
   <action name="actionClose">
+   <property name="icon">
+    <iconset theme="list-remove"/>
+   </property>
    <property name="text">
     <string>Close</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+W</string>
+   </property>
   </action>
   <action name="actionClose_All">
+   <property name="icon">
+    <iconset theme="list-remove"/>
+   </property>
    <property name="text">
     <string>Close All</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+W</string>
+   </property>
   </action>
   <action name="actionClose_all_but_this">
+   <property name="icon">
+    <iconset theme="list-remove"/>
+   </property>
    <property name="text">
     <string>Close all but this</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Alt+W</string>
    </property>
   </action>
   <action name="actionReload">

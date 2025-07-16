@@ -24,12 +24,18 @@
        <property name="text">
         <string>Copy</string>
        </property>
+       <property name="icon">
+        <iconset theme="edit-copy"/>
+       </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="pasteButton">
        <property name="text">
         <string>Paste</string>
+       </property>
+       <property name="icon">
+        <iconset theme="edit-paste"/>
        </property>
       </widget>
      </item>
