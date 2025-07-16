@@ -136,7 +136,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->gitWidget, &GitWidget::openFile, this, &MainWindow::openFileInNewTab);
     connect(ui->terminalButton, &QPushButton::clicked, this, &MainWindow::showTerminal);
     connect(ui->gitBranchButton, &QPushButton::clicked, this, &MainWindow::openGitBranchDialog);
-    connect(simHandeler, &SimHandeler::setCurrentBranchName, this, &MainWindow::setCurrenchBranchName);
+    connect(ui->gitWidget, &GitWidget::branchNameChanged, this, &::MainWindow::setCurrenctBranchName);
     connect(ui->actionGo_bottom, &QAction::triggered, this, &MainWindow::goBotton);
     connect(ui->actionGo_top, &QAction::triggered, this, &MainWindow::goTop);
     connect(ui->actionTermSetFontSize, &QAction::triggered, this, &MainWindow::openTerminalSetFontSize);
@@ -295,7 +295,7 @@ void MainWindow::openNewProjectWindow()
             simHandeler->openProject(path);
             QFileInfo info(path);
             openDir(info.dir().path());
-            showFileSystemTree();
+            if(!isFilesOpen()) showFileSystemTree();
             saveProjectToRecentProjects(path);
         }
     }
@@ -492,7 +492,7 @@ void MainWindow::openInEditor(const QString &text, const QString &title, bool re
     addTab(editor, title);
 }
 
-void MainWindow::setCurrenchBranchName(const QString &name)
+void MainWindow::setCurrenctBranchName(const QString &name)
 {
     ui->gitBranchButton->setVisible(!name.isEmpty());
     ui->gitBranchButton->setText(name);
@@ -875,7 +875,7 @@ void MainWindow::openGitBranchDialog()
 {
     if(simHandeler->isProjectLoaded() || ui->gitWidget->hasRepository())
     {
-        GitBranchDialog* dialog = new GitBranchDialog(simHandeler->isProjectLoaded() ? simHandeler->getProjectPath() : ui->gitWidget->getRepoPath(), simHandeler->getGitBranches(), this);
+        GitBranchDialog* dialog = new GitBranchDialog(ui->gitWidget->getRepoPath(), ui->gitWidget->getBranches(), this);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
         connect(dialog, &GitBranchDialog::setBranch, simHandeler, &SimHandeler::setBranch);
         dialog->show();
@@ -1017,7 +1017,7 @@ void MainWindow::openDirPressed()
     if(!path.isEmpty())
     {
         openDir(path);
-        showFileSystemTree();
+        if(!isFilesOpen()) showFileSystemTree();
     }
 }
 
@@ -1034,11 +1034,12 @@ void MainWindow::openDir(const QString &path)
     if(ui->treeView->getHasGitRepository())
     {
         ui->gitWidget->setRepositoryPath(path);
+        ui->gitWidget->getBranches();
     }
     else
     {
         ui->gitWidget->noRepo();
-        setCurrenchBranchName("");
+        setCurrenctBranchName("");
     }
 }
 void MainWindow::saveas()
@@ -1083,7 +1084,7 @@ void MainWindow::openProject(const QString &path)
         simHandeler->openProject(path);
         QFileInfo info(path);
         openDir(info.dir().absolutePath());
-        showFileSystemTree();
+        if(!isFilesOpen()) showFileSystemTree();
         saveProjectToRecentProjects(path);
     }
 }
@@ -1444,5 +1445,15 @@ void MainWindow::loadTerminalThemesMenu()
 void MainWindow::setTermTheme(const QString &name)
 {
     ui->terminalWidget->setTheme(name);
+}
+
+bool MainWindow::isFilesOpen() const
+{
+    return ui->stackedWidget->isVisible() && ui->stackedWidget->currentIndex() == 0;
+}
+
+bool MainWindow::isGitOpen() const
+{
+    return ui->stackedWidget->isVisible() && ui->stackedWidget->currentIndex() == 1;
 }
 

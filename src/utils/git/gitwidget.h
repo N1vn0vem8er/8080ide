@@ -27,6 +27,9 @@ public:
     QString getBranchName() const;
     QStringList getBranches() const;
 
+public slots:
+    void setBranch(const QString& name);
+
 private:
     Ui::GitWidget *ui;
     QString repoPath;
@@ -62,6 +65,7 @@ signals:
     void openInEditor(const QString& text, const QString& title, bool readOnly = true, bool spellChecking = false, bool disableSaveWarning = true);
     void openFile(const QString& absolutePath);
     void addTab(QWidget* widget, const QString& title);
+    void branchNameChanged(const QString& name);
 };
 
 #endif // GITWIDGET_H

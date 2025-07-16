@@ -82,6 +82,7 @@ void GitWidget::setRepositoryPath(const QString &path)
     repoPath = path;
     setVisibility(true);
     readStatus();
+    emit branchNameChanged(getBranchName());
 }
 
 void GitWidget::noRepo()
@@ -384,7 +385,15 @@ QString GitWidget::getRepoPath() const
 
 QString GitWidget::getBranchName() const
 {
-
+    QProcess process;
+    process.setWorkingDirectory(repoPath);
+    process.startCommand("git rev-parse --abbrev-ref HEAD");
+    process.waitForStarted(3000);
+    process.waitForFinished(3000);
+    process.waitForReadyRead(3000);
+    QString output = process.readAllStandardOutput();
+    output.remove('\n');
+    return output;
 }
 
 QStringList GitWidget::getBranches() const
@@ -392,7 +401,32 @@ QStringList GitWidget::getBranches() const
     QProcess process;
     process.setWorkingDirectory(repoPath);
     process.startCommand("git branch --format='%(refname:short)'");
-    process.waitForStarted();
-    process.waitForFinished();
-    process.waitForReadyRead();
+    process.waitForStarted(3000);
+    process.waitForFinished(3000);
+    process.waitForReadyRead(3000);
+    const QString results = process.readAllStandardOutput();
+    QRegularExpressionMatchIterator iterator = QRegularExpression(R"((\S+))").globalMatch(results);
+    QStringList branches;
+    while(iterator.hasNext())
+    {
+        auto match = iterator.next();
+        for(int i=1;i<match.capturedLength(); i++)
+        {
+            auto tmp = match.captured(i);
+            if(!tmp.isEmpty())
+            {
+                branches << tmp;
+            }
+        }
+    }
+    return branches;
+}
+
+void GitWidget::setBranch(const QString &name)
+{
+    QProcess* process = new QProcess(this);
+    process->setWorkingDirectory(repoPath);
+    process->start("git", {"checkout", name});
+    connect(process, &QProcess::finished, this, [this, process]{emit branchNameChanged(getBranchName()); delete process;});
+    process->waitForStarted(3000);
 }

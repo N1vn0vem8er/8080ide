@@ -38,6 +38,8 @@ private:
     void openFailedToOpenDialog(const QString& path, const QString& errorMessage);
     void loadTerminalThemesMenu();
     void setTermTheme(const QString& name);
+    inline bool isFilesOpen() const;
+    inline bool isGitOpen() const;
 
 private slots:
     void copy();
@@ -66,7 +68,7 @@ private slots:
     void showDiagnostics();
     void showTerminal();
     void openInEditor(const QString& text, const QString& title, bool readOnly = true, bool spellChecking = false, bool disableSaveWarning = false);
-    void setCurrenchBranchName(const QString& name);
+    void setCurrenctBranchName(const QString& name);
     void undo();
     void redo();
     void openFromTree();
