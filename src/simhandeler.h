@@ -40,7 +40,6 @@ private:
     ProjectManager* projectManager = nullptr;
     bool projectLoaded;
     QLabel* projectNameLabel = nullptr;
-    void setBranchName();
     QThread simulatorThread;
     unsigned char* inputValue;
     SimRunner* sr = nullptr;
@@ -75,7 +74,6 @@ public:
     };
     explicit SimHandeler(QPlainTextEdit* screen, QObject* parent = nullptr);
     ~SimHandeler();
-    void setBranch(QString name);
     void setProjectNameLabel(QLabel* label);
     void setInputLine(QLineEdit* lineEdit);
     void updateCode(const QString& code);
@@ -108,7 +106,6 @@ public:
     QString getFilename() const;
     void setFilename(const QString &newFilename);
     void setFileBreakpoints(const std::vector<std::pair<QString, std::vector<int>>>& bp);
-    QStringList getGitBranches() const;
     QString memoryToString() const;
 signals:
     void startSim(Symulator* sim);
@@ -121,7 +118,6 @@ signals:
     void memoryChangedByUserSignal(QString memory, int size);
     void changeRegisters(unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char h, unsigned char l, unsigned short pc, unsigned short sp);
     void setRegisterValues(const QString& a, const QString& b, const QString& c, const QString& d, const QString& e, const QString& h, const QString& l, const QString& PC, const QString& SP);
-    void setCurrentBranchName(const QString& name);
 
 public slots:
     void print(char ch);

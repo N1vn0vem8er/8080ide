@@ -74,7 +74,6 @@ void SimHandeler::openProject(const QString &path)
     projectManager->clearCompilerQueue();
     projectLoaded = true;
     projectNameLabel->setText("Projekt: " + projectManager->getName());
-    if(projectManager->hasGitRepository()) setBranchName();
     log("Project loaded");
 }
 void SimHandeler::closeProject()
@@ -85,18 +84,6 @@ void SimHandeler::closeProject()
     Ssettings::memStart = IDESettings::simStartAddress;
     Ssettings::sp = 100;
 }
-void SimHandeler::setBranchName()
-{
-    QProcess process;
-    process.setWorkingDirectory(projectManager->getProjectAbsolutePath());
-    process.startCommand("git rev-parse --abbrev-ref HEAD");
-    process.waitForStarted(3000);
-    process.waitForFinished();
-    QString output = process.readAllStandardOutput();
-    output.remove('\n');
-    if(output != "HEAD")
-        emit setCurrentBranchName(output);
-}
 
 void SimHandeler::log(const QString &text)
 {
@@ -104,17 +91,6 @@ void SimHandeler::log(const QString &text)
     {
         logsOutput->appendPlainText(text);
     }
-}
-
-void SimHandeler::setBranch(QString name)
-{
-    name.remove('\'');
-    QProcess process;
-    process.setWorkingDirectory(projectManager->getProjectAbsolutePath());
-    process.startCommand("git checkout "+name);
-    process.waitForStarted(3000);
-    process.waitForFinished(3000);
-    setBranchName();
 }
 
 QString SimHandeler::getFilename() const
@@ -130,11 +106,6 @@ void SimHandeler::setFilename(const QString &newFilename)
 void SimHandeler::setFileBreakpoints(const std::vector<std::pair<QString, std::vector<int>> > &bp)
 {
     fileBreakpoints = bp;
-}
-
-QStringList SimHandeler::getGitBranches() const
-{
-    return projectManager->getBranches();
 }
 
 void SimHandeler::setLogsOutput(QPlainTextEdit *output)

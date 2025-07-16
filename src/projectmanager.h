@@ -18,7 +18,6 @@ private:
     QString projectAbsolutePath;
     QString projectName;
     QString projectConfigAbsolutePath;
-    QList<QString> gitBranches;
     QStringList projectFilesPaths;
     QVector<QString> logging;
     void log(QString msg);
@@ -37,7 +36,6 @@ public:
     QString getProjectConfigAbsolutePath() const;
     bool hasGitRepository();
     void clearCompilerQueue();
-    QStringList getBranches();
     QStringList getProjectFilesPaths() const;
     QList<Globals::FileMemoryStartEnd> getFileMemoryRanges() const;
     void clearFileMemoryRanges();

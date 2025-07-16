@@ -12,14 +12,14 @@ class GitBranchDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit GitBranchDialog(QString path, QStringList branches, QWidget *parent = nullptr);
+    explicit GitBranchDialog(const QString& path, const QStringList& branches, QWidget *parent = nullptr);
     ~GitBranchDialog();
 
 private:
     Ui::GitBranchDialog *ui;
     QString repoPath;
 signals:
-    void setBranch(QString name);
+    void setBranch(const QString& name);
 };
 
 #endif // GITBRANCHDIALOG_H

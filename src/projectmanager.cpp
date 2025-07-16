@@ -256,33 +256,6 @@ void ProjectManager::clearCompilerQueue()
     compileQueue.clear();
 }
 
-QStringList ProjectManager::getBranches()
-{
-    gitBranches.clear();
-    if(hasGitRepository())
-    {
-        QProcess process;
-        process.setWorkingDirectory(projectAbsolutePath);
-        process.startCommand("git branch --format='%(refname:short)'");
-        process.waitForStarted();
-        process.waitForFinished();
-        process.waitForReadyRead();
-        QByteArray output = process.readAll();
-        QString line = "";
-        for(auto i : std::as_const(output))
-        {
-            if(i=='\n')
-            {
-                gitBranches.append(line);
-                line = "";
-                continue;
-            }
-            line+=i;
-        }
-    }
-    return gitBranches;
-}
-
 QStringList ProjectManager::getProjectFilesPaths() const
 {
     return projectFilesPaths;

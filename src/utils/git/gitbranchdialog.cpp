@@ -1,7 +1,7 @@
 #include "gitbranchdialog.h"
 #include "ui_gitbranchdialog.h"
 
-GitBranchDialog::GitBranchDialog(QString path, QStringList branches, QWidget *parent)
+GitBranchDialog::GitBranchDialog(const QString &path, const QStringList &branches, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::GitBranchDialog)
 {

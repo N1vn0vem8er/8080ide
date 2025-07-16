@@ -877,7 +877,7 @@ void MainWindow::openGitBranchDialog()
     {
         GitBranchDialog* dialog = new GitBranchDialog(ui->gitWidget->getRepoPath(), ui->gitWidget->getBranches(), this);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
-        connect(dialog, &GitBranchDialog::setBranch, simHandeler, &SimHandeler::setBranch);
+        connect(dialog, &GitBranchDialog::setBranch, ui->gitWidget, &GitWidget::setBranch);
         dialog->show();
     }
     else
