@@ -43,6 +43,8 @@ private:
     void setTermTheme(const QString& name);
     inline bool isFilesOpen() const;
     inline bool isGitOpen() const;
+    inline bool isDiagnosticsOpen() const;
+    inline bool isTerminalOpen() const;
 
 private slots:
     void copy();

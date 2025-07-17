@@ -184,16 +184,19 @@ MainWindow::MainWindow(QWidget *parent)
     setStyleFromSettings();
 
     ui->stackedWidget->setVisible(false);
+    ui->centralStackedWidget->setVisible(false);
 
     ui->searchWidget->setVisible(false);
     if(IDESettings::startupWidgetsVisibitity.startPage == IDESettings::show)
         openStartTabWidget();
-    if(IDESettings::startupWidgetsVisibitity.diagnostics == IDESettings::hide)
-        ui->centralStackedWidget->setVisible(false);
+    if(IDESettings::startupWidgetsVisibitity.diagnostics == IDESettings::show && !isDiagnosticsOpen())
+        showDiagnostics();
     if(IDESettings::startupWidgetsVisibitity.simulator == IDESettings::hide)
         ui->simLayout->setVisible(false);
     if(IDESettings::startupWidgetsVisibitity.converter == IDESettings::hide)
         ui->numConverter->setVisible(false);
+    if(IDESettings::startupWidgetsVisibitity.fileTree == IDESettings::show && !isFilesOpen())
+        showFileSystemTree();
 }
 
 void MainWindow::b_run()
@@ -1470,4 +1473,15 @@ bool MainWindow::isGitOpen() const
 {
     return ui->stackedWidget->isVisible() && ui->stackedWidget->currentIndex() == 1;
 }
+
+bool MainWindow::isDiagnosticsOpen() const
+{
+    return ui->centralStackedWidget->isVisible() && ui->centralStackedWidget->currentIndex() == 0;
+}
+
+bool MainWindow::isTerminalOpen() const
+{
+    return ui->centralStackedWidget->isVisible() && ui->centralStackedWidget->currentIndex() == 1;
+}
+
 
