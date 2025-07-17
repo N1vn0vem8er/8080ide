@@ -27,6 +27,7 @@ public:
     QString getBranchName() const;
     QStringList getBranches() const;
     void gitFileDiff(const QString& filePath);
+    void gitAddFile(const QString& filePath);
 
 public slots:
     void setBranch(const QString& name);

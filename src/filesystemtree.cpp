@@ -265,19 +265,14 @@ void FileSystemTree::createFileInRoot() const
     }
 }
 
-void FileSystemTree::addToGitRepository() const
+void FileSystemTree::addToGitRepository()
 {
     if(selectionModel()->selectedIndexes().count() > 0)
     {
-        QString path = getSelectedItem(selectionModel()->selectedIndexes()[0]);
-        if(QFileInfo(path).isFile())
+        const QString path = getSelectedItem(selectionModel()->selectedIndexes()[0]);
+        if(QFileInfo(path).isFile() && hasGitRepository)
         {
-            std::string oldDir = std::filesystem::current_path();
-            auto tmp1 = QFileInfo(path).absolutePath().toStdString();
-            std::filesystem::current_path(tmp1);
-            std::string tmp = "git add " + path.toStdString();
-            std::system(tmp.c_str());
-            std::filesystem::current_path(oldDir);
+            emit gitAdd(path);
         }
     }
 }

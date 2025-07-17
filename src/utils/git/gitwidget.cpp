@@ -232,22 +232,12 @@ void GitWidget::refresh()
 
 void GitWidget::gitAdd(const QModelIndex& index)
 {
-    QProcess process;
-    process.setWorkingDirectory(repoPath);
-    process.start("git", {"add", changedModel->getItems().at(index.row()).path});
-    process.waitForStarted();
-    process.waitForFinished();
-    refresh();
+    gitAddFile(changedModel->getItems().at(index.row()).path);
 }
 
 void GitWidget::gitAddUntracked(const QModelIndex &index)
 {
-    QProcess process;
-    process.setWorkingDirectory(repoPath);
-    process.start("git", {"add", untrackedModel->getItems().at(index.row()).path});
-    process.waitForStarted();
-    process.waitForFinished();
-    refresh();
+    gitAddFile(untrackedModel->getItems().at(index.row()).path);
 }
 
 void GitWidget::gitDiff(const QModelIndex &index)
@@ -419,6 +409,16 @@ void GitWidget::gitFileDiff(const QString &filePath)
     process.waitForFinished();
     process.waitForReadyRead();
     emit openInEditor(process.readAllStandardOutput(), tr("git diff %1").arg(filePath));
+}
+
+void GitWidget::gitAddFile(const QString &filePath)
+{
+    QProcess process;
+    process.setWorkingDirectory(repoPath);
+    process.start("git", {"add", filePath});
+    process.waitForStarted();
+    process.waitForFinished();
+    refresh();
 }
 
 void GitWidget::setBranch(const QString &name)

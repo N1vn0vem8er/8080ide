@@ -159,6 +159,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionTermSIGQUIT, &QAction::triggered, ui->terminalWidget, &TerminalWidget::sigquit);
     connect(ui->gitWidget, &GitWidget::sendMessage, this, &MainWindow::showMessage);
     connect(ui->treeView, &FileSystemTree::gitDiff, ui->gitWidget, &GitWidget::gitFileDiff);
+    connect(ui->treeView, &FileSystemTree::gitAdd, ui->gitWidget, &GitWidget::gitAddFile);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;

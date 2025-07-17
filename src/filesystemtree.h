@@ -41,7 +41,7 @@ private slots:
     void createDir() const;
     void createDirInRoot() const;
     void createFileInRoot() const;
-    void addToGitRepository() const;
+    void addToGitRepository();
     void openIn(const QString& exec, const QString& path) const;
     void openFilePressed();
     void openDirPressed();
@@ -53,6 +53,7 @@ signals:
     void openFile(const QString& path);
     void startMimeSearch();
     void gitDiff(const QString& path);
+    void gitAdd(const QString& path);
 };
 
 #endif // FILESYSTEMTREE_H
