@@ -131,6 +131,7 @@ private slots:
     void goTop();
     void goBotton();
     void openTerminalSetFontSize();
+    void showMessage(const QString& message);
 
 protected:
     void dropEvent(QDropEvent* event) override;

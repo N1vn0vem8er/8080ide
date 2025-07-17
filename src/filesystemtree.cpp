@@ -89,6 +89,9 @@ void FileSystemTree::openOnFileContextMenu(const QString& path)
         QAction* gitAddAction = new QAction(tr("Git Add"), contextMenu);
         connect(gitAddAction, &QAction::triggered, this, &FileSystemTree::addToGitRepository);
         contextMenu->addAction(gitAddAction);
+        QAction* gitDiffAction = new QAction(tr("Git Diff"), contextMenu);
+        connect(gitDiffAction, &QAction::triggered, this, &FileSystemTree::gitDiffPressed);
+        contextMenu->addAction(gitDiffAction);
     }
 }
 
@@ -128,6 +131,9 @@ void FileSystemTree::openOnDirContextMenu(const QString& path)
         QAction* gitAddAction = new QAction(tr("Git Add"), contextMenu);
         connect(gitAddAction, &QAction::triggered, this, &FileSystemTree::addToGitRepository);
         contextMenu->addAction(gitAddAction);
+        QAction* gitDiffAction = new QAction(tr("Git Diff"), contextMenu);
+        connect(gitDiffAction, &QAction::triggered, this, &FileSystemTree::gitDiffPressed);
+        contextMenu->addAction(gitDiffAction);
     }
 }
 
@@ -285,7 +291,7 @@ void FileSystemTree::openFilePressed()
 {
     if(selectionModel()->selectedIndexes().count() > 0)
     {
-        QString path = getSelectedItem(selectionModel()->selectedIndexes()[0]);
+        const QString path = getSelectedItem(selectionModel()->selectedIndexes()[0]);
         if(QFileInfo(path).isFile())
         {
             emit openFile(path);
@@ -297,7 +303,7 @@ void FileSystemTree::openDirPressed()
 {
     if(selectionModel()->selectedIndexes().count() > 0)
     {
-        QString path = getSelectedItem(selectionModel()->selectedIndexes()[0]);
+        const QString path = getSelectedItem(selectionModel()->selectedIndexes()[0]);
         if(QFileInfo(path).isDir())
         {
             open(path);
@@ -309,8 +315,8 @@ void FileSystemTree::renamePressed()
 {
     if(selectionModel()->selectedIndexes().count() > 0)
     {
-        QString path = getSelectedItem(selectionModel()->selectedIndexes()[0]);
-        QFileInfo fileInfo(path);
+        const QString path = getSelectedItem(selectionModel()->selectedIndexes()[0]);
+        const QFileInfo fileInfo(path);
         TextInputDialog* dialog = new TextInputDialog(this);
         if(dialog->exec() == QDialog::Accepted)
         {
@@ -320,6 +326,18 @@ void FileSystemTree::renamePressed()
                 const QString newPath = fileInfo.absolutePath() + QDir::separator() + newName;
                 QFile::rename(path, newPath);
             }
+        }
+    }
+}
+
+void FileSystemTree::gitDiffPressed()
+{
+    if(selectionModel()->selectedIndexes().count() > 0)
+    {
+        const QString path = getSelectedItem(selectionModel()->selectedIndexes()[0]);
+        if(QFileInfo(path).isFile() && hasGitRepository)
+        {
+            emit gitDiff(path);
         }
     }
 }

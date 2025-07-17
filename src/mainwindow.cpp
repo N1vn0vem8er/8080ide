@@ -157,6 +157,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionTermSIGSTOP, &QAction::triggered, ui->terminalWidget, &TerminalWidget::sigstop);
     connect(ui->actionTermSIGTSTP, &QAction::triggered, ui->terminalWidget, &TerminalWidget::sigtstp);
     connect(ui->actionTermSIGQUIT, &QAction::triggered, ui->terminalWidget, &TerminalWidget::sigquit);
+    connect(ui->gitWidget, &GitWidget::sendMessage, this, &MainWindow::showMessage);
+    connect(ui->treeView, &FileSystemTree::gitDiff, ui->gitWidget, &GitWidget::gitFileDiff);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
@@ -376,6 +378,11 @@ void MainWindow::openTerminalSetFontSize()
     {
         ui->terminalWidget->setFontSize(lineEdit->text().toInt());
     }
+}
+
+void MainWindow::showMessage(const QString &message)
+{
+    ui->statusbar->showMessage(message, 3000);
 }
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)
@@ -1140,7 +1147,7 @@ void MainWindow::tabChanged()
         ui->actionOverwrite_mode->setChecked(tmp->overwriteMode());
         ui->actionRead_only->setChecked(tmp->isReadOnly());
         ui->actionLine_wrap->setChecked(tmp->lineWrapMode() == CodeEditor::NoWrap ? false : true);
-        ui->statusbar->showMessage(tr("Font Size: %1").arg(tmp->font().pointSize()), 5000);
+        showMessage(tr("Font Size: %1").arg(tmp->font().pointSize()));
     }
 }
 void MainWindow::undo()
@@ -1210,7 +1217,7 @@ void MainWindow::paste()
 
 void MainWindow::fontSizeChanged(int size)
 {
-    ui->statusbar->showMessage(tr("Font Size: %1").arg(size), 5000);
+    showMessage(tr("Font Size: %1").arg(size));
 }
 
 void MainWindow::openPasteFromFile()

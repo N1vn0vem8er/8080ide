@@ -47,10 +47,12 @@ private slots:
     void openDirPressed();
     void renamePressed();
     void mimeSearchResultsReady(QList<FileSystemTree::MimeApplication> resoults);
+    void gitDiffPressed();
 
 signals:
     void openFile(const QString& path);
     void startMimeSearch();
+    void gitDiff(const QString& path);
 };
 
 #endif // FILESYSTEMTREE_H

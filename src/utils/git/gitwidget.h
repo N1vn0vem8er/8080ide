@@ -26,6 +26,7 @@ public:
     QString getRepoPath() const;
     QString getBranchName() const;
     QStringList getBranches() const;
+    void gitFileDiff(const QString& filePath);
 
 public slots:
     void setBranch(const QString& name);
@@ -66,6 +67,7 @@ signals:
     void openFile(const QString& absolutePath);
     void addTab(QWidget* widget, const QString& title);
     void branchNameChanged(const QString& name);
+    void sendMessage(const QString& message);
 };
 
 #endif // GITWIDGET_H

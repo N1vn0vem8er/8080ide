@@ -252,24 +252,12 @@ void GitWidget::gitAddUntracked(const QModelIndex &index)
 
 void GitWidget::gitDiff(const QModelIndex &index)
 {
-    QProcess process;
-    process.setWorkingDirectory(repoPath);
-    process.start("git", {"diff", changedModel->getItems().at(index.row()).path});
-    process.waitForStarted();
-    process.waitForFinished();
-    process.waitForReadyRead();
-    emit openInEditor(process.readAllStandardOutput(), tr("git diff %1").arg(changedModel->getItems().at(index.row()).path));
+    gitFileDiff(changedModel->getItems().at(index.row()).path);
 }
 
 void GitWidget::gitDiffAdded(const QModelIndex &index)
 {
-    QProcess process;
-    process.setWorkingDirectory(repoPath);
-    process.start("git", {"diff", addedModel->getItems().at(index.row()).path});
-    process.waitForStarted();
-    process.waitForFinished();
-    process.waitForReadyRead();
-    emit openInEditor(process.readAllStandardOutput(), tr("git diff %1").arg(addedModel->getItems().at(index.row()).path));
+    gitFileDiff(addedModel->getItems().at(index.row()).path);
 }
 
 void GitWidget::openAdded(const QModelIndex &index)
@@ -420,6 +408,17 @@ QStringList GitWidget::getBranches() const
         }
     }
     return branches;
+}
+
+void GitWidget::gitFileDiff(const QString &filePath)
+{
+    QProcess process;
+    process.setWorkingDirectory(repoPath);
+    process.start("git", {"diff", filePath});
+    process.waitForStarted();
+    process.waitForFinished();
+    process.waitForReadyRead();
+    emit openInEditor(process.readAllStandardOutput(), tr("git diff %1").arg(filePath));
 }
 
 void GitWidget::setBranch(const QString &name)
