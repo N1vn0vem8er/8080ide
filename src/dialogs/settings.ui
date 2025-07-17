@@ -22,7 +22,7 @@
      <item>
       <widget class="QListView" name="settingsSelector">
        <property name="editTriggers">
-        <set>QAbstractItemView::NoEditTriggers</set>
+        <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
        </property>
       </widget>
      </item>
@@ -44,6 +44,7 @@
        <widget class="HelpSettings" name="helpSPage"/>
        <widget class="SyntaxHighlightingSettings" name="syntaxPage"/>
        <widget class="StartupSettingsPage" name="startupPage"/>
+       <widget class="TerminalSettingsPage" name="terminalPage"/>
       </widget>
      </item>
     </layout>
@@ -79,6 +80,12 @@
    <class>SimSettingsPage</class>
    <extends>QWidget</extends>
    <header>settingsPages/simsettingspage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TerminalSettingsPage</class>
+   <extends>QWidget</extends>
+   <header>settingsPages/terminalsettingspage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
