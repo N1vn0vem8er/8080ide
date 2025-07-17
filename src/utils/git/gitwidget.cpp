@@ -1,6 +1,7 @@
 #include "gitwidget.h"
 #include "gitfilestatusitemdelegate.h"
 #include "ui_gitwidget.h"
+#include <processmanager.h>
 #include <qdir.h>
 #include <qfileinfo.h>
 #include <qlineedit.h>
@@ -402,22 +403,30 @@ QStringList GitWidget::getBranches() const
 
 void GitWidget::gitFileDiff(const QString &filePath)
 {
-    QProcess process;
-    process.setWorkingDirectory(repoPath);
-    process.start("git", {"diff", filePath});
-    process.waitForStarted();
-    process.waitForFinished();
-    process.waitForReadyRead();
-    emit openInEditor(process.readAllStandardOutput(), tr("git diff %1").arg(filePath));
+    QProcess* process = new QProcess(this);
+    process->setWorkingDirectory(repoPath);
+    ProcessManager::getInstance()->registerProcess(process, tr("Git diff"));
+    connect(process, &QProcess::readyReadStandardOutput, this, [this, process, filePath]{
+        emit openInEditor(process->readAllStandardOutput(), tr("git diff %1").arg(filePath));
+    });
+    connect(process, &QProcess::finished, this, [process]{
+        process->deleteLater();
+    });
+    process->start("git", {"diff", filePath});
+    process->waitForStarted();
 }
 
 void GitWidget::gitAddFile(const QString &filePath)
 {
-    QProcess process;
-    process.setWorkingDirectory(repoPath);
-    process.start("git", {"add", filePath});
-    process.waitForStarted();
-    process.waitForFinished();
+    QProcess* process = new QProcess(this);
+    process->setWorkingDirectory(repoPath);
+    ProcessManager::getInstance()->registerProcess(process, tr("Git Add"));
+    connect(process, &QProcess::finished, this, [process]{
+        process->deleteLater();
+    });
+    process->start("git", {"add", filePath});
+    process->waitForStarted();
+    process->waitForFinished();
     refresh();
 }
 
@@ -425,7 +434,8 @@ void GitWidget::setBranch(const QString &name)
 {
     QProcess* process = new QProcess(this);
     process->setWorkingDirectory(repoPath);
+    ProcessManager::getInstance()->registerProcess(process, tr("Setting branch"));
     process->start("git", {"checkout", name});
-    connect(process, &QProcess::finished, this, [this, process]{emit branchNameChanged(getBranchName()); delete process;});
+    connect(process, &QProcess::finished, this, [this, process]{emit branchNameChanged(getBranchName()); process->deleteLater();});
     process->waitForStarted(3000);
 }

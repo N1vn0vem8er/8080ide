@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     simHandeler = new SimHandeler(ui->screen);
-    projectInfoLabel = new QLabel(ui->statusbar);
+    projectInfoLabel = new QLabel(tr("No Project"), ui->statusbar);
     ui->statusbar->addPermanentWidget(projectInfoLabel);
     simHandeler->setProjectNameLabel(projectInfoLabel);
     simHandeler->setInputLine(ui->simulatorInput);
