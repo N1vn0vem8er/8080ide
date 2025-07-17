@@ -179,7 +179,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->splitter_2->setStretchFactor(0, 2);
 
     setAcceptDrops(true);
-    loadSettings();
     loadTerminalThemesMenu();
     setStyleFromSettings();
 
@@ -502,6 +501,8 @@ void MainWindow::showTerminal()
 void MainWindow::openInEditor(const QString &text, const QString &title, bool readOnly, bool spellChecking, bool disableSaveWarning)
 {
     CodeEditor* editor = new CodeEditor(ui->tabWidget);
+    editor->setLineWrapMode(IDESettings::defaultLinesWrap ? CodeEditor::LineWrapMode::WidgetWidth : CodeEditor::LineWrapMode::NoWrap);
+    editor->setFontSize(IDESettings::defaultFontSize);
     connect(editor, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
     editor->setReadOnly(readOnly);
     editor->setSpellCheckEnabled(spellChecking);
@@ -693,12 +694,6 @@ void MainWindow::stepLineHighLight(const QString &file, int line)
     }
 }
 
-void MainWindow::loadSettings() const
-{
-    IDESettings s;
-    s.loadSettings();
-}
-
 void MainWindow::setStyleFromSettings()
 {
     if(QStyleFactory::keys().contains(IDESettings::theme))
@@ -798,6 +793,8 @@ void MainWindow::showSearch()
 void MainWindow::newFile()
 {
     CodeEditor* tmp = new CodeEditor(ui->tabWidget);
+    tmp->setLineWrapMode(IDESettings::defaultLinesWrap ? CodeEditor::LineWrapMode::WidgetWidth : CodeEditor::LineWrapMode::NoWrap);
+    tmp->setFontSize(IDESettings::defaultFontSize);
     connect(tmp, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
     ui->actionOverwrite_mode->setChecked(tmp->overwriteMode());
     ui->actionRead_only->setChecked(tmp->isReadOnly());
@@ -823,6 +820,8 @@ void MainWindow::openFileInNewTab(const QString &path)
             const QString content = file.readAll();
             file.close();
             CodeEditor* ce = new CodeEditor();
+            ce->setLineWrapMode(IDESettings::defaultLinesWrap ? CodeEditor::LineWrapMode::WidgetWidth : CodeEditor::LineWrapMode::NoWrap);
+            ce->setFontSize(IDESettings::defaultFontSize);
             connect(ce, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
             ce->setFilePath(path);
             simHandeler->setFilename(path);

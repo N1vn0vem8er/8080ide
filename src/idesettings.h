@@ -50,6 +50,10 @@ public:
     static SyntaxHightlightingColors syntaxHightlightingColors;
     static SyntaxHightlightingColors defaultSyntaxHightlightingColors;
     static StartupWidgetsVisibitity startupWidgetsVisibitity;
+    static QString terminalTheme;
+    static int defaultTerminalFontSize;
+    static int defaultFontSize;
+    static bool defaultLinesWrap;
     static int simMemorySize;
     static int simStartAddress;
     const QString settingsDirName = "ide8080";

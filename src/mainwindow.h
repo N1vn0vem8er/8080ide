@@ -35,7 +35,6 @@ private:
     void saveFileToRecentFiles(const QString& filePath);
     void saveProjectToRecentProjects(const QString& projectPath);
     bool pathExists(std::string path, std::fstream &file);
-    void loadSettings() const;
     void setStyleFromSettings();
     void openSaveWarningDialog(CodeEditor* editor);
     void openFailedToOpenDialog(const QString& path, const QString& errorMessage);

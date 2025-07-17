@@ -56,6 +56,11 @@ void IDESettings::saveSettings()
     settings.setValue("simStartAddress", IDESettings::simStartAddress);
 
     settings.setValue("theme", IDESettings::theme);
+
+    settings.setValue("terminalTheme", IDESettings::terminalTheme);
+    settings.setValue("defaultTerminalFontSize", IDESettings::defaultTerminalFontSize);
+    settings.setValue("defaultFontSize", IDESettings::defaultFontSize);
+    settings.setValue("defaultLinesWrap", IDESettings::defaultLinesWrap);
 }
 
 void IDESettings::loadSettings()
@@ -95,6 +100,11 @@ void IDESettings::loadSettings()
     IDESettings::startupWidgetsVisibitity.converter = (IDESettings::WidgetsVisibility)settings.value("startupWidgetsVisibitity.converter", IDESettings::hide).toInt();
     IDESettings::startupWidgetsVisibitity.fileTree = (IDESettings::WidgetsVisibility)settings.value("startupWidgetsVisibitity.fileTree", IDESettings::hide).toInt();
 
+    IDESettings::terminalTheme = settings.value("terminalTheme", "").toString();
+    IDESettings::defaultTerminalFontSize = settings.value("defaultTerminalFontSize", 10).toInt();
+    IDESettings::defaultFontSize = settings.value("defaultFontSize", 10).toInt();
+    IDESettings::defaultLinesWrap = settings.value("defaultLinesWrap", true).toBool();
+
     simMemorySize = settings.value("simMemorySize", 1024).toInt();
     simStartAddress = settings.value("simStartAddress", 0).toInt();
 
@@ -116,3 +126,7 @@ IDESettings::StartupWidgetsVisibitity IDESettings::startupWidgetsVisibitity;
 IDESettings::OpenNewType IDESettings::showCalculatorType;
 int IDESettings::simMemorySize;
 int IDESettings::simStartAddress;
+QString IDESettings::terminalTheme;
+int IDESettings::defaultTerminalFontSize;
+int IDESettings::defaultFontSize;
+bool IDESettings::defaultLinesWrap;

@@ -1,6 +1,7 @@
 #include "terminalwidget.h"
 #include "ui_terminalwidget.h"
 #include <csignal>
+#include "idesettings.h"
 #include <qtermwidget6/qtermwidget.h>
 
 TerminalWidget::TerminalWidget(QWidget *parent)
@@ -15,8 +16,10 @@ TerminalWidget::TerminalWidget(QWidget *parent)
     connect(ui->copyButton, &QPushButton::clicked, terminal, &QTermWidget::copyClipboard);
     connect(ui->pasteButton, &QPushButton::clicked, terminal, &QTermWidget::pasteClipboard);
 
-    if(terminal->availableColorSchemes().contains("BreezeModified"))
-        terminal->setColorScheme("BreezeModified");
+    if(!IDESettings::terminalTheme.isEmpty() && terminal->availableColorSchemes().contains(IDESettings::terminalTheme))
+        terminal->setColorScheme(IDESettings::terminalTheme);
+
+    setFontSize(IDESettings::defaultTerminalFontSize);
 
     QHBoxLayout* layout = static_cast<QHBoxLayout*>(this->layout());
     layout->addWidget(terminal);
@@ -36,6 +39,8 @@ QStringList TerminalWidget::getThemes()
 void TerminalWidget::setTheme(const QString &theme)
 {
     terminal->setColorScheme(theme);
+    IDESettings::terminalTheme = theme;
+    IDESettings().saveSettings();
 }
 
 void TerminalWidget::increaseFontSize()

@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
             break;
         }
     }
+    IDESettings().loadSettings();
     MainWindow w;
     w.show();
     return a.exec();
