@@ -287,74 +287,94 @@ void GitWidget::openGitCommit()
 
 void GitWidget::gitCommit(const QString &title, const QString &description)
 {
-    QProcess process;
-    process.setWorkingDirectory(repoPath);
-    process.start("git", {"commit", "-m", title, "-m", description});
-    process.waitForStarted();
-    process.waitForFinished();
-    process.waitForReadyRead();
-    refresh();
-    emit openInEditor(process.readAllStandardOutput() + process.readAllStandardError(), tr("Commit results"));
+    QProcess* process = new QProcess(this);
+    process->setWorkingDirectory(repoPath);
+    process->setProcessChannelMode(QProcess::MergedChannels);
+    ProcessManager::getInstance()->registerProcess(process, tr("Git commit"));
+    connect(process, &QProcess::readyReadStandardOutput, this, [this, process]{
+        refresh();
+        emit openInEditor(process->readAllStandardOutput(), tr("Commit results"));
+    });
+    connect(process, &QProcess::finished, this, [process]{process->deleteLater();});
+    process->start("git", {"commit", "-m", title, "-m", description});
+    process->waitForStarted();
 }
 
 void GitWidget::gitPush()
 {
-    QProcess process;
-    process.setWorkingDirectory(repoPath);
-    process.start("git", {"push"});
-    process.waitForStarted();
-    process.waitForFinished();
-    process.waitForReadyRead();
-    refresh();
-    emit openInEditor(process.readAllStandardOutput() + process.readAllStandardError(), tr("Push results"));
+    QProcess* process = new QProcess(this);
+    process->setWorkingDirectory(repoPath);
+    process->setProcessChannelMode(QProcess::MergedChannels);
+    ProcessManager::getInstance()->registerProcess(process, tr("Git push"));
+    connect(process, &QProcess::readyReadStandardOutput, this, [this, process]{
+        refresh();
+        emit openInEditor(process->readAllStandardOutput(), tr("Push results"));
+    });
+    connect(process, &QProcess::finished, this, [process]{process->deleteLater();});
+    process->start("git", {"push"});
+    process->waitForStarted();
 }
 
 void GitWidget::gitPull()
 {
-    QProcess process;
-    process.setWorkingDirectory(repoPath);
-    process.start("git", {"pull"});
-    process.waitForStarted();
-    process.waitForFinished();
-    process.waitForReadyRead();
-    refresh();
-    emit openInEditor(process.readAllStandardOutput() + process.readAllStandardError(), tr("Pull results"));
+    QProcess* process = new QProcess(this);
+    process->setWorkingDirectory(repoPath);
+    process->setProcessChannelMode(QProcess::MergedChannels);
+    ProcessManager::getInstance()->registerProcess(process, tr("Git pull"));
+    connect(process, &QProcess::readyReadStandardOutput, this, [this, process]{
+        refresh();
+        emit openInEditor(process->readAllStandardOutput(), tr("Pull results"));
+    });
+    connect(process, &QProcess::finished, this, [process]{process->deleteLater();});
+    process->start("git", {"pull"});
+    process->waitForStarted();
 }
 
 void GitWidget::gitStatus()
 {
-    QProcess process;
-    process.setWorkingDirectory(repoPath);
-    process.start("git", {"status"});
-    process.waitForStarted();
-    process.waitForFinished();
-    process.waitForReadyRead();
-    refresh();
-    emit openInEditor(process.readAllStandardOutput() + process.readAllStandardError(), tr("Status results"));
+    QProcess* process = new QProcess(this);
+    process->setWorkingDirectory(repoPath);
+    process->setProcessChannelMode(QProcess::MergedChannels);
+    ProcessManager::getInstance()->registerProcess(process, tr("Git status"));
+    connect(process, &QProcess::readyReadStandardOutput, this, [this, process]{
+        refresh();
+        emit openInEditor(process->readAllStandardOutput(), tr("Status results"));
+    });
+    connect(process, &QProcess::finished, this, [process]{process->deleteLater();});
+    process->start("git", {"status"});
+    process->waitForStarted();
 }
 
 void GitWidget::gitLog()
 {
-    QProcess process;
-    process.setWorkingDirectory(repoPath);
-    process.start("git", {"log"});
-    process.waitForStarted();
-    process.waitForFinished();
-    process.waitForReadyRead();
-    refresh();
-    emit openInEditor(process.readAllStandardOutput() + process.readAllStandardError(), tr("Status results"));
+    QProcess* process = new QProcess(this);
+    process->setWorkingDirectory(repoPath);
+    process->setProcessChannelMode(QProcess::MergedChannels);
+    ProcessManager::getInstance()->registerProcess(process, tr("Git log"));
+    connect(process, &QProcess::readyReadStandardOutput, this, [this, process]{
+        refresh();
+        emit openInEditor(process->readAllStandardOutput() + process->readAllStandardError(), tr("Log results"));
+    });
+    connect(process, &QProcess::finished, this, [process]{process->deleteLater();});
+    process->start("git", {"log"});
+    process->waitForStarted();
 }
 
 void GitWidget::gitFetch()
 {
-    QProcess process;
-    process.setWorkingDirectory(repoPath);
-    process.start("git", {"fetch"});
-    process.waitForStarted();
-    process.waitForFinished();
-    process.waitForReadyRead();
-    refresh();
-    emit openInEditor(process.readAllStandardOutput() + process.readAllStandardError(), tr("Fetch results"));
+    QProcess* process = new QProcess(this);
+    process->setWorkingDirectory(repoPath);
+    process->setProcessChannelMode(QProcess::MergedChannels);
+    ProcessManager::getInstance()->registerProcess(process, tr("Git fetch"));
+    connect(process, &QProcess::readyReadStandardOutput, this, [this, process]{
+        refresh();
+        emit openInEditor(process->readAllStandardOutput() + process->readAllStandardError(), tr("Fetch results"));
+    });
+    connect(process, &QProcess::finished, this, [process]{
+        process->deleteLater();
+    });
+    process->start("git", {"fetch"});
+    process->waitForStarted();
 }
 
 QString GitWidget::getRepoPath() const
@@ -421,13 +441,12 @@ void GitWidget::gitAddFile(const QString &filePath)
     QProcess* process = new QProcess(this);
     process->setWorkingDirectory(repoPath);
     ProcessManager::getInstance()->registerProcess(process, tr("Git Add"));
-    connect(process, &QProcess::finished, this, [process]{
+    connect(process, &QProcess::finished, this, [this, process]{
         process->deleteLater();
+        refresh();
     });
     process->start("git", {"add", filePath});
     process->waitForStarted();
-    process->waitForFinished();
-    refresh();
 }
 
 void GitWidget::setBranch(const QString &name)
