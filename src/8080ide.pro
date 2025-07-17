@@ -16,6 +16,7 @@ SOURCES += \
     processmanager.cpp \
     settingsPages/simsettingspage.cpp \
     settingsPages/startupsettingspage.cpp \
+    widgets/runningprocesseslabel.cpp \
     widgets/terminalwidget.cpp \
     utils/mimefinderworker.cpp \
     utils/numberconverterwidget.cpp \
@@ -67,6 +68,7 @@ HEADERS += \
     settingsPages/simsettingspage.h \
     settingsPages/startupsettingspage.h \
     structs.h \
+    widgets/runningprocesseslabel.h \
     widgets/terminalwidget.h \
     utils/mimefinderworker.h \
     utils/numberconverterwidget.h \

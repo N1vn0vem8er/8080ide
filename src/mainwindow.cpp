@@ -25,6 +25,7 @@
 #include <QSettings>
 #include <QStyleFactory>
 #include "idesettings.h"
+#include "processmanager.h"
 #include <widgets/searchwidget.h>
 #include <QPrinter>
 #include <QPrintDialog>
@@ -39,6 +40,10 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    runningProcessesLabel = new RunningProcessesLabel("", ui->statusbar);
+    ui->statusbar->addPermanentWidget(runningProcessesLabel);
+
     simHandeler = new SimHandeler(ui->screen);
     projectInfoLabel = new QLabel(tr("No Project"), ui->statusbar);
     ui->statusbar->addPermanentWidget(projectInfoLabel);
@@ -160,6 +165,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->gitWidget, &GitWidget::sendMessage, this, &MainWindow::showMessage);
     connect(ui->treeView, &FileSystemTree::gitDiff, ui->gitWidget, &GitWidget::gitFileDiff);
     connect(ui->treeView, &FileSystemTree::gitAdd, ui->gitWidget, &GitWidget::gitAddFile);
+    connect(ProcessManager::getInstance(), &ProcessManager::processAdded, runningProcessesLabel, &RunningProcessesLabel::addProcess);
+    connect(ProcessManager::getInstance(), &ProcessManager::processRemoved, runningProcessesLabel, &RunningProcessesLabel::removeProcess);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;

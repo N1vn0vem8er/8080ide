@@ -3,6 +3,7 @@
 
 #include "editor/codeeditor.h"
 #include "simhandeler.h"
+#include "widgets/runningprocesseslabel.h"
 #include <QMainWindow>
 #include <QFileDialog>
 #include <fstream>
@@ -27,6 +28,7 @@ private:
     void addTab(QWidget* widget, const QString& title);
     bool newFileLoaded;
     QLabel* projectInfoLabel {nullptr};
+    RunningProcessesLabel* runningProcessesLabel {nullptr};
     std::string getStdStringFromTab(int index);
     QString getPlainTextFromTab(int index);
     void openProject(const QString& path);
