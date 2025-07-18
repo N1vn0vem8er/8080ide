@@ -6,11 +6,12 @@ SearchWidget::SearchWidget(QWidget *parent)
     , ui(new Ui::SearchWidget)
 {
     ui->setupUi(this);
-    connect(ui->searchField, &QLineEdit::textChanged, this, [this](){emit searchFieldChanged(ui->searchField->text());});
+    connect(ui->searchField, &QLineEdit::textChanged, this, [this](){ui->onlySelectedCheckBox->isChecked() ? emit searchInSelected(ui->searchField->text()) : emit searchFieldChanged(ui->searchField->text());});
     connect(ui->replaceAllButton, &QPushButton::clicked, this, [this](){emit replaceFieldChanged(ui->replaceField->text());});
     connect(ui->searchField, &QLineEdit::returnPressed, this, [this](){emit searchFieldChanged(ui->searchField->text());});
     connect(ui->fieldTextReplaceButton, &QPushButton::clicked, this, [this](){auto tmp = ui->searchField->text(); ui->searchField->setText(ui->replaceField->text()); ui->replaceField->setText(tmp);});
-    connect(ui->caseSensitiveCheckBox, &QCheckBox::checkStateChanged, this, [&]{emit searchFieldChanged(ui->searchField->text());});
+    connect(ui->caseSensitiveCheckBox, &QCheckBox::checkStateChanged, this, [&]{ui->onlySelectedCheckBox->isChecked() ? emit searchInSelected(ui->searchField->text()) : emit searchFieldChanged(ui->searchField->text());});
+    connect(ui->onlySelectedCheckBox, &QCheckBox::checkStateChanged, this, [&]{ui->onlySelectedCheckBox->isChecked() ? emit searchInSelected(ui->searchField->text()) : emit searchFieldChanged(ui->searchField->text());});
 }
 
 QString SearchWidget::getSearchFieldText() const

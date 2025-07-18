@@ -23,6 +23,7 @@ private:
 signals:
     void searchFieldChanged(const QString& text);
     void replaceFieldChanged(const QString& text);
+    void searchInSelected(const QString& text);
 };
 
 #endif // SEARCHWIDGET_H

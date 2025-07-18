@@ -23,7 +23,7 @@ public:
     bool isHighlighterEnabled();
     void commentMultiLine() const;
     void highlightTextSequence(const QString &text, bool caseSensitive);
-    void highlightTextSequenceInSelected(const QString& text);
+    void highlightTextSequenceInSelected(const QString& text, bool caseSensitive);
     void replaceTextSequence(const QString &find, const QString &replace);
     void replaceTextSequenceIsSelected(const QString &find, const QString &replace);
     void clearSearchFormatting();

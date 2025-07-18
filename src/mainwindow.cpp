@@ -167,6 +167,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->treeView, &FileSystemTree::gitAdd, ui->gitWidget, &GitWidget::gitAddFile);
     connect(ProcessManager::getInstance(), &ProcessManager::processAdded, runningProcessesLabel, &RunningProcessesLabel::addProcess);
     connect(ProcessManager::getInstance(), &ProcessManager::processRemoved, runningProcessesLabel, &RunningProcessesLabel::removeProcess);
+    connect(ui->searchWidget, &SearchWidget::searchInSelected, this, &MainWindow::searchInSelected);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
@@ -565,7 +566,7 @@ void MainWindow::searchInSelected(const QString &text)
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
     {
-
+        tmp->highlightTextSequenceInSelected(text, ui->searchWidget->isCaseSensitive());
     }
 }
 
