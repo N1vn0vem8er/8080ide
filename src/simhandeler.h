@@ -25,17 +25,6 @@ private:
     std::unique_ptr<Symulator> symulator {nullptr};
     unsigned char* compcode = nullptr;
     int compcodeSize;
-    QLabel* areg = nullptr;
-    QLabel* breg = nullptr;
-    QLabel* creg = nullptr;
-    QLabel* dreg = nullptr;
-    QLabel* ereg = nullptr;
-    QLabel* hreg = nullptr;
-    QLabel* lreg = nullptr;
-    QLabel* mreg = nullptr;
-    QLabel* pc = nullptr;
-    QLabel* flags = nullptr;
-    QLabel* sp = nullptr;
     QDialog* settingsWindow = nullptr;
     ProjectManager* projectManager = nullptr;
     bool projectLoaded;
@@ -55,23 +44,6 @@ private:
     QList<Globals::FileMemoryStartEnd> fileMemoryRanges;
     std::vector<std::pair<unsigned short, int>> lineAddrInsts;
 public:
-    enum RegistersIds{
-        A,
-        B,
-        C,
-        D,
-        E,
-        H,
-        L,
-        PC,
-        SP,
-        CF,
-        AC,
-        P,
-        S,
-        Z,
-        M
-    };
     explicit SimHandeler(QPlainTextEdit* screen, QObject* parent = nullptr);
     ~SimHandeler();
     void setProjectNameLabel(QLabel* label);
@@ -87,7 +59,6 @@ public:
     void restart();
     void input(const QString& input);
     unsigned char *getMemory();
-    void setReferencesToRegisters(QLabel* areg, QLabel* breg, QLabel* creg, QLabel* dreg, QLabel* ereg, QLabel* hreg, QLabel* lreg,  QLabel* mreg, QLabel* pc, QLabel* flags, QLabel *sp);
     void openProject(const QString& path);
     bool isProjectLoaded() const;
     void closeProject();

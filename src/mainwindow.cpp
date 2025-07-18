@@ -71,7 +71,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionOpcje, &QAction::triggered, this, &MainWindow::settings);
     connect(ui->tabWidget, &QTabWidget::tabCloseRequested, this, &MainWindow::closeTab);
     connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::tabChanged);
-    simHandeler->setReferencesToRegisters(ui->Areg, ui->Breg, ui->Creg, ui->Dreg, ui->Ereg, ui->Hreg, ui->Lreg, ui->Mreg, ui->PC, ui->Flagsreg, ui->SPreg);
     connect(ui->actionUndo, &QAction::triggered, this, &MainWindow::undo);
     connect(ui->actionRedo, &QAction::triggered, this, &MainWindow::redo);
     connect(ui->actionOpenDir, &QAction::triggered, this, &MainWindow::openDirPressed);

@@ -418,20 +418,7 @@ unsigned char* SimHandeler::getMemory()
     }
     return memory;
 }
-void SimHandeler::setReferencesToRegisters(QLabel* areg, QLabel* breg, QLabel* creg, QLabel* dreg, QLabel* ereg, QLabel* hreg, QLabel* lreg,  QLabel* mreg, QLabel* pc, QLabel *flags, QLabel* sp)
-{
-    this->areg = areg;
-    this->breg = breg;
-    this->creg = creg;
-    this->dreg = dreg;
-    this->ereg = ereg;
-    this->hreg = hreg;
-    this->lreg = lreg;
-    this->mreg = mreg;
-    this->pc = pc;
-    this->flags = flags;
-    this->sp = sp;
-}
+
 bool SimHandeler::isProjectLoaded() const
 {
     return projectLoaded;
