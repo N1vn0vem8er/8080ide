@@ -2,7 +2,6 @@
 #define IDESETTINGS_H
 
 #include <qstring.h>
-#include "globals.h"
 
 class IDESettings
 {

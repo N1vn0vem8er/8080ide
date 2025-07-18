@@ -25,32 +25,19 @@ void SimRunner::setBreakPoints(std::vector<std::pair<unsigned short, int>> break
     breakpoints = breakPoints;
 }
 
-QStringList SimRunner::getRegisterList(Symulator *sim)
+Globals::SimStatus SimRunner::getRegisterList(Symulator *sim)
 {
-    QStringList list;
-    list << QString::fromStdString(tohexASCII(sim->getAreg()));
-    list << QString::fromStdString(tohexASCII(sim->getBreg()));
-    list << QString::fromStdString(tohexASCII(sim->getCreg()));
-    list << QString::fromStdString(tohexASCII(sim->getDreg()));
-    list << QString::fromStdString(tohexASCII(sim->getEreg()));
-    list << QString::fromStdString(tohexASCII(sim->getHreg()));
-    list << QString::fromStdString(tohexASCII(sim->getLreg()));
-    list << QString::fromStdString(tohexASCII(sim->getPC()));
-    list << QString::fromStdString(tohexASCII(sim->getSP()));
-    list << QString::number(sim->getCF());
-    list << QString::number(sim->getAC());
-    list << QString::number(sim->getP());
-    list << QString::number(sim->getS());
-    list << QString::number(sim->getZ());
-    list << QString::fromStdString(tohexASCII(sim->getMreg()));
-    return list;
+    Globals::SimStatus status(tohexASCII(sim->getAreg()), tohexASCII(sim->getBreg()), tohexASCII(sim->getCreg()), tohexASCII(sim->getDreg()), tohexASCII(sim->getEreg()), tohexASCII(sim->getHreg()),
+                              tohexASCII(sim->getLreg()), tohexASCII(sim->getPC()), tohexASCII(sim->getSP()), QString::number(sim->getCF()), QString::number(sim->getS())
+                                ,QString::number(sim->getP()),QString::number(sim->getZ()),QString::number(sim->getAC()), tohexASCII(sim->getMreg()));
+    return status;
 }
 
-std::string SimRunner::tohexASCII(unsigned char ch) const
+QString SimRunner::tohexASCII(unsigned char ch) const
 {
     std::stringstream ss;
     ss << std::hex << +ch;
-    return ss.str();
+    return QString::fromStdString(ss.str());
 }
 
 QString SimRunner::memoryToString() const
@@ -68,11 +55,11 @@ void SimRunner::setLineAddrInsts(const std::vector<std::pair<unsigned short, int
 {
     lineAddrInsts = newLineAddrInsts;
 }
-std::string SimRunner::tohexASCII(unsigned short ch) const
+QString SimRunner::tohexASCII(unsigned short ch) const
 {
     std::stringstream ss;
     ss << std::hex << +ch;
-    return ss.str();
+    return QString::fromStdString(ss.str());
 }
 
 void SimRunner::input(char in)
@@ -124,7 +111,7 @@ void SimRunner::changeRegisters(unsigned char a, unsigned char b, unsigned char 
 
 void SimRunner::run()
 {
-    QStringList registersState;
+    Globals::SimStatus registersState;
     if(sim != nullptr)
     {
         sim->setHLTType(Symulator::SetHTLFlag);

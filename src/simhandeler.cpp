@@ -2,6 +2,7 @@
 #include "qprocess.h"
 #include "simrunner.h"
 #include "ssettings.h"
+#include "idesettings.h"
 #include "8080/assembler.h"
 
 
@@ -214,20 +215,9 @@ void SimHandeler::print(char ch)
     printOnScreen(ch);
 }
 
-void SimHandeler::registersChanged(const QStringList &registers)
+void SimHandeler::registersChanged(const Globals::SimStatus &status)
 {
-    areg->setText("A = " + registers[RegistersIds::A]);
-    breg->setText("B = " + registers[RegistersIds::B]);
-    creg->setText("C = " + registers[RegistersIds::C]);
-    dreg->setText("D = " + registers[RegistersIds::D]);
-    ereg->setText("E = " + registers[RegistersIds::E]);
-    hreg->setText("H = " + registers[RegistersIds::H]);
-    lreg->setText("L = " + registers[RegistersIds::L]);
-    pc->setText("PC = " + registers[RegistersIds::PC]);
-    flags->setText(QString("C=%1 AC=%2 P=%3 S=%4 Z=%5").arg(registers[RegistersIds::CF], registers[RegistersIds::AC], registers[RegistersIds::P], registers[RegistersIds::S], registers[RegistersIds::Z]));
-    mreg->setText("M = "+registers[RegistersIds::M]);
-    sp->setText("SP = "+registers[RegistersIds::SP]);
-    emit setRegisterValues(registers[0], registers[1], registers[2], registers[3], registers[4], registers[5],registers[6], registers[7], registers[14]);
+    emit displayRegisters(status.areg, status.breg, status.creg, status.dreg, status.ereg, status.hreg, status.lreg, status.mreg, status.pc, status.cf, status.sf, status.pf, status.zf, status.acf, status.sp);
 }
 
 void SimHandeler::inputOut(char ch)

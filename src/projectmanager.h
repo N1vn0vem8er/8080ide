@@ -2,7 +2,7 @@
 #define PROJECTMAKER_H
 
 #include "8080/assembler.h"
-#include "idesettings.h"
+#include "globals.h"
 #include<QString>
 #include <map>
 #include <QList>

@@ -18,8 +18,8 @@ struct FileMemoryStartEnd
 struct SimStatus{
     SimStatus(){};
     SimStatus(const QString& areg, const QString& breg, const QString& creg, const QString& dreg, const QString& ereg, const QString& hreg, const QString& lreg,
-              const QString& pc, const QString& sp, const QString& flags, const QString& mreg) :
-        areg(areg), breg(breg), creg(creg), dreg(dreg), ereg(ereg), hreg(hreg), lreg(lreg), pc(pc), sp(sp), flags(flags), mreg(mreg){};
+              const QString& pc, const QString& sp, const QString& cf, const QString& sf, const QString& pf, const QString& zf, const QString& acf, const QString& mreg) :
+        areg(areg), breg(breg), creg(creg), dreg(dreg), ereg(ereg), hreg(hreg), lreg(lreg), pc(pc), sp(sp), cf(cf), sf(sf), pf(pf), zf(zf), acf(acf), mreg(mreg){};
     QString areg;
     QString breg;
     QString creg;
@@ -29,7 +29,11 @@ struct SimStatus{
     QString lreg;
     QString pc;
     QString sp;
-    QString flags;
+    QString cf;
+    QString sf;
+    QString pf;
+    QString zf;
+    QString acf;
     QString mreg;
     auto operator<=>(const SimStatus&) const = default;
 };

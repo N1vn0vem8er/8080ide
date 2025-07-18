@@ -2,6 +2,7 @@
 #define SIMRUNNER_H
 
 #include "8080/Symulator.h"
+#include "globals.h"
 #include <QObject>
 #include <QThread>
 
@@ -16,12 +17,12 @@ public:
     void setLineAddrInsts(const std::vector<std::pair<unsigned short, int> > &newLineAddrInsts);
 
 private:
-    QStringList getRegisterList(Symulator* sim);
+    Globals::SimStatus getRegisterList(Symulator* sim);
 
-    std::string tohexASCII(unsigned short ch) const;
-    std::string tohexASCII(unsigned char ch) const;
+    QString tohexASCII(unsigned short ch) const;
+    QString tohexASCII(unsigned char ch) const;
     bool stopCalled;
-    QStringList oldRegistersState;
+    Globals::SimStatus oldRegistersState;
     char oldInBuffer;
     Symulator* sim = nullptr;
     char inputBuffer;
@@ -38,11 +39,11 @@ public slots:
     void changeRegisters(unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char h, unsigned char l, unsigned short pc, unsigned short sp);
 
 signals:
-    void stateChanged(const QStringList& registers);
     void charOut(char ch);
     void inputOut(char ch);
     void breakpointStop(int line, unsigned short address);
     void memoryChanged(QString memory, int size);
+    void stateChanged(const Globals::SimStatus& status);
 
 protected:
     void run() override;

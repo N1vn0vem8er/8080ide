@@ -50,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent)
     simHandeler->setProjectNameLabel(projectInfoLabel);
     simHandeler->setInputLine(ui->simulatorInput);
 
+    connect(simHandeler, &SimHandeler::displayRegisters, this, &MainWindow::displayRegisters);
     connect(ui->run_button, &QPushButton::released, this, &MainWindow::b_run);
     connect(ui->actionCompile, &QAction::triggered, this, &MainWindow::b_compile);
     connect(ui->c_button, &QPushButton::released, this, &MainWindow::b_compile);
@@ -393,6 +394,21 @@ void MainWindow::openTerminalSetFontSize()
 void MainWindow::showMessage(const QString &message)
 {
     ui->statusbar->showMessage(message, 3000);
+}
+
+void MainWindow::displayRegisters(const QString &areg, const QString &breg, const QString &creg, const QString &dreg, const QString &ereg, const QString &hreg, const QString &lreg, const QString &mreg, const QString &pc, const QString &cf, const QString &sf, const QString &pf, const QString &zf, const QString &acf, const QString &sp)
+{
+    ui->Areg->setText("A = " + areg);
+    ui->Breg->setText("B = " + breg);
+    ui->Creg->setText("C = " + creg);
+    ui->Dreg->setText("D = " + dreg);
+    ui->Ereg->setText("E = " + ereg);
+    ui->Hreg->setText("H = " + hreg);
+    ui->Lreg->setText("L = " + lreg);
+    ui->Mreg->setText("M = " + mreg);
+    ui->PC->setText("PC = " + pc);
+    ui->SPreg->setText("SP = " + sp);
+    ui->Flagsreg->setText(tr("C = %1 AC = %2 P = %3 S = %4 Z = %5").arg(cf, acf, pf, sf, zf));
 }
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)

@@ -1,3 +1,4 @@
+#include "idesettings.h"
 #include "mainwindow.h"
 
 #include <QApplication>
