@@ -556,7 +556,16 @@ void MainWindow::search(const QString &text)
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
     {
-        tmp->highlightTextSequence(text);
+        tmp->highlightTextSequence(text, ui->searchWidget->isCaseSensitive());
+    }
+}
+
+void MainWindow::searchInSelected(const QString &text)
+{
+    CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(tmp)
+    {
+
     }
 }
 
@@ -566,6 +575,15 @@ void MainWindow::replace(const QString &text)
     if(tmp)
     {
         tmp->replaceTextSequence(ui->searchWidget->getSearchFieldText(), text);
+    }
+}
+
+void MainWindow::replaceInSelected(const QString &text)
+{
+    CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(tmp)
+    {
+
     }
 }
 
@@ -801,7 +819,7 @@ void MainWindow::showSearch()
     {
         CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
         if(tmp)
-            tmp->highlightTextSequence(ui->searchWidget->getSearchFieldText());
+            tmp->highlightTextSequence(ui->searchWidget->getSearchFieldText(), ui->searchWidget->isCaseSensitive());
         ui->searchWidget->setVisible(true);
     }
 }
@@ -1163,7 +1181,7 @@ void MainWindow::tabChanged()
     {
         if(ui->searchWidget->isVisible())
         {
-            tmp->highlightTextSequence(ui->searchWidget->getSearchFieldText());
+            tmp->highlightTextSequence(ui->searchWidget->getSearchFieldText(), ui->searchWidget->isCaseSensitive());
         }
         else
         {

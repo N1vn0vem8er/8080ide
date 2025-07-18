@@ -257,24 +257,44 @@ void CodeEditor::commentMultiLine() const
     cursor.endEditBlock();
 }
 
-void CodeEditor::highlightTextSequence(const QString& text)
+void CodeEditor::highlightTextSequence(const QString& text, bool caseSensitive)
 {
-    QTextCursor cursor = textCursor();
-    clearSearchFormatting();
-    cursor.setPosition(0);
-    QTextCharFormat format = QTextCharFormat();
-    format.setBackground(Qt::yellow);
-    while(true)
+    QList<QTextEdit::ExtraSelection> found;
+    QTextCharFormat highlightFormat;
+    highlightFormat.setBackground(Qt::yellow);
+    QRegularExpressionMatchIterator i = QRegularExpression(QString(R"(%1)").arg(caseSensitive ? text : text.toUpper())).globalMatch(caseSensitive ? toPlainText() : toPlainText().toUpper());
+    while(i.hasNext())
     {
-        cursor = document()->find(text, cursor.position());
-        if(cursor.isNull())
-        {
-            break;
-        }
-        cursor.mergeCharFormat(format);
-            setTextCursor(cursor);
+        QRegularExpressionMatch match = i.next();
+        QTextEdit::ExtraSelection es;
+        es.format = highlightFormat;
+        es.cursor = textCursor();
+        es.cursor.setPosition(match.capturedStart());
+        es.cursor.setPosition(match.capturedEnd(), QTextCursor::KeepAnchor);
+        found.append(es);
     }
+    setExtraSelections(found);
+    // QTextCursor cursor = textCursor();
+    // clearSearchFormatting();
+    // cursor.setPosition(0);
+    // QTextCharFormat format = QTextCharFormat();
+    // format.setBackground(Qt::yellow);
+    // while(true)
+    // {
+    //     cursor = document()->find(text, cursor.position());
+    //     if(cursor.isNull())
+    //     {
+    //         break;
+    //     }
+    //     cursor.mergeCharFormat(format);
+    //         setTextCursor(cursor);
+    // }
     waitingForInput = true;
+}
+
+void CodeEditor::highlightTextSequenceInSelected(const QString &text)
+{
+
 }
 
 void CodeEditor::replaceTextSequence(const QString &find, const QString &replace)
@@ -292,6 +312,11 @@ void CodeEditor::replaceTextSequence(const QString &find, const QString &replace
         cursor.insertText(replace);
         setTextCursor(cursor);
     }
+}
+
+void CodeEditor::replaceTextSequenceIsSelected(const QString &find, const QString &replace)
+{
+
 }
 
 void CodeEditor::clearSearchFormatting()

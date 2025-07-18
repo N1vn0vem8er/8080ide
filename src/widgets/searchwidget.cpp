@@ -10,6 +10,7 @@ SearchWidget::SearchWidget(QWidget *parent)
     connect(ui->replaceAllButton, &QPushButton::clicked, this, [this](){emit replaceFieldChanged(ui->replaceField->text());});
     connect(ui->searchField, &QLineEdit::returnPressed, this, [this](){emit searchFieldChanged(ui->searchField->text());});
     connect(ui->fieldTextReplaceButton, &QPushButton::clicked, this, [this](){auto tmp = ui->searchField->text(); ui->searchField->setText(ui->replaceField->text()); ui->replaceField->setText(tmp);});
+    connect(ui->caseSensitiveCheckBox, &QCheckBox::checkStateChanged, this, [&]{emit searchFieldChanged(ui->searchField->text());});
 }
 
 QString SearchWidget::getSearchFieldText() const
@@ -20,6 +21,11 @@ QString SearchWidget::getSearchFieldText() const
 QString SearchWidget::getReplaceFiedldText() const
 {
     return ui->replaceField->text();
+}
+
+bool SearchWidget::isCaseSensitive() const
+{
+    return ui->caseSensitiveCheckBox->isChecked();
 }
 
 SearchWidget::~SearchWidget()

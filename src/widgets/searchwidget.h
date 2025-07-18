@@ -15,6 +15,7 @@ public:
     explicit SearchWidget(QWidget *parent = nullptr);
     QString getSearchFieldText() const;
     QString getReplaceFiedldText() const;
+    bool isCaseSensitive() const;
     ~SearchWidget();
 
 private:

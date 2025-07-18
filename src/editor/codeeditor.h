@@ -22,8 +22,10 @@ public:
     void setHighlighterEnabled(bool val);
     bool isHighlighterEnabled();
     void commentMultiLine() const;
-    void highlightTextSequence(const QString &text);
+    void highlightTextSequence(const QString &text, bool caseSensitive);
+    void highlightTextSequenceInSelected(const QString& text);
     void replaceTextSequence(const QString &find, const QString &replace);
+    void replaceTextSequenceIsSelected(const QString &find, const QString &replace);
     void clearSearchFormatting();
     void setSpellCheckEnabled(bool val);
     void setSaved(bool val);

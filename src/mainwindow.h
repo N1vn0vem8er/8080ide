@@ -113,7 +113,9 @@ private slots:
     void enableSyntaxHighLinhting();
     void showSearch();
     void search(const QString& text);
+    void searchInSelected(const QString& text);
     void replace(const QString& text);
+    void replaceInSelected(const QString& text);
     void enableSpellCheck();
     void openProjectSearch();
     void setBreakpoint();
