@@ -626,7 +626,7 @@ void MainWindow::openLineToNumber()
 
 void MainWindow::openProjectInformationPopup()
 {
-    QMessageBox::information(this, tr("Information"), tr("Open project to use this feature"));
+    QMessageBox::information(this, tr("Information"), tr("Open git repository to use this feature"));
 }
 
 void MainWindow::openProjectInformationDialog()

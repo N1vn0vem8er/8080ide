@@ -353,7 +353,7 @@ void GitWidget::gitLog()
     ProcessManager::getInstance()->registerProcess(process, tr("Git log"));
     connect(process, &QProcess::readyReadStandardOutput, this, [this, process]{
         refresh();
-        emit openInEditor(process->readAllStandardOutput() + process->readAllStandardError(), tr("Log results"));
+        emit openInEditor(process->readAllStandardOutput(), tr("Log results"));
     });
     connect(process, &QProcess::finished, this, [process]{process->deleteLater();});
     process->start("git", {"log"});
@@ -368,7 +368,7 @@ void GitWidget::gitFetch()
     ProcessManager::getInstance()->registerProcess(process, tr("Git fetch"));
     connect(process, &QProcess::readyReadStandardOutput, this, [this, process]{
         refresh();
-        emit openInEditor(process->readAllStandardOutput() + process->readAllStandardError(), tr("Fetch results"));
+        emit openInEditor(process->readAllStandardOutput(), tr("Fetch results"));
     });
     connect(process, &QProcess::finished, this, [process]{
         process->deleteLater();
