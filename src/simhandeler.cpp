@@ -196,7 +196,7 @@ void SimHandeler::run()
 QString SimHandeler::memoryToString() const
 {
     QString mem = "";
-    if(symulator!=nullptr)
+    if(symulator)
         for(int i = 0; i<symulator->getMemSize(); i++)
         {
             mem += QChar(symulator->getMemory()[i]);
@@ -220,21 +220,19 @@ void SimHandeler::inputOut(char ch)
 
 void SimHandeler::breakpointCodeLocation(int line, unsigned short address)
 {
-    QString fName;
     for(const auto& i : std::as_const(fileMemoryRanges))
     {
         if(address >= i.start && address <= i.end)
         {
-            fName = i.fileName;
+            emit breakpointHighlightLine(i.fileName, line);
             break;
         }
     }
-    emit breakpointHighlightLine(fName, line);
 }
 
 void SimHandeler::memoryChangedByUser(QString &memory, int size)
 {
-    if(sr != nullptr)
+    if(sr)
     {
         emit memoryChangedByUserSignal(memory, size);
     }
@@ -272,7 +270,7 @@ void SimHandeler::changedRegisters(unsigned char a, unsigned char b, unsigned ch
 }
 void SimHandeler::compile()
 {
-    if(compcode != nullptr)
+    if(compcode)
     {
         delete[] compcode;
         compcode = nullptr;
@@ -317,7 +315,7 @@ void SimHandeler::compile()
 void SimHandeler::load()
 {
     reset();
-    if(compcode != nullptr && compcodeSize > 0)
+    if(compcode && compcodeSize > 0)
     {
         this->symulator->load(this->compcode, this->compcodeSize);
         emit memoryChanged(memoryToString(), symulator->getMemSize());
@@ -368,7 +366,7 @@ void SimHandeler::setScreen(QPlainTextEdit *screen)
 }
 void SimHandeler::reset()
 {
-    if(sr!=nullptr)
+    if(sr)
     {
         sr->requestInterruption();
         sr->wait();
@@ -387,7 +385,7 @@ void SimHandeler::reset()
 
 void SimHandeler::restart()
 {
-    if(sr!=nullptr)
+    if(sr)
     {
         sr->requestInterruption();
         sr->wait();
@@ -409,12 +407,13 @@ void SimHandeler::input(const QString &input)
 unsigned char* SimHandeler::getMemory()
 {
     unsigned char* memory;
-    if(sr!=nullptr)
+    if(sr)
     {
         memory = emit getMemoryFromSim();
     }
-    else{
-    memory = symulator->getMemory();
+    else
+    {
+        memory = symulator->getMemory();
     }
     return memory;
 }
