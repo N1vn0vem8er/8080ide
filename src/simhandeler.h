@@ -19,8 +19,8 @@ private:
     void printOnScreen(const char* text);
     void clearScreen();
     void updateRegistersLabels();
-    std::string tohexASCII(unsigned char ch);
-    std::string tohexASCII(unsigned short ch);
+    QString tohexASCII(unsigned char ch) const;
+    QString tohexASCII(unsigned short ch) const;
     std::unique_ptr<Symulator> symulator {nullptr};
     unsigned char* compcode = nullptr;
     int compcodeSize;

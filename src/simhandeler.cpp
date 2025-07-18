@@ -19,26 +19,26 @@ void SimHandeler::clearScreen()
 }
 void SimHandeler::updateRegistersLabels()
 {
-    emit displayRegisters(QString::fromStdString(tohexASCII(symulator->getAreg())), QString::fromStdString(tohexASCII(symulator->getBreg())), QString::fromStdString(tohexASCII(symulator->getCreg())),
-                          QString::fromStdString(tohexASCII(symulator->getDreg())), QString::fromStdString(tohexASCII(symulator->getEreg())), QString::fromStdString(tohexASCII(symulator->getHreg())),
-                          QString::fromStdString(tohexASCII(symulator->getLreg())), QString::fromStdString(tohexASCII(symulator->getMreg())), QString::fromStdString(tohexASCII(symulator->getPC())),
+    emit displayRegisters(tohexASCII(symulator->getAreg()), tohexASCII(symulator->getBreg()), tohexASCII(symulator->getCreg()),
+                          tohexASCII(symulator->getDreg()), tohexASCII(symulator->getEreg()), tohexASCII(symulator->getHreg()),
+                          tohexASCII(symulator->getLreg()), tohexASCII(symulator->getMreg()), tohexASCII(symulator->getPC()),
                           QString::number(symulator->getCF()), QString::number(symulator->getS()), QString::number(symulator->getP()), QString::number(symulator->getZ()), QString::number(symulator->getAC()),
-                          QString::fromStdString(tohexASCII(symulator->getSP())));
-    emit setRegisterValues(QString::fromStdString(tohexASCII(symulator->getAreg())), QString::fromStdString(tohexASCII(symulator->getBreg())), QString::fromStdString(tohexASCII(symulator->getCreg())),
-                           QString::fromStdString(tohexASCII(symulator->getDreg())), QString::fromStdString(tohexASCII(symulator->getEreg())), QString::fromStdString(tohexASCII(symulator->getHreg())),
-                           QString::fromStdString(tohexASCII(symulator->getLreg())), QString::fromStdString(tohexASCII(symulator->getPC())), QString::fromStdString(tohexASCII(symulator->getSP())));
+                          tohexASCII(symulator->getSP()));
+    emit setRegisterValues(tohexASCII(symulator->getAreg()), tohexASCII(symulator->getBreg()), tohexASCII(symulator->getCreg()),
+                           tohexASCII(symulator->getDreg()), tohexASCII(symulator->getEreg()), tohexASCII(symulator->getHreg()),
+                           tohexASCII(symulator->getLreg()), tohexASCII(symulator->getPC()), tohexASCII(symulator->getSP()));
 }
-std::string SimHandeler::tohexASCII(unsigned char ch)
+QString SimHandeler::tohexASCII(unsigned char ch) const
 {
     std::stringstream ss;
     ss << std::hex << +ch;
-    return ss.str();
+    return QString::fromStdString(ss.str());
 }
-std::string SimHandeler::tohexASCII(unsigned short ch)
+QString SimHandeler::tohexASCII(unsigned short ch) const
 {
     std::stringstream ss;
     ss << std::hex << +ch;
-    return ss.str();
+    return QString::fromStdString(ss.str());
 }
 
 SimHandeler::SimHandeler(QPlainTextEdit* screen, QObject* parent) : QObject{parent}
