@@ -5,7 +5,6 @@
 #include "qlineedit.h"
 #include "qplaintextedit.h"
 #include <string>
-#include <sstream>
 #include "8080/Symulator.h"
 #include "qthread.h"
 #include "simrunner.h"

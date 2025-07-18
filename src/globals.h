@@ -38,9 +38,6 @@ struct SimStatus{
     auto operator<=>(const SimStatus&) const = default;
 };
 
-const QString SETTINGSFILENAME = "settings.ini";
-const QString SETTINGSDIRNAME = "8080ide";
-
 }
 
 #endif // GLOBALS_H
