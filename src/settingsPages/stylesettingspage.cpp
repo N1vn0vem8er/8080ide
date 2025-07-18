@@ -1,8 +1,9 @@
 #include "stylesettingspage.h"
+#include <QColorDialog>
 #include "ui_stylesettingspage.h"
 
 #include <QStyleFactory>
-#include <idesettings.h>
+#include "idesettings.h"
 
 StyleSettingsPage::StyleSettingsPage(QWidget *parent)
     : QWidget(parent)
@@ -17,6 +18,14 @@ StyleSettingsPage::StyleSettingsPage(QWidget *parent)
     {
         ui->comboBox->setCurrentText(IDESettings::theme);
     }
+    connect(ui->selectLineHighlightColorButton, &QPushButton::clicked, this, [&]{
+        QColorDialog dialog;
+        dialog.setCurrentColor(IDESettings::lineHighlightColor);
+        if(dialog.exec() == QDialog::Accepted)
+        {
+            IDESettings::lineHighlightColor = dialog.currentColor();
+        }
+    });
 }
 
 StyleSettingsPage::~StyleSettingsPage()

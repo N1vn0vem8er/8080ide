@@ -1,6 +1,7 @@
 #ifndef IDESETTINGS_H
 #define IDESETTINGS_H
 
+#include <QColor>
 #include <qstring.h>
 
 class IDESettings
@@ -55,6 +56,7 @@ public:
     static bool defaultLinesWrap;
     static int simMemorySize;
     static int simStartAddress;
+    static QColor lineHighlightColor;
     const QString settingsDirName = "ide8080";
     const QString settingsFileName = "idssettings";
     void saveSettings();

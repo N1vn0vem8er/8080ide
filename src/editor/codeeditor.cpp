@@ -10,6 +10,7 @@
 #include <QStringListModel>
 #include <QScrollBar>
 #include <QCryptographicHash>
+#include <idesettings.h>
 
 CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
 {
@@ -490,7 +491,7 @@ void CodeEditor::stepLineHightlight(int line)
     cursor.joinPreviousEditBlock();
     cursor.movePosition(QTextCursor::EndOfBlock, QTextCursor::KeepAnchor);
     QTextCharFormat format;
-    format.setBackground(Qt::yellow);
+    format.setBackground(IDESettings::lineHighlightColor);
     cursor.mergeCharFormat(format);
     cursor.movePosition(QTextCursor::StartOfBlock, QTextCursor::MoveAnchor);
     cursor.endEditBlock();

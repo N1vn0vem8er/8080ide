@@ -61,6 +61,10 @@ void IDESettings::saveSettings()
     settings.setValue("defaultTerminalFontSize", IDESettings::defaultTerminalFontSize);
     settings.setValue("defaultFontSize", IDESettings::defaultFontSize);
     settings.setValue("defaultLinesWrap", IDESettings::defaultLinesWrap);
+
+    settings.setValue("lineHighlightColor.r", IDESettings::lineHighlightColor.red());
+    settings.setValue("lineHighlightColor.g", IDESettings::lineHighlightColor.green());
+    settings.setValue("lineHighlightColor.b", IDESettings::lineHighlightColor.blue());
 }
 
 void IDESettings::loadSettings()
@@ -105,6 +109,8 @@ void IDESettings::loadSettings()
     IDESettings::defaultFontSize = settings.value("defaultFontSize", 10).toInt();
     IDESettings::defaultLinesWrap = settings.value("defaultLinesWrap", true).toBool();
 
+    IDESettings::lineHighlightColor = QColor::fromRgb(settings.value("lineHighlightColor.r", 255).toInt(), settings.value("lineHighlightColor.g", 255).toInt(), settings.value("lineHighlightColor.b", 0).toInt());
+
     simMemorySize = settings.value("simMemorySize", 1024).toInt();
     simStartAddress = settings.value("simStartAddress", 0).toInt();
 
@@ -130,3 +136,4 @@ QString IDESettings::terminalTheme;
 int IDESettings::defaultTerminalFontSize;
 int IDESettings::defaultFontSize;
 bool IDESettings::defaultLinesWrap;
+QColor IDESettings::lineHighlightColor;
