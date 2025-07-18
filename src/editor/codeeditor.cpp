@@ -262,7 +262,7 @@ void CodeEditor::highlightTextSequence(const QString& text, bool caseSensitive)
     QList<QTextEdit::ExtraSelection> found;
     QTextCharFormat highlightFormat;
     highlightFormat.setBackground(Qt::yellow);
-    QRegularExpressionMatchIterator i = QRegularExpression(QString(R"(%1)").arg(caseSensitive ? text : text.toUpper())).globalMatch(caseSensitive ? toPlainText() : toPlainText().toUpper());
+    QRegularExpressionMatchIterator i = QRegularExpression(caseSensitive ? text : text.toUpper()).globalMatch(caseSensitive ? toPlainText() : toPlainText().toUpper());
     while(i.hasNext())
     {
         QRegularExpressionMatch match = i.next();
@@ -274,21 +274,6 @@ void CodeEditor::highlightTextSequence(const QString& text, bool caseSensitive)
         found.append(es);
     }
     setExtraSelections(found);
-    // QTextCursor cursor = textCursor();
-    // clearSearchFormatting();
-    // cursor.setPosition(0);
-    // QTextCharFormat format = QTextCharFormat();
-    // format.setBackground(Qt::yellow);
-    // while(true)
-    // {
-    //     cursor = document()->find(text, cursor.position());
-    //     if(cursor.isNull())
-    //     {
-    //         break;
-    //     }
-    //     cursor.mergeCharFormat(format);
-    //         setTextCursor(cursor);
-    // }
     waitingForInput = true;
 }
 
