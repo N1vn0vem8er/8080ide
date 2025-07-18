@@ -1,5 +1,4 @@
 #include "simhandeler.h"
-#include "qprocess.h"
 #include "simrunner.h"
 #include "ssettings.h"
 #include "idesettings.h"
@@ -20,17 +19,11 @@ void SimHandeler::clearScreen()
 }
 void SimHandeler::updateRegistersLabels()
 {
-    areg->setText("A = " + QString::fromStdString(tohexASCII(symulator->getAreg())));
-    breg->setText("B = " + QString::fromStdString(tohexASCII(symulator->getBreg())));
-    creg->setText("C = " + QString::fromStdString(tohexASCII(symulator->getCreg())));
-    dreg->setText("D = " + QString::fromStdString(tohexASCII(symulator->getDreg())));
-    ereg->setText("E = " + QString::fromStdString(tohexASCII(symulator->getEreg())));
-    hreg->setText("H = " + QString::fromStdString(tohexASCII(symulator->getHreg())));
-    lreg->setText("L = " + QString::fromStdString(tohexASCII(symulator->getLreg())));
-    pc->setText("PC = " + QString::fromStdString(tohexASCII(symulator->getPC())));
-    flags->setText(QString("C=%1 AC=%2 P=%3 S=%4 Z=%5").arg(QString::number(symulator->getCF()), QString::number(symulator->getAC()), QString::number(symulator->getP()), QString::number(symulator->getS()), QString::number(symulator->getZ())));
-    mreg->setText("M = "+QString::fromStdString(tohexASCII(symulator->getMreg())));
-    sp->setText("SP = "+QString::fromStdString(tohexASCII(symulator->getSP())));
+    emit displayRegisters(QString::fromStdString(tohexASCII(symulator->getAreg())), QString::fromStdString(tohexASCII(symulator->getBreg())), QString::fromStdString(tohexASCII(symulator->getCreg())),
+                          QString::fromStdString(tohexASCII(symulator->getDreg())), QString::fromStdString(tohexASCII(symulator->getEreg())), QString::fromStdString(tohexASCII(symulator->getHreg())),
+                          QString::fromStdString(tohexASCII(symulator->getLreg())), QString::fromStdString(tohexASCII(symulator->getMreg())), QString::fromStdString(tohexASCII(symulator->getPC())),
+                          QString::number(symulator->getCF()), QString::number(symulator->getS()), QString::number(symulator->getP()), QString::number(symulator->getZ()), QString::number(symulator->getAC()),
+                          QString::fromStdString(tohexASCII(symulator->getSP())));
     emit setRegisterValues(QString::fromStdString(tohexASCII(symulator->getAreg())), QString::fromStdString(tohexASCII(symulator->getBreg())), QString::fromStdString(tohexASCII(symulator->getCreg())),
                            QString::fromStdString(tohexASCII(symulator->getDreg())), QString::fromStdString(tohexASCII(symulator->getEreg())), QString::fromStdString(tohexASCII(symulator->getHreg())),
                            QString::fromStdString(tohexASCII(symulator->getLreg())), QString::fromStdString(tohexASCII(symulator->getPC())), QString::fromStdString(tohexASCII(symulator->getSP())));
@@ -70,17 +63,17 @@ void SimHandeler::openProject(const QString &path)
 {
     delete projectManager;
     projectManager = new ProjectManager();
-    log("Opening project at "+path);
+    log(tr("Opening project at %1").arg(path));
     projectManager->readConfig(path);
     projectManager->clearCompilerQueue();
     projectLoaded = true;
-    projectNameLabel->setText("Projekt: " + projectManager->getName());
-    log("Project loaded");
+    projectNameLabel->setText(tr("Project: %1").arg(projectManager->getName()));
+    log(tr("Project loaded"));
 }
 void SimHandeler::closeProject()
 {
     projectLoaded = false;
-    projectNameLabel->setText("Brak Projektu");
+    projectNameLabel->setText(tr("No project"));
     Ssettings::memSize = IDESettings::simMemorySize;
     Ssettings::memStart = IDESettings::simStartAddress;
     Ssettings::sp = 100;
