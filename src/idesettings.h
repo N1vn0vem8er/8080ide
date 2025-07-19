@@ -57,6 +57,8 @@ public:
     static int simMemorySize;
     static int simStartAddress;
     static QColor lineHighlightColor;
+    static QString defaultEditorFont;
+    static QString defaultTerminalFont;
     const QString settingsDirName = "ide8080";
     const QString settingsFileName = "idssettings";
     void saveSettings();

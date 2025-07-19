@@ -14,6 +14,7 @@ StyleSettingsPage::StyleSettingsPage(QWidget *parent)
     ui->comboBox->addItems(QStyleFactory::keys());
     ui->lineWrapCheckBox->setChecked(IDESettings::defaultLinesWrap);
     ui->fontLineEdit->setText(QString::number(IDESettings::defaultFontSize));
+    ui->fontComboBox->setCurrentFont(QFont(IDESettings::defaultEditorFont));
     if(QStyleFactory::keys().contains(IDESettings::theme))
     {
         ui->comboBox->setCurrentText(IDESettings::theme);
@@ -39,5 +40,6 @@ void StyleSettingsPage::apply() const
     IDESettings::theme = ui->comboBox->currentText();
     IDESettings::defaultFontSize = ui->fontLineEdit->text().toInt();
     IDESettings::defaultLinesWrap = ui->lineWrapCheckBox->isChecked();
+    IDESettings::defaultEditorFont = ui->fontComboBox->currentFont().family();
     IDESettings().saveSettings();
 }

@@ -1,8 +1,11 @@
 #include "idesettings.h"
+#include "qplaintextedit.h"
 #include "qsettings.h"
 #include "ssettings.h"
 
 #include <QApplication>
+
+#include <qtermwidget6/qtermwidget.h>
 
 IDESettings::IDESettings() {}
 
@@ -61,6 +64,8 @@ void IDESettings::saveSettings()
     settings.setValue("defaultTerminalFontSize", IDESettings::defaultTerminalFontSize);
     settings.setValue("defaultFontSize", IDESettings::defaultFontSize);
     settings.setValue("defaultLinesWrap", IDESettings::defaultLinesWrap);
+    settings.setValue("defaultEditorFont", IDESettings::defaultEditorFont);
+    settings.setValue("defaultTerminalFont", IDESettings::defaultTerminalFont);
 
     settings.setValue("lineHighlightColor.r", IDESettings::lineHighlightColor.red());
     settings.setValue("lineHighlightColor.g", IDESettings::lineHighlightColor.green());
@@ -108,6 +113,8 @@ void IDESettings::loadSettings()
     IDESettings::defaultTerminalFontSize = settings.value("defaultTerminalFontSize", 10).toInt();
     IDESettings::defaultFontSize = settings.value("defaultFontSize", 10).toInt();
     IDESettings::defaultLinesWrap = settings.value("defaultLinesWrap", true).toBool();
+    IDESettings::defaultEditorFont = settings.value("defaultEditorFont").toString();
+    IDESettings::defaultTerminalFont = settings.value("defaultTerminalFont").toString();
 
     IDESettings::lineHighlightColor = QColor::fromRgb(settings.value("lineHighlightColor.r", 255).toInt(), settings.value("lineHighlightColor.g", 255).toInt(), settings.value("lineHighlightColor.b", 0).toInt());
 
@@ -137,3 +144,5 @@ int IDESettings::defaultTerminalFontSize;
 int IDESettings::defaultFontSize;
 bool IDESettings::defaultLinesWrap;
 QColor IDESettings::lineHighlightColor;
+QString IDESettings::defaultEditorFont;
+QString IDESettings::defaultTerminalFont;
