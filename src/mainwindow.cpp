@@ -168,6 +168,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ProcessManager::getInstance(), &ProcessManager::processAdded, runningProcessesLabel, &RunningProcessesLabel::addProcess);
     connect(ProcessManager::getInstance(), &ProcessManager::processRemoved, runningProcessesLabel, &RunningProcessesLabel::removeProcess);
     connect(ui->searchWidget, &SearchWidget::searchInSelected, this, &MainWindow::searchInSelected);
+    connect(ui->searchWidget, &SearchWidget::replaceInSelected, this, &MainWindow::replaceInSelected);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
@@ -575,7 +576,7 @@ void MainWindow::replace(const QString &text)
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
     {
-        tmp->replaceTextSequence(ui->searchWidget->getSearchFieldText(), text);
+        tmp->replaceTextSequence(ui->searchWidget->getSearchFieldText(), text, ui->searchWidget->isCaseSensitive());
     }
 }
 
@@ -584,7 +585,7 @@ void MainWindow::replaceInSelected(const QString &text)
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
     {
-
+        tmp->replaceTextSequenceIsSelected(ui->searchWidget->getSearchFieldText(), text, ui->searchWidget->isCaseSensitive());
     }
 }
 

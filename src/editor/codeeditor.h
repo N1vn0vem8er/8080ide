@@ -24,8 +24,8 @@ public:
     void commentMultiLine() const;
     void highlightTextSequence(const QString &text, bool caseSensitive);
     void highlightTextSequenceInSelected(const QString& text, bool caseSensitive);
-    void replaceTextSequence(const QString &find, const QString &replace);
-    void replaceTextSequenceIsSelected(const QString &find, const QString &replace);
+    void replaceTextSequence(const QString &find, const QString &replace, bool caseSensitive);
+    void replaceTextSequenceIsSelected(const QString &find, const QString &replace, bool caseSensitive);
     void clearSearchFormatting();
     void setSpellCheckEnabled(bool val);
     void setSaved(bool val);

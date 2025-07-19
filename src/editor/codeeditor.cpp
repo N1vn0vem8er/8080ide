@@ -298,13 +298,16 @@ void CodeEditor::highlightTextSequenceInSelected(const QString &text, bool caseS
     waitingForInput = true;
 }
 
-void CodeEditor::replaceTextSequence(const QString &find, const QString &replace)
+void CodeEditor::replaceTextSequence(const QString &find, const QString &replace, bool caseSensitive)
 {
     QTextCursor cursor = textCursor();
     cursor.setPosition(0);
     while(true)
     {
-        cursor = document()->find(find, cursor.position());
+        if(caseSensitive)
+            cursor = document()->find(find, cursor.position(), QTextDocument::FindFlag::FindCaseSensitively);
+        else
+            cursor = document()->find(find, cursor.position());
         if(cursor.isNull())
         {
             break;
@@ -315,9 +318,16 @@ void CodeEditor::replaceTextSequence(const QString &find, const QString &replace
     }
 }
 
-void CodeEditor::replaceTextSequenceIsSelected(const QString &find, const QString &replace)
+void CodeEditor::replaceTextSequenceIsSelected(const QString &find, const QString &replace, bool caseSensitive)
 {
-
+    QTextCursor cursor = textCursor();
+    if(cursor.hasSelection())
+    {
+        QString selected = cursor.selectedText();
+        selected.replace(find, replace, caseSensitive ? Qt::CaseSensitivity::CaseSensitive : Qt::CaseSensitivity::CaseInsensitive);
+        cursor.insertText(selected);
+        setTextCursor(cursor);
+    }
 }
 
 void CodeEditor::clearSearchFormatting()
