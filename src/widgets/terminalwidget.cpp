@@ -20,6 +20,7 @@ TerminalWidget::TerminalWidget(QWidget *parent)
         terminal->setColorScheme(IDESettings::terminalTheme);
 
     setFontSize(IDESettings::defaultTerminalFontSize);
+    setTerminalFont(QFont(IDESettings::defaultTerminalFont));
 
     QHBoxLayout* layout = static_cast<QHBoxLayout*>(this->layout());
     layout->addWidget(terminal);

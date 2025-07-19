@@ -575,6 +575,7 @@ void MainWindow::openInEditor(const QString &text, const QString &title, bool re
     CodeEditor* editor = new CodeEditor(ui->tabWidget);
     editor->setLineWrapMode(IDESettings::defaultLinesWrap ? CodeEditor::LineWrapMode::WidgetWidth : CodeEditor::LineWrapMode::NoWrap);
     editor->setFontSize(IDESettings::defaultFontSize);
+    editor->setFont(QFont(IDESettings::defaultEditorFont));
     connect(editor, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
     editor->setReadOnly(readOnly);
     editor->setSpellCheckEnabled(spellChecking);
@@ -884,6 +885,7 @@ void MainWindow::newFile()
 {
     CodeEditor* tmp = new CodeEditor(ui->tabWidget);
     tmp->setLineWrapMode(IDESettings::defaultLinesWrap ? CodeEditor::LineWrapMode::WidgetWidth : CodeEditor::LineWrapMode::NoWrap);
+    tmp->setFont(QFont(IDESettings::defaultEditorFont));
     tmp->setFontSize(IDESettings::defaultFontSize);
     connect(tmp, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
     ui->actionOverwrite_mode->setChecked(tmp->overwriteMode());
@@ -911,6 +913,7 @@ void MainWindow::openFileInNewTab(const QString &path)
             file.close();
             CodeEditor* ce = new CodeEditor();
             ce->setLineWrapMode(IDESettings::defaultLinesWrap ? CodeEditor::LineWrapMode::WidgetWidth : CodeEditor::LineWrapMode::NoWrap);
+            ce->setFont(QFont(IDESettings::defaultEditorFont));
             ce->setFontSize(IDESettings::defaultFontSize);
             connect(ce, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
             ce->setFilePath(path);
