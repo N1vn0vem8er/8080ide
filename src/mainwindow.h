@@ -142,6 +142,7 @@ private slots:
                           const QString& pc, const QString& cf, const QString& sf, const QString& pf, const QString& zf, const QString& acf, const QString& sp);
     void openEditorFontSelectDialog();
     void openTerminalFontSelectDialog();
+    void changeSavedLabel(bool val);
 
 protected:
     void dropEvent(QDropEvent* event) override;

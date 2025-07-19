@@ -349,6 +349,7 @@ void CodeEditor::setSpellCheckEnabled(bool val)
 void CodeEditor::setSaved(bool val)
 {
     saved = val;
+    emit savedChanged(val);
 }
 
 void CodeEditor::setProjectPath(const QString &path)

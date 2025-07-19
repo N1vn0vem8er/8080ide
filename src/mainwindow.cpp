@@ -470,6 +470,11 @@ void MainWindow::openTerminalFontSelectDialog()
     dialog->deleteLater();
 }
 
+void MainWindow::changeSavedLabel(bool val)
+{
+    savedLabel->setText(val ? tr("Saved") : tr("Not saved"));
+}
+
 void MainWindow::saveFileToRecentFiles(const QString &filePath)
 {
     const QString path = QDir::homePath() + "/.ide8080ide.recentfiles";
@@ -580,6 +585,7 @@ void MainWindow::openInEditor(const QString &text, const QString &title, bool re
     editor->setFontSize(IDESettings::defaultFontSize);
     editor->setFont(QFont(IDESettings::defaultEditorFont));
     connect(editor, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
+    connect(editor, &CodeEditor::savedChanged, this, &MainWindow::changeSavedLabel);
     editor->setReadOnly(readOnly);
     editor->setSpellCheckEnabled(spellChecking);
     editor->setSaveWarningEnabled(!disableSaveWarning);
@@ -856,13 +862,9 @@ void MainWindow::dragLeaveEvent(QDragLeaveEvent *event)
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    for(int i = 0; i < ui->tabWidget->count(); i++)
+    while(ui->tabWidget->count() > 0)
     {
-        CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(i));
-        if(tmp && !tmp->isSaved())
-        {
-            openSaveWarningDialog(tmp);
-        }
+        closeTab(ui->tabWidget->currentIndex());
     }
     QMainWindow::closeEvent(event);
 }
@@ -891,6 +893,7 @@ void MainWindow::newFile()
     tmp->setFont(QFont(IDESettings::defaultEditorFont));
     tmp->setFontSize(IDESettings::defaultFontSize);
     connect(tmp, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
+    connect(tmp, &CodeEditor::savedChanged, this, &MainWindow::changeSavedLabel);
     ui->actionOverwrite_mode->setChecked(tmp->overwriteMode());
     ui->actionRead_only->setChecked(tmp->isReadOnly());
     ui->actionLine_wrap->setChecked(tmp->lineWrapMode() == CodeEditor::NoWrap ? false : true);
@@ -919,6 +922,7 @@ void MainWindow::openFileInNewTab(const QString &path)
             ce->setFont(QFont(IDESettings::defaultEditorFont));
             ce->setFontSize(IDESettings::defaultFontSize);
             connect(ce, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
+            connect(ce, &CodeEditor::savedChanged, this, &MainWindow::changeSavedLabel);
             ce->setFilePath(path);
             simHandeler->setFilename(path);
             if(simHandeler->getProjectFilesPaths().contains(path))
@@ -1235,7 +1239,8 @@ void MainWindow::closeTab(int index)
     }
 
     ui->tabWidget->removeTab(index);
-    delete widget;
+    if(widget)
+        widget->deleteLater();
 }
 void MainWindow::tabChanged()
 {
