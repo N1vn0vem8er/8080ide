@@ -139,6 +139,8 @@ private slots:
     void showMessage(const QString& message);
     void displayRegisters(const QString& areg, const QString& breg, const QString& creg, const QString& dreg, const QString& ereg, const QString& hreg, const QString& lreg,  const QString& mreg,
                           const QString& pc, const QString& cf, const QString& sf, const QString& pf, const QString& zf, const QString& acf, const QString& sp);
+    void openEditorFontSelectDialog();
+    void openTerminalFontSelectDialog();
 
 protected:
     void dropEvent(QDropEvent* event) override;

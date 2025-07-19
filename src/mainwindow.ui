@@ -462,6 +462,7 @@
     <addaction name="actionIncrease_font_size"/>
     <addaction name="actionDecrease_font_size"/>
     <addaction name="actionSet_font_size"/>
+    <addaction name="actionSet_font"/>
     <addaction name="actionReset_font_size"/>
     <addaction name="separator"/>
     <addaction name="actionLine_wrap"/>
@@ -1269,6 +1270,11 @@
   <action name="actionTermSIGTSTP">
    <property name="text">
     <string>SIGTSTP</string>
+   </property>
+  </action>
+  <action name="actionSet_font">
+   <property name="text">
+    <string>Set font</string>
    </property>
   </action>
  </widget>

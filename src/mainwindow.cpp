@@ -24,6 +24,7 @@
 #include <QMimeData>
 #include <QSettings>
 #include <QStyleFactory>
+#include <QFontComboBox>
 #include "idesettings.h"
 #include "processmanager.h"
 #include <widgets/searchwidget.h>
@@ -169,6 +170,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ProcessManager::getInstance(), &ProcessManager::processRemoved, runningProcessesLabel, &RunningProcessesLabel::removeProcess);
     connect(ui->searchWidget, &SearchWidget::searchInSelected, this, &MainWindow::searchInSelected);
     connect(ui->searchWidget, &SearchWidget::replaceInSelected, this, &MainWindow::replaceInSelected);
+    connect(ui->actionSet_font, &QAction::triggered, this, &MainWindow::openEditorFontSelectDialog);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
@@ -410,6 +412,39 @@ void MainWindow::displayRegisters(const QString &areg, const QString &breg, cons
     ui->PC->setText("PC = " + pc);
     ui->SPreg->setText("SP = " + sp);
     ui->Flagsreg->setText(tr("C = %1 AC = %2 P = %3 S = %4 Z = %5").arg(cf, acf, pf, sf, zf));
+}
+
+void MainWindow::openEditorFontSelectDialog()
+{
+    CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    if(ce)
+    {
+        QDialog* dialog = new QDialog(this);
+        QVBoxLayout* layout = new QVBoxLayout(dialog);
+        QFontComboBox* comboBox = new QFontComboBox(dialog);
+        layout->addWidget(comboBox);
+        QPushButton* okButton = new QPushButton(dialog);
+        QPushButton* cancelButton = new QPushButton(dialog);
+        std::unique_ptr<QHBoxLayout> buttonsLayout = std::make_unique<QHBoxLayout>();
+        okButton->setText(tr("Ok"));
+        cancelButton->setText(tr("Cancel"));
+        buttonsLayout->addWidget(okButton);
+        buttonsLayout->addWidget(cancelButton);
+        layout->addLayout(buttonsLayout.get());
+        connect(okButton, &QPushButton::clicked, dialog, &QDialog::accept);
+        connect(cancelButton, &QPushButton::clicked, dialog, &QDialog::reject);
+        dialog->setLayout(layout);
+        if(dialog->exec() == QDialog::Accepted)
+        {
+           ce->setFont(comboBox->currentFont());
+        }
+        dialog->deleteLater();
+    }
+}
+
+void MainWindow::openTerminalFontSelectDialog()
+{
+
 }
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)
