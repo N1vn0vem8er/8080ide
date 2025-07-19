@@ -22,12 +22,13 @@ public:
 private:
     Ui::MainWindow *ui;
     SimHandeler* simHandeler;
-    CodeEditor* highlightedEditor = nullptr;
-    CodeEditor* stepHighlightedEditor = nullptr;
+    CodeEditor* highlightedEditor {nullptr};
+    CodeEditor* stepHighlightedEditor {nullptr};
     void save(CodeEditor* editor);
     void addTab(QWidget* widget, const QString& title);
     bool newFileLoaded;
     QLabel* projectInfoLabel {nullptr};
+    QLabel* savedLabel {nullptr};
     RunningProcessesLabel* runningProcessesLabel {nullptr};
     std::string getStdStringFromTab(int index);
     QString getPlainTextFromTab(int index);

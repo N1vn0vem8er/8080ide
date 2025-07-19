@@ -42,6 +42,9 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    savedLabel = new QLabel(ui->statusbar);
+    ui->statusbar->addPermanentWidget(savedLabel);
+
     runningProcessesLabel = new RunningProcessesLabel("", ui->statusbar);
     ui->statusbar->addPermanentWidget(runningProcessesLabel);
 
@@ -1251,6 +1254,7 @@ void MainWindow::tabChanged()
         ui->actionRead_only->setChecked(tmp->isReadOnly());
         ui->actionLine_wrap->setChecked(tmp->lineWrapMode() == CodeEditor::NoWrap ? false : true);
         showMessage(tr("Font Size: %1").arg(tmp->font().pointSize()));
+        savedLabel->setText(tmp->isSaved() ? tr("Saved") : tr("Not saved"));
     }
 }
 void MainWindow::undo()
