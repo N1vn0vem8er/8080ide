@@ -171,6 +171,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->searchWidget, &SearchWidget::searchInSelected, this, &MainWindow::searchInSelected);
     connect(ui->searchWidget, &SearchWidget::replaceInSelected, this, &MainWindow::replaceInSelected);
     connect(ui->actionSet_font, &QAction::triggered, this, &MainWindow::openEditorFontSelectDialog);
+    connect(ui->actionSetTerminalFont, &QAction::triggered, this, &MainWindow::openTerminalFontSelectDialog);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
@@ -444,7 +445,26 @@ void MainWindow::openEditorFontSelectDialog()
 
 void MainWindow::openTerminalFontSelectDialog()
 {
-
+    QDialog* dialog = new QDialog(this);
+    QVBoxLayout* layout = new QVBoxLayout(dialog);
+    QFontComboBox* comboBox = new QFontComboBox(dialog);
+    layout->addWidget(comboBox);
+    QPushButton* okButton = new QPushButton(dialog);
+    QPushButton* cancelButton = new QPushButton(dialog);
+    std::unique_ptr<QHBoxLayout> buttonsLayout = std::make_unique<QHBoxLayout>();
+    okButton->setText(tr("Ok"));
+    cancelButton->setText(tr("Cancel"));
+    buttonsLayout->addWidget(okButton);
+    buttonsLayout->addWidget(cancelButton);
+    layout->addLayout(buttonsLayout.get());
+    connect(okButton, &QPushButton::clicked, dialog, &QDialog::accept);
+    connect(cancelButton, &QPushButton::clicked, dialog, &QDialog::reject);
+    dialog->setLayout(layout);
+    if(dialog->exec() == QDialog::Accepted)
+    {
+        ui->terminalWidget->setTerminalFont(comboBox->currentFont());
+    }
+    dialog->deleteLater();
 }
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)

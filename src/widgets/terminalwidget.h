@@ -17,6 +17,7 @@ public:
     ~TerminalWidget();
     QStringList getThemes();
     void setTheme(const QString& theme);
+    void setTerminalFont(const QFont& font);
 
 public slots:
     void increaseFontSize();

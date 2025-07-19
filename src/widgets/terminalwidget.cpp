@@ -43,6 +43,11 @@ void TerminalWidget::setTheme(const QString &theme)
     IDESettings().saveSettings();
 }
 
+void TerminalWidget::setTerminalFont(const QFont &font)
+{
+    terminal->setTerminalFont(font);
+}
+
 void TerminalWidget::increaseFontSize()
 {
     terminal->zoomIn();

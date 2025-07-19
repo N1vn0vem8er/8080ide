@@ -540,8 +540,9 @@
      <addaction name="separator"/>
      <addaction name="actionTermIncreaseFontSize"/>
      <addaction name="actionTermDecreaseFontSize"/>
-     <addaction name="actionTermResetFontSize"/>
      <addaction name="actionTermSetFontSize"/>
+     <addaction name="actionSetTerminalFont"/>
+     <addaction name="actionTermResetFontSize"/>
      <addaction name="separator"/>
      <addaction name="actionTermScrollToEnd"/>
      <addaction name="separator"/>
@@ -1273,6 +1274,11 @@
    </property>
   </action>
   <action name="actionSet_font">
+   <property name="text">
+    <string>Set font</string>
+   </property>
+  </action>
+  <action name="actionSetTerminalFont">
    <property name="text">
     <string>Set font</string>
    </property>
