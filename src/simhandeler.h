@@ -27,7 +27,6 @@ private:
     QDialog* settingsWindow = nullptr;
     ProjectManager* projectManager = nullptr;
     bool projectLoaded;
-    QLabel* projectNameLabel = nullptr;
     QThread simulatorThread;
     unsigned char* inputValue;
     SimRunner* sr = nullptr;
@@ -45,7 +44,6 @@ private:
 public:
     explicit SimHandeler(QPlainTextEdit* screen, QObject* parent = nullptr);
     ~SimHandeler();
-    void setProjectNameLabel(QLabel* label);
     void setInputLine(QLineEdit* lineEdit);
     void updateCode(const QString& code);
     void run();
@@ -90,6 +88,7 @@ signals:
     void setRegisterValues(const QString& a, const QString& b, const QString& c, const QString& d, const QString& e, const QString& h, const QString& l, const QString& PC, const QString& SP);
     void displayRegisters(const QString &areg, const QString &breg, const QString &creg, const QString &dreg, const QString &ereg, const QString &hreg, const QString &lreg, const QString &mreg,
                           const QString &pc, const QString &cf, const QString &sf, const QString &pf, const QString &zf, const QString &acf, const QString &sp);
+    void setProjectNameLabel(const QString& name);
 
 public slots:
     void print(char ch);

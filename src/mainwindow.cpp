@@ -51,9 +51,9 @@ MainWindow::MainWindow(QWidget *parent)
     simHandeler = new SimHandeler(ui->screen);
     projectInfoLabel = new QLabel(tr("No Project"), ui->statusbar);
     ui->statusbar->addPermanentWidget(projectInfoLabel);
-    simHandeler->setProjectNameLabel(projectInfoLabel);
     simHandeler->setInputLine(ui->simulatorInput);
 
+    connect(simHandeler, &SimHandeler::setProjectNameLabel, this, [&](const QString& name){projectInfoLabel->setText(name);});
     connect(simHandeler, &SimHandeler::displayRegisters, this, &MainWindow::displayRegisters);
     connect(ui->run_button, &QPushButton::released, this, &MainWindow::b_run);
     connect(ui->actionCompile, &QAction::triggered, this, &MainWindow::b_compile);

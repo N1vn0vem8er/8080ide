@@ -67,13 +67,13 @@ void SimHandeler::openProject(const QString &path)
     projectManager->readConfig(path);
     projectManager->clearCompilerQueue();
     projectLoaded = true;
-    projectNameLabel->setText(tr("Project: %1").arg(projectManager->getName()));
+    emit setProjectNameLabel(tr("Project: %1").arg(projectManager->getName()));
     log(tr("Project loaded"));
 }
 void SimHandeler::closeProject()
 {
     projectLoaded = false;
-    projectNameLabel->setText(tr("No project"));
+    emit setProjectNameLabel(tr("No project"));
     Ssettings::memSize = IDESettings::simMemorySize;
     Ssettings::memStart = IDESettings::simStartAddress;
     Ssettings::sp = 100;
@@ -162,11 +162,6 @@ int SimHandeler::getCompiledSize() const
 int SimHandeler::getSimMemorySize() const
 {
     return symulator->getMemSize();
-}
-
-void SimHandeler::setProjectNameLabel(QLabel* label)
-{
-    this->projectNameLabel = label;
 }
 
 void SimHandeler::setInputLine(QLineEdit *lineEdit)

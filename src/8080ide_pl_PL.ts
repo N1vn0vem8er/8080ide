@@ -273,7 +273,7 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nieprawidłowa lokalizacja&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="dialogs/createprojectwindow.cpp" line="70"/>
+        <location filename="dialogs/createprojectwindow.cpp" line="69"/>
         <source>Open Directory</source>
         <comment>./</comment>
         <translation>Otwórz katalog</translation>
@@ -306,13 +306,13 @@
     <name>FileSystemTree</name>
     <message>
         <location filename="filesystemtree.cpp" line="62"/>
-        <location filename="filesystemtree.cpp" line="99"/>
+        <location filename="filesystemtree.cpp" line="102"/>
         <source>Open</source>
         <translation>Otwórz</translation>
     </message>
     <message>
         <location filename="filesystemtree.cpp" line="66"/>
-        <location filename="filesystemtree.cpp" line="103"/>
+        <location filename="filesystemtree.cpp" line="106"/>
         <source>Open In</source>
         <translation>Otwórz w</translation>
     </message>
@@ -322,20 +322,26 @@
         <translation>Zmień nazwę</translation>
     </message>
     <message>
-        <location filename="filesystemtree.cpp" line="120"/>
-        <location filename="filesystemtree.cpp" line="138"/>
+        <location filename="filesystemtree.cpp" line="92"/>
+        <location filename="filesystemtree.cpp" line="134"/>
+        <source>Git Diff</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="filesystemtree.cpp" line="123"/>
+        <location filename="filesystemtree.cpp" line="144"/>
         <source>New File</source>
         <translation>Nowy plik</translation>
     </message>
     <message>
-        <location filename="filesystemtree.cpp" line="123"/>
-        <location filename="filesystemtree.cpp" line="141"/>
+        <location filename="filesystemtree.cpp" line="126"/>
+        <location filename="filesystemtree.cpp" line="147"/>
         <source>New Folder</source>
         <translation>Nowy Folder</translation>
     </message>
     <message>
         <location filename="filesystemtree.cpp" line="89"/>
-        <location filename="filesystemtree.cpp" line="128"/>
+        <location filename="filesystemtree.cpp" line="131"/>
         <source>Git Add</source>
         <translation></translation>
     </message>
@@ -367,7 +373,7 @@
     </message>
     <message>
         <location filename="utils/git/gitwidget.ui" line="25"/>
-        <location filename="utils/git/gitwidget.cpp" line="295"/>
+        <location filename="utils/git/gitwidget.cpp" line="280"/>
         <source>Commit</source>
         <translation></translation>
     </message>
@@ -389,7 +395,7 @@
     <message>
         <location filename="utils/git/gitwidget.ui" line="81"/>
         <source>Added</source>
-        <translation>Dodanie</translation>
+        <translation>Dodane</translation>
     </message>
     <message>
         <location filename="utils/git/gitwidget.ui" line="130"/>
@@ -407,70 +413,118 @@
         <translation>Brak repozytorium git</translation>
     </message>
     <message>
-        <location filename="utils/git/gitwidget.cpp" line="28"/>
-        <location filename="utils/git/gitwidget.cpp" line="48"/>
+        <location filename="utils/git/gitwidget.cpp" line="29"/>
+        <location filename="utils/git/gitwidget.cpp" line="49"/>
         <source>Add</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="utils/git/gitwidget.cpp" line="33"/>
-        <location filename="utils/git/gitwidget.cpp" line="62"/>
+        <location filename="utils/git/gitwidget.cpp" line="34"/>
+        <location filename="utils/git/gitwidget.cpp" line="63"/>
         <source>Diff</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="utils/git/gitwidget.cpp" line="38"/>
-        <location filename="utils/git/gitwidget.cpp" line="53"/>
-        <location filename="utils/git/gitwidget.cpp" line="67"/>
+        <location filename="utils/git/gitwidget.cpp" line="39"/>
+        <location filename="utils/git/gitwidget.cpp" line="54"/>
+        <location filename="utils/git/gitwidget.cpp" line="68"/>
         <source>Open</source>
         <translation>Otwórz</translation>
     </message>
     <message>
-        <location filename="utils/git/gitwidget.cpp" line="255"/>
-        <location filename="utils/git/gitwidget.cpp" line="266"/>
+        <location filename="utils/git/gitwidget.cpp" line="428"/>
+        <source>Git diff</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="utils/git/gitwidget.cpp" line="430"/>
         <source>git diff %1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="utils/git/gitwidget.cpp" line="289"/>
+        <location filename="utils/git/gitwidget.cpp" line="274"/>
         <source>Enter Title</source>
         <translation>Podaj tytuł</translation>
     </message>
     <message>
-        <location filename="utils/git/gitwidget.cpp" line="292"/>
+        <location filename="utils/git/gitwidget.cpp" line="277"/>
         <source>Enter Description</source>
         <translation>Podaj opis</translation>
     </message>
     <message>
-        <location filename="utils/git/gitwidget.cpp" line="300"/>
+        <location filename="utils/git/gitwidget.cpp" line="285"/>
         <source>Git Commit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="utils/git/gitwidget.cpp" line="312"/>
+        <location filename="utils/git/gitwidget.cpp" line="293"/>
+        <source>Git commit</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="utils/git/gitwidget.cpp" line="296"/>
         <source>Commit results</source>
         <translation>Wyniki zatwierdzenia</translation>
     </message>
     <message>
-        <location filename="utils/git/gitwidget.cpp" line="324"/>
+        <location filename="utils/git/gitwidget.cpp" line="308"/>
+        <source>Git push</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="utils/git/gitwidget.cpp" line="311"/>
         <source>Push results</source>
         <translation>Wyniki push</translation>
     </message>
     <message>
-        <location filename="utils/git/gitwidget.cpp" line="336"/>
+        <location filename="utils/git/gitwidget.cpp" line="323"/>
+        <source>Git pull</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="utils/git/gitwidget.cpp" line="326"/>
         <source>Pull results</source>
         <translation>Wyniki pull</translation>
     </message>
     <message>
-        <location filename="utils/git/gitwidget.cpp" line="348"/>
-        <location filename="utils/git/gitwidget.cpp" line="360"/>
+        <location filename="utils/git/gitwidget.cpp" line="338"/>
+        <source>Git status</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="utils/git/gitwidget.cpp" line="341"/>
         <source>Status results</source>
         <translation>Wyniki status</translation>
     </message>
     <message>
-        <location filename="utils/git/gitwidget.cpp" line="372"/>
+        <location filename="utils/git/gitwidget.cpp" line="353"/>
+        <source>Git log</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="utils/git/gitwidget.cpp" line="356"/>
+        <source>Log results</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="utils/git/gitwidget.cpp" line="368"/>
+        <source>Git fetch</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="utils/git/gitwidget.cpp" line="371"/>
         <source>Fetch results</source>
         <translation>Wyniki fetch</translation>
+    </message>
+    <message>
+        <location filename="utils/git/gitwidget.cpp" line="443"/>
+        <source>Git Add</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="utils/git/gitwidget.cpp" line="456"/>
+        <source>Setting branch</source>
+        <translation>Zmienianie gałęzi</translation>
     </message>
 </context>
 <context>
@@ -647,217 +701,228 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="119"/>
+        <location filename="mainwindow.ui" line="122"/>
         <source>Input</source>
         <translation>Wprowadź</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="130"/>
+        <location filename="mainwindow.ui" line="133"/>
         <source>B =</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="137"/>
+        <location filename="mainwindow.ui" line="140"/>
         <source>C =</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="144"/>
+        <location filename="mainwindow.ui" line="147"/>
         <source>A =</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="155"/>
+        <location filename="mainwindow.ui" line="158"/>
         <source>D =</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="162"/>
+        <location filename="mainwindow.ui" line="165"/>
         <source>E =</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="169"/>
+        <location filename="mainwindow.ui" line="172"/>
         <source>M =</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="180"/>
+        <location filename="mainwindow.ui" line="183"/>
         <source>H =</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="187"/>
+        <location filename="mainwindow.ui" line="190"/>
         <source>L =</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="194"/>
+        <location filename="mainwindow.ui" line="197"/>
         <source>PC =</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="205"/>
+        <location filename="mainwindow.ui" line="208"/>
         <source>Flags = </source>
         <translation>Flagi = </translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="212"/>
+        <location filename="mainwindow.ui" line="215"/>
         <source>SP = </source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="219"/>
-        <location filename="mainwindow.cpp" line="668"/>
+        <location filename="mainwindow.ui" line="222"/>
+        <location filename="mainwindow.cpp" line="825"/>
         <source>Edit registers</source>
         <translation>Edytuj rejestry</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="234"/>
+        <location filename="mainwindow.ui" line="237"/>
         <source>Assemble Load Run</source>
         <translation>Asemblacja Załaduj Uruchom</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="241"/>
+        <location filename="mainwindow.ui" line="244"/>
         <source>Assemble Load</source>
         <translation>Asemblacja Załaduj</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="248"/>
+        <location filename="mainwindow.ui" line="251"/>
         <source>Assemble</source>
         <translation>Asemblacja</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="259"/>
+        <location filename="mainwindow.ui" line="262"/>
         <source>Run</source>
         <translation>Uruchom</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="269"/>
+        <location filename="mainwindow.ui" line="272"/>
         <source>Next Step</source>
         <translation>Następny Krok</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="279"/>
+        <location filename="mainwindow.ui" line="282"/>
         <source>Continue</source>
         <translation>Kontynuuj</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="289"/>
+        <location filename="mainwindow.ui" line="292"/>
         <source>Reset</source>
         <translation>Reset</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="318"/>
+        <location filename="mainwindow.cpp" line="52"/>
         <source>No Project</source>
         <translation>Brak Projektu</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="335"/>
+        <location filename="mainwindow.ui" line="314"/>
         <source>Diagnostics</source>
         <translation>Diagnostyka</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="348"/>
+        <location filename="mainwindow.ui" line="327"/>
+        <location filename="mainwindow.ui" line="516"/>
         <source>Terminal</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="358"/>
-        <location filename="mainwindow.ui" line="455"/>
+        <location filename="mainwindow.ui" line="337"/>
+        <location filename="mainwindow.ui" line="444"/>
         <source>Simulator</source>
         <translation>Symulator</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="372"/>
+        <location filename="mainwindow.ui" line="351"/>
         <source>Converter</source>
         <translation>Konwerter</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="410"/>
+        <location filename="mainwindow.ui" line="399"/>
         <source>File</source>
         <translation>Plik</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="429"/>
+        <location filename="mainwindow.ui" line="418"/>
         <source>Edit</source>
         <translation>Edycja</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="466"/>
+        <location filename="mainwindow.ui" line="455"/>
         <source>&amp;View</source>
         <translation>&amp;Widok</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="513"/>
-        <location filename="mainwindow.ui" line="1109"/>
+        <location filename="mainwindow.ui" line="502"/>
+        <location filename="mainwindow.ui" line="1154"/>
         <source>Git</source>
         <translation>Git</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="486"/>
+        <location filename="mainwindow.ui" line="475"/>
         <source>Project</source>
         <translation>Projekt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="495"/>
+        <location filename="mainwindow.ui" line="484"/>
         <source>&amp;Tools</source>
         <translation>&amp;Narzędzia</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="499"/>
+        <location filename="mainwindow.ui" line="488"/>
         <source>&amp;Converters</source>
         <translation>&amp;Konwertery</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="506"/>
+        <location filename="mainwindow.ui" line="495"/>
         <source>&amp;Generators</source>
         <translation>&amp;Generatory</translation>
     </message>
     <message>
+        <location filename="mainwindow.ui" line="520"/>
+        <source>Send signal</source>
+        <translation>Wyślij sygnał</translation>
+    </message>
+    <message>
         <location filename="mainwindow.ui" line="532"/>
-        <location filename="mainwindow.cpp" line="901"/>
-        <location filename="mainwindow.cpp" line="922"/>
+        <source>Theme</source>
+        <translation>Motyw</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="559"/>
+        <location filename="mainwindow.cpp" line="1062"/>
+        <location filename="mainwindow.cpp" line="1083"/>
         <source>Help</source>
         <translation>Pomoc</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="559"/>
+        <location filename="mainwindow.ui" line="586"/>
         <source>&amp;New</source>
         <translation>&amp;Nowy</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="562"/>
+        <location filename="mainwindow.ui" line="589"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="570"/>
+        <location filename="mainwindow.ui" line="597"/>
         <source>&amp;Open</source>
         <translation>&amp;Otwórz</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="573"/>
+        <location filename="mainwindow.ui" line="600"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="581"/>
+        <location filename="mainwindow.ui" line="608"/>
         <source>&amp;Save</source>
         <translation>&amp;Zapisz</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="584"/>
+        <location filename="mainwindow.ui" line="611"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="592"/>
+        <location filename="mainwindow.ui" line="619"/>
         <source>Save &amp;As</source>
         <translation>Zapisz &amp;Jako</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="595"/>
+        <location filename="mainwindow.ui" line="622"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
@@ -866,505 +931,584 @@
         <translation type="vanished">Z&amp;amknij</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="603"/>
+        <location filename="mainwindow.ui" line="630"/>
         <source>&amp;Exit</source>
         <translation>&amp;Wyjdź</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="606"/>
+        <location filename="mainwindow.ui" line="633"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="614"/>
+        <location filename="mainwindow.ui" line="641"/>
         <source>&amp;Undo</source>
         <translation>&amp;Cofnij</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="617"/>
+        <location filename="mainwindow.ui" line="644"/>
         <source>Ctrl+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="625"/>
+        <location filename="mainwindow.ui" line="652"/>
         <source>&amp;Redo</source>
         <translation>&amp;Przywróć</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="628"/>
+        <location filename="mainwindow.ui" line="655"/>
         <source>Ctrl+Shift+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="636"/>
+        <location filename="mainwindow.ui" line="663"/>
         <source>&amp;Settings</source>
         <translation>&amp;Ustawienia</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="645"/>
+        <location filename="mainwindow.ui" line="672"/>
         <source>&amp;Assemble</source>
         <translation>&amp;Asembluj</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="648"/>
+        <location filename="mainwindow.ui" line="675"/>
         <source>Ctrl+B</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="657"/>
+        <location filename="mainwindow.ui" line="684"/>
         <source>&amp;Load to memory</source>
         <translation>&amp;Załaduj do pamięci</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="660"/>
+        <location filename="mainwindow.ui" line="687"/>
         <source>Ctrl+L</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="668"/>
+        <location filename="mainwindow.ui" line="695"/>
         <source>&amp;Run</source>
         <translation>&amp;Uruchom</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="671"/>
+        <location filename="mainwindow.ui" line="698"/>
         <source>Ctrl+R</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="676"/>
+        <location filename="mainwindow.ui" line="703"/>
         <source>Re&amp;start</source>
         <translation>Re&amp;start</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="684"/>
+        <location filename="mainwindow.ui" line="711"/>
         <source>R&amp;eset</source>
         <translation>R&amp;eset</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="687"/>
+        <location filename="mainwindow.ui" line="714"/>
         <source>Ctrl+Shift+R</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="695"/>
+        <location filename="mainwindow.ui" line="722"/>
         <source>&amp;Memory</source>
         <translation>&amp;Pamięć</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="700"/>
+        <location filename="mainwindow.ui" line="727"/>
         <source>U&amp;stawienia</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="708"/>
+        <location filename="mainwindow.ui" line="735"/>
         <source>&amp;Close Tab</source>
         <translation>&amp;Zamknij kartę</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="711"/>
+        <location filename="mainwindow.ui" line="738"/>
+        <location filename="mainwindow.ui" line="1105"/>
         <source>Ctrl+W</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="716"/>
+        <location filename="mainwindow.ui" line="743"/>
         <source>&amp;Comment/Uncomment</source>
         <translation>&amp;Zakomentuj/Odkomentuj</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="719"/>
+        <location filename="mainwindow.ui" line="746"/>
         <source>Ctrl+/</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="727"/>
+        <location filename="mainwindow.ui" line="754"/>
         <source>Open &amp;Folder</source>
         <translation>Otwórz &amp;Folder</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="730"/>
+        <location filename="mainwindow.ui" line="757"/>
         <source>Ctrl+Shift+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="738"/>
+        <location filename="mainwindow.ui" line="765"/>
         <source>&amp;Open Project</source>
         <translation>&amp;Otwórz Projekt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="746"/>
+        <location filename="mainwindow.ui" line="773"/>
         <source>&amp;Close Project</source>
         <translation>&amp;Zamknij Projekt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="754"/>
+        <location filename="mainwindow.ui" line="781"/>
         <source>&amp;New Project</source>
         <translation>&amp;Nowy Projekt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="759"/>
+        <location filename="mainwindow.ui" line="786"/>
         <source>✓ &amp;Commit</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="764"/>
+        <location filename="mainwindow.ui" line="791"/>
         <source>&amp;Log</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="769"/>
+        <location filename="mainwindow.ui" line="796"/>
         <source>&amp;Diff</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="774"/>
+        <location filename="mainwindow.ui" line="801"/>
         <source>&amp;Status</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="779"/>
+        <location filename="mainwindow.ui" line="806"/>
         <source>no repository</source>
         <translation>Brak repozytorium</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="784"/>
+        <location filename="mainwindow.ui" line="811"/>
         <source>&amp;Fetch</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="789"/>
+        <location filename="mainwindow.ui" line="816"/>
         <source>&amp;Pull</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="794"/>
+        <location filename="mainwindow.ui" line="821"/>
         <source>P&amp;ush</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="802"/>
+        <location filename="mainwindow.ui" line="829"/>
         <source>&amp;Home Page</source>
         <translation>&amp;Strona Startowa</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="807"/>
+        <location filename="mainwindow.ui" line="834"/>
         <source>&amp;Files</source>
         <translation>&amp;Pliki</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="816"/>
+        <location filename="mainwindow.ui" line="843"/>
         <source>&amp;Simulator</source>
         <translation>&amp;Symulator</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="821"/>
+        <location filename="mainwindow.ui" line="848"/>
         <source>Syntax &amp;Highlighting</source>
         <translation>&amp;Kolorowanie Składni</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="829"/>
+        <location filename="mainwindow.ui" line="856"/>
         <source>&amp;Find</source>
         <translation>&amp;Znajdź</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="832"/>
+        <location filename="mainwindow.ui" line="859"/>
         <source>Ctrl+F</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="837"/>
+        <location filename="mainwindow.ui" line="864"/>
         <source>S&amp;pellcheck</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="845"/>
+        <location filename="mainwindow.ui" line="872"/>
         <source>&amp;Search/Replace</source>
         <translation>&amp;Znajdź/Zamień</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="853"/>
+        <location filename="mainwindow.ui" line="880"/>
         <source>&amp;Breakpoint</source>
         <translation>&amp;Pułapka</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="856"/>
+        <location filename="mainwindow.ui" line="883"/>
         <source>F9</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="861"/>
+        <location filename="mainwindow.ui" line="888"/>
         <source>Uruchom w &amp;oknie</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="864"/>
-        <location filename="mainwindow.ui" line="1093"/>
+        <location filename="mainwindow.ui" line="891"/>
+        <location filename="mainwindow.ui" line="1138"/>
         <source>F5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="872"/>
+        <location filename="mainwindow.ui" line="899"/>
         <source>C&amp;alculator</source>
         <translation>K&amp;alkulator</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="877"/>
+        <location filename="mainwindow.ui" line="904"/>
         <source>&amp;Numeric Systems</source>
         <translation>&amp;Systemy Liczbowe</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="882"/>
+        <location filename="mainwindow.ui" line="909"/>
         <source>&amp;String DB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="887"/>
+        <location filename="mainwindow.ui" line="914"/>
         <source>St&amp;ring DATAAT</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="892"/>
+        <location filename="mainwindow.ui" line="919"/>
         <source>&amp;Tablica DB</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="897"/>
+        <location filename="mainwindow.ui" line="924"/>
         <source>T&amp;ablica DATAAT</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="902"/>
+        <location filename="mainwindow.ui" line="929"/>
         <source>&amp;Instruction in Memory</source>
         <translation>&amp;Instrukcja w Pamięci</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="907"/>
+        <location filename="mainwindow.ui" line="934"/>
         <source>&amp;Branch</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="915"/>
+        <location filename="mainwindow.ui" line="942"/>
         <source>&amp;Run command</source>
         <translation>&amp;Uruchom Polecenie</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="920"/>
+        <location filename="mainwindow.ui" line="947"/>
         <source>&amp;About Application</source>
         <translation>O &amp;Aplikacji</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="925"/>
+        <location filename="mainwindow.ui" line="952"/>
         <source>About &amp;Qt</source>
         <translation>O &amp;Qt</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="930"/>
+        <location filename="mainwindow.ui" line="957"/>
         <source>&amp;Help Center</source>
         <translation>&amp;Centrum Pomocy</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="933"/>
+        <location filename="mainwindow.ui" line="960"/>
         <source>F1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="941"/>
+        <location filename="mainwindow.ui" line="968"/>
         <source>Cut</source>
         <translation>Wytnij</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="944"/>
+        <location filename="mainwindow.ui" line="971"/>
         <source>Ctrl+X</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="952"/>
+        <location filename="mainwindow.ui" line="979"/>
+        <location filename="mainwindow.ui" line="1222"/>
         <source>Copy</source>
         <translation>Kopiuj</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="955"/>
+        <location filename="mainwindow.ui" line="982"/>
         <source>Ctrl+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="963"/>
+        <location filename="mainwindow.ui" line="990"/>
+        <location filename="mainwindow.ui" line="1230"/>
         <source>Paste</source>
         <translation>Wklej</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="971"/>
-        <location filename="mainwindow.cpp" line="1206"/>
+        <location filename="mainwindow.ui" line="998"/>
+        <location filename="mainwindow.cpp" line="1340"/>
         <source>Paste from file</source>
         <translation>Wklej z pliku</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="974"/>
+        <location filename="mainwindow.ui" line="1001"/>
         <source>Ctrl+Shift+V</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="982"/>
+        <location filename="mainwindow.ui" line="1009"/>
         <source>Delete</source>
         <translation>Usuń</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="985"/>
+        <location filename="mainwindow.ui" line="1012"/>
         <source>Ctrl+D</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="993"/>
+        <location filename="mainwindow.ui" line="1020"/>
         <source>Delete all</source>
         <translation>Usuń wszystko</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="996"/>
+        <location filename="mainwindow.ui" line="1023"/>
         <source>Ctrl+Shift+D</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1004"/>
+        <location filename="mainwindow.ui" line="1031"/>
         <source>Select All</source>
         <translation>Zaznacz wszystko</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1007"/>
+        <location filename="mainwindow.ui" line="1034"/>
         <source>Ctrl+A</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1015"/>
+        <location filename="mainwindow.ui" line="1042"/>
         <source>Overwrite mode</source>
         <translation>Tryb zastępowania</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1023"/>
+        <location filename="mainwindow.ui" line="1050"/>
         <source>Read only</source>
         <translation>Tylko do odczytu</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1028"/>
+        <location filename="mainwindow.ui" line="1055"/>
         <source>Merge lines</source>
         <translation>Połącz linijki</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1033"/>
+        <location filename="mainwindow.ui" line="1060"/>
+        <location filename="mainwindow.ui" line="1199"/>
         <source>Increase font size</source>
         <translation>Zwiększ rozmiar czcionki</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1038"/>
+        <location filename="mainwindow.ui" line="1065"/>
+        <location filename="mainwindow.ui" line="1204"/>
         <source>Decrease font size</source>
         <translation>Zmniejsz rozmiar czcionki</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1043"/>
+        <location filename="mainwindow.ui" line="1070"/>
+        <location filename="mainwindow.ui" line="1214"/>
+        <location filename="mainwindow.cpp" line="380"/>
+        <location filename="mainwindow.cpp" line="1399"/>
         <source>Set font size</source>
         <translation>Ustaw rozmiar czcionki</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1048"/>
+        <location filename="mainwindow.ui" line="1075"/>
+        <location filename="mainwindow.ui" line="1209"/>
         <source>Reset font size</source>
         <translation>Zresetuj rozmiar czcionki</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1056"/>
+        <location filename="mainwindow.ui" line="1083"/>
         <source>Line wrap</source>
         <translation>Zawijaj linie</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1064"/>
+        <location filename="mainwindow.ui" line="1091"/>
         <source>Print</source>
         <translation>Drukuj</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1067"/>
+        <location filename="mainwindow.ui" line="1094"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1072"/>
+        <location filename="mainwindow.ui" line="1102"/>
         <source>Close</source>
         <translation>Zamknij</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1077"/>
+        <location filename="mainwindow.ui" line="1113"/>
         <source>Close All</source>
         <translation>Zamknij wszystko</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1082"/>
+        <location filename="mainwindow.ui" line="1116"/>
+        <source>Ctrl+Shift+W</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1124"/>
         <source>Close all but this</source>
         <translation>Zamknij wszystko oprócz tego</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1090"/>
+        <location filename="mainwindow.ui" line="1127"/>
+        <source>Ctrl+Alt+W</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1135"/>
         <source>Reload</source>
         <translation>Wczytaj ponownie</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1101"/>
+        <location filename="mainwindow.ui" line="1146"/>
         <source>Reload all</source>
         <translation>Wczytaj ponownie wszystko</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1104"/>
+        <location filename="mainwindow.ui" line="1149"/>
         <source>Shift+F5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1117"/>
+        <location filename="mainwindow.ui" line="1162"/>
         <source>Go top</source>
         <translation>Idź do góry</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1120"/>
+        <location filename="mainwindow.ui" line="1165"/>
         <source>Ctrl+G</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1128"/>
+        <location filename="mainwindow.ui" line="1173"/>
         <source>Go bottom</source>
         <translation>Idź na dół</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1131"/>
+        <location filename="mainwindow.ui" line="1176"/>
         <source>Ctrl+Shift+G</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="106"/>
+        <location filename="mainwindow.ui" line="1181"/>
+        <source>SIGINT</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1186"/>
+        <source>SIGTERM</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1194"/>
+        <source>no themes</source>
+        <translation>Brak motywów</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1238"/>
+        <source>Paste selected</source>
+        <translation>Wklej zaznaczone</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1243"/>
+        <source>Scroll to end</source>
+        <translation>Przesuń na dół</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1248"/>
+        <source>SIGQUIT</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1253"/>
+        <source>SIGHUP</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1258"/>
+        <source>SIGKILL</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1263"/>
+        <source>SIGSTOP</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1268"/>
+        <source>SIGCONT</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1273"/>
+        <source>SIGTSTP</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.ui" line="1278"/>
+        <location filename="mainwindow.ui" line="1283"/>
+        <source>Set font</source>
+        <translation>Ustaw czcionkę</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="117"/>
         <source>About Qt</source>
         <translation>O Qt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="560"/>
-        <location filename="mainwindow.cpp" line="566"/>
+        <location filename="mainwindow.cpp" line="723"/>
+        <location filename="mainwindow.cpp" line="729"/>
         <source>Information</source>
         <translation>Informacja</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="560"/>
+        <location filename="mainwindow.cpp" line="723"/>
         <source>Open file to use this feature</source>
         <translation>Otwórz plik aby użyć tej funkcji</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="566"/>
         <source>Open project to use this feature</source>
-        <translation>Otwórz projekt aby użyć tej funkcji</translation>
+        <translation type="vanished">Otwórz projekt aby użyć tej funkcji</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="653"/>
+        <location filename="mainwindow.cpp" line="810"/>
         <source>Hide editor</source>
         <translation>Ukryj edytor</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="860"/>
+        <location filename="mainwindow.cpp" line="1021"/>
         <source>About Application</source>
         <translation>O Aplikacji</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="860"/>
+        <location filename="mainwindow.cpp" line="1021"/>
         <source>
     &lt;html&gt;
         &lt;body&gt;
@@ -1391,23 +1535,30 @@
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1121"/>
-        <location filename="mainwindow.cpp" line="1198"/>
+        <location filename="mainwindow.cpp" line="1261"/>
+        <location filename="mainwindow.cpp" line="1332"/>
         <source>Font Size: %1</source>
         <translation>Rozmiar czcionki: %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1267"/>
+        <location filename="mainwindow.cpp" line="383"/>
+        <location filename="mainwindow.cpp" line="1402"/>
         <source>Enter font size</source>
         <translation>Wprowadź rozmiar czcionki</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1272"/>
+        <location filename="mainwindow.cpp" line="388"/>
+        <location filename="mainwindow.cpp" line="433"/>
+        <location filename="mainwindow.cpp" line="458"/>
+        <location filename="mainwindow.cpp" line="1407"/>
         <source>Ok</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1273"/>
+        <location filename="mainwindow.cpp" line="389"/>
+        <location filename="mainwindow.cpp" line="434"/>
+        <location filename="mainwindow.cpp" line="459"/>
+        <location filename="mainwindow.cpp" line="1408"/>
         <source>Cancel</source>
         <translation>Anuluj</translation>
     </message>
@@ -1429,38 +1580,79 @@
         <translation type="vanished">Licencja: </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="977"/>
-        <location filename="mainwindow.cpp" line="1033"/>
+        <location filename="mainwindow.cpp" line="1167"/>
         <source>Save File As</source>
         <translation>Zapisz Plik Jako</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="977"/>
-        <location filename="mainwindow.cpp" line="995"/>
-        <location filename="mainwindow.cpp" line="1033"/>
+        <location filename="mainwindow.cpp" line="1128"/>
+        <location filename="mainwindow.cpp" line="1167"/>
         <source>Files (*.asm)</source>
         <translation>Pliki (*.asm)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="995"/>
+        <location filename="mainwindow.cpp" line="418"/>
+        <source>C = %1 AC = %2 P = %3 S = %4 Z = %5</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="475"/>
+        <location filename="mainwindow.cpp" line="1262"/>
+        <source>Saved</source>
+        <translation>Zapisane</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="475"/>
+        <location filename="mainwindow.cpp" line="1262"/>
+        <source>Not saved</source>
+        <translation>Nie zapisane</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="602"/>
+        <source>Branch: %1</source>
+        <translation>Gałąź: %1</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="729"/>
+        <source>Open git repository to use this feature</source>
+        <translation>Otwórz repozytorium git aby użyć tej funkcji</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1128"/>
         <source>Open File</source>
         <translation>Otwórz Plik</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1003"/>
+        <location filename="mainwindow.cpp" line="1136"/>
         <source>Open Directory</source>
         <comment>./</comment>
         <translation>Otwórz Katalog</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1054"/>
+        <location filename="mainwindow.cpp" line="1193"/>
         <source>Open Project</source>
         <translation>Otwórz Projekt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1054"/>
+        <location filename="mainwindow.cpp" line="1193"/>
         <source>Files (*.config)</source>
         <translation>Pliki (*.config)</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1545"/>
+        <source>Error</source>
+        <translation>Błąd</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1545"/>
+        <source>
+    Could&apos;t open %1
+    %2
+</source>
+        <translation>
+    Nie można otworzyć %1
+    %2
+</translation>
     </message>
 </context>
 <context>
@@ -1658,6 +1850,15 @@
     </message>
 </context>
 <context>
+    <name>RunningProcessesLabel</name>
+    <message>
+        <location filename="widgets/runningprocesseslabel.cpp" line="23"/>
+        <location filename="widgets/runningprocesseslabel.cpp" line="42"/>
+        <source>Processes: %1</source>
+        <translation>Procesy: %1</translation>
+    </message>
+</context>
+<context>
     <name>SaveWarningDialog</name>
     <message>
         <location filename="dialogs/savewarningdialog.ui" line="14"/>
@@ -1683,19 +1884,29 @@
         <translation>Znajdź</translation>
     </message>
     <message>
-        <location filename="widgets/searchwidget.ui" line="36"/>
+        <location filename="widgets/searchwidget.ui" line="32"/>
         <source>Replace</source>
         <translation>Zamień</translation>
     </message>
     <message>
-        <location filename="widgets/searchwidget.ui" line="50"/>
+        <location filename="widgets/searchwidget.ui" line="46"/>
         <source>Replace all</source>
         <translation>Zamień wszystkie</translation>
     </message>
     <message>
-        <location filename="widgets/searchwidget.ui" line="57"/>
+        <location filename="widgets/searchwidget.ui" line="53"/>
         <source>Exchange</source>
         <translation>Wymień</translation>
+    </message>
+    <message>
+        <location filename="widgets/searchwidget.ui" line="62"/>
+        <source>Case Sensitive</source>
+        <translation>Rozróżniaj wielkość liter</translation>
+    </message>
+    <message>
+        <location filename="widgets/searchwidget.ui" line="69"/>
+        <source>Only selected</source>
+        <translation>Tylko w zaznaczonym</translation>
     </message>
 </context>
 <context>
@@ -1736,6 +1947,34 @@
         <location filename="dialogs/settings.cpp" line="12"/>
         <source>After startup</source>
         <translation>Po uruchomieniu</translation>
+    </message>
+    <message>
+        <location filename="dialogs/settings.cpp" line="12"/>
+        <source>Terminal</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>SimHandeler</name>
+    <message>
+        <location filename="simhandeler.cpp" line="66"/>
+        <source>Opening project at %1</source>
+        <translation>Otwieranie projektu na: %1</translation>
+    </message>
+    <message>
+        <location filename="simhandeler.cpp" line="70"/>
+        <source>Project: %1</source>
+        <translation>Projekt: %1</translation>
+    </message>
+    <message>
+        <location filename="simhandeler.cpp" line="71"/>
+        <source>Project loaded</source>
+        <translation>Projekt załadowany</translation>
+    </message>
+    <message>
+        <location filename="simhandeler.cpp" line="76"/>
+        <source>No project</source>
+        <translation>Brak projektu</translation>
     </message>
 </context>
 <context>
@@ -1809,23 +2048,43 @@
         <translation>Ostatnie Pliki</translation>
     </message>
     <message>
-        <location filename="widgets/starttabwidget.ui" line="263"/>
+        <location filename="widgets/starttabwidget.ui" line="230"/>
+        <source>Clear recent files</source>
+        <translation>Wyczyść ostatnie pliki</translation>
+    </message>
+    <message>
+        <location filename="widgets/starttabwidget.ui" line="243"/>
+        <source>Refresh recent files</source>
+        <translation>Odśwież ostatnie pliki</translation>
+    </message>
+    <message>
+        <location filename="widgets/starttabwidget.ui" line="269"/>
         <source>Recent Projects</source>
         <translation>Ostatnie Projekty</translation>
     </message>
     <message>
-        <location filename="widgets/starttabwidget.cpp" line="103"/>
-        <location filename="widgets/starttabwidget.cpp" line="122"/>
+        <location filename="widgets/starttabwidget.ui" line="276"/>
+        <source>Clear recent projects</source>
+        <translation>Wyczyść ostatnie projekty</translation>
+    </message>
+    <message>
+        <location filename="widgets/starttabwidget.ui" line="289"/>
+        <source>Refresh recent projects</source>
+        <translation>Odśwież ostatnie projekty</translation>
+    </message>
+    <message>
+        <location filename="widgets/starttabwidget.cpp" line="108"/>
+        <location filename="widgets/starttabwidget.cpp" line="127"/>
         <source>Clear recent</source>
         <translation>Czyszczenie historii</translation>
     </message>
     <message>
-        <location filename="widgets/starttabwidget.cpp" line="103"/>
+        <location filename="widgets/starttabwidget.cpp" line="108"/>
         <source>Are you sure you want to clear recent files?</source>
         <translation>Czy na pewno chcesz wyczyścić historię plików?</translation>
     </message>
     <message>
-        <location filename="widgets/starttabwidget.cpp" line="122"/>
+        <location filename="widgets/starttabwidget.cpp" line="127"/>
         <source>Are you sure you want to clear recent projects?</source>
         <translation>Czy na pewno chcesz wyczyścić historię projektów?</translation>
     </message>
@@ -1932,7 +2191,37 @@
         <translation>Motyw aplikacji</translation>
     </message>
     <message>
-        <location filename="settingsPages/stylesettingspage.ui" line="75"/>
+        <location filename="settingsPages/stylesettingspage.ui" line="42"/>
+        <source>Editor default font size</source>
+        <translation>Domyślna wielkość czcionki edytora</translation>
+    </message>
+    <message>
+        <location filename="settingsPages/stylesettingspage.ui" line="49"/>
+        <source>D00</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="settingsPages/stylesettingspage.ui" line="56"/>
+        <source>Line wrap</source>
+        <translation>Zawijaj linie</translation>
+    </message>
+    <message>
+        <location filename="settingsPages/stylesettingspage.ui" line="70"/>
+        <source>Line highlight color</source>
+        <translation>Kolor podświetlania lini</translation>
+    </message>
+    <message>
+        <location filename="settingsPages/stylesettingspage.ui" line="77"/>
+        <source>Select</source>
+        <translation>Wybierz</translation>
+    </message>
+    <message>
+        <location filename="settingsPages/stylesettingspage.ui" line="84"/>
+        <source>Editor default font</source>
+        <translation>Domyślna czcionka edytora</translation>
+    </message>
+    <message>
+        <location filename="settingsPages/stylesettingspage.ui" line="114"/>
         <source>Apply</source>
         <translation>Zastosuj</translation>
     </message>
@@ -2128,6 +2417,39 @@ CTRL + W - Zamknij Plik</translation>
     </message>
 </context>
 <context>
+    <name>TerminalSettingsPage</name>
+    <message>
+        <location filename="settingsPages/terminalsettingspage.ui" line="14"/>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="settingsPages/terminalsettingspage.ui" line="25"/>
+        <source>Terminal default font size</source>
+        <translation>Domyślna wielkość czcionki terminala</translation>
+    </message>
+    <message>
+        <location filename="settingsPages/terminalsettingspage.ui" line="32"/>
+        <source>D00</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="settingsPages/terminalsettingspage.ui" line="39"/>
+        <source>Terminal theme</source>
+        <translation>Motyw terminala</translation>
+    </message>
+    <message>
+        <location filename="settingsPages/terminalsettingspage.ui" line="49"/>
+        <source>Terminal default font</source>
+        <translation>Domyślna czcionka terminala</translation>
+    </message>
+    <message>
+        <location filename="settingsPages/terminalsettingspage.ui" line="76"/>
+        <source>Apply</source>
+        <translation>Zastosuj</translation>
+    </message>
+</context>
+<context>
     <name>TerminalWidget</name>
     <message>
         <location filename="widgets/terminalwidget.ui" line="14"/>
@@ -2136,16 +2458,26 @@ CTRL + W - Zamknij Plik</translation>
     </message>
     <message>
         <location filename="widgets/terminalwidget.ui" line="25"/>
+        <source>Copy</source>
+        <translation>Kopiuj</translation>
+    </message>
+    <message>
+        <location filename="widgets/terminalwidget.ui" line="35"/>
+        <source>Paste</source>
+        <translation>Wklej</translation>
+    </message>
+    <message>
+        <location filename="widgets/terminalwidget.ui" line="45"/>
         <source>SIGINT</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/terminalwidget.ui" line="32"/>
+        <location filename="widgets/terminalwidget.ui" line="52"/>
         <source>SIGTSTP</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/terminalwidget.ui" line="39"/>
+        <location filename="widgets/terminalwidget.ui" line="59"/>
         <source>SIGQUIT</source>
         <translation></translation>
     </message>
