@@ -25,7 +25,8 @@ This is an integrated development environment for Linux that allows to create so
 
 This project was created with:
 
-* Qt version: >4
+* Qt version: 6
+* QTermWidget: 2.1.0
 
 ## Setup
 
