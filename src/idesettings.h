@@ -2,6 +2,7 @@
 #define IDESETTINGS_H
 
 #include <QColor>
+#include <QDir>
 #include <qstring.h>
 
 class IDESettings
@@ -61,6 +62,7 @@ public:
     static QString defaultTerminalFont;
     const QString settingsDirName = "ide8080";
     const QString settingsFileName = "idssettings";
+    static const QString dataPath;
     void saveSettings();
     void loadSettings();
 };

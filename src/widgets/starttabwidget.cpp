@@ -6,6 +6,7 @@
 
 #include <QDir>
 #include <QMessageBox>
+#include "idesettings.h"
 
 StartTabWidget::StartTabWidget(QWidget *parent)
     : QWidget(parent)
@@ -43,7 +44,7 @@ void StartTabWidget::linkClicked(const QString &link)
 
 void StartTabWidget::loadRecentFilesList()
 {
-    QString path = QDir::homePath() + "/.ide8080ide.recentfiles";
+    const QString path = IDESettings::dataPath + "/.ide8080ide.recentfiles";
     QStringList filesLocations;
     std::fstream file(path.toStdString());
     if(file.is_open())
@@ -64,7 +65,7 @@ void StartTabWidget::loadRecentFilesList()
 
 void StartTabWidget::loadRecentProjectsList()
 {
-    QString path = QDir::homePath() + "/.ide8080ide.recentprojects";
+    const QString path = IDESettings::dataPath + "/.ide8080ide.recentprojects";
     QStringList projectsLocations;
     std::fstream file(path.toStdString());
     if(file.is_open())
@@ -108,7 +109,7 @@ void StartTabWidget::clearRecentFiles()
     auto reply = QMessageBox::question(this, tr("Clear recent"), tr("Are you sure you want to clear recent files?"));
     if(reply == QMessageBox::Yes)
     {
-        QString path = QDir::homePath() + "/.ide8080ide.recentfiles";
+        const QString path = IDESettings::dataPath + "/.ide8080ide.recentfiles";
         QStringList filesLocations;
         std::fstream file(path.toStdString(), std::ios_base::out);
         if(file.is_open())
@@ -127,7 +128,7 @@ void StartTabWidget::clearRecentProjects()
     auto reply = QMessageBox::question(this, tr("Clear recent"), tr("Are you sure you want to clear recent projects?"));
     if(reply == QMessageBox::Yes)
     {
-        QString path = QDir::homePath() + "/.ide8080ide.recentprojects";
+        const QString path = IDESettings::dataPath + "/.ide8080ide.recentprojects";
         QStringList projectsLocations;
         std::fstream file(path.toStdString(), std::ios_base::out);
         if(file.is_open())

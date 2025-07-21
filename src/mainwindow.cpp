@@ -477,7 +477,7 @@ void MainWindow::changeSavedLabel(bool val)
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)
 {
-    const QString path = QDir::homePath() + "/.ide8080ide.recentfiles";
+    const QString path = IDESettings::dataPath + "/.ide8080ide.recentfiles";
     if(std::filesystem::exists(path.toStdString()))
     {
         std::fstream file(path.toStdString(), std::ios_base::app | std::ios_base::in);
@@ -502,7 +502,7 @@ void MainWindow::saveFileToRecentFiles(const QString &filePath)
 
 void MainWindow::saveProjectToRecentProjects(const QString &projectPath)
 {
-    const QString path = QDir::homePath() + "/.ide8080ide.recentprojects";
+    const QString path = IDESettings::dataPath + "/.ide8080ide.recentprojects";
     if(std::filesystem::exists(path.toStdString()))
     {
         std::fstream file(path.toStdString(), std::ios_base::app | std::ios_base::in);

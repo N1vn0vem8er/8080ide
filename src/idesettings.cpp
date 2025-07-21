@@ -76,6 +76,11 @@ void IDESettings::loadSettings()
 {
     QSettings settings(settingsFileName);
 
+    if(!QDir(dataPath).exists())
+    {
+        QDir().mkpath(dataPath);
+    }
+
     IDESettings::defaultSyntaxHightlightingColors.lsm8bitInst = std::make_tuple(44461, 55512, 59110);
     IDESettings::defaultSyntaxHightlightingColors.al8bitInst = std::make_tuple(65535, 65535, 0);
     IDESettings::defaultSyntaxHightlightingColors.jumpCallInst = std::make_tuple(65535, 42405, 0);
@@ -146,3 +151,4 @@ bool IDESettings::defaultLinesWrap;
 QColor IDESettings::lineHighlightColor;
 QString IDESettings::defaultEditorFont;
 QString IDESettings::defaultTerminalFont;
+const QString IDESettings::dataPath = QDir::homePath() + QDir::separator() + ".local" + QDir::separator() + "share" + QDir::separator() + "8080ide";
