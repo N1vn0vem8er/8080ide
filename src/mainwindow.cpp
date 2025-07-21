@@ -31,7 +31,7 @@
 #include <QPrinter>
 #include <QPrintDialog>
 
-#define VERSION "1.0.0"
+#define VERSION "1.1.0"
 #define LICENSELINK "https://www.gnu.org/licenses/gpl-3.0.html"
 #define REPOLINK "https://github.com/N1vn0vem8er/8080ide"
 
