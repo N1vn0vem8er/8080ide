@@ -57,7 +57,8 @@ void FileSystemTree::setHasGitRepository(bool newHasGitRepository)
 
 void FileSystemTree::openOnFileContextMenu(const QString& path)
 {
-    delete contextMenu;
+    if(contextMenu)
+        contextMenu->deleteLater();
     contextMenu = new QMenu(this);
     QAction* openAction = new QAction(tr("Open"), contextMenu);
     connect(openAction, &QAction::triggered, this, &FileSystemTree::openFilePressed);
@@ -97,7 +98,8 @@ void FileSystemTree::openOnFileContextMenu(const QString& path)
 
 void FileSystemTree::openOnDirContextMenu(const QString& path)
 {
-    delete contextMenu;
+    if(contextMenu)
+        contextMenu->deleteLater();
     contextMenu = new QMenu(this);
     QAction* openAction = new QAction(tr("Open"), contextMenu);
     connect(openAction, &QAction::triggered, this, &FileSystemTree::openDirPressed);
@@ -139,7 +141,8 @@ void FileSystemTree::openOnDirContextMenu(const QString& path)
 
 void FileSystemTree::openAnywhereContextMenu()
 {
-    delete contextMenu;
+    if(contextMenu)
+        contextMenu->deleteLater();
     contextMenu = new QMenu(this);
     QAction* createFileAction = new QAction(tr("New File"), contextMenu);
     connect(createFileAction, &QAction::triggered, this, &FileSystemTree::createFileInRoot);
