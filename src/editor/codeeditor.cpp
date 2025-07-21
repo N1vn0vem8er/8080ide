@@ -500,7 +500,7 @@ void CodeEditor::updateWordsList(const QStringList &list)
     }
     if(found)
     {
-        delete compliter->model();
+        compliter->model()->deleteLater();
         QStringListModel* model = new QStringListModel(wordsList);
         compliter->setModel(model);
     }
@@ -665,14 +665,18 @@ void CodeEditor::setFilePath(QString path)
 }
 CodeEditor::~CodeEditor()
 {
-    delete highLighter;
-    delete compliter->model();
-    delete compliter;
-    delete lineNumberArea;
-    if(labelFinder!=nullptr)
+    if(highLighter)
+        highLighter->deleteLater();
+    if(compliter->model())
+        compliter->model()->deleteLater();
+    if(compliter)
+        compliter->deleteLater();
+    if(lineNumberArea)
+        lineNumberArea->deleteLater();
+    if(labelFinder)
     {
         labelFinder->requestInterruption();
         labelFinder->wait();
+        labelFinder->deleteLater();
     }
-    delete labelFinder;
 }

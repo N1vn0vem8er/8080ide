@@ -21,7 +21,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    SimHandeler* simHandeler;
+    SimHandeler* simHandeler {nullptr};
     CodeEditor* highlightedEditor {nullptr};
     CodeEditor* stepHighlightedEditor {nullptr};
     void save(CodeEditor* editor);

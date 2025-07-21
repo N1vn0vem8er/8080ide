@@ -45,7 +45,7 @@ SimHandeler::SimHandeler(QPlainTextEdit* screen, QObject* parent) : QObject{pare
 {
     symulator = std::make_unique<Symulator>(256);
     this->screen = screen;
-    projectManager = new ProjectManager();
+    projectManager = new ProjectManager(this);
     projectLoaded = false;
 }
 
@@ -56,13 +56,12 @@ SimHandeler::~SimHandeler()
         sr->wait();
         delete sr;
     }
-    delete projectManager;
     delete[] compcode;
 }
 void SimHandeler::openProject(const QString &path)
 {
-    delete projectManager;
-    projectManager = new ProjectManager();
+    projectManager->deleteLater();
+    projectManager = new ProjectManager(this);
     log(tr("Opening project at %1").arg(path));
     projectManager->readConfig(path);
     projectManager->clearCompilerQueue();

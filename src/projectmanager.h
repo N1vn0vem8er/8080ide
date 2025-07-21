@@ -3,13 +3,15 @@
 
 #include "8080/assembler.h"
 #include "globals.h"
+#include "qobject.h"
 #include<QString>
 #include <map>
 #include <QList>
 
 
-class ProjectManager
+class ProjectManager : public QObject
 {
+    Q_OBJECT
 private:
     void decodeAndApply(std::pair<QString, QString> varvalPair);
     std::map<QString, int> codesMap = {{"setMemory", 0}, {"startAt", 1}, {"setAt", 2}, {"setSP", 3}};
@@ -27,7 +29,7 @@ private:
     std::vector<std::string> errors;
     std::vector<std::pair<unsigned short, int>> lineAddrInsts;
 public:
-    ProjectManager();
+    explicit ProjectManager(QObject* parent = nullptr);
     ~ProjectManager();
     void readConfig(QString path);
     unsigned char* compile();

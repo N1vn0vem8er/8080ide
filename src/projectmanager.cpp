@@ -4,10 +4,9 @@
 #include "8080/assembler.h"
 #include "qdir.h"
 #include "qfileinfo.h"
-#include "qprocess.h"
 #include "ssettings.h"
 
-ProjectManager::ProjectManager()
+ProjectManager::ProjectManager(QObject *parent) : QObject(parent)
 {
 
 }

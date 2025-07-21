@@ -1,7 +1,6 @@
 #ifndef UIHANDELER_H
 #define UIHANDELER_H
 #include "projectmanager.h"
-#include "qlabel.h"
 #include "qlineedit.h"
 #include "qplaintextedit.h"
 #include <string>
@@ -25,7 +24,7 @@ private:
     unsigned char* compcode = nullptr;
     int compcodeSize;
     QDialog* settingsWindow = nullptr;
-    ProjectManager* projectManager = nullptr;
+    ProjectManager* projectManager {nullptr};
     bool projectLoaded;
     QThread simulatorThread;
     unsigned char* inputValue;

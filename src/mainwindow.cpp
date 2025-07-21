@@ -48,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent)
     runningProcessesLabel = new RunningProcessesLabel("", ui->statusbar);
     ui->statusbar->addPermanentWidget(runningProcessesLabel);
 
-    simHandeler = new SimHandeler(ui->screen);
+    simHandeler = new SimHandeler(ui->screen, this);
     projectInfoLabel = new QLabel(tr("No Project"), ui->statusbar);
     ui->statusbar->addPermanentWidget(projectInfoLabel);
     simHandeler->setInputLine(ui->simulatorInput);
@@ -1288,7 +1288,6 @@ QString MainWindow::getPlainTextFromTab(int index)
 MainWindow::~MainWindow()
 {
     delete ui;
-    delete simHandeler;
 }
 
 void MainWindow::copy()
