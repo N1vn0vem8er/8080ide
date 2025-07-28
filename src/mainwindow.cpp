@@ -204,6 +204,19 @@ MainWindow::MainWindow(QWidget *parent)
         ui->numConverter->setVisible(false);
     if(IDESettings::startupWidgetsVisibitity.fileTree == IDESettings::show && !isFilesOpen())
         showFileSystemTree();
+
+    const QString hintFilesPath = QString(":/hintFiles/hintFiles/%1/").arg(QLocale().name());
+    const QStringList hintFiles = QDir(hintFilesPath).entryList();
+    for(const auto& i : hintFiles)
+    {
+        QFile file(hintFilesPath + i);
+        file.open(QIODevice::ReadOnly);
+        if(file.isOpen())
+        {
+            CodeEditor::hoverHints[QFileInfo(i).baseName()] = file.readAll();
+            file.close();
+        }
+    }
 }
 
 void MainWindow::b_run()
@@ -1583,5 +1596,3 @@ bool MainWindow::isTerminalOpen() const
 {
     return ui->centralStackedWidget->isVisible() && ui->centralStackedWidget->currentIndex() == 1;
 }
-
-

@@ -12,6 +12,7 @@ CONFIG += c++20
 SOURCES += \
     8080/assembler.cpp \
     editor/codeeditor.cpp \
+    editor/hovertooltipwidget.cpp \
     idesettings.cpp \
     processmanager.cpp \
     settingsPages/simsettingspage.cpp \
@@ -64,6 +65,7 @@ HEADERS += \
     8080/assembler.h \
     editor/LineNumberArea.h \
     editor/codeeditor.h \
+    editor/hovertooltipwidget.h \
     idesettings.h \
     processmanager.h \
     settingsPages/simsettingspage.h \
@@ -161,6 +163,7 @@ target.path = /usr/bin
 
 RESOURCES += \
     resources/helpPages.qrc \
+    resources/hintFiles.qrc \
     resources/icons/icons.qrc
 
 LIBS += -lqtermwidget6

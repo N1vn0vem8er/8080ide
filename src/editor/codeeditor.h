@@ -1,5 +1,6 @@
 #ifndef CODEEDITOR_H
 #define CODEEDITOR_H
+#include "editor/hovertooltipwidget.h"
 #include "labelfinder.h"
 #include "qlineedit.h"
 #include "qobject.h"
@@ -49,6 +50,7 @@ public:
     QString getName() const;
     bool isSaveWarningEnabled() const;
     void setSaveWarningEnabled(bool val);
+    static QMap<QString, QString> hoverHints;
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
@@ -58,6 +60,8 @@ protected:
     void dragEnterEvent(QDragEnterEvent* event) override;
     void dragLeaveEvent(QDragLeaveEvent* event) override;
     void wheelEvent(QWheelEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void leaveEvent(QEvent *event) override;
 
 private slots:
     void insertCompletion(const QString& completion);
@@ -91,6 +95,8 @@ private:
     QVector<int> linesWithBreakpoint;
     void checkChanged();
     QString orginalContent;
+    bool isHovering = false;
+    HoverTooltipWidget* hoverTooltipWidget {nullptr};
 
 signals:
     void fontSizeChanged(int size);

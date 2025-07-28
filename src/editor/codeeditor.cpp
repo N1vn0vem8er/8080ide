@@ -14,6 +14,7 @@
 
 CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
 {
+    setMouseTracking(true);
     lineNumberArea = new LineNumberArea(this);
     connect(this, &CodeEditor::blockCountChanged, this, &CodeEditor::updateLineNumberWidth);
     connect(this, &CodeEditor::updateRequest, this, &CodeEditor::updateLineNumber);
@@ -52,6 +53,8 @@ CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
     connect(this, &QPlainTextEdit::textChanged, this, &CodeEditor::checkChanged);
     saved = true;
     startGettingLabels();
+
+    hoverTooltipWidget = new HoverTooltipWidget(this);
 }
 
 int CodeEditor::lineNumberWidth() const
@@ -465,6 +468,38 @@ void CodeEditor::wheelEvent(QWheelEvent *event)
         QPlainTextEdit::wheelEvent(event);
 }
 
+void CodeEditor::mouseMoveEvent(QMouseEvent *event)
+{
+    QPlainTextEdit::mouseMoveEvent(event);
+
+    QTextCursor tc = cursorForPosition(event->pos());
+    if(!tc.isNull())
+    {
+        tc.select(QTextCursor::WordUnderCursor);
+        QString text = tc.selectedText();
+        if(hoverHints.contains(text))
+        {
+            hoverTooltipWidget->setText(hoverHints.value(text));
+            hoverTooltipWidget->move(QCursor::pos());
+            hoverTooltipWidget->show();
+        }
+        else
+        {
+            hoverTooltipWidget->hide();
+        }
+    }
+    else
+    {
+        hoverTooltipWidget->hide();
+    }
+}
+
+void CodeEditor::leaveEvent(QEvent *event)
+{
+    QPlainTextEdit::leaveEvent(event);
+    hoverTooltipWidget->hide();
+}
+
 void CodeEditor::insertCompletion(const QString &completion)
 {
     QTextCursor tc = textCursor();
@@ -680,3 +715,5 @@ CodeEditor::~CodeEditor()
         labelFinder->deleteLater();
     }
 }
+
+QMap<QString, QString> CodeEditor::hoverHints;

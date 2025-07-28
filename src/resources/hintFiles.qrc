@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/hintFiles">
+        <file>hintFiles/en_US/MVI.html</file>
+        <file>hintFiles/pl_PL/MVI.html</file>
+    </qresource>
+</RCC>
