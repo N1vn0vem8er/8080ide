@@ -97,6 +97,7 @@ private:
     QString orginalContent;
     bool isHovering = false;
     HoverTooltipWidget* hoverTooltipWidget {nullptr};
+    QTimer* hoverTimer {nullptr};
 
 signals:
     void fontSizeChanged(int size);

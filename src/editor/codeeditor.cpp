@@ -4,6 +4,7 @@
 #include "qabstractitemview.h"
 #include "qfileinfo.h"
 #include "qmimedata.h"
+#include <QTimer>
 #include <QCompleter>
 #include <QPainter>
 #include <QTextBlock>
@@ -54,6 +55,11 @@ CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
     saved = true;
     startGettingLabels();
 
+    hoverTimer = new QTimer(this);
+    connect(hoverTimer, &QTimer::timeout, this, [&]{
+        hoverTooltipWidget->show();
+    });
+    hoverTimer->setSingleShot(true);
     hoverTooltipWidget = new HoverTooltipWidget(this);
 }
 
@@ -479,12 +485,14 @@ void CodeEditor::mouseMoveEvent(QMouseEvent *event)
         QString text = tc.selectedText();
         if(hoverHints.contains(text))
         {
+            hoverTimer->stop();
             hoverTooltipWidget->setText(hoverHints.value(text));
             hoverTooltipWidget->move(QCursor::pos());
-            hoverTooltipWidget->show();
+            hoverTimer->start(500);
         }
         else
         {
+            hoverTimer->stop();
             hoverTooltipWidget->hide();
         }
     }
@@ -497,6 +505,7 @@ void CodeEditor::mouseMoveEvent(QMouseEvent *event)
 void CodeEditor::leaveEvent(QEvent *event)
 {
     QPlainTextEdit::leaveEvent(event);
+    hoverTimer->stop();
     hoverTooltipWidget->hide();
 }
 
