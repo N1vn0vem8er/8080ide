@@ -488,6 +488,11 @@ void MainWindow::changeSavedLabel(bool val)
     savedLabel->setText(val ? tr("Saved") : tr("Not saved"));
 }
 
+void MainWindow::openInReadOnly()
+{
+
+}
+
 void MainWindow::saveFileToRecentFiles(const QString &filePath)
 {
     const QString path = IDESettings::dataPath + "/.ide8080ide.recentfiles";

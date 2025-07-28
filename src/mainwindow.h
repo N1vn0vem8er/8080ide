@@ -143,6 +143,7 @@ private slots:
     void openEditorFontSelectDialog();
     void openTerminalFontSelectDialog();
     void changeSavedLabel(bool val);
+    void openInReadOnly();
 
 protected:
     void dropEvent(QDropEvent* event) override;
