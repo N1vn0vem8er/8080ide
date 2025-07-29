@@ -87,7 +87,7 @@ void ProjectManager::decodeAndApply(std::pair<QString, QString> varvalPair)
         QString path = "";
         QString addr = "";
         bool first = true;
-        for(auto i : std::as_const(varvalPair.second))
+        for(const auto& i : std::as_const(varvalPair.second))
         {
             if(i == ',')
             {
@@ -185,7 +185,7 @@ unsigned char* ProjectManager::compile()
     }
     index = 0;
     a.clearBreakpoints();
-    for(auto& i : preComp)
+    for(const auto& i : preComp)
     {
         unsigned char* comp = nullptr;
         if(!lineBreakpoints.empty())
