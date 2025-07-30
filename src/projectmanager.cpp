@@ -241,15 +241,6 @@ QString ProjectManager::getProjectConfigAbsolutePath() const
     return projectConfigAbsolutePath;
 }
 
-bool ProjectManager::hasGitRepository()
-{
-    if(projectAbsolutePath=="")return false;
-    QDir dir(projectAbsolutePath);
-    QStringList files = dir.entryList(QStringList() << ".git", QDir::Dirs | QDir::Hidden);
-    if(files.isEmpty()) return false;
-    else return true;
-}
-
 void ProjectManager::clearCompilerQueue()
 {
     compileQueue.clear();

@@ -36,7 +36,6 @@ public:
     QString getName() const;
     QString getProjectAbsolutePath() const;
     QString getProjectConfigAbsolutePath() const;
-    bool hasGitRepository();
     void clearCompilerQueue();
     QStringList getProjectFilesPaths() const;
     QList<Globals::FileMemoryStartEnd> getFileMemoryRanges() const;
