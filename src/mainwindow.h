@@ -31,6 +31,7 @@ private:
     QLabel* savedLabel {nullptr};
     RunningProcessesLabel* runningProcessesLabel {nullptr};
     const QString geometryAndStateConfig {"8080idegeometryandstate"};
+    QFlags<Qt::WindowState> stateBeforeFullscreen;
 
 private:
     std::string getStdStringFromTab(int index);
@@ -149,6 +150,7 @@ private slots:
     void openTerminalFontSelectDialog();
     void changeSavedLabel(bool val);
     void openInReadOnly();
+    void fullScreen();
 
 protected:
     void dropEvent(QDropEvent* event) override;

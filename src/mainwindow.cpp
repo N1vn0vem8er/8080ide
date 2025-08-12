@@ -177,6 +177,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->searchWidget, &SearchWidget::replaceInSelected, this, &MainWindow::replaceInSelected);
     connect(ui->actionSet_font, &QAction::triggered, this, &MainWindow::openEditorFontSelectDialog);
     connect(ui->actionSetTerminalFont, &QAction::triggered, this, &MainWindow::openTerminalFontSelectDialog);
+    connect(ui->actionFull_screen, &QAction::triggered, this, &MainWindow::fullScreen);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
@@ -493,6 +494,19 @@ void MainWindow::changeSavedLabel(bool val)
 void MainWindow::openInReadOnly()
 {
 
+}
+
+void MainWindow::fullScreen()
+{
+    if(windowState() & Qt::WindowFullScreen)
+    {
+        setWindowState(stateBeforeFullscreen);
+    }
+    else
+    {
+        stateBeforeFullscreen = windowState();
+        setWindowState(Qt::WindowFullScreen);
+    }
 }
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)
