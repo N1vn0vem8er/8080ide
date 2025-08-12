@@ -178,6 +178,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionSet_font, &QAction::triggered, this, &MainWindow::openEditorFontSelectDialog);
     connect(ui->actionSetTerminalFont, &QAction::triggered, this, &MainWindow::openTerminalFontSelectDialog);
     connect(ui->actionFull_screen, &QAction::triggered, this, &MainWindow::fullScreen);
+    connect(ui->actionOpen_in_Read_Only, &QAction::triggered, this, &MainWindow::openInReadOnly);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
@@ -493,12 +494,48 @@ void MainWindow::changeSavedLabel(bool val)
 
 void MainWindow::openInReadOnly()
 {
-
+    const QStringList paths = QFileDialog::getOpenFileNames(this, tr("Open in read only"), QDir::homePath());
+    for(const QString& path : paths)
+    {
+        if(!path.isEmpty())
+        {
+            QFile file(path);
+            file.open(QIODevice::ReadOnly);
+            if(file.isOpen())
+            {
+                QFileInfo info(path);
+                const QString content = file.readAll();
+                file.close();
+                CodeEditor* ce = new CodeEditor();
+                ce->setLineWrapMode(IDESettings::defaultLinesWrap ? CodeEditor::LineWrapMode::WidgetWidth : CodeEditor::LineWrapMode::NoWrap);
+                ce->setFont(QFont(IDESettings::defaultEditorFont));
+                ce->setFontSize(IDESettings::defaultFontSize);
+                connect(ce, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
+                connect(ce, &CodeEditor::savedChanged, this, &MainWindow::changeSavedLabel);
+                ce->setFilePath(path);
+                simHandeler->setFilename(path);
+                if(simHandeler->getProjectFilesPaths().contains(path))
+                {
+                    ce->setPartOfProject(true);
+                    ce->setProjectPath(simHandeler->getProjectPath());
+                }
+                ce->insertPlainText(content);
+                addTab(ce, info.fileName());
+                ce->setReadOnly(true);
+                ui->actionRead_only->setChecked(true);
+                saveFileToRecentFiles(path);
+            }
+            else
+            {
+                openFailedToOpenDialog(path, file.errorString());
+            }
+        }
+    }
 }
 
 void MainWindow::fullScreen()
 {
-    if(windowState() & Qt::WindowFullScreen)
+    if(windowState().testFlag(Qt::WindowFullScreen))
     {
         setWindowState(stateBeforeFullscreen);
     }

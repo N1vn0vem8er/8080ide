@@ -400,6 +400,7 @@
     </property>
     <addaction name="actionNowy"/>
     <addaction name="actionOtw"/>
+    <addaction name="actionOpen_in_Read_Only"/>
     <addaction name="actionOpenDir"/>
     <addaction name="actionZapisz"/>
     <addaction name="actionZapisz_jako"/>
@@ -1302,6 +1303,14 @@
    </property>
    <property name="shortcut">
     <string>F11</string>
+   </property>
+  </action>
+  <action name="actionOpen_in_Read_Only">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::DocumentOpen"/>
+   </property>
+   <property name="text">
+    <string>Open in Read Only</string>
    </property>
   </action>
  </widget>
