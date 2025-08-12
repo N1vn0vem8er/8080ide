@@ -989,6 +989,9 @@
    <property name="text">
     <string>Paste</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
   </action>
   <action name="actionPaste_from_file">
    <property name="icon">
@@ -1041,6 +1044,9 @@
    <property name="text">
     <string>Overwrite mode</string>
    </property>
+   <property name="shortcut">
+    <string>Ins</string>
+   </property>
   </action>
   <action name="actionRead_only">
    <property name="checkable">
@@ -1059,10 +1065,16 @@
    <property name="text">
     <string>Increase font size</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
   </action>
   <action name="actionDecrease_font_size">
    <property name="text">
     <string>Decrease font size</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
    </property>
   </action>
   <action name="actionSet_font_size">
