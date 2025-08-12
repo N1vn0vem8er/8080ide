@@ -42,6 +42,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    loadGeometryAndState();
+
     savedLabel = new QLabel(ui->statusbar);
     ui->statusbar->addPermanentWidget(savedLabel);
 
@@ -884,6 +886,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     {
         closeTab(ui->tabWidget->currentIndex());
     }
+    saveGeometryAndState();
     QMainWindow::closeEvent(event);
 }
 
@@ -1600,4 +1603,18 @@ bool MainWindow::isDiagnosticsOpen() const
 bool MainWindow::isTerminalOpen() const
 {
     return ui->centralStackedWidget->isVisible() && ui->centralStackedWidget->currentIndex() == 1;
+}
+
+void MainWindow::loadGeometryAndState()
+{
+    QSettings s(geometryAndStateConfig);
+    s.setValue("geometry", saveGeometry());
+    s.setValue("windowState", saveState());
+}
+
+void MainWindow::saveGeometryAndState()
+{
+    QSettings s(geometryAndStateConfig);
+    restoreGeometry(s.value("geometry").toByteArray());
+    restoreState(s.value("windowState").toByteArray());
 }

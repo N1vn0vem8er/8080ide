@@ -30,6 +30,9 @@ private:
     QLabel* projectInfoLabel {nullptr};
     QLabel* savedLabel {nullptr};
     RunningProcessesLabel* runningProcessesLabel {nullptr};
+    const QString geometryAndStateConfig {"8080idegeometryandstate"};
+
+private:
     std::string getStdStringFromTab(int index);
     QString getPlainTextFromTab(int index);
     void openProject(const QString& path);
@@ -45,6 +48,8 @@ private:
     inline bool isGitOpen() const;
     inline bool isDiagnosticsOpen() const;
     inline bool isTerminalOpen() const;
+    void loadGeometryAndState();
+    void saveGeometryAndState();
 
 private slots:
     void copy();
