@@ -945,11 +945,17 @@
    </property>
   </action>
   <action name="actionAboutApplication">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::HelpAbout"/>
+   </property>
    <property name="text">
     <string>&amp;About Application</string>
    </property>
   </action>
   <action name="actionAboutQt">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::HelpAbout"/>
+   </property>
    <property name="text">
     <string>About &amp;Qt</string>
    </property>
