@@ -37,5 +37,9 @@ QSize GitFileStatusItemDelegate::sizeHint(const QStyleOptionViewItem &option, co
 
 bool GitFileStatusItemDelegate::editorEvent(QEvent *event, QAbstractItemModel *model, const QStyleOptionViewItem &option, const QModelIndex &index)
 {
+    Q_UNUSED(event);
+    Q_UNUSED(model);
+    Q_UNUSED(option);
+    Q_UNUSED(index);
     return true;
 }
