@@ -1659,13 +1659,13 @@ bool MainWindow::isTerminalOpen() const
 void MainWindow::loadGeometryAndState()
 {
     QSettings s(geometryAndStateConfig);
-    s.setValue("geometry", saveGeometry());
-    s.setValue("windowState", saveState());
+    restoreGeometry(s.value("geometry").toByteArray());
+    restoreState(s.value("windowState").toByteArray());
 }
 
 void MainWindow::saveGeometryAndState()
 {
     QSettings s(geometryAndStateConfig);
-    restoreGeometry(s.value("geometry").toByteArray());
-    restoreState(s.value("windowState").toByteArray());
+    s.setValue("geometry", saveGeometry());
+    s.setValue("windowState", saveState());
 }
