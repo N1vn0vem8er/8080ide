@@ -35,7 +35,7 @@ Make sure you have Qt installed and configured. Clone this repo and run `install
 ```
 $ mkdir build
 $ cd build
-$ qmake ../src/8080ide.pro
+$ qmake6 ../8080ide.pro
 $ make
 $ make install
 ```

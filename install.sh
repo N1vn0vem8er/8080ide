@@ -1,5 +1,5 @@
 mkdir -p build
 cd build
-qmake6 ../src/8080ide.pro
+qmake6 ../8080ide.pro
 make
 make install
