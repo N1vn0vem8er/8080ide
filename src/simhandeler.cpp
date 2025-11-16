@@ -204,7 +204,9 @@ void SimHandeler::print(char ch)
 
 void SimHandeler::registersChanged(const Globals::SimStatus &status)
 {
-    emit displayRegisters(status.areg, status.breg, status.creg, status.dreg, status.ereg, status.hreg, status.lreg, status.mreg, status.pc, status.cf, status.sf, status.pf, status.zf, status.acf, status.sp);
+    emit displayRegisters(status.areg, status.breg, status.creg, status.dreg, status.ereg, status.hreg, status.lreg, status.mreg, status.pc, status.cf,
+                          status.sf, status.pf, status.zf, status.acf, status.sp);
+    emit setRegisterValues(status.areg, status.breg, status.creg, status.dreg, status.ereg, status.hreg, status.lreg, status.pc, status.sp);
 }
 
 void SimHandeler::inputOut(char ch)
