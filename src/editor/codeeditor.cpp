@@ -558,6 +558,7 @@ void CodeEditor::showContextMenu(const QPoint &pos)
     menu.addActions(createStandardContextMenu()->actions());
     menu.addSeparator();
     QAction addBreakpointAction(tr("Breakpoint"), &menu);
+    addBreakpointAction.setIcon(QIcon::fromTheme("media-record"));
     connect(&addBreakpointAction, &QAction::triggered, this, [&]{setBreakpointAtLine(cursorForPosition(pos).blockNumber());});
     menu.addAction(&addBreakpointAction);
     menu.exec(QCursor::pos());
