@@ -13,6 +13,7 @@
 #include <QCryptographicHash>
 #include <idesettings.h>
 #include <QMenu>
+#include <QClipboard>
 
 CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
 {
@@ -22,6 +23,8 @@ CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
     connect(this, &CodeEditor::updateRequest, this, &CodeEditor::updateLineNumber);
     connect(this, &QPlainTextEdit::textChanged, this,  &CodeEditor::startGettingLabels);
     connect(this, &CodeEditor::blockCountChanged, this, &CodeEditor::updateBreakpoints);
+    connect(this, &CodeEditor::undoAvailable, this, [&](bool val){undoAvaliable = val;});
+    connect(this, &CodeEditor::redoAvailable, this, [&](bool val){redoAvaliable = val;});
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &CodeEditor::customContextMenuRequested, this, &CodeEditor::showContextMenu);
     updateLineNumberWidth(0);
@@ -557,23 +560,28 @@ void CodeEditor::showContextMenu(const QPoint &pos)
     QMenu menu(this);
     QAction undo(tr("Undo"), &menu);
     undo.setIcon(QIcon::fromTheme("edit-undo"));
+    undo.setEnabled(undoAvaliable);
     connect(&undo, &QAction::triggered, this, &CodeEditor::undo);
     menu.addAction(&undo);
     QAction redo(tr("Redo"), &menu);
     redo.setIcon(QIcon::fromTheme("edit-redo"));
+    redo.setEnabled(redoAvaliable);
     connect(&redo, &QAction::triggered, this, &CodeEditor::redo);
     menu.addAction(&redo);
     menu.addSeparator();
     QAction cut(tr("Cut"), &menu);
     cut.setIcon(QIcon::fromTheme("edit-cut"));
+    cut.setEnabled(textCursor().hasSelection());
     connect(&cut, &QAction::triggered, this, &CodeEditor::cut);
     menu.addAction(&cut);
     QAction copy(tr("Copy"), &menu);
     copy.setIcon(QIcon::fromTheme("edit-copy"));
+    copy.setEnabled(textCursor().hasSelection());
     connect(&copy, &QAction::triggered, this, &CodeEditor::copy);
     menu.addAction(&copy);
     QAction paste(tr("Paste"), &menu);
     paste.setIcon(QIcon::fromTheme("edit-paste"));
+    paste.setEnabled(!QGuiApplication::clipboard()->text().isEmpty());
     connect(&paste, &QAction::triggered, this, &CodeEditor::paste);
     menu.addAction(&paste);
     QAction pasteFromFile(tr("Paste from file"), &menu);
@@ -583,6 +591,7 @@ void CodeEditor::showContextMenu(const QPoint &pos)
     menu.addSeparator();
     QAction selectAll(tr("Select All"), &menu);
     selectAll.setIcon(QIcon::fromTheme("edit-select-all"));
+    connect(&selectAll, &QAction::triggered, this, &CodeEditor::selectAll);
     menu.addAction(&selectAll);
     menu.addSeparator();
     QAction addBreakpointAction(tr("Breakpoint"), &menu);

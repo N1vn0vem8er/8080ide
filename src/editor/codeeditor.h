@@ -100,6 +100,8 @@ private:
     bool isHovering = false;
     HoverTooltipWidget* hoverTooltipWidget {nullptr};
     QTimer* hoverTimer {nullptr};
+    bool undoAvaliable {false};
+    bool redoAvaliable {false};
 
 signals:
     void fontSizeChanged(int size);
