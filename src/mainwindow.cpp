@@ -512,6 +512,7 @@ void MainWindow::openInReadOnly()
                 ce->setFontSize(IDESettings::defaultFontSize);
                 connect(ce, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
                 connect(ce, &CodeEditor::savedChanged, this, &MainWindow::changeSavedLabel);
+                connect(ce, &CodeEditor::pasteFromFile, this, &MainWindow::openPasteFromFile);
                 ce->setFilePath(path);
                 simHandeler->setFilename(path);
                 if(simHandeler->getProjectFilesPaths().contains(path))
@@ -657,6 +658,7 @@ void MainWindow::openInEditor(const QString &text, const QString &title, bool re
     editor->setFont(QFont(IDESettings::defaultEditorFont));
     connect(editor, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
     connect(editor, &CodeEditor::savedChanged, this, &MainWindow::changeSavedLabel);
+    connect(editor, &CodeEditor::pasteFromFile, this, &MainWindow::openPasteFromFile);
     editor->setReadOnly(readOnly);
     editor->setSpellCheckEnabled(spellChecking);
     editor->setSaveWarningEnabled(!disableSaveWarning);
@@ -966,6 +968,7 @@ void MainWindow::newFile()
     tmp->setFontSize(IDESettings::defaultFontSize);
     connect(tmp, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
     connect(tmp, &CodeEditor::savedChanged, this, &MainWindow::changeSavedLabel);
+    connect(tmp, &CodeEditor::pasteFromFile, this, &MainWindow::openPasteFromFile);
     ui->actionOverwrite_mode->setChecked(tmp->overwriteMode());
     ui->actionRead_only->setChecked(tmp->isReadOnly());
     ui->actionLine_wrap->setChecked(tmp->lineWrapMode() == CodeEditor::NoWrap ? false : true);
@@ -995,6 +998,7 @@ void MainWindow::openFileInNewTab(const QString &path)
             ce->setFontSize(IDESettings::defaultFontSize);
             connect(ce, &CodeEditor::fontSizeChanged, this, &MainWindow::fontSizeChanged);
             connect(ce, &CodeEditor::savedChanged, this, &MainWindow::changeSavedLabel);
+            connect(ce, &CodeEditor::pasteFromFile, this, &MainWindow::openPasteFromFile);
             ce->setFilePath(path);
             simHandeler->setFilename(path);
             if(simHandeler->getProjectFilesPaths().contains(path))

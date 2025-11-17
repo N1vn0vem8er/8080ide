@@ -104,6 +104,7 @@ private:
 signals:
     void fontSizeChanged(int size);
     void savedChanged(bool val);
+    void pasteFromFile();
 
 };
 
