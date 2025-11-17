@@ -66,6 +66,8 @@ protected:
 private slots:
     void insertCompletion(const QString& completion);
     void updateWordsList(const QStringList& list);
+    void showContextMenu(const QPoint& pos);
+    void setBreakpointAtLine(int line);
 private:
     void updateLineNumberWidth(int count);
     void updateLineNumber(const QRect &rect, int dy);

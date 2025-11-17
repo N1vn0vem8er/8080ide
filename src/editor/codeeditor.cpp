@@ -12,6 +12,7 @@
 #include <QScrollBar>
 #include <QCryptographicHash>
 #include <idesettings.h>
+#include <QMenu>
 
 CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
 {
@@ -21,6 +22,8 @@ CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
     connect(this, &CodeEditor::updateRequest, this, &CodeEditor::updateLineNumber);
     connect(this, &QPlainTextEdit::textChanged, this,  &CodeEditor::startGettingLabels);
     connect(this, &CodeEditor::blockCountChanged, this, &CodeEditor::updateBreakpoints);
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, &CodeEditor::customContextMenuRequested, this, &CodeEditor::showContextMenu);
     updateLineNumberWidth(0);
     highLighter = new SyntaxHighLighter(this->document());
     instructions << "MVI" << "MOV" << "STAX" << "LDAX" << "LDA" << "STA" <<
@@ -381,8 +384,6 @@ bool CodeEditor::isPartOfProject() const
     return partOfProject;
 }
 
-
-
 void CodeEditor::keyPressEvent(QKeyEvent *e)
 {
     if(compliter->popup()->isVisible())
@@ -551,6 +552,31 @@ void CodeEditor::updateWordsList(const QStringList &list)
     previousLabelsList = list;
 }
 
+void CodeEditor::showContextMenu(const QPoint &pos)
+{
+    QMenu menu(this);
+    menu.addActions(createStandardContextMenu()->actions());
+    menu.addSeparator();
+    QAction addBreakpointAction(tr("Breakpoint"), &menu);
+    connect(&addBreakpointAction, &QAction::triggered, this, [&]{setBreakpointAtLine(cursorForPosition(pos).blockNumber());});
+    menu.addAction(&addBreakpointAction);
+    menu.exec(QCursor::pos());
+}
+
+void CodeEditor::setBreakpointAtLine(int line)
+{
+    if(linesWithBreakpoint.contains(line)){
+        linesWithBreakpoint.removeAll(line);
+        if(linesWithBreakpoint.isEmpty())
+            hasBreakpoints = false;
+    }
+    else{
+        linesWithBreakpoint.push_back(line);
+        hasBreakpoints = true;
+    }
+    updateLineNumberWidth(0);
+}
+
 void CodeEditor::highlightLine(int line)
 {
 
@@ -664,17 +690,7 @@ void CodeEditor::setSaveWarningEnabled(bool val)
 
 void CodeEditor::setLineBreakpoint()
 {
-    int line = textCursor().blockNumber();
-    if(linesWithBreakpoint.contains(line)){
-        linesWithBreakpoint.removeAll(line);
-        if(linesWithBreakpoint.isEmpty())
-            hasBreakpoints = false;
-    }
-    else{
-        linesWithBreakpoint.push_back(line);
-        hasBreakpoints = true;
-    }
-    updateLineNumberWidth(0);
+    setBreakpointAtLine(textCursor().blockNumber());
 }
 
 bool CodeEditor::hasBreakPoints() const
