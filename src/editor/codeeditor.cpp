@@ -555,7 +555,29 @@ void CodeEditor::updateWordsList(const QStringList &list)
 void CodeEditor::showContextMenu(const QPoint &pos)
 {
     QMenu menu(this);
-    menu.addActions(createStandardContextMenu()->actions());
+    QAction undo(tr("Undo"), &menu);
+    undo.setIcon(QIcon::fromTheme("edit-undo"));
+    menu.addAction(&undo);
+    QAction redo(tr("Redo"), &menu);
+    redo.setIcon(QIcon::fromTheme("edit-redo"));
+    menu.addAction(&redo);
+    menu.addSeparator();
+    QAction cut(tr("Cut"), &menu);
+    cut.setIcon(QIcon::fromTheme("edit-cut"));
+    menu.addAction(&cut);
+    QAction copy(tr("Copy"), &menu);
+    copy.setIcon(QIcon::fromTheme("edit-copy"));
+    menu.addAction(&copy);
+    QAction paste(tr("Paste"), &menu);
+    paste.setIcon(QIcon::fromTheme("edit-paste"));
+    menu.addAction(&paste);
+    QAction pasteFromFile(tr("Paste from file"), &menu);
+    pasteFromFile.setIcon(QIcon::fromTheme("edit-paste"));
+    menu.addAction(&pasteFromFile);
+    menu.addSeparator();
+    QAction selectAll(tr("Select All"), &menu);
+    selectAll.setIcon(QIcon::fromTheme("edit-select-all"));
+    menu.addAction(&selectAll);
     menu.addSeparator();
     QAction addBreakpointAction(tr("Breakpoint"), &menu);
     addBreakpointAction.setIcon(QIcon::fromTheme("media-record"));
