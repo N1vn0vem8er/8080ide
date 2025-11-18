@@ -592,6 +592,9 @@ void CodeEditor::showContextMenu(const QPoint &pos)
     deleteSelected.setIcon(QIcon::fromTheme("edit-delete"));
     connect(&deleteSelected, &QAction::triggered, this, &CodeEditor::deleteSelected);
     menu.addAction(&deleteSelected);
+    QAction mergeLines(tr("Merge lines"), &menu);
+    connect(&mergeLines, &QAction::triggered, this, &CodeEditor::mergeSelectedLines);
+    menu.addAction(&mergeLines);
     menu.addSeparator();
     QAction selectAll(tr("Select All"), &menu);
     selectAll.setIcon(QIcon::fromTheme("edit-select-all"));
