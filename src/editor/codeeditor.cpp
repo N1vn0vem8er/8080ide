@@ -588,6 +588,10 @@ void CodeEditor::showContextMenu(const QPoint &pos)
     pasteFromFile.setIcon(QIcon::fromTheme("edit-paste"));
     connect(&pasteFromFile, &QAction::triggered, this, [&]{emit this->pasteFromFile();});
     menu.addAction(&pasteFromFile);
+    QAction deleteSelected(tr("Delete"), &menu);
+    deleteSelected.setIcon(QIcon::fromTheme("edit-delete"));
+    connect(&deleteSelected, &QAction::triggered, this, &CodeEditor::deleteSelected);
+    menu.addAction(&deleteSelected);
     menu.addSeparator();
     QAction selectAll(tr("Select All"), &menu);
     selectAll.setIcon(QIcon::fromTheme("edit-select-all"));
