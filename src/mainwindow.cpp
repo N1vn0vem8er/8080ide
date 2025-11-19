@@ -727,12 +727,12 @@ void MainWindow::replaceInSelected(const QString &text)
     }
 }
 
-void MainWindow::enableSpellCheck()
+void MainWindow::enableSpellCheck(bool val)
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
     {
-        tmp->setSpellCheckEnabled(tmp->isSpellcheckEnabled() ? false : true);
+        tmp->setSpellCheckEnabled(val);
     }
 }
 
@@ -1331,6 +1331,7 @@ void MainWindow::tabChanged()
         {
             tmp->clearSearchFormatting();
         }
+        ui->actionSpellcheck->setChecked(tmp->isSpellcheckEnabled());
         ui->actionOverwrite_mode->setChecked(tmp->overwriteMode());
         ui->actionRead_only->setChecked(tmp->isReadOnly());
         ui->actionLine_wrap->setChecked(tmp->lineWrapMode() == CodeEditor::NoWrap ? false : true);

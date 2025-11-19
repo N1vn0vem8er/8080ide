@@ -862,6 +862,9 @@
    </property>
   </action>
   <action name="actionSpellcheck">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>S&amp;pellcheck</string>
    </property>

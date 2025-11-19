@@ -123,7 +123,7 @@ private slots:
     void searchInSelected(const QString& text);
     void replace(const QString& text);
     void replaceInSelected(const QString& text);
-    void enableSpellCheck();
+    void enableSpellCheck(bool val);
     void openProjectSearch();
     void setBreakpoint();
     void openNumberConverterDialog();
