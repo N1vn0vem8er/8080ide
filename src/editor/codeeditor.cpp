@@ -14,6 +14,7 @@
 #include <idesettings.h>
 #include <QMenu>
 #include <QClipboard>
+#include <bitset>
 
 CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
 {
@@ -481,10 +482,19 @@ void CodeEditor::mouseMoveEvent(QMouseEvent *event)
     {
         tc.select(QTextCursor::WordUnderCursor);
         QString text = tc.selectedText();
+        bool ok;
+        int val = text.toInt(&ok, 16);
         if(hoverHints.contains(text))
         {
             hoverTimer->stop();
             hoverTooltipWidget->setText(hoverHints.value(text));
+            hoverTooltipWidget->move(QCursor::pos());
+            hoverTimer->start(500);
+        }
+        else if(ok)
+        {
+            hoverTimer->stop();
+            hoverTooltipWidget->setText(tr("Value %1:\nIn decimal: %2\nIn binary: %3").arg(text).arg(val).arg(QString::fromStdString(std::bitset<8>(val).to_string())));
             hoverTooltipWidget->move(QCursor::pos());
             hoverTimer->start(500);
         }
