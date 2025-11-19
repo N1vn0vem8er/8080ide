@@ -117,7 +117,7 @@ private slots:
     void closeTab(int index);
     void tabChanged();
     void openProject();
-    void enableSyntaxHighLinhting();
+    void enableSyntaxHighLinhting(bool val);
     void showSearch();
     void search(const QString& text);
     void searchInSelected(const QString& text);

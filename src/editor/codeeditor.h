@@ -90,10 +90,10 @@ private:
     LabelFinder* labelFinder = nullptr;
     QStringList wordsList;
     QStringList previousLabelsList;
-    bool partOfProject = false;
-    QString projectPath = "";
+    bool partOfProject {false};
+    QString projectPath {""};
     QStringList instructions;
-    bool hasBreakpoints = false;
+    bool hasBreakpoints {false};
     QVector<int> linesWithBreakpoint;
     void checkChanged();
     QString orginalContent;
@@ -102,6 +102,7 @@ private:
     QTimer* hoverTimer {nullptr};
     bool undoAvaliable {false};
     bool redoAvaliable {false};
+    bool highlighterEnabled {true};
 
 signals:
     void fontSizeChanged(int size);

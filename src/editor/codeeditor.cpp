@@ -223,22 +223,16 @@ void CodeEditor::commentCurrentLine()
 
 void CodeEditor::setHighlighterEnabled(bool val)
 {
-    if(val)
-    {
+    highlighterEnabled = val;
+    if(highlighterEnabled)
         highLighter->setDocument(this->document());
-    }
     else
-    {
         highLighter->setDocument(0);
-    }
 }
 
 bool CodeEditor::isHighlighterEnabled()
 {
-    if(highLighter->document() != 0)
-        return false;
-    else
-        return true;
+    return highlighterEnabled;
 }
 
 void CodeEditor::commentMultiLine() const

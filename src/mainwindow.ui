@@ -846,6 +846,9 @@
    </property>
   </action>
   <action name="actionEnableSyntaxHighLighting">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>Syntax &amp;Highlighting</string>
    </property>

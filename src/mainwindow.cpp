@@ -377,18 +377,14 @@ void MainWindow::goTop()
 {
     CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(ce)
-    {
         ce->verticalScrollBar()->setValue(0);
-    }
 }
 
 void MainWindow::goBotton()
 {
     CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(ce)
-    {
         ce->verticalScrollBar()->setValue(ce->verticalScrollBar()->maximum());
-    }
 }
 
 void MainWindow::openTerminalSetFontSize()
@@ -675,82 +671,59 @@ void MainWindow::setCurrenctBranchName(const QString &name)
     ui->gitBranchButton->setText(tr("Branch: %1").arg(name));
 }
 
-void MainWindow::enableSyntaxHighLinhting()
+void MainWindow::enableSyntaxHighLinhting(bool val)
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
-    {
-        if(tmp->isHighlighterEnabled())
-        {
-            tmp->setHighlighterEnabled(true);
-        }
-        else
-        {
-            tmp->setHighlighterEnabled(false);
-        }
-    }
+        tmp->setHighlighterEnabled(val);
 }
 
 void MainWindow::search(const QString &text)
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
-    {
         tmp->highlightTextSequence(text, ui->searchWidget->isCaseSensitive());
-    }
 }
 
 void MainWindow::searchInSelected(const QString &text)
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
-    {
         tmp->highlightTextSequenceInSelected(text, ui->searchWidget->isCaseSensitive());
-    }
 }
 
 void MainWindow::replace(const QString &text)
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
-    {
         tmp->replaceTextSequence(ui->searchWidget->getSearchFieldText(), text, ui->searchWidget->isCaseSensitive());
-    }
 }
 
 void MainWindow::replaceInSelected(const QString &text)
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
-    {
         tmp->replaceTextSequenceIsSelected(ui->searchWidget->getSearchFieldText(), text, ui->searchWidget->isCaseSensitive());
-    }
 }
 
 void MainWindow::enableSpellCheck(bool val)
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
-    {
         tmp->setSpellCheckEnabled(val);
-    }
 }
 
 void MainWindow::openProjectSearch()
 {
     if(simHandeler->isProjectLoaded())
-    {
         addTab(new ProjectGlobalSearchWidget(simHandeler->getProjectPath()), simHandeler->getProjectName());
-    }
 }
 
 void MainWindow::setBreakpoint()
 {
     CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
-    {
         tmp->setLineBreakpoint();
-    }
 }
 
 void MainWindow::openNumberConverterDialog()
@@ -792,9 +765,7 @@ void MainWindow::openLineToNumber()
         dialog->show();
     }
     else
-    {
         QMessageBox::information(this, tr("Information"), tr("Open file to use this feature"));
-    }
 }
 
 void MainWindow::openProjectInformationPopup()
@@ -870,9 +841,7 @@ void MainWindow::stepLineHighLight(const QString &file, int line)
 void MainWindow::setStyleFromSettings()
 {
     if(QStyleFactory::keys().contains(IDESettings::theme))
-    {
         QApplication::setStyle(IDESettings::theme);
-    }
 }
 
 void MainWindow::showHideRegistersEditor()
@@ -1177,9 +1146,7 @@ void MainWindow::save()
 {
     CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(ce)
-    {
         save(ce);
-    }
 }
 
 void MainWindow::save(CodeEditor *editor)
@@ -1203,9 +1170,7 @@ void MainWindow::open()
 {
     const QStringList paths = QFileDialog::getOpenFileNames(this, tr("Open File"), "./", tr("Files (*.asm)"));
     for(const auto& path : paths)
-    {
         openFileInNewTab(path);
-    }
 }
 void MainWindow::openDirPressed()
 {
@@ -1259,18 +1224,14 @@ void MainWindow::saveas()
             }
         }
         else
-        {
             openFailedToOpenDialog(path, file.errorString());
-        }
     }
 }
 void MainWindow::openProject()
 {
     const QString path = QFileDialog::getOpenFileName(this, tr("Open Project"), "./", tr("Files (*.config)"));
     if(!path.isEmpty())
-    {
         openProject(path);
-    }
 }
 
 void MainWindow::openProject(const QString &path)
@@ -1309,11 +1270,8 @@ void MainWindow::closeTab(int index)
         dialog->setAttribute(Qt::WA_DeleteOnClose);
         dialog->setFilePath(tmp->getFilePath());
         if(dialog->exec() == QDialog::Accepted)
-        {
             save(tmp);
-        }
     }
-
     ui->tabWidget->removeTab(index);
     if(widget)
         widget->deleteLater();
@@ -1324,14 +1282,11 @@ void MainWindow::tabChanged()
     if(tmp)
     {
         if(ui->searchWidget->isVisible())
-        {
             tmp->highlightTextSequence(ui->searchWidget->getSearchFieldText(), ui->searchWidget->isCaseSensitive());
-        }
         else
-        {
             tmp->clearSearchFormatting();
-        }
         ui->actionSpellcheck->setChecked(tmp->isSpellcheckEnabled());
+        ui->actionEnableSyntaxHighLighting->setChecked(tmp->isHighlighterEnabled());
         ui->actionOverwrite_mode->setChecked(tmp->overwriteMode());
         ui->actionRead_only->setChecked(tmp->isReadOnly());
         ui->actionLine_wrap->setChecked(tmp->lineWrapMode() == CodeEditor::NoWrap ? false : true);
