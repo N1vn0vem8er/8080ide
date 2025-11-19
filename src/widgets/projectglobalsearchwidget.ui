@@ -20,10 +20,10 @@
    <item>
     <widget class="QListView" name="resoultList">
      <property name="editTriggers">
-      <set>QAbstractItemView::NoEditTriggers</set>
+      <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
      </property>
      <property name="selectionMode">
-      <enum>QAbstractItemView::MultiSelection</enum>
+      <enum>QAbstractItemView::SelectionMode::MultiSelection</enum>
      </property>
     </widget>
    </item>
@@ -37,7 +37,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="searchLine"/>
+      <widget class="QLineEdit" name="searchLine">
+       <property name="clearButtonEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -51,7 +55,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="replaceLine"/>
+      <widget class="QLineEdit" name="replaceLine">
+       <property name="clearButtonEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
