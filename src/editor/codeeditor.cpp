@@ -481,6 +481,7 @@ void CodeEditor::mouseMoveEvent(QMouseEvent *event)
     if(!tc.isNull())
     {
         tc.select(QTextCursor::WordUnderCursor);
+        static QStringList noDataInsts{"INR", "DCR", "INX", "DCX", "MOV", "DAD", "LDAX", "STAX", "RST", "ADD", "ADC", "SUB", "SBB", "ANA", "XRA", "ORA", "CMP", "PUSH", "POP"};
         QString text = tc.selectedText();
         bool ok;
         int val = text.toInt(&ok, 16);
@@ -491,7 +492,7 @@ void CodeEditor::mouseMoveEvent(QMouseEvent *event)
             hoverTooltipWidget->move(QCursor::pos());
             hoverTimer->start(500);
         }
-        else if(ok)
+        else if(ok && std::find_if(noDataInsts.constBegin(), noDataInsts.constEnd(), [tc](const QString& a){return tc.block().text().contains(a);}) == noDataInsts.constEnd())
         {
             hoverTimer->stop();
             hoverTooltipWidget->setText(tr("Value %1:\nIn decimal: %2\nIn binary: %3").arg(text).arg(val).arg(QString::fromStdString(std::bitset<8>(val).to_string())));
