@@ -473,6 +473,7 @@
     <addaction name="separator"/>
     <addaction name="actionGo_top"/>
     <addaction name="actionGo_bottom"/>
+    <addaction name="separator"/>
     <addaction name="actionFull_screen"/>
    </widget>
    <widget class="QMenu" name="menuProjekt">
@@ -481,8 +482,10 @@
     </property>
     <addaction name="actionnewProject"/>
     <addaction name="actionOpenProject"/>
-    <addaction name="actionCloseProject"/>
+    <addaction name="separator"/>
     <addaction name="actionProjectSearch"/>
+    <addaction name="separator"/>
+    <addaction name="actionCloseProject"/>
    </widget>
    <widget class="QMenu" name="menuNarz_dzia">
     <property name="title">
