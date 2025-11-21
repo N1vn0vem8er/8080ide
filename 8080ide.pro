@@ -14,6 +14,7 @@ SOURCES += \
     src/settingsPages/simsettingspage.cpp \
     src/settingsPages/startupsettingspage.cpp \
     src/settingsPages/terminalsettingspage.cpp \
+    src/widgets/guiprojectconfigwidget.cpp \
     src/widgets/runningprocesseslabel.cpp \
     src/widgets/terminalwidget.cpp \
     src/utils/mimefinderworker.cpp \
@@ -68,6 +69,7 @@ HEADERS += \
     src/settingsPages/startupsettingspage.h \
     src/settingsPages/terminalsettingspage.h \
     src/structs.h \
+    src/widgets/guiprojectconfigwidget.h \
     src/widgets/runningprocesseslabel.h \
     src/widgets/terminalwidget.h \
     src/utils/mimefinderworker.h \
@@ -115,6 +117,7 @@ FORMS += \
     src/settingsPages/simsettingspage.ui \
     src/settingsPages/startupsettingspage.ui \
     src/settingsPages/terminalsettingspage.ui \
+    src/widgets/guiprojectconfigwidget.ui \
     src/widgets/terminalwidget.ui \
     src/utils/numberconverterwidget.ui \
     src/settingsPages/helpsettings.ui \
