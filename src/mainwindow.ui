@@ -1316,6 +1316,9 @@
    </property>
   </action>
   <action name="actionFull_screen">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::ViewFullscreen"/>
+   </property>
    <property name="text">
     <string>Full screen</string>
    </property>
