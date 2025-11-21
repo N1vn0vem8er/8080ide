@@ -14,6 +14,7 @@ SOURCES += \
     src/settingsPages/simsettingspage.cpp \
     src/settingsPages/startupsettingspage.cpp \
     src/settingsPages/terminalsettingspage.cpp \
+    src/utils/projectconfig.cpp \
     src/widgets/guiprojectconfigwidget.cpp \
     src/widgets/runningprocesseslabel.cpp \
     src/widgets/terminalwidget.cpp \
@@ -69,6 +70,7 @@ HEADERS += \
     src/settingsPages/startupsettingspage.h \
     src/settingsPages/terminalsettingspage.h \
     src/structs.h \
+    src/utils/projectconfig.h \
     src/widgets/guiprojectconfigwidget.h \
     src/widgets/runningprocesseslabel.h \
     src/widgets/terminalwidget.h \
