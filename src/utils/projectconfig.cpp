@@ -76,7 +76,27 @@ void ProjectConfig::fromQString(const QString &text)
 
 void ProjectConfig::toFile(const QString &path)
 {
-
+    QJsonObject object;
+    object["version"] = version;
+    object["name"] = name;
+    object["memorySize"] = memorySize;
+    object["startAt"] = startAt;
+    object["stackPointer"] = stackPointer;
+    QJsonArray files;
+    for(const auto& i : std::as_const(filesInMemory))
+    {
+        QJsonObject obj;
+        obj["filePath"] = i.first;
+        obj["fileLocation"] = i.second;
+        files.append(obj);
+    }
+    object["files"] = files;
+    QFile file(path);
+    if(file.open(QIODevice::ReadOnly))
+    {
+        file.write(QJsonDocument(object).toJson());
+        file.close();
+    }
 }
 
 void ProjectConfig::toQString()
