@@ -10,8 +10,8 @@ public:
     explicit ProjectConfig(QObject *parent = nullptr);
     void fromFile(const QString& path);
     void fromQString(const QString& text);
-    void toFile(const QString& path);
-    void toQString();
+    void toFile(const QString& path) const;
+    QString toQString() const;
 
 private:
     QString version;

@@ -74,7 +74,7 @@ void ProjectConfig::fromQString(const QString &text)
     }
 }
 
-void ProjectConfig::toFile(const QString &path)
+void ProjectConfig::toFile(const QString &path) const
 {
     QJsonObject object;
     object["version"] = version;
@@ -99,7 +99,22 @@ void ProjectConfig::toFile(const QString &path)
     }
 }
 
-void ProjectConfig::toQString()
+QString ProjectConfig::toQString() const
 {
-
+    QJsonObject object;
+    object["version"] = version;
+    object["name"] = name;
+    object["memorySize"] = memorySize;
+    object["startAt"] = startAt;
+    object["stackPointer"] = stackPointer;
+    QJsonArray files;
+    for(const auto& i : std::as_const(filesInMemory))
+    {
+        QJsonObject obj;
+        obj["filePath"] = i.first;
+        obj["fileLocation"] = i.second;
+        files.append(obj);
+    }
+    object["files"] = files;
+    return QJsonDocument(object).toJson();
 }
