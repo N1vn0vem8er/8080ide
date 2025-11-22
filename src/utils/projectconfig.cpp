@@ -92,7 +92,7 @@ void ProjectConfig::toFile(const QString &path) const
     }
     object["files"] = files;
     QFile file(path);
-    if(file.open(QIODevice::ReadOnly))
+    if(file.open(QIODevice::WriteOnly))
     {
         file.write(QJsonDocument(object).toJson());
         file.close();
@@ -117,4 +117,59 @@ QString ProjectConfig::toQString() const
     }
     object["files"] = files;
     return QJsonDocument(object).toJson();
+}
+
+QString ProjectConfig::getVersion() const
+{
+    return version;
+}
+
+QString ProjectConfig::getName() const
+{
+    return name;
+}
+
+void ProjectConfig::setName(const QString &newName)
+{
+    name = newName;
+}
+
+int ProjectConfig::getMemorySize() const
+{
+    return memorySize;
+}
+
+void ProjectConfig::setMemorySize(int newMemorySize)
+{
+    memorySize = newMemorySize;
+}
+
+int ProjectConfig::getStartAt() const
+{
+    return startAt;
+}
+
+void ProjectConfig::setStartAt(int newStartAt)
+{
+    startAt = newStartAt;
+}
+
+int ProjectConfig::getStackPointer() const
+{
+    return stackPointer;
+}
+
+void ProjectConfig::setStackPointer(int newStackPointer)
+{
+    stackPointer = newStackPointer;
+}
+
+QList<QPair<QString, int> > ProjectConfig::getFilesInMemory() const
+{
+    return filesInMemory;
+}
+
+void ProjectConfig::setFilesInMemory(const QList<QPair<QString, int> > &newFilesInMemory)
+{
+    filesInMemory = newFilesInMemory;
 }

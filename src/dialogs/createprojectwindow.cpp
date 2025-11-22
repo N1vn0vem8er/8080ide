@@ -1,5 +1,6 @@
 #include "createprojectwindow.h"
 #include "ui_createprojectwindow.h"
+#include "utils/projectconfig.h"
 #include <fstream>
 
 #include <QFileDialog>
@@ -35,23 +36,22 @@ void CreateProjectWindow::createProject()
     std::ofstream sampleCodeOut;
     if(!name.isEmpty() && !memorySize.isEmpty() && !path.isEmpty())
     {
-        QString file = "setMemory("+memorySize+")\n"
-                       +"startAt(0)\n"+"setAt(src/main.asm,0)\n"+"setSP(128)";
+        ProjectConfig projectConfig;
+        projectConfig.setName(name);
+        projectConfig.setMemorySize(memorySize.toInt());
+        projectConfig.setStartAt(0);
+        projectConfig.setStackPointer(128);
+        projectConfig.setFilesInMemory({{path + "/src/main.asm", 0}});
         path += '/' + name;
         QDir().mkdir(path);
         QDir().mkdir(path+"/src");
-        out.open(path.toStdString()+'/'+name.toStdString()+".config");
-        if(out.is_open())
+        QFile file(path + "/src/main.asm");
+        if(file.open(QIODevice::WriteOnly))
         {
-            out << file.toStdString();
-            out.close();
+            file.write("//Start");
+            file.close();
         }
-        sampleCodeOut.open(path.toStdString()+"/src/main.asm");
-        if(sampleCodeOut.is_open())
-        {
-            sampleCodeOut << "//Start";
-            sampleCodeOut.close();
-        }
+        projectConfig.toFile(path + "/" + name + ".json");
         createGitRepo(path);
     }
 

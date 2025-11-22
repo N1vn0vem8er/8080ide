@@ -15,7 +15,7 @@ ProjectManager::~ProjectManager()
 {
 
 }
-void ProjectManager::readConfig(QString path)
+void ProjectManager::readConfigOld(QString path)
 {
     projectName = QFileInfo(path).baseName();
     QString config;
@@ -116,6 +116,11 @@ void ProjectManager::decodeAndApply(std::pair<QString, QString> varvalPair)
         Ssettings::sp = varvalPair.second.toInt();
         break;
     }
+}
+
+void ProjectManager::readConfig(const QString &path)
+{
+    projectConfig.fromFile(path);
 }
 unsigned char* ProjectManager::compile()
 {

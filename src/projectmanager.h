@@ -4,6 +4,7 @@
 #include "8080/assembler.h"
 #include "globals.h"
 #include "qobject.h"
+#include "utils/projectconfig.h"
 #include<QString>
 #include <map>
 #include <QList>
@@ -28,10 +29,12 @@ private:
     std::vector<std::pair<QString, std::vector<int>>> lineBreakpoints;
     std::vector<std::string> errors;
     std::vector<std::pair<unsigned short, int>> lineAddrInsts;
+    ProjectConfig projectConfig;
 public:
     explicit ProjectManager(QObject* parent = nullptr);
     ~ProjectManager();
-    void readConfig(QString path);
+    void readConfigOld(QString path);
+    void readConfig(const QString& path);
     unsigned char* compile();
     QString getName() const;
     QString getProjectAbsolutePath() const;

@@ -12,6 +12,17 @@ public:
     void fromQString(const QString& text);
     void toFile(const QString& path) const;
     QString toQString() const;
+    QString getVersion() const;
+    QString getName() const;
+    void setName(const QString &newName);
+    int getMemorySize() const;
+    void setMemorySize(int newMemorySize);
+    int getStartAt() const;
+    void setStartAt(int newStartAt);
+    int getStackPointer() const;
+    void setStackPointer(int newStackPointer);
+    QList<QPair<QString, int> > getFilesInMemory() const;
+    void setFilesInMemory(const QList<QPair<QString, int> > &newFilesInMemory);
 
 private:
     QString version;
