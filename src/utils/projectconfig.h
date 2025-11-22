@@ -25,7 +25,7 @@ public:
     void setFilesInMemory(const QList<QPair<QString, int> > &newFilesInMemory);
 
 private:
-    QString version;
+    QString version {"1.0.0"};
     QString name;
     int memorySize;
     int startAt;

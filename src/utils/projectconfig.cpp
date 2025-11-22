@@ -31,6 +31,7 @@ void ProjectConfig::fromFile(const QString &path)
                 stackPointer = object.value("stackPointer").toInt();
             if(object.contains("files"))
             {
+                filesInMemory.clear();
                 const QJsonArray files = object.value("files").toArray();
                 for(const auto& file : files)
                 {
@@ -63,6 +64,7 @@ void ProjectConfig::fromQString(const QString &text)
             stackPointer = object.value("stackPointer").toInt();
         if(object.contains("files"))
         {
+            filesInMemory.clear();
             const QJsonArray files = object.value("files").toArray();
             for(const auto& file : files)
             {

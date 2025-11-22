@@ -120,7 +120,26 @@ void ProjectManager::decodeAndApply(std::pair<QString, QString> varvalPair)
 
 void ProjectManager::readConfig(const QString &path)
 {
+    projectAbsolutePath = QFileInfo(path).dir().absolutePath();
+    projectConfigAbsolutePath = path;
     projectConfig.fromFile(path);
+    Ssettings::memSize = projectConfig.getMemorySize();
+    Ssettings::memStart = projectConfig.getStartAt();
+    Ssettings::sp = projectConfig.getStackPointer();
+    for(const auto& i : projectConfig.getFilesInMemory())
+    {
+        QFile file(i.first);
+        if(file.open(QIODevice::ReadOnly))
+        {
+            projectFilesPaths.append(i.first);
+            fileMemoryRanges.push_back(Globals::FileMemoryStartEnd(i.first, i.second, 0));
+            QString content = file.readAll();
+            file.close();
+            if(!content.endsWith('\n'))
+                content+="\n";
+            compileQueue.push_back({content, i.second});
+        }
+    }
 }
 unsigned char* ProjectManager::compile()
 {
