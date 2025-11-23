@@ -1246,87 +1246,76 @@ void MainWindow::openProject(const QString &path)
             const QString projectAbsolutePath = info.dir().absolutePath();
             projectConfig.setName(QFileInfo(path).baseName());
             QString config;
-            if(path != "")
+            QFile file(path);
+            if(file.open(QIODevice::ReadOnly))
             {
-                try {
-                    std::ifstream file;
-                    file.open(path.toStdString());
-                    if(file.is_open())
-                    {
-                        std::stringstream ss;
-                        ss << file.rdbuf();
-                        config = QString::fromStdString(ss.str());
-                        file.close();
-                    }
-                } catch (...) {
-                    return;
-                }
-                QString variable = "";
-                QString value = "";
-                bool varPart = true;
-                std::vector<std::pair<QString, QString>> varvalList;
-                for(int i = 0; i < config.length(); i++)
-                {
-                    if(config[i] == '\n' || config[i] == ';' || config[i] == ' ')continue;
-                    if(config[i] == '(')
-                    {
-                        varPart = false;
-                        continue;
-                    }
-                    if(config[i] == ')')
-                    {
-                        varvalList.push_back(std::make_pair(variable, value));
-                        varPart = true;
-                        variable = "";
-                        value = "";
-                        continue;
-                    }
-                    if(varPart)
-                    {
-                        variable += config[i];
-                    }
-                    else{
-                        value += config[i];
-                    }
-
-                }
-                static std::map<QString, int> codesMap = {{"setMemory", 0}, {"startAt", 1}, {"setAt", 2}, {"setSP", 3}};
-                QList<QPair<QString, int>> projectFiles;
-                for(const auto &varvalPair : varvalList)
-                {
-                    switch(codesMap.find(varvalPair.first)->second)
-                    {
-                    case 0:
-                        projectConfig.setMemorySize(varvalPair.second.toInt());
-                        break;
-                    case 1:
-                        projectConfig.setStartAt(varvalPair.second.toInt());
-                        break;
-                    case 2:
-                    {
-                        QString path = "";
-                        QString addr = "";
-                        bool first = true;
-                        for(const auto& i : std::as_const(varvalPair.second))
-                        {
-                            if(i == ',')
-                            {
-                                first = false;
-                                continue;
-                            }
-                            if(first) path+=i;
-                            else addr+=i;
-                        }
-                        projectFiles.append({projectAbsolutePath + '/' + path, addr.toInt()});
-                    }
-                    break;
-                    case 3:
-                        projectConfig.setStackPointer(varvalPair.second.toInt());
-                        break;
-                    }
-                }
-                projectConfig.setFilesInMemory(projectFiles);
+                config = file.readAll();
+                file.close();
             }
+            QString variable = "";
+            QString value = "";
+            bool varPart = true;
+            std::vector<std::pair<QString, QString>> varvalList;
+            for(int i = 0; i < config.length(); i++)
+            {
+                if(config[i] == '\n' || config[i] == ';' || config[i] == ' ')continue;
+                if(config[i] == '(')
+                {
+                    varPart = false;
+                    continue;
+                }
+                if(config[i] == ')')
+                {
+                    varvalList.push_back(std::make_pair(variable, value));
+                    varPart = true;
+                    variable = "";
+                    value = "";
+                    continue;
+                }
+                if(varPart)
+                {
+                    variable += config[i];
+                }
+                else{
+                    value += config[i];
+                }
+            }
+            static std::map<QString, int> codesMap = {{"setMemory", 0}, {"startAt", 1}, {"setAt", 2}, {"setSP", 3}};
+            QList<QPair<QString, int>> projectFiles;
+            for(const auto &varvalPair : varvalList)
+            {
+                switch(codesMap.find(varvalPair.first)->second)
+                {
+                case 0:
+                    projectConfig.setMemorySize(varvalPair.second.toInt());
+                    break;
+                case 1:
+                    projectConfig.setStartAt(varvalPair.second.toInt());
+                    break;
+                case 2:
+                {
+                    QString path = "";
+                    QString addr = "";
+                    bool first = true;
+                    for(const auto& i : std::as_const(varvalPair.second))
+                    {
+                        if(i == ',')
+                        {
+                            first = false;
+                            continue;
+                        }
+                        if(first) path+=i;
+                        else addr+=i;
+                    }
+                    projectFiles.append({projectAbsolutePath + '/' + path, addr.toInt()});
+                }
+                break;
+                case 3:
+                    projectConfig.setStackPointer(varvalPair.second.toInt());
+                    break;
+                }
+            }
+            projectConfig.setFilesInMemory(projectFiles);
             const QString projectPath = projectAbsolutePath + QDir::separator() + "config.json";
             projectConfig.toFile(projectPath);
             openProject(projectPath);
