@@ -1316,7 +1316,7 @@ void MainWindow::openProject(const QString &path)
                 }
             }
             projectConfig.setFilesInMemory(projectFiles);
-            const QString projectPath = projectAbsolutePath + QDir::separator() + "config.json";
+            const QString projectPath = projectAbsolutePath + QDir::separator() + projectConfig.getName() + ".json";
             projectConfig.toFile(projectPath);
             openProject(projectPath);
             return;
