@@ -1,6 +1,4 @@
 #include "projectmanager.h"
-#include <fstream>
-#include <sstream>
 #include "8080/assembler.h"
 #include "qdir.h"
 #include "qfileinfo.h"
@@ -14,108 +12,6 @@ ProjectManager::ProjectManager(QObject *parent) : QObject(parent)
 ProjectManager::~ProjectManager()
 {
 
-}
-void ProjectManager::readConfigOld(QString path)
-{
-    projectName = QFileInfo(path).baseName();
-    QString config;
-    if(path != "")
-    {
-        QFileInfo info(path);
-        projectAbsolutePath = info.dir().absolutePath();
-        projectConfigAbsolutePath = path;
-        try {
-            std::ifstream file;
-            file.open(path.toStdString());
-            if(file.is_open())
-            {
-                std::stringstream ss;
-                ss << file.rdbuf();
-                config = QString::fromStdString(ss.str());
-                file.close();
-            }
-        } catch (...) {
-            return;
-        }
-        QString variable = "";
-        QString value = "";
-        bool varPart = true;
-        std::vector<std::pair<QString, QString>> varvalList;
-        for(int i = 0; i < config.length(); i++)
-        {
-            if(config[i] == '\n' || config[i] == ';' || config[i] == ' ')continue;
-            if(config[i] == '(')
-            {
-                varPart = false;
-                continue;
-            }
-            if(config[i] == ')')
-            {
-                varvalList.push_back(std::make_pair(variable, value));
-                varPart = true;
-                variable = "";
-                value = "";
-                continue;
-            }
-            if(varPart)
-            {
-                variable += config[i];
-            }
-            else{
-                value += config[i];
-            }
-
-        }
-        for(const auto &i : varvalList)
-        {
-            decodeAndApply(i);
-        }
-    }
-}
-void ProjectManager::decodeAndApply(std::pair<QString, QString> varvalPair)
-{
-    switch(codesMap.find(varvalPair.first)->second)
-    {
-    case 0:
-        Ssettings::memSize = varvalPair.second.toInt();
-        break;
-    case 1:
-        Ssettings::memStart = varvalPair.second.toInt();
-        break;
-    case 2:
-    {
-        QString path = "";
-        QString addr = "";
-        bool first = true;
-        for(const auto& i : std::as_const(varvalPair.second))
-        {
-            if(i == ',')
-            {
-                first = false;
-                continue;
-            }
-            if(first) path+=i;
-            else addr+=i;
-        }
-        projectFilesPaths.append(projectAbsolutePath + '/' + path);
-        fileMemoryRanges.push_back(Globals::FileMemoryStartEnd(projectAbsolutePath + '/' +path, addr.toInt(), 0));
-        std::ifstream file;
-        file.open(projectAbsolutePath.toStdString() + '/' + path.toStdString());
-        if(file.is_open())
-        {
-            std::stringstream ss;
-            ss << file.rdbuf();
-            path = QString::fromStdString(ss.str());
-            if(!path.endsWith('\n'))path+='\n';
-            file.close();
-        }
-        compileQueue.push_back(std::make_pair(path, addr.toInt()));
-    }
-        break;
-    case 3:
-        Ssettings::sp = varvalPair.second.toInt();
-        break;
-    }
 }
 
 void ProjectManager::readConfig(const QString &path)
