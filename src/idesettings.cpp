@@ -70,6 +70,7 @@ void IDESettings::saveSettings()
     settings.setValue("lineHighlightColor.r", IDESettings::lineHighlightColor.red());
     settings.setValue("lineHighlightColor.g", IDESettings::lineHighlightColor.green());
     settings.setValue("lineHighlightColor.b", IDESettings::lineHighlightColor.blue());
+    settings.setValue("createProjectLastLocation", IDESettings::createProjectLastLocation);
 }
 
 void IDESettings::loadSettings()
@@ -120,6 +121,7 @@ void IDESettings::loadSettings()
     IDESettings::defaultLinesWrap = settings.value("defaultLinesWrap", true).toBool();
     IDESettings::defaultEditorFont = settings.value("defaultEditorFont").toString();
     IDESettings::defaultTerminalFont = settings.value("defaultTerminalFont").toString();
+    IDESettings::createProjectLastLocation = settings.value("createProjectLastLocation", QDir::homePath()).toString();
 
     IDESettings::lineHighlightColor = QColor::fromRgb(settings.value("lineHighlightColor.r", 255).toInt(), settings.value("lineHighlightColor.g", 255).toInt(), settings.value("lineHighlightColor.b", 0).toInt());
 
@@ -151,4 +153,5 @@ bool IDESettings::defaultLinesWrap;
 QColor IDESettings::lineHighlightColor;
 QString IDESettings::defaultEditorFont;
 QString IDESettings::defaultTerminalFont;
+QString IDESettings::createProjectLastLocation;
 const QString IDESettings::dataPath = QDir::homePath() + QDir::separator() + ".local" + QDir::separator() + "share" + QDir::separator() + "8080ide";

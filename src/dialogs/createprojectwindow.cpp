@@ -1,11 +1,10 @@
 #include "createprojectwindow.h"
 #include "ui_createprojectwindow.h"
 #include "utils/projectconfig.h"
-#include <fstream>
-
 #include <QFileDialog>
 #include <QProcess>
 #include <QThread>
+#include <idesettings.h>
 
 CreateProjectWindow::CreateProjectWindow(QWidget *parent) :
     QDialog(parent),
@@ -32,8 +31,6 @@ void CreateProjectWindow::createProject()
     const QString name = ui->projectName->text();
     const QString memorySize = ui->memorySize->text();
     QString path = ui->locationPath->text();
-    std::ofstream out;
-    std::ofstream sampleCodeOut;
     if(!name.isEmpty() && !memorySize.isEmpty() && !path.isEmpty())
     {
         ProjectConfig projectConfig;
@@ -66,9 +63,10 @@ void CreateProjectWindow::createGitRepo(const QString &path) const
 }
 void CreateProjectWindow::openSelectFolder()
 {
-    const QString path = QFileDialog::getExistingDirectory(this, tr("Open Directory", "./"));
+    const QString path = QFileDialog::getExistingDirectory(this, tr("Open Directory"), IDESettings::createProjectLastLocation);
     if(path != "")
     {
+        IDESettings::createProjectLastLocation = path;
         ui->locationPath->setText(path);
     }
 }
@@ -84,7 +82,7 @@ void CreateProjectWindow::checkDir() const
 }
 void CreateProjectWindow::checkName() const
 {
-    if(ui->locationPath->text().isEmpty() || QDir(ui->locationPath->text() + '/' + ui->projectName->text()).exists())
+    if(ui->projectName->text().isEmpty() || QDir(ui->locationPath->text() + '/' + ui->projectName->text()).exists())
     {
         ui->badNameLabel->setVisible(true);
     }

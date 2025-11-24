@@ -179,6 +179,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionSetTerminalFont, &QAction::triggered, this, &MainWindow::openTerminalFontSelectDialog);
     connect(ui->actionFull_screen, &QAction::triggered, this, &MainWindow::fullScreen);
     connect(ui->actionOpen_in_Read_Only, &QAction::triggered, this, &MainWindow::openInReadOnly);
+    connect(qApp, &QApplication::aboutToQuit, this, [&]{IDESettings().saveSettings();});
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;

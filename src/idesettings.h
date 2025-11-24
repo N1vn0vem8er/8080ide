@@ -60,6 +60,7 @@ public:
     static QColor lineHighlightColor;
     static QString defaultEditorFont;
     static QString defaultTerminalFont;
+    static QString createProjectLastLocation;
     const QString settingsDirName = "ide8080";
     const QString settingsFileName = "idssettings";
     static const QString dataPath;
