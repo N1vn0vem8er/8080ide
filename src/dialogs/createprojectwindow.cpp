@@ -24,7 +24,7 @@ CreateProjectWindow::CreateProjectWindow(QWidget *parent) :
 
 QString CreateProjectWindow::getProjectConfigPath()
 {
-    return ui->locationPath->text() + '/' + ui->projectName->text() + '/' + ui->projectName->text() + ".config";
+    return ui->locationPath->text() + '/' + ui->projectName->text() + '/' + ui->projectName->text() + ".json";
 }
 
 void CreateProjectWindow::createProject()
@@ -42,7 +42,7 @@ void CreateProjectWindow::createProject()
         projectConfig.setStartAt(0);
         projectConfig.setStackPointer(128);
         path += '/' + name;
-        projectConfig.setFilesInMemory({{path + "/src/main.asm", 0}});
+        projectConfig.setFilesInMemory({{"src/main.asm", 0}});
         QDir().mkdir(path);
         QDir().mkdir(path+"/src");
         QFile file(path + "/src/main.asm");

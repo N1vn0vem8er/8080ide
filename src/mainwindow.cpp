@@ -1307,7 +1307,7 @@ void MainWindow::openProject(const QString &path)
                         if(first) path+=i;
                         else addr+=i;
                     }
-                    projectFiles.append({projectAbsolutePath + '/' + path, addr.toInt()});
+                    projectFiles.append({path, addr.toInt()});
                 }
                 break;
                 case 3:

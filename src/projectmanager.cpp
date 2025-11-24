@@ -24,11 +24,12 @@ void ProjectManager::readConfig(const QString &path)
     Ssettings::sp = projectConfig.getStackPointer();
     for(const auto& i : projectConfig.getFilesInMemory())
     {
-        QFile file(i.first);
+        const QString filePath = projectAbsolutePath + QDir::separator() + i.first;
+        QFile file(filePath);
         if(file.open(QIODevice::ReadOnly))
         {
-            projectFilesPaths.append(i.first);
-            fileMemoryRanges.push_back(Globals::FileMemoryStartEnd(i.first, i.second, 0));
+            projectFilesPaths.append(filePath);
+            fileMemoryRanges.push_back(Globals::FileMemoryStartEnd(filePath, i.second, 0));
             QString content = file.readAll();
             file.close();
             if(!content.endsWith('\n'))
