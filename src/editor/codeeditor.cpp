@@ -610,6 +610,7 @@ void CodeEditor::showContextMenu(const QPoint &pos)
     addBreakpointAction.setIcon(QIcon::fromTheme("media-record"));
     connect(&addBreakpointAction, &QAction::triggered, this, [&]{setBreakpointAtLine(cursorForPosition(pos).blockNumber());});
     menu.addAction(&addBreakpointAction);
+    addBreakpointAction.setVisible(QFileInfo(getFilePath()).suffix() != "json");
     menu.exec(QCursor::pos());
 }
 
