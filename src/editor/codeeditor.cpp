@@ -610,12 +610,13 @@ void CodeEditor::showContextMenu(const QPoint &pos)
     addBreakpointAction.setIcon(QIcon::fromTheme("media-record"));
     connect(&addBreakpointAction, &QAction::triggered, this, [&]{setBreakpointAtLine(cursorForPosition(pos).blockNumber());});
     menu.addAction(&addBreakpointAction);
-    addBreakpointAction.setVisible(QFileInfo(getFilePath()).suffix() != "json");
+    addBreakpointAction.setVisible(isCodeFile());
     menu.exec(QCursor::pos());
 }
 
 void CodeEditor::setBreakpointAtLine(int line)
 {
+    if(!isCodeFile()) return;
     if(linesWithBreakpoint.contains(line)){
         linesWithBreakpoint.removeAll(line);
         if(linesWithBreakpoint.isEmpty())
@@ -739,6 +740,11 @@ void CodeEditor::setSaveWarningEnabled(bool val)
     saveWarningEnabled = val;
 }
 
+bool CodeEditor::isCodeFile() const
+{
+    return codeFile;
+}
+
 void CodeEditor::setLineBreakpoint()
 {
     setBreakpointAtLine(textCursor().blockNumber());
@@ -765,6 +771,11 @@ void CodeEditor::setFilePath(QString path)
     {
         setSpellCheckEnabled(false);
         setHighlighterEnabled(false);
+        codeFile = false;
+    }
+    else
+    {
+        codeFile = true;
     }
     QFile file(path);
     file.open(QIODevice::ReadOnly);

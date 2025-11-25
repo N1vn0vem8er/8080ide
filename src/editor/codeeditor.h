@@ -50,6 +50,7 @@ public:
     QString getName() const;
     bool isSaveWarningEnabled() const;
     void setSaveWarningEnabled(bool val);
+    bool isCodeFile() const;
     static QMap<QString, QString> hoverHints;
 
 protected:
@@ -103,6 +104,7 @@ private:
     bool undoAvaliable {false};
     bool redoAvaliable {false};
     bool highlighterEnabled {true};
+    bool codeFile {false};
 
 signals:
     void fontSizeChanged(int size);
