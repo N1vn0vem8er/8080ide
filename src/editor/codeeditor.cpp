@@ -760,7 +760,7 @@ QString CodeEditor::getFilePath() const
 void CodeEditor::setFilePath(QString path)
 {
     this->filePath = path;
-    if(QFileInfo(path).completeSuffix() == "config")
+    if(QFileInfo(path).completeSuffix() == "json")
     {
         setSpellCheckEnabled(false);
         setHighlighterEnabled(false);
