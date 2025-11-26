@@ -14,9 +14,21 @@ class ProjectConfigurationWidget : public QWidget
 public:
     explicit ProjectConfigurationWidget(QWidget *parent = nullptr);
     ~ProjectConfigurationWidget();
+    QString getName() const;
+    int getMemorySize() const;
+    int getStartAt() const;
+    QList<QPair<QString, int>> getFilesInMemory() const;
+    void setName(const QString& name);
+    void setMemorySize(int memorySize);
+    void setStartAt(int startAt);
+    void setFilesInMemory(const QList<QPair<QString, int>> files);
 
 private:
     Ui::ProjectConfigurationWidget *ui;
+
+signals:
+    void accept();
+    void reject();
 };
 
 #endif // PROJECTCONFIGURATIONWIDGET_H

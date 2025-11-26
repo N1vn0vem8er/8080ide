@@ -62,6 +62,7 @@ public:
     QString getProjectName() const;
     QStringList getProjectFilesPaths() const;
     QString getProjectPath() const;
+    QString getProjectConfigPath() const;
     void readBreakPoints(QVector<int> breakpoints);
     void breakpointContinue();
     bool hasBreakPoints() const;

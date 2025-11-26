@@ -121,6 +121,11 @@ QString SimHandeler::getProjectPath() const
     return projectManager->getProjectAbsolutePath();
 }
 
+QString SimHandeler::getProjectConfigPath() const
+{
+    return projectManager->getProjectConfigAbsolutePath();
+}
+
 void SimHandeler::readBreakPoints(QVector<int> breakpoints)
 {
     this->breakpoints.insert(this->breakpoints.end(), breakpoints.begin(), breakpoints.end());

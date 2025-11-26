@@ -151,6 +151,7 @@ private slots:
     void changeSavedLabel(bool val);
     void openInReadOnly();
     void fullScreen();
+    void openConfigureProject();
 
 protected:
     void dropEvent(QDropEvent* event) override;

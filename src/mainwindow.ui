@@ -482,6 +482,7 @@
     </property>
     <addaction name="actionnewProject"/>
     <addaction name="actionOpenProject"/>
+    <addaction name="actionConfigureProject"/>
     <addaction name="separator"/>
     <addaction name="actionProjectSearch"/>
     <addaction name="separator"/>
@@ -1332,6 +1333,11 @@
    </property>
    <property name="text">
     <string>Open in Read Only</string>
+   </property>
+  </action>
+  <action name="actionConfigureProject">
+   <property name="text">
+    <string>Configure</string>
    </property>
   </action>
  </widget>

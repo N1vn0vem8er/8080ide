@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "dialogs/projectconfigurationwidget.h"
 #include "editor/codeeditor.h"
 #include "dialogs/createprojectwindow.h"
 #include "qprocess.h"
@@ -180,6 +181,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionFull_screen, &QAction::triggered, this, &MainWindow::fullScreen);
     connect(ui->actionOpen_in_Read_Only, &QAction::triggered, this, &MainWindow::openInReadOnly);
     connect(qApp, &QApplication::aboutToQuit, this, [&]{IDESettings().saveSettings();});
+    connect(ui->actionConfigureProject, &QAction::triggered, this, &MainWindow::openConfigureProject);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
@@ -541,6 +543,39 @@ void MainWindow::fullScreen()
     {
         stateBeforeFullscreen = windowState();
         setWindowState(Qt::WindowFullScreen);
+    }
+}
+
+void MainWindow::openConfigureProject()
+{
+    if(simHandeler->isProjectLoaded())
+    {
+        QDialog dialog(this);
+        QVBoxLayout layout(&dialog);
+        ProjectConfigurationWidget widget(&dialog);
+        QDialogButtonBox buttonBox(&dialog);
+        connect(&buttonBox, &QDialogButtonBox::accepted, &dialog, &QDialog::accept);
+        connect(&buttonBox, &QDialogButtonBox::rejected, &dialog, &QDialog::reject);
+        QPushButton acceptButton(tr("Accept"));
+        buttonBox.addButton(&acceptButton, QDialogButtonBox::AcceptRole);
+        QPushButton rejectButton(tr("Cancel"));
+        buttonBox.addButton(&rejectButton, QDialogButtonBox::RejectRole);
+        layout.addWidget(&widget);
+        layout.addWidget(&buttonBox);
+        ProjectConfig config;
+        config.fromFile(simHandeler->getProjectConfigPath());
+        widget.setName(config.getName());
+        widget.setMemorySize(config.getMemorySize());
+        widget.setStartAt(config.getStartAt());
+        widget.setFilesInMemory(config.getFilesInMemory());
+        if(dialog.exec() == QDialog::Accepted)
+        {
+            config.setName(widget.getName());
+            config.setMemorySize(widget.getMemorySize());
+            config.setStartAt(widget.getStartAt());
+            config.setFilesInMemory(widget.getFilesInMemory());
+            config.toFile(simHandeler->getProjectConfigPath());
+        }
     }
 }
 
