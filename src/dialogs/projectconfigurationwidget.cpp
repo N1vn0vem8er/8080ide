@@ -7,6 +7,8 @@ ProjectConfigurationWidget::ProjectConfigurationWidget(QWidget *parent)
     , ui(new Ui::ProjectConfigurationWidget)
 {
     ui->setupUi(this);
+    connect(ui->addFileButton, &QPushButton::clicked, this, &ProjectConfigurationWidget::addFile);
+    connect(ui->removeFileButton, &QPushButton::clicked, this, &ProjectConfigurationWidget::removeFile);
 }
 
 ProjectConfigurationWidget::~ProjectConfigurationWidget()
@@ -37,7 +39,8 @@ QList<QPair<QString, int> > ProjectConfigurationWidget::getFilesInMemory() const
         QStandardItemModel* model = static_cast<QStandardItemModel*>(ui->tableView->model());
         for(int i=0;i<model->rowCount(); i++)
         {
-            filesInMemory.append({model->item(i, 0)->text(), model->item(i, 1)->text().toInt()});
+            if(!model->item(i, 0)->text().isEmpty())
+                filesInMemory.append({model->item(i, 0)->text(), model->item(i, 1)->text().toInt()});
         }
     }
     return filesInMemory;
@@ -70,4 +73,23 @@ void ProjectConfigurationWidget::setFilesInMemory(const QList<QPair<QString, int
         model->appendRow({new QStandardItem(file.first), new QStandardItem(QString::number(file.second))});
     }
     ui->tableView->setModel(model);
+}
+
+void ProjectConfigurationWidget::addFile()
+{
+    if(ui->tableView->model())
+    {
+        static_cast<QStandardItemModel*>(ui->tableView->model())->appendRow({new QStandardItem(""), new QStandardItem(QString::number(0))});
+    }
+}
+
+void ProjectConfigurationWidget::removeFile()
+{
+    if(ui->tableView->model() && !ui->tableView->selectionModel()->selectedRows().empty())
+    {
+        for(const auto& i : ui->tableView->selectionModel()->selectedRows())
+        {
+            ui->tableView->model()->removeRow(i.row());
+        }
+    }
 }

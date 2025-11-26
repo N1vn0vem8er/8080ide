@@ -26,9 +26,9 @@ public:
 private:
     Ui::ProjectConfigurationWidget *ui;
 
-signals:
-    void accept();
-    void reject();
+private slots:
+    void addFile();
+    void removeFile();
 };
 
 #endif // PROJECTCONFIGURATIONWIDGET_H
