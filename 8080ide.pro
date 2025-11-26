@@ -7,6 +7,7 @@ CONFIG += c++20
 
 SOURCES += \
     src/8080/assembler.cpp \
+    src/dialogs/projectconfigurationwidget.cpp \
     src/editor/codeeditor.cpp \
     src/editor/hovertooltipwidget.cpp \
     src/idesettings.cpp \
@@ -61,6 +62,7 @@ SOURCES += \
 
 HEADERS += \
     src/8080/assembler.h \
+    src/dialogs/projectconfigurationwidget.h \
     src/editor/LineNumberArea.h \
     src/editor/codeeditor.h \
     src/editor/hovertooltipwidget.h \
@@ -116,6 +118,7 @@ HEADERS += \
     src/utils/git/gitfilesview.h
 
 FORMS += \
+    src/dialogs/projectconfigurationwidget.ui \
     src/settingsPages/simsettingspage.ui \
     src/settingsPages/startupsettingspage.ui \
     src/settingsPages/terminalsettingspage.ui \
