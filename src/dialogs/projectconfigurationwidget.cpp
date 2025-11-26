@@ -31,7 +31,16 @@ int ProjectConfigurationWidget::getStartAt() const
 
 QList<QPair<QString, int> > ProjectConfigurationWidget::getFilesInMemory() const
 {
-
+    QList<QPair<QString, int>> filesInMemory;
+    if(ui->tableView->model())
+    {
+        QStandardItemModel* model = static_cast<QStandardItemModel*>(ui->tableView->model());
+        for(int i=0;i<model->rowCount(); i++)
+        {
+            filesInMemory.append({model->item(i, 0)->text(), model->item(i, 1)->text().toInt()});
+        }
+    }
+    return filesInMemory;
 }
 
 void ProjectConfigurationWidget::setName(const QString &name)
