@@ -1003,6 +1003,7 @@ void MainWindow::openFileInNewTab(const QString &path)
             QFileInfo info(path);
             const QString content = file.readAll();
             file.close();
+            IDESettings::fileLastLocation = info.dir().absolutePath();
             CodeEditor* ce = new CodeEditor();
             ce->setLineWrapMode(IDESettings::defaultLinesWrap ? CodeEditor::LineWrapMode::WidgetWidth : CodeEditor::LineWrapMode::NoWrap);
             ce->setFont(QFont(IDESettings::defaultEditorFont));
@@ -1210,13 +1211,13 @@ void MainWindow::save(CodeEditor *editor)
 
 void MainWindow::open()
 {
-    const QStringList paths = QFileDialog::getOpenFileNames(this, tr("Open File"), "./", tr("Files (*.asm)"));
+    const QStringList paths = QFileDialog::getOpenFileNames(this, tr("Open File"), simHandeler->isProjectLoaded() ? simHandeler->getProjectPath() : IDESettings::fileLastLocation, tr("Files (*.asm)"));
     for(const auto& path : paths)
         openFileInNewTab(path);
 }
 void MainWindow::openDirPressed()
 {
-    const QString path = QFileDialog::getExistingDirectory(this, tr("Open Directory", "./"));
+    const QString path = QFileDialog::getExistingDirectory(this, tr("Open Directory"), simHandeler->isProjectLoaded() ? simHandeler->getProjectPath() : QDir::homePath());
     if(!path.isEmpty())
     {
         openDir(path);
@@ -1247,7 +1248,7 @@ void MainWindow::openDir(const QString &path)
 }
 void MainWindow::saveas()
 {
-    const QString path = QFileDialog::getSaveFileName(this, tr("Save File As"), "./", tr("Files (*.asm)"));
+    const QString path = QFileDialog::getSaveFileName(this, tr("Save File As"), simHandeler->isProjectLoaded() ? simHandeler->getProjectPath() : IDESettings::fileLastLocation, tr("Files (*.asm)"));
     if(!path.isEmpty())
     {
         QFile file(path);
@@ -1256,6 +1257,7 @@ void MainWindow::saveas()
         {
             file.write(getPlainTextFromTab(ui->tabWidget->currentIndex()).toUtf8());
             file.close();
+            IDESettings::fileLastLocation = QFileInfo(path).dir().absolutePath();
             saveFileToRecentFiles(path);
             CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
             if(ce)
@@ -1271,7 +1273,7 @@ void MainWindow::saveas()
 }
 void MainWindow::openProject()
 {
-    const QString path = QFileDialog::getOpenFileName(this, tr("Open Project"), "./", tr("Files (*.config)"));
+    const QString path = QFileDialog::getOpenFileName(this, tr("Open Project"), IDESettings::openProjectLastLocation, "*.json");
     if(!path.isEmpty())
         openProject(path);
 }
@@ -1365,6 +1367,7 @@ void MainWindow::openProject(const QString &path)
         }
         simHandeler->openProject(path);
         QFileInfo info(path);
+        IDESettings::openProjectLastLocation = info.dir().absolutePath();
         openDir(info.dir().absolutePath());
         if(!isFilesOpen()) showFileSystemTree();
         saveProjectToRecentProjects(path);

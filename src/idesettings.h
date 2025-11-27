@@ -61,6 +61,8 @@ public:
     static QString defaultEditorFont;
     static QString defaultTerminalFont;
     static QString createProjectLastLocation;
+    static QString openProjectLastLocation;
+    static QString fileLastLocation;
     const QString settingsDirName = "ide8080";
     const QString settingsFileName = "idssettings";
     static const QString dataPath;
