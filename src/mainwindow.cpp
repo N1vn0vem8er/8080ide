@@ -568,6 +568,7 @@ void MainWindow::openConfigureProject()
         widget.setMemorySize(config.getMemorySize());
         widget.setStartAt(config.getStartAt());
         widget.setFilesInMemory(config.getFilesInMemory());
+        widget.setStackPointer(config.getStackPointer());
         if(dialog.exec() == QDialog::Accepted)
         {
             config.setName(widget.getName());
@@ -575,6 +576,7 @@ void MainWindow::openConfigureProject()
             config.setStartAt(widget.getStartAt());
             config.setFilesInMemory(widget.getFilesInMemory());
             config.toFile(simHandeler->getProjectConfigPath());
+            config.setStackPointer(widget.getStackPointer());
         }
     }
 }

@@ -46,6 +46,11 @@ QList<QPair<QString, int> > ProjectConfigurationWidget::getFilesInMemory() const
     return filesInMemory;
 }
 
+int ProjectConfigurationWidget::getStackPointer() const
+{
+    return ui->stackPointerSpinBox->value();
+}
+
 void ProjectConfigurationWidget::setName(const QString &name)
 {
     ui->projectNameLineEdit->setText(name);
@@ -54,6 +59,7 @@ void ProjectConfigurationWidget::setName(const QString &name)
 void ProjectConfigurationWidget::setMemorySize(int memorySize)
 {
     ui->memorySizeSpinBox->setValue(memorySize);
+    ui->stackPointerSpinBox->setMaximum(memorySize);
     ui->startAtSpinBox->setMaximum(memorySize - 1);
 }
 
@@ -73,6 +79,11 @@ void ProjectConfigurationWidget::setFilesInMemory(const QList<QPair<QString, int
         model->appendRow({new QStandardItem(file.first), new QStandardItem(QString::number(file.second))});
     }
     ui->tableView->setModel(model);
+}
+
+void ProjectConfigurationWidget::setStackPointer(int stackPointer)
+{
+    ui->stackPointerSpinBox->setValue(stackPointer);
 }
 
 void ProjectConfigurationWidget::addFile()
