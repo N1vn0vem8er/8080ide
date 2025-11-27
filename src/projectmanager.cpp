@@ -19,6 +19,7 @@ void ProjectManager::readConfig(const QString &path)
     projectAbsolutePath = QFileInfo(path).dir().absolutePath();
     projectConfigAbsolutePath = path;
     projectConfig.fromFile(path);
+    projectName = projectConfig.getName();
     Ssettings::memSize = projectConfig.getMemorySize();
     Ssettings::memStart = projectConfig.getStartAt();
     Ssettings::sp = projectConfig.getStackPointer();
