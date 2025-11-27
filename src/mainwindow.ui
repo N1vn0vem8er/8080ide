@@ -436,12 +436,13 @@
     <addaction name="actionRead_only"/>
     <addaction name="actionOverwrite_mode"/>
     <addaction name="separator"/>
-    <addaction name="actionOpcje"/>
     <addaction name="actionComment"/>
     <addaction name="actionEnableSyntaxHighLighting"/>
     <addaction name="actionSearch"/>
     <addaction name="actionSpellcheck"/>
     <addaction name="actionSetBreakpoint"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpcje"/>
    </widget>
    <widget class="QMenu" name="menuSymulator">
     <property name="title">
@@ -482,8 +483,8 @@
     </property>
     <addaction name="actionnewProject"/>
     <addaction name="actionOpenProject"/>
-    <addaction name="actionConfigureProject"/>
     <addaction name="separator"/>
+    <addaction name="actionConfigureProject"/>
     <addaction name="actionProjectSearch"/>
     <addaction name="separator"/>
     <addaction name="actionCloseProject"/>
