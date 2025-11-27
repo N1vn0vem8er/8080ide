@@ -579,6 +579,8 @@ void MainWindow::openConfigureProject()
             config.setStackPointer(widget.getStackPointer());
         }
     }
+    else
+        QMessageBox::information(this, tr("Configure project"), tr("Open project to configure it."));
 }
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)
@@ -755,6 +757,8 @@ void MainWindow::openProjectSearch()
 {
     if(simHandeler->isProjectLoaded())
         addTab(new ProjectGlobalSearchWidget(simHandeler->getProjectPath()), simHandeler->getProjectName());
+    else
+        QMessageBox::information(this, tr("Project search"), tr("Open project to use search."));
 }
 
 void MainWindow::setBreakpoint()
