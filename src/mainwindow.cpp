@@ -1418,6 +1418,10 @@ void MainWindow::tabChanged()
         showMessage(tr("Font Size: %1").arg(tmp->font().pointSize()));
         savedLabel->setText(tmp->isSaved() ? tr("Saved") : tr("Not saved"));
     }
+    else
+    {
+        savedLabel->clear();
+    }
 }
 void MainWindow::undo()
 {
