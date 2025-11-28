@@ -401,10 +401,22 @@
     <property name="title">
      <string>File</string>
     </property>
+    <widget class="QMenu" name="menuRecent_Files">
+     <property name="title">
+      <string>Recent Files</string>
+     </property>
+    </widget>
+    <widget class="QMenu" name="menuRecent_Folders">
+     <property name="title">
+      <string>Recent Folders</string>
+     </property>
+    </widget>
     <addaction name="actionNowy"/>
     <addaction name="actionOtw"/>
+    <addaction name="menuRecent_Files"/>
     <addaction name="actionOpen_in_Read_Only"/>
     <addaction name="actionOpenDir"/>
+    <addaction name="menuRecent_Folders"/>
     <addaction name="actionZapisz"/>
     <addaction name="actionZapisz_jako"/>
     <addaction name="actionPrint"/>
@@ -481,8 +493,14 @@
     <property name="title">
      <string>Project</string>
     </property>
+    <widget class="QMenu" name="menuRecent_Projects">
+     <property name="title">
+      <string>Recent Projects</string>
+     </property>
+    </widget>
     <addaction name="actionnewProject"/>
     <addaction name="actionOpenProject"/>
+    <addaction name="menuRecent_Projects"/>
     <addaction name="separator"/>
     <addaction name="actionConfigureProject"/>
     <addaction name="actionProjectSearch"/>
@@ -1339,6 +1357,21 @@
   <action name="actionConfigureProject">
    <property name="text">
     <string>Configure</string>
+   </property>
+  </action>
+  <action name="actionds">
+   <property name="text">
+    <string>ds</string>
+   </property>
+  </action>
+  <action name="actionrecent">
+   <property name="text">
+    <string>recent</string>
+   </property>
+  </action>
+  <action name="actionrecent_2">
+   <property name="text">
+    <string>recent</string>
    </property>
   </action>
  </widget>

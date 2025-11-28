@@ -8,20 +8,31 @@
 To create a project, press the Project menu -> New Project. A window will appear asking you to enter the location of the project, its name and the initially set memory size of the simulator. After pressing the Ok button, the project will be created. The Git repository will also be initialized. If there are any errors in the project configuration, it will not be created.</p>
 <h2>Project configuration</h2>
 <p>
-  The project is configured by editing the {project name}.config file. For example, if the project will be named exampleproject, the file will be called exampleproject.config. Initially, the file will not have many commands in it.
+  The project is configured by editing the {project name}.json file or by pressing Project menu -> Configure. For example, if the project will be named exampleproject, the file will be called exampleproject.json.
 </p>
 <p>
-  Sample initial .config file for project exampleproject.
+  Sample initial .json file for project exampleproject.
 </p>
-  <div>
-  <div>setMemory(256)</div>
-  <div>startAt(0)</div>
-  <div>setAt(src/main.asm,0)</div>
-  </div>
-<h2>.config file commands</h2>
-<p>The .config file commands set various project-specific values. For example, these include variables such as the amount of simulator memory, the beginning of code execution or where individual files are placed in memory. The syntax of these commands is similar to calling a function. It looks like this: {command name}({values})</p>
-<p>The above example shows three commands. The command in the first line setMemory(256) sets the simulator memory to 256 bytes. The next command is startAt(0) which sets the program execution from address 0. Next is setAt(src/main.asm,0) which causes the code from the main.asm file in the src directory to be placed in memory to address 0.</p>
-<p>The setMemory(), setSP() and startAt() commands can be used only once, while the setAt() command can be used as many times as the number of files you want to include as part of the project.</p>
+<pre>
+{
+    "files": [
+        {
+            "fileLocation": 0,
+            "filePath": "src/main.asm"
+        }
+    ],
+    "memorySize": 1024,
+    "name": "pierwszyprojekt",
+    "stackPointer": 128,
+    "startAt": 0,
+    "version": "1.0.0"
+}
+</pre>
+<h2>File structure</h2>
+<p>
+  The "name" field contains the project name, the "memorySize" field the simulator's memory size, "startAt" the address from which program execution should begin, and "stackPointer" the stack address.
+  The "files" array contains files and their memory locations where they should be set. The "version" field is the version of the configuration file and should not be manually changed.
+</p>
 <h2>Search/Replace in project</h2>
 <p>Projects have a special tab for searching and replacing strings of characters. To open it, select the Project -> Search/Replace. A new tab will appear named after your project. At the bottom of the tab there are two boxes labeled Search and Replace. In the find field, enter the string of characters you want to find, and in the replace field, the string of characters you want to replace it with. Below the fields are three buttons labeled Search, Replace Selected, and Replace All.</p>
 <p>After pressing the search button, the project will be searched and the files that contain this string as well as the locations of this string in these files will be displayed in the central part of the tab. The found results can be marked by clicking on them with the left mouse button. After pressing the Replace button, selected strings of characters in the selected files will be replaced. The Replace All button replaces all occurrences of a string.</p>
