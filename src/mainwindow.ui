@@ -1355,6 +1355,9 @@
    </property>
   </action>
   <action name="actionConfigureProject">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::DocumentProperties"/>
+   </property>
    <property name="text">
     <string>Configure</string>
    </property>
