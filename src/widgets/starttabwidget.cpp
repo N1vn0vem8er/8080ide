@@ -52,21 +52,8 @@ void StartTabWidget::loadRecentFilesList()
 
 void StartTabWidget::loadRecentProjectsList()
 {
-    const QString path = IDESettings::dataPath + "/.ide8080ide.recentprojects";
-    QStringList projectsLocations;
-    std::fstream file(path.toStdString());
-    if(file.is_open())
-    {
-        while(!file.eof())
-        {
-            std::string line;
-            getline(file, line);
-            projectsLocations.append(QString::fromStdString(line));
-        }
-        file.close();
-    }
     QStringListModel* model = new QStringListModel(ui->recentProjects);
-    model->setStringList(projectsLocations);
+    model->setStringList(IDESettings::recentProjects);
     ui->recentProjects->setModel(model);
     ui->recentProjects->horizontalScrollBar()->setValue(ui->recentFiles->horizontalScrollBar()->maximum());
 }
@@ -109,16 +96,10 @@ void StartTabWidget::clearRecentProjects()
     auto reply = QMessageBox::question(this, tr("Clear recent"), tr("Are you sure you want to clear recent projects?"));
     if(reply == QMessageBox::Yes)
     {
-        const QString path = IDESettings::dataPath + "/.ide8080ide.recentprojects";
-        QStringList projectsLocations;
-        std::fstream file(path.toStdString(), std::ios_base::out);
-        if(file.is_open())
-        {
-            file << "";
-            file.close();
-        }
+        IDESettings::recentProjects.clear();
         QStringListModel* model = new QStringListModel(ui->recentProjects);
-        model->setStringList(projectsLocations);
+        model->setStringList(IDESettings::recentProjects);
         ui->recentProjects->setModel(model);
+        emit clearedRecentProjects();
     }
 }

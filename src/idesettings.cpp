@@ -81,6 +81,13 @@ void IDESettings::saveSettings()
         settings.setValue("path", IDESettings::recentFiles.at(i));
     }
     settings.endArray();
+    settings.beginWriteArray("recentProjects");
+    for(int i = 0; i<recentProjects.size(); i++)
+    {
+        settings.setArrayIndex(i);
+        settings.setValue("path", IDESettings::recentProjects.at(i));
+    }
+    settings.endArray();
 }
 
 void IDESettings::loadSettings()
@@ -148,6 +155,16 @@ void IDESettings::loadSettings()
         const QString path = settings.value("path").toString();
         if(!path.isEmpty())
             IDESettings::recentFiles.append(path);
+    }
+    settings.endArray();
+    IDESettings::recentProjects.clear();
+    size = settings.beginReadArray("recentProjects");
+    for(int i = 0; i<size; i++)
+    {
+        settings.setArrayIndex(i);
+        const QString path = settings.value("path").toString();
+        if(!path.isEmpty())
+            IDESettings::recentProjects.append(path);
     }
     settings.endArray();
 

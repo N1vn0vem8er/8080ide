@@ -224,7 +224,8 @@ MainWindow::MainWindow(QWidget *parent)
             file.close();
         }
     }
-    refreshRecent();
+    refreshRecentFiles();
+    refreshRecentProjects();
 }
 
 void MainWindow::b_run()
@@ -359,7 +360,8 @@ void MainWindow::openStartTabWidget()
     connect(widget, &StartTabWidget::openFileFromPath, this, &MainWindow::openFileInNewTab);
     connect(widget, &StartTabWidget::openProjectFromPath, simHandeler, [this](const QString& path){openProject(path);});
     connect(this, &MainWindow::refreshStartTab, widget, &StartTabWidget::refresh);
-    connect(widget, &StartTabWidget::clearedRecentFiles, this, &MainWindow::refreshRecent);
+    connect(widget, &StartTabWidget::clearedRecentFiles, this, &MainWindow::refreshRecentFiles);
+    connect(widget, &StartTabWidget::clearedRecentProjects, this, &MainWindow::refreshRecentProjects);
     addTab(widget, "Start");
 }
 
@@ -1026,7 +1028,7 @@ void MainWindow::openFileInNewTab(const QString &path)
                 IDESettings::recentFiles.removeFirst();
             if(!IDESettings::recentFiles.contains(path))
                 IDESettings::recentFiles.append(path);
-            refreshRecent();
+            refreshRecentFiles();
         }
         else
         {
@@ -1376,7 +1378,11 @@ void MainWindow::openProject(const QString &path)
         IDESettings::openProjectLastLocation = info.dir().absolutePath();
         openDir(info.dir().absolutePath());
         if(!isFilesOpen()) showFileSystemTree();
-        saveProjectToRecentProjects(path);
+        if(IDESettings::recentProjects.length() >= 10)
+            IDESettings::recentProjects.removeFirst();
+        if(!IDESettings::recentProjects.contains(path))
+            IDESettings::recentProjects.append(path);
+        refreshRecentProjects();
     }
 }
 void MainWindow::closeProject()
@@ -1768,7 +1774,35 @@ void MainWindow::saveGeometryAndState()
     s.setValue("windowState", saveState());
 }
 
-void MainWindow::refreshRecent()
+void MainWindow::refreshRecentProjects()
+{
+    ui->menuRecent_Projects->clear();
+    const QStringList recentProjects = IDESettings::recentProjects;
+    for(const auto& i : recentProjects)
+    {
+        QAction* action = new QAction(ui->menuRecent_Projects);
+        action->setText(i);
+        connect(action, &QAction::triggered, this, [this, i]{openProject(i);});
+        ui->menuRecent_Projects->addAction(action);
+    }
+    if(ui->menuRecent_Projects->isEmpty())
+    {
+        QAction* action = new QAction(ui->menuRecent_Projects);
+        action->setText(tr("no recent"));
+        action->setEnabled(false);
+        ui->menuRecent_Projects->addAction(action);
+    }
+    else
+    {
+        ui->menuRecent_Projects->addSeparator();
+        QAction* action = new QAction(ui->menuRecent_Projects);
+        action->setText(tr("Clear Recent"));
+        connect(action, &QAction::triggered, this, [this]{clearRecentProjects();});
+        ui->menuRecent_Projects->addAction(action);
+    }
+}
+
+void MainWindow::refreshRecentFiles()
 {
     ui->menuRecent_Files->clear();
     const QStringList recentFiles = IDESettings::recentFiles;
@@ -1791,13 +1825,19 @@ void MainWindow::refreshRecent()
         ui->menuRecent_Files->addSeparator();
         QAction* action = new QAction(ui->menuRecent_Files);
         action->setText(tr("Clear Recent"));
-        connect(action, &QAction::triggered, this, [this]{clearRecent();});
+        connect(action, &QAction::triggered, this, [this]{clearRecentFiles();});
         ui->menuRecent_Files->addAction(action);
     }
 }
 
-void MainWindow::clearRecent()
+void MainWindow::clearRecentFiles()
 {
     IDESettings::recentFiles.clear();
-    refreshRecent();
+    refreshRecentFiles();
+}
+
+void MainWindow::clearRecentProjects()
+{
+    IDESettings::recentProjects.clear();
+    refreshRecentProjects();
 }
