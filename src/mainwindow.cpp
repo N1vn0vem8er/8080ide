@@ -359,6 +359,7 @@ void MainWindow::openStartTabWidget()
     connect(widget, &StartTabWidget::openFileFromPath, this, &MainWindow::openFileInNewTab);
     connect(widget, &StartTabWidget::openProjectFromPath, simHandeler, [this](const QString& path){openProject(path);});
     connect(this, &MainWindow::refreshStartTab, widget, &StartTabWidget::refresh);
+    connect(widget, &StartTabWidget::clearedRecentFiles, this, &MainWindow::refreshRecent);
     addTab(widget, "Start");
 }
 

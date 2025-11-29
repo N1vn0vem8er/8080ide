@@ -31,6 +31,7 @@ signals:
     void linkActivated(const QString& link);
     void openFileFromPath(const QString& path);
     void openProjectFromPath(const QString& path);
+    void clearedRecentFiles();
 };
 
 #endif // STARTTABWIDGET_H

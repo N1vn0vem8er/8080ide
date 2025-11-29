@@ -44,21 +44,8 @@ void StartTabWidget::linkClicked(const QString &link)
 
 void StartTabWidget::loadRecentFilesList()
 {
-    const QString path = IDESettings::dataPath + "/.ide8080ide.recentfiles";
-    QStringList filesLocations;
-    std::fstream file(path.toStdString());
-    if(file.is_open())
-    {
-        while(!file.eof())
-        {
-            std::string line;
-            getline(file, line);
-            filesLocations.append(QString::fromStdString(line));
-        }
-        file.close();
-    }
     QStringListModel* model = new QStringListModel(ui->recentFiles);
-    model->setStringList(filesLocations);
+    model->setStringList(IDESettings::recentFiles);
     ui->recentFiles->setModel(model);
     ui->recentFiles->horizontalScrollBar()->setValue(ui->recentFiles->horizontalScrollBar()->maximum());
 }
@@ -109,17 +96,11 @@ void StartTabWidget::clearRecentFiles()
     auto reply = QMessageBox::question(this, tr("Clear recent"), tr("Are you sure you want to clear recent files?"));
     if(reply == QMessageBox::Yes)
     {
-        const QString path = IDESettings::dataPath + "/.ide8080ide.recentfiles";
-        QStringList filesLocations;
-        std::fstream file(path.toStdString(), std::ios_base::out);
-        if(file.is_open())
-        {
-            file << "";
-            file.close();
-        }
+        IDESettings::recentFiles.clear();
         QStringListModel* model = new QStringListModel(ui->recentFiles);
-        model->setStringList(filesLocations);
+        model->setStringList(IDESettings::recentFiles);
         ui->recentFiles->setModel(model);
+        emit clearedRecentFiles();
     }
 }
 
