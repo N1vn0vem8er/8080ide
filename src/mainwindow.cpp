@@ -224,6 +224,7 @@ MainWindow::MainWindow(QWidget *parent)
             file.close();
         }
     }
+    refreshRecent();
 }
 
 void MainWindow::b_run()
@@ -1020,7 +1021,11 @@ void MainWindow::openFileInNewTab(const QString &path)
             }
             ce->insertPlainText(content);
             addTab(ce, info.fileName());
-            saveFileToRecentFiles(path);
+            if(IDESettings::recentFiles.length() >= 10)
+                IDESettings::recentFiles.removeFirst();
+            if(!IDESettings::recentFiles.contains(path))
+                IDESettings::recentFiles.append(path);
+            refreshRecent();
         }
         else
         {
@@ -1760,4 +1765,38 @@ void MainWindow::saveGeometryAndState()
     QSettings s(geometryAndStateConfig);
     s.setValue("geometry", saveGeometry());
     s.setValue("windowState", saveState());
+}
+
+void MainWindow::refreshRecent()
+{
+    ui->menuRecent_Files->clear();
+    const QStringList recentFiles = IDESettings::recentFiles;
+    for(const auto& i : recentFiles)
+    {
+        QAction* action = new QAction(ui->menuRecent_Files);
+        action->setText(i);
+        connect(action, &QAction::triggered, this, [this, i]{openFileInNewTab(i);});
+        ui->menuRecent_Files->addAction(action);
+    }
+    if(ui->menuRecent_Files->isEmpty())
+    {
+        QAction* action = new QAction(ui->menuRecent_Files);
+        action->setText(tr("no recent"));
+        action->setEnabled(false);
+        ui->menuRecent_Files->addAction(action);
+    }
+    else
+    {
+        ui->menuRecent_Files->addSeparator();
+        QAction* action = new QAction(ui->menuRecent_Files);
+        action->setText(tr("Clear Recent"));
+        connect(action, &QAction::triggered, this, [this]{clearRecent();});
+        ui->menuRecent_Files->addAction(action);
+    }
+}
+
+void MainWindow::clearRecent()
+{
+    IDESettings::recentFiles.clear();
+    refreshRecent();
 }

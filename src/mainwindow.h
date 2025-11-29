@@ -51,6 +51,8 @@ private:
     inline bool isTerminalOpen() const;
     void loadGeometryAndState();
     void saveGeometryAndState();
+    void refreshRecent();
+    void clearRecent();
 
 private slots:
     void copy();

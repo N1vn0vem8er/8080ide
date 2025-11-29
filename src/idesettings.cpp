@@ -73,6 +73,14 @@ void IDESettings::saveSettings()
     settings.setValue("createProjectLastLocation", IDESettings::createProjectLastLocation);
     settings.setValue("openProjectLastLocation", IDESettings::openProjectLastLocation);
     settings.setValue("fileLastLocation", IDESettings::fileLastLocation);
+
+    settings.beginWriteArray("recentFiles");
+    for(int i = 0; i<recentFiles.size(); i++)
+    {
+        settings.setArrayIndex(i);
+        settings.setValue("path", IDESettings::recentFiles.at(i));
+    }
+    settings.endArray();
 }
 
 void IDESettings::loadSettings()
@@ -132,6 +140,17 @@ void IDESettings::loadSettings()
     simMemorySize = settings.value("simMemorySize", 1024).toInt();
     simStartAddress = settings.value("simStartAddress", 0).toInt();
 
+    IDESettings::recentFiles.clear();
+    int size = settings.beginReadArray("recentFiles");
+    for(int i = 0; i<size; i++)
+    {
+        settings.setArrayIndex(i);
+        const QString path = settings.value("path").toString();
+        if(!path.isEmpty())
+            IDESettings::recentFiles.append(path);
+    }
+    settings.endArray();
+
     Ssettings::memSize = simMemorySize;
     Ssettings::memStart = simStartAddress;
 
@@ -160,4 +179,6 @@ QString IDESettings::defaultTerminalFont;
 QString IDESettings::createProjectLastLocation;
 QString IDESettings::openProjectLastLocation;
 QString IDESettings::fileLastLocation;
+QStringList IDESettings::recentFiles;
+QStringList IDESettings::recentProjects;
 const QString IDESettings::dataPath = QDir::homePath() + QDir::separator() + ".local" + QDir::separator() + "share" + QDir::separator() + "8080ide";

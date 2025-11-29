@@ -63,6 +63,8 @@ public:
     static QString createProjectLastLocation;
     static QString openProjectLastLocation;
     static QString fileLastLocation;
+    static QStringList recentFiles;
+    static QStringList recentProjects;
     const QString settingsDirName = "ide8080";
     const QString settingsFileName = "idssettings";
     static const QString dataPath;
