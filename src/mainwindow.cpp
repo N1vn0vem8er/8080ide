@@ -226,6 +226,7 @@ MainWindow::MainWindow(QWidget *parent)
     }
     refreshRecentFiles();
     refreshRecentProjects();
+    refreshRecentDirs();
 }
 
 void MainWindow::b_run()
@@ -1253,6 +1254,11 @@ void MainWindow::openDir(const QString &path)
         ui->gitWidget->noRepo();
         setCurrenctBranchName("");
     }
+    if(IDESettings::recentDirs.length() >= 10)
+        IDESettings::recentDirs.removeFirst();
+    if(!IDESettings::recentDirs.contains(path))
+        IDESettings::recentDirs.append(path);
+    refreshRecentDirs();
 }
 void MainWindow::saveas()
 {
@@ -1802,6 +1808,34 @@ void MainWindow::refreshRecentProjects()
     }
 }
 
+void MainWindow::refreshRecentDirs()
+{
+    ui->menuRecent_Folders->clear();
+    const QStringList recentDirs = IDESettings::recentDirs;
+    for(const auto& i : recentDirs)
+    {
+        QAction* action = new QAction(ui->menuRecent_Folders);
+        action->setText(i);
+        connect(action, &QAction::triggered, this, [this, i]{openDir(i);});
+        ui->menuRecent_Folders->addAction(action);
+    }
+    if(ui->menuRecent_Folders->isEmpty())
+    {
+        QAction* action = new QAction(ui->menuRecent_Folders);
+        action->setText(tr("no recent"));
+        action->setEnabled(false);
+        ui->menuRecent_Folders->addAction(action);
+    }
+    else
+    {
+        ui->menuRecent_Folders->addSeparator();
+        QAction* action = new QAction(ui->menuRecent_Folders);
+        action->setText(tr("Clear Recent"));
+        connect(action, &QAction::triggered, this, [this]{clearRecentDirs();});
+        ui->menuRecent_Folders->addAction(action);
+    }
+}
+
 void MainWindow::refreshRecentFiles()
 {
     ui->menuRecent_Files->clear();
@@ -1840,4 +1874,10 @@ void MainWindow::clearRecentProjects()
 {
     IDESettings::recentProjects.clear();
     refreshRecentProjects();
+}
+
+void MainWindow::clearRecentDirs()
+{
+    IDESettings::recentDirs.clear();
+    refreshRecentDirs();
 }

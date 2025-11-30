@@ -53,8 +53,10 @@ private:
     void saveGeometryAndState();
     void refreshRecentFiles();
     void refreshRecentProjects();
+    void refreshRecentDirs();
     void clearRecentFiles();
     void clearRecentProjects();
+    void clearRecentDirs();
 
 private slots:
     void copy();

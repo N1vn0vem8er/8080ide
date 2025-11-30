@@ -65,6 +65,7 @@ public:
     static QString fileLastLocation;
     static QStringList recentFiles;
     static QStringList recentProjects;
+    static QStringList recentDirs;
     const QString settingsDirName = "ide8080";
     const QString settingsFileName = "idssettings";
     static const QString dataPath;
