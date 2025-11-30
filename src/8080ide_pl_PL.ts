@@ -871,7 +871,7 @@ W binarnym: %3</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="225"/>
-        <location filename="mainwindow.cpp" line="909"/>
+        <location filename="mainwindow.cpp" line="914"/>
         <source>Edit registers</source>
         <translation>Edytuj rejestry</translation>
     </message>
@@ -1005,8 +1005,8 @@ W binarnym: %3</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="587"/>
-        <location filename="mainwindow.cpp" line="1150"/>
-        <location filename="mainwindow.cpp" line="1171"/>
+        <location filename="mainwindow.cpp" line="1159"/>
+        <location filename="mainwindow.cpp" line="1180"/>
         <source>Help</source>
         <translation>Pomoc</translation>
     </message>
@@ -1390,7 +1390,7 @@ W binarnym: %3</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="1041"/>
-        <location filename="mainwindow.cpp" line="1503"/>
+        <location filename="mainwindow.cpp" line="1521"/>
         <source>Paste from file</source>
         <translation>Wklej z pliku</translation>
     </message>
@@ -1474,8 +1474,8 @@ W binarnym: %3</translation>
     <message>
         <location filename="mainwindow.ui" line="1122"/>
         <location filename="mainwindow.ui" line="1266"/>
-        <location filename="mainwindow.cpp" line="396"/>
-        <location filename="mainwindow.cpp" line="1562"/>
+        <location filename="mainwindow.cpp" line="401"/>
+        <location filename="mainwindow.cpp" line="1580"/>
         <source>Set font size</source>
         <translation>Ustaw rozmiar czcionki</translation>
     </message>
@@ -1637,18 +1637,18 @@ W binarnym: %3</translation>
         <translation>Otwórz w tylko do odczytu</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1359"/>
+        <location filename="mainwindow.ui" line="1362"/>
         <source>Configure</source>
         <translation>Konfiguracja</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1364"/>
+        <location filename="mainwindow.ui" line="1367"/>
         <source>ds</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1369"/>
-        <location filename="mainwindow.ui" line="1374"/>
+        <location filename="mainwindow.ui" line="1372"/>
+        <location filename="mainwindow.ui" line="1377"/>
         <source>recent</source>
         <translation>ostatnie</translation>
     </message>
@@ -1658,13 +1658,13 @@ W binarnym: %3</translation>
         <translation>O Qt</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="810"/>
         <location filename="mainwindow.cpp" line="815"/>
+        <location filename="mainwindow.cpp" line="820"/>
         <source>Information</source>
         <translation>Informacja</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="810"/>
+        <location filename="mainwindow.cpp" line="815"/>
         <source>Open file to use this feature</source>
         <translation>Otwórz plik aby użyć tej funkcji</translation>
     </message>
@@ -1673,17 +1673,17 @@ W binarnym: %3</translation>
         <translation type="vanished">Otwórz projekt aby użyć tej funkcji</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="894"/>
+        <location filename="mainwindow.cpp" line="899"/>
         <source>Hide editor</source>
         <translation>Ukryj edytor</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1109"/>
+        <location filename="mainwindow.cpp" line="1118"/>
         <source>About Application</source>
         <translation>O Aplikacji</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1109"/>
+        <location filename="mainwindow.cpp" line="1118"/>
         <source>
     &lt;html&gt;
         &lt;body&gt;
@@ -1710,46 +1710,46 @@ W binarnym: %3</translation>
 </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1220"/>
+        <location filename="mainwindow.cpp" line="1229"/>
         <source>Open Directory</source>
         <translation>Otwórz Katalog</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1286"/>
+        <location filename="mainwindow.cpp" line="1300"/>
         <source>Migrate project</source>
         <translation>Migracja projeku</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1286"/>
+        <location filename="mainwindow.cpp" line="1300"/>
         <source>This project uses old format. Migrate it to new format to open.</source>
         <translation>Ten projekt używa starego formatu. Aby otworzyć wymagana jest migracja do nowego.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1421"/>
-        <location filename="mainwindow.cpp" line="1495"/>
+        <location filename="mainwindow.cpp" line="1439"/>
+        <location filename="mainwindow.cpp" line="1513"/>
         <source>Font Size: %1</source>
         <translation>Rozmiar czcionki: %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="399"/>
-        <location filename="mainwindow.cpp" line="1565"/>
+        <location filename="mainwindow.cpp" line="404"/>
+        <location filename="mainwindow.cpp" line="1583"/>
         <source>Enter font size</source>
         <translation>Wprowadź rozmiar czcionki</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="404"/>
-        <location filename="mainwindow.cpp" line="449"/>
-        <location filename="mainwindow.cpp" line="474"/>
-        <location filename="mainwindow.cpp" line="1570"/>
+        <location filename="mainwindow.cpp" line="409"/>
+        <location filename="mainwindow.cpp" line="454"/>
+        <location filename="mainwindow.cpp" line="479"/>
+        <location filename="mainwindow.cpp" line="1588"/>
         <source>Ok</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="405"/>
-        <location filename="mainwindow.cpp" line="450"/>
-        <location filename="mainwindow.cpp" line="475"/>
-        <location filename="mainwindow.cpp" line="561"/>
-        <location filename="mainwindow.cpp" line="1571"/>
+        <location filename="mainwindow.cpp" line="410"/>
+        <location filename="mainwindow.cpp" line="455"/>
+        <location filename="mainwindow.cpp" line="480"/>
+        <location filename="mainwindow.cpp" line="566"/>
+        <location filename="mainwindow.cpp" line="1589"/>
         <source>Cancel</source>
         <translation>Anuluj</translation>
     </message>
@@ -1771,77 +1771,91 @@ W binarnym: %3</translation>
         <translation type="vanished">Licencja: </translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1251"/>
+        <location filename="mainwindow.cpp" line="1265"/>
         <source>Save File As</source>
         <translation>Zapisz Plik Jako</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1214"/>
-        <location filename="mainwindow.cpp" line="1251"/>
+        <location filename="mainwindow.cpp" line="1223"/>
+        <location filename="mainwindow.cpp" line="1265"/>
         <source>Files (*.asm)</source>
         <translation>Pliki (*.asm)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="434"/>
+        <location filename="mainwindow.cpp" line="439"/>
         <source>C = %1 AC = %2 P = %3 S = %4 Z = %5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="491"/>
-        <location filename="mainwindow.cpp" line="1422"/>
+        <location filename="mainwindow.cpp" line="496"/>
+        <location filename="mainwindow.cpp" line="1440"/>
         <source>Saved</source>
         <translation>Zapisane</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="491"/>
-        <location filename="mainwindow.cpp" line="1422"/>
+        <location filename="mainwindow.cpp" line="496"/>
+        <location filename="mainwindow.cpp" line="1440"/>
         <source>Not saved</source>
         <translation>Nie zapisane</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="496"/>
+        <location filename="mainwindow.cpp" line="501"/>
         <source>Open in read only</source>
         <translation>Otwórz w tylko do odczytu</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="559"/>
+        <location filename="mainwindow.cpp" line="564"/>
         <source>Accept</source>
         <translation>Zastosuj</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="583"/>
+        <location filename="mainwindow.cpp" line="588"/>
         <source>Configure project</source>
         <translation>Konfiguracja projektu</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="583"/>
+        <location filename="mainwindow.cpp" line="588"/>
         <source>Open project to configure it.</source>
         <translation>Otwórz projekt aby go konfigurować.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="711"/>
+        <location filename="mainwindow.cpp" line="716"/>
         <source>Branch: %1</source>
         <translation>Gałąź: %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="761"/>
+        <location filename="mainwindow.cpp" line="766"/>
         <source>Project search</source>
         <translation>Wyszukiwanie w projekcie</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="761"/>
+        <location filename="mainwindow.cpp" line="766"/>
         <source>Open project to use search.</source>
         <translation>Otwórz projekt aby w nim szukać.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="815"/>
+        <location filename="mainwindow.cpp" line="820"/>
         <source>Open git repository to use this feature</source>
         <translation>Otwórz repozytorium git aby użyć tej funkcji</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1214"/>
+        <location filename="mainwindow.cpp" line="1223"/>
         <source>Open File</source>
         <translation>Otwórz Plik</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1797"/>
+        <location filename="mainwindow.cpp" line="1825"/>
+        <location filename="mainwindow.cpp" line="1853"/>
+        <source>no recent</source>
+        <translation>Brak ostatnich</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1805"/>
+        <location filename="mainwindow.cpp" line="1833"/>
+        <location filename="mainwindow.cpp" line="1861"/>
+        <source>Clear Recent</source>
+        <translation>Wyczyść ostatnie</translation>
     </message>
     <message>
         <source>Open Directory</source>
@@ -1849,7 +1863,7 @@ W binarnym: %3</translation>
         <translation type="vanished">Otwórz Katalog</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1276"/>
+        <location filename="mainwindow.cpp" line="1290"/>
         <source>Open Project</source>
         <translation>Otwórz Projekt</translation>
     </message>
@@ -1858,12 +1872,12 @@ W binarnym: %3</translation>
         <translation type="vanished">Pliki (*.config)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1708"/>
+        <location filename="mainwindow.cpp" line="1726"/>
         <source>Error</source>
         <translation>Błąd</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1708"/>
+        <location filename="mainwindow.cpp" line="1726"/>
         <source>
     Could&apos;t open %1
     %2
@@ -2345,18 +2359,18 @@ W binarnym: %3</translation>
         <translation>Odśwież ostatnie projekty</translation>
     </message>
     <message>
-        <location filename="widgets/starttabwidget.cpp" line="109"/>
-        <location filename="widgets/starttabwidget.cpp" line="128"/>
+        <location filename="widgets/starttabwidget.cpp" line="83"/>
+        <location filename="widgets/starttabwidget.cpp" line="96"/>
         <source>Clear recent</source>
         <translation>Czyszczenie historii</translation>
     </message>
     <message>
-        <location filename="widgets/starttabwidget.cpp" line="109"/>
+        <location filename="widgets/starttabwidget.cpp" line="83"/>
         <source>Are you sure you want to clear recent files?</source>
         <translation>Czy na pewno chcesz wyczyścić historię plików?</translation>
     </message>
     <message>
-        <location filename="widgets/starttabwidget.cpp" line="128"/>
+        <location filename="widgets/starttabwidget.cpp" line="96"/>
         <source>Are you sure you want to clear recent projects?</source>
         <translation>Czy na pewno chcesz wyczyścić historię projektów?</translation>
     </message>
