@@ -182,6 +182,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionOpen_in_Read_Only, &QAction::triggered, this, &MainWindow::openInReadOnly);
     connect(qApp, &QApplication::aboutToQuit, this, [&]{IDESettings().saveSettings();});
     connect(ui->actionConfigureProject, &QAction::triggered, this, &MainWindow::openConfigureProject);
+    connect(ui->actionClear_diagnostics, &QAction::triggered, ui->logsOutputWidget, &QPlainTextEdit::clear);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;

@@ -482,6 +482,8 @@
     <addaction name="actionSet_font"/>
     <addaction name="actionReset_font_size"/>
     <addaction name="separator"/>
+    <addaction name="actionClear_diagnostics"/>
+    <addaction name="separator"/>
     <addaction name="actionLine_wrap"/>
     <addaction name="separator"/>
     <addaction name="actionGo_top"/>
@@ -1375,6 +1377,11 @@
   <action name="actionrecent_2">
    <property name="text">
     <string>recent</string>
+   </property>
+  </action>
+  <action name="actionClear_diagnostics">
+   <property name="text">
+    <string>Clear diagnostics</string>
    </property>
   </action>
  </widget>
