@@ -79,6 +79,7 @@ void ProjectConfigurationWidget::setFilesInMemory(const QList<QPair<QString, int
         model->appendRow({new QStandardItem(file.first), new QStandardItem(QString::number(file.second))});
     }
     ui->tableView->setModel(model);
+    ui->tableView->resizeColumnsToContents();
 }
 
 void ProjectConfigurationWidget::setStackPointer(int stackPointer)
