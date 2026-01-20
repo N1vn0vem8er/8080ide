@@ -466,6 +466,7 @@
     <addaction name="actionRestart"/>
     <addaction name="actionReset"/>
     <addaction name="actionPami"/>
+    <addaction name="actionScreen"/>
    </widget>
    <widget class="QMenu" name="menuWidok">
     <property name="title">
@@ -1382,6 +1383,11 @@
   <action name="actionClear_diagnostics">
    <property name="text">
     <string>Clear diagnostics</string>
+   </property>
+  </action>
+  <action name="actionScreen">
+   <property name="text">
+    <string>Screen</string>
    </property>
   </action>
  </widget>

@@ -215,4 +215,5 @@ QString IDESettings::fileLastLocation;
 QStringList IDESettings::recentFiles;
 QStringList IDESettings::recentProjects;
 QStringList IDESettings::recentDirs;
+IDESettings::OpenScreenType IDESettings::openScreenType;
 const QString IDESettings::dataPath = QDir::homePath() + QDir::separator() + ".local" + QDir::separator() + "share" + QDir::separator() + "8080ide";

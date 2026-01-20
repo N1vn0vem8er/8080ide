@@ -158,6 +158,7 @@ private slots:
     void openInReadOnly();
     void fullScreen();
     void openConfigureProject();
+    void openScreen();
 
 protected:
     void dropEvent(QDropEvent* event) override;

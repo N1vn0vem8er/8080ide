@@ -40,6 +40,10 @@ public:
         WidgetsVisibility converter;
         WidgetsVisibility fileTree;
     };
+    enum class OpenScreenType{
+        window,
+        tab
+    };
 
     IDESettings();
     static QString theme;
@@ -66,6 +70,7 @@ public:
     static QStringList recentFiles;
     static QStringList recentProjects;
     static QStringList recentDirs;
+    static OpenScreenType openScreenType;
     const QString settingsDirName = "ide8080";
     const QString settingsFileName = "idssettings";
     static const QString dataPath;

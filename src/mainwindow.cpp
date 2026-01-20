@@ -12,6 +12,7 @@
 #include "dialogs/settings.h"
 #include "ui_mainwindow.h"
 #include "simhandeler.h"
+#include "widgets/screenwidget.h"
 #include "widgets/starttabwidget.h"
 #include "utils/calcdialog.h"
 #include "utils/git/customgitcommanddialog.h"
@@ -183,6 +184,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(qApp, &QApplication::aboutToQuit, this, [&]{IDESettings().saveSettings();});
     connect(ui->actionConfigureProject, &QAction::triggered, this, &MainWindow::openConfigureProject);
     connect(ui->actionClear_diagnostics, &QAction::triggered, ui->logsOutputWidget, &QPlainTextEdit::clear);
+    connect(ui->actionScreen, &QAction::triggered, this, &MainWindow::openScreen);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
@@ -587,6 +589,28 @@ void MainWindow::openConfigureProject()
     }
     else
         QMessageBox::information(this, tr("Configure project"), tr("Open project to configure it."));
+}
+
+void MainWindow::openScreen()
+{
+    ScreenWidget* widget = new ScreenWidget(ui->tabWidget);
+    switch(IDESettings::openScreenType)
+    {
+    case IDESettings::OpenScreenType::window:
+    {
+        QDialog* dialog = new QDialog(this);
+        dialog->setAttribute(Qt::WA_DeleteOnClose);
+        dialog->resize(255, 255);
+        QHBoxLayout* layout = new QHBoxLayout(dialog);
+        dialog->setLayout(layout);
+        layout->addWidget(widget);
+        dialog->show();
+    }
+        break;
+    case IDESettings::OpenScreenType::tab:
+        addTab(widget, tr("Screen"));
+        break;
+    }
 }
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)
