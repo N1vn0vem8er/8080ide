@@ -1,5 +1,6 @@
 QT       += core gui \
-printsupport
+printsupport \
+    widgets
 
 greaterThan(QT_MAJOR_VERSION, 6): QT += widgets
 
@@ -18,6 +19,7 @@ SOURCES += \
     src/utils/projectconfig.cpp \
     src/widgets/guiprojectconfigwidget.cpp \
     src/widgets/runningprocesseslabel.cpp \
+    src/widgets/screenwidget.cpp \
     src/widgets/terminalwidget.cpp \
     src/utils/mimefinderworker.cpp \
     src/utils/numberconverterwidget.cpp \
@@ -75,6 +77,7 @@ HEADERS += \
     src/utils/projectconfig.h \
     src/widgets/guiprojectconfigwidget.h \
     src/widgets/runningprocesseslabel.h \
+    src/widgets/screenwidget.h \
     src/widgets/terminalwidget.h \
     src/utils/mimefinderworker.h \
     src/utils/numberconverterwidget.h \
