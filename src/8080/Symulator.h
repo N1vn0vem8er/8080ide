@@ -8,6 +8,8 @@ private:
     bool CY, Z, AC, P, S, HLTType, hlt, startCalled;
     unsigned char flags, outBuffer, inBuffer;
     bool interruptsEnabled = false;
+    unsigned char screenX, screenY, screenColor, screenAction;
+    bool screenXRead, screenYRead, screenColorRead, screenActionRead;
 	void executeInstruction(unsigned char inst);
 	void halt();
     unsigned char mreg() const;
@@ -89,5 +91,13 @@ public:
 	void setHLT(bool val);
     bool getInterruptsEnabled() const;
     void setInterruptsEnabled(bool newInterruptsEnabled);
+    unsigned char getScreenX(bool read=false);
+    void setScreenX(unsigned char newScreenX);
+    unsigned char getScreenY(bool read=false);
+    void setScreenY(unsigned char newScreenY);
+    unsigned char getScreenColor(bool read=false);
+    void setScreenColor(unsigned char newScreenColor);
+    unsigned char getScreenAction(bool read=false);
+    void setScreenAction(unsigned char newScreenAction);
 };
 

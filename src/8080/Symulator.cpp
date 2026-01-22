@@ -293,6 +293,22 @@ void Symulator::output(unsigned char deviceNumber)
 			outBuffer = areg;
 		}
 		break;
+    case 0x2:
+        screenXRead = false;
+        screenX = areg;
+        break;
+    case 0x3:
+        screenYRead = false;
+        screenY = areg;
+        break;
+    case 0x4:
+        screenColorRead = false;
+        screenColor = areg;
+        break;
+    case 0x5:
+        screenActionRead = false;
+        screenAction = areg;
+        break;
 	default:
 		break;
 	}
@@ -307,6 +323,18 @@ void Symulator::input(unsigned char deviceNumber)
         break;
     case 0x1:
         areg = outBuffer;
+        break;
+    case 0x2:
+        areg = screenX;
+        break;
+    case 0x3:
+        areg = screenY;
+        break;
+    case 0x4:
+        areg = screenColor;
+        break;
+    case 0x5:
+        areg = screenAction;
         break;
 	default:
 		break;
@@ -329,6 +357,50 @@ bool Symulator::getInterruptsEnabled() const
 void Symulator::setInterruptsEnabled(bool newInterruptsEnabled)
 {
     interruptsEnabled = newInterruptsEnabled;
+}
+
+unsigned char Symulator::getScreenX(bool read)
+{
+    screenXRead = read;
+    return screenX;
+}
+
+void Symulator::setScreenX(unsigned char newScreenX)
+{
+    screenX = newScreenX;
+}
+
+unsigned char Symulator::getScreenY(bool read)
+{
+    screenYRead = read;
+    return screenY;
+}
+
+void Symulator::setScreenY(unsigned char newScreenY)
+{
+    screenY = newScreenY;
+}
+
+unsigned char Symulator::getScreenColor(bool read)
+{
+    screenColorRead = read;
+    return screenColor;
+}
+
+void Symulator::setScreenColor(unsigned char newScreenColor)
+{
+    screenColor = newScreenColor;
+}
+
+unsigned char Symulator::getScreenAction(bool read)
+{
+    screenActionRead = read;
+    return screenAction;
+}
+
+void Symulator::setScreenAction(unsigned char newScreenAction)
+{
+    screenAction = newScreenAction;
 }
 
 void Symulator::executeInstruction(unsigned char inst)
