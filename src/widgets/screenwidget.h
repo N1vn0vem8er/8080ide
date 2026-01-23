@@ -20,7 +20,13 @@ public slots:
 private:
     int width;
     int height;
-    QMap<QPair<int, int>,QColor> colors;
+    QImage imageBuffer;
+    std::array<QRgb, 256> colors;
+    bool repaintScheduled = false;
+
+private:
+    void scheduleRepaint();
+    QRect getRectScale() const;
 
 signals:
 
