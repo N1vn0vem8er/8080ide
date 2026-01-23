@@ -623,51 +623,21 @@ void MainWindow::openScreen()
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)
 {
-    const QString path = IDESettings::dataPath + "/.ide8080ide.recentfiles";
-    if(std::filesystem::exists(path.toStdString()))
-    {
-        std::fstream file(path.toStdString(), std::ios_base::app | std::ios_base::in);
-        if(file.is_open())
-        {
-            if(!pathExists(filePath.toStdString(), file))
-                file << filePath.toStdString() + '\n';
-            file.close();
-        }
-    }
-    else
-    {
-        std::fstream file(path.toStdString(), std::ios_base::out);
-        if(file.is_open())
-        {
-            file << filePath.toStdString() + '\n';
-            file.close();
-        }
-    }
+    if(IDESettings::recentFiles.length() >= 10)
+        IDESettings::recentFiles.removeFirst();
+    if(!IDESettings::recentFiles.contains(filePath))
+        IDESettings::recentFiles.append(filePath);
+    refreshRecentFiles();
     emit refreshStartTab();
 }
 
 void MainWindow::saveProjectToRecentProjects(const QString &projectPath)
 {
-    const QString path = IDESettings::dataPath + "/.ide8080ide.recentprojects";
-    if(std::filesystem::exists(path.toStdString()))
-    {
-        std::fstream file(path.toStdString(), std::ios_base::app | std::ios_base::in);
-        if(file.is_open())
-        {
-            if(!pathExists(projectPath.toStdString(), file))
-                file << projectPath.toStdString() + '\n';
-            file.close();
-        }
-    }
-    else
-    {
-        std::fstream file(path.toStdString(), std::ios_base::out);
-        if(file.is_open())
-        {
-            file << projectPath.toStdString() + '\n';
-            file.close();
-        }
-    }
+    if(IDESettings::recentProjects.length() >= 10)
+        IDESettings::recentProjects.removeFirst();
+    if(!IDESettings::recentProjects.contains(projectPath))
+        IDESettings::recentProjects.append(projectPath);
+    refreshRecentProjects();
     emit refreshStartTab();
 }
 
@@ -1058,11 +1028,7 @@ void MainWindow::openFileInNewTab(const QString &path)
             }
             ce->insertPlainText(content);
             addTab(ce, info.fileName());
-            if(IDESettings::recentFiles.length() >= 10)
-                IDESettings::recentFiles.removeFirst();
-            if(!IDESettings::recentFiles.contains(path))
-                IDESettings::recentFiles.append(path);
-            refreshRecentFiles();
+            saveFileToRecentFiles(path);
         }
         else
         {
@@ -1417,11 +1383,7 @@ void MainWindow::openProject(const QString &path)
         IDESettings::openProjectLastLocation = info.dir().absolutePath();
         openDir(info.dir().absolutePath());
         if(!isFilesOpen()) showFileSystemTree();
-        if(IDESettings::recentProjects.length() >= 10)
-            IDESettings::recentProjects.removeFirst();
-        if(!IDESettings::recentProjects.contains(path))
-            IDESettings::recentProjects.append(path);
-        refreshRecentProjects();
+        saveProjectToRecentProjects(path);
     }
 }
 void MainWindow::closeProject()
