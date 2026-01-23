@@ -32,6 +32,7 @@ private:
     RunningProcessesLabel* runningProcessesLabel {nullptr};
     const QString geometryAndStateConfig {"8080idegeometryandstate"};
     QFlags<Qt::WindowState> stateBeforeFullscreen;
+    ScreenWidget* screenWidget {nullptr};
 
 private:
     std::string getStdStringFromTab(int index);

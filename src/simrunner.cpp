@@ -141,6 +141,10 @@ void SimRunner::run()
                 oldInBuffer = sim->getInBuffer();
                 emit inputOut(oldInBuffer);
             }
+            if(!sim->getScreenColorRead())
+            {
+                emit screenSetPixel(sim->getScreenX(), sim->getScreenY(), sim->getScreenColor(true));
+            }
             emit memoryChanged(memoryToString(), sim->getMemSize());
             QThread::msleep(2);
         }

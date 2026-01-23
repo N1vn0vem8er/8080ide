@@ -18,7 +18,6 @@ public:
 
 private:
     Globals::SimStatus getRegisterList(Symulator* sim);
-
     QString tohexASCII(unsigned short ch) const;
     QString tohexASCII(unsigned char ch) const;
     bool stopCalled;
@@ -44,6 +43,7 @@ signals:
     void breakpointStop(int line, unsigned short address);
     void memoryChanged(QString memory, int size);
     void stateChanged(const Globals::SimStatus& status);
+    void screenSetPixel(int x, int y, int color);
 
 protected:
     void run() override;

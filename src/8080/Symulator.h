@@ -99,5 +99,9 @@ public:
     void setScreenColor(unsigned char newScreenColor);
     unsigned char getScreenAction(bool read=false);
     void setScreenAction(unsigned char newScreenAction);
+    bool getScreenXRead() const;
+    bool getScreenYRead() const;
+    bool getScreenColorRead() const;
+    bool getScreenActionRead() const;
 };
 

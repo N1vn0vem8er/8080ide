@@ -86,6 +86,17 @@ void SimHandeler::log(const QString &text)
     }
 }
 
+void SimHandeler::setScreenWidget(ScreenWidget *newScreenWidget)
+{
+    screenWidget = newScreenWidget;
+}
+
+void SimHandeler::screenSetPixel(int x, int y, int color)
+{
+    if(screenWidget)
+        screenWidget->setPixelColor(x, y, color);
+}
+
 QString SimHandeler::getFilename() const
 {
     return filename;
@@ -185,6 +196,7 @@ void SimHandeler::run()
     connect(sr, &SimRunner::memoryChanged, this, [&](QString memory, int size){emit memoryChanged(memory, size);});
     connect(this, &SimHandeler::memoryChangedByUserSignal, sr, &SimRunner::memoryChangedByUser);
     connect(this, &SimHandeler::changeRegisters, sr, &SimRunner::changeRegisters);
+    connect(sr, &SimRunner::screenSetPixel, this, &SimHandeler::screenSetPixel);
     sr->setSymulator(this->symulator.get());
     sr->setBreakPoints(breakpointsLocations);
     sr->setLineAddrInsts(lineAddrInsts);

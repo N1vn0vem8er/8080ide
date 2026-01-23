@@ -593,23 +593,27 @@ void MainWindow::openConfigureProject()
 
 void MainWindow::openScreen()
 {
-    ScreenWidget* widget = new ScreenWidget(ui->tabWidget);
-    switch(IDESettings::openScreenType)
+    if(!screenWidget)
     {
-    case IDESettings::OpenScreenType::window:
-    {
-        QDialog* dialog = new QDialog(this);
-        dialog->setAttribute(Qt::WA_DeleteOnClose);
-        dialog->resize(255, 255);
-        QHBoxLayout* layout = new QHBoxLayout(dialog);
-        dialog->setLayout(layout);
-        layout->addWidget(widget);
-        dialog->show();
-    }
-        break;
-    case IDESettings::OpenScreenType::tab:
-        addTab(widget, tr("Screen"));
-        break;
+        screenWidget = new ScreenWidget(ui->tabWidget);
+        simHandeler->setScreenWidget(screenWidget);
+        switch(IDESettings::openScreenType)
+        {
+        case IDESettings::OpenScreenType::window:
+        {
+            QDialog* dialog = new QDialog(this);
+            dialog->setAttribute(Qt::WA_DeleteOnClose);
+            dialog->resize(255, 255);
+            QHBoxLayout* layout = new QHBoxLayout(dialog);
+            dialog->setLayout(layout);
+            layout->addWidget(screenWidget);
+            dialog->show();
+        }
+            break;
+        case IDESettings::OpenScreenType::tab:
+            addTab(screenWidget, tr("Screen"));
+            break;
+        }
     }
 }
 
@@ -1434,7 +1438,7 @@ void MainWindow::addTab(QWidget *widget, const QString &title)
 void MainWindow::closeTab(int index)
 {
     QWidget* widget = ui->tabWidget->widget(index);
-    CodeEditor* tmp = dynamic_cast<CodeEditor*>(widget);
+    CodeEditor* tmp = qobject_cast<CodeEditor*>(widget);
     if(tmp && !tmp->isSaved())
     {
         SaveWarningDialog* dialog = new SaveWarningDialog();
@@ -1442,6 +1446,10 @@ void MainWindow::closeTab(int index)
         dialog->setFilePath(tmp->getFilePath());
         if(dialog->exec() == QDialog::Accepted)
             save(tmp);
+    }
+    else if(qobject_cast<ScreenWidget*>(widget))
+    {
+        simHandeler->setScreenWidget(nullptr);
     }
     ui->tabWidget->removeTab(index);
     if(widget)

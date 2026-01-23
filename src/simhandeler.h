@@ -7,6 +7,7 @@
 #include "8080/Symulator.h"
 #include "qthread.h"
 #include "simrunner.h"
+#include "widgets/screenwidget.h"
 
 class SimHandeler : public QObject
 {
@@ -40,6 +41,11 @@ private:
     std::vector<std::pair<QString, std::vector<int>>> fileBreakpoints;
     QList<Globals::FileMemoryStartEnd> fileMemoryRanges;
     std::vector<std::pair<unsigned short, int>> lineAddrInsts;
+    ScreenWidget* screenWidget {nullptr};
+
+private slots:
+    void screenSetPixel(int x, int y, int color);
+
 public:
     explicit SimHandeler(QPlainTextEdit* screen, QObject* parent = nullptr);
     ~SimHandeler();
@@ -75,6 +81,8 @@ public:
     void setFilename(const QString &newFilename);
     void setFileBreakpoints(const std::vector<std::pair<QString, std::vector<int>>>& bp);
     QString memoryToString() const;
+    void setScreenWidget(ScreenWidget *newScreenWidget);
+
 signals:
     void startSim(Symulator* sim);
     void inputToSim(char in);

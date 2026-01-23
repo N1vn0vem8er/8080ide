@@ -403,6 +403,26 @@ void Symulator::setScreenAction(unsigned char newScreenAction)
     screenAction = newScreenAction;
 }
 
+bool Symulator::getScreenXRead() const
+{
+    return screenXRead;
+}
+
+bool Symulator::getScreenYRead() const
+{
+    return screenYRead;
+}
+
+bool Symulator::getScreenColorRead() const
+{
+    return screenColorRead;
+}
+
+bool Symulator::getScreenActionRead() const
+{
+    return screenActionRead;
+}
+
 void Symulator::executeInstruction(unsigned char inst)
 {
 	unsigned short memaddr;
@@ -1335,6 +1355,10 @@ Symulator::Symulator(unsigned short memorySize)
 	{
 		this->memory[i] = 0;
 	}
+    screenActionRead = true;
+    screenColorRead = true;
+    screenXRead = true;
+    screenYRead = true;
 }
 
 Symulator::~Symulator()
