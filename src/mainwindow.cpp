@@ -251,7 +251,7 @@ void MainWindow::b_compile()
     if(ui->tabWidget->count() > 0 && !simHandeler->isProjectLoaded())
     {
         simHandeler->updateCode(getPlainTextFromTab(ui->tabWidget->currentIndex()));
-        CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+        CodeEditor* ce = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
         if(ce)
         {
             if(ce->hasBreakPoints())
@@ -265,7 +265,7 @@ void MainWindow::b_compile()
         std::vector<std::pair<QString, std::vector<int>>> bp;
         for(int i=0;i<ui->tabWidget->count();i++)
         {
-            CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(i));
+            CodeEditor* ce = qobject_cast<CodeEditor*>(ui->tabWidget->widget(i));
             if(ce && ce->hasBreakPoints())
             {
                 std::vector<int> lines;
@@ -296,7 +296,7 @@ void MainWindow::b_reset()
     simHandeler->reset();
     for(int i=0;i<ui->tabWidget->count();i++)
     {
-        CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(i));
+        CodeEditor* ce = qobject_cast<CodeEditor*>(ui->tabWidget->widget(i));
         if(ce)
         {
             ce->clearSearchFormatting();
@@ -352,7 +352,7 @@ void MainWindow::openNewProjectWindow()
 
 void MainWindow::commentLine()
 {
-    CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* ce = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(ce)
         ce->commentCurrentLine();
 }
@@ -386,14 +386,14 @@ void MainWindow::handleStartTabLinks(const QString &link)
 
 void MainWindow::goTop()
 {
-    CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* ce = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(ce)
         ce->verticalScrollBar()->setValue(0);
 }
 
 void MainWindow::goBotton()
 {
-    CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* ce = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(ce)
         ce->verticalScrollBar()->setValue(ce->verticalScrollBar()->maximum());
 }
@@ -444,7 +444,7 @@ void MainWindow::displayRegisters(const QString &areg, const QString &breg, cons
 
 void MainWindow::openEditorFontSelectDialog()
 {
-    CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* ce = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(ce)
     {
         QDialog* dialog = new QDialog(this);
@@ -751,42 +751,42 @@ void MainWindow::setCurrenctBranchName(const QString &name)
 
 void MainWindow::enableSyntaxHighLinhting(bool val)
 {
-    CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
         tmp->setHighlighterEnabled(val);
 }
 
 void MainWindow::search(const QString &text)
 {
-    CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
         tmp->highlightTextSequence(text, ui->searchWidget->isCaseSensitive());
 }
 
 void MainWindow::searchInSelected(const QString &text)
 {
-    CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
         tmp->highlightTextSequenceInSelected(text, ui->searchWidget->isCaseSensitive());
 }
 
 void MainWindow::replace(const QString &text)
 {
-    CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
         tmp->replaceTextSequence(ui->searchWidget->getSearchFieldText(), text, ui->searchWidget->isCaseSensitive());
 }
 
 void MainWindow::replaceInSelected(const QString &text)
 {
-    CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
         tmp->replaceTextSequenceIsSelected(ui->searchWidget->getSearchFieldText(), text, ui->searchWidget->isCaseSensitive());
 }
 
 void MainWindow::enableSpellCheck(bool val)
 {
-    CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
         tmp->setSpellCheckEnabled(val);
 }
@@ -801,7 +801,7 @@ void MainWindow::openProjectSearch()
 
 void MainWindow::setBreakpoint()
 {
-    CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
         tmp->setLineBreakpoint();
 }
@@ -836,7 +836,7 @@ void MainWindow::openTableDataGenerator()
 
 void MainWindow::openLineToNumber()
 {
-    CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
     {
         InstInMemoryDialog* dialog = new InstInMemoryDialog(this);
@@ -864,7 +864,7 @@ void MainWindow::highlightLine(QString file, int line)
     {
         for(int i = 0; i<ui->tabWidget->count(); i++)
         {
-            CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(i));
+            CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->widget(i));
             if(tmp)
             {
                 if(tmp->getFilePath() == file)
@@ -879,7 +879,7 @@ void MainWindow::highlightLine(QString file, int line)
     }
     else
     {
-        CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+        CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
         if(tmp)
         {
             tmp->highlightLine(line);
@@ -894,7 +894,7 @@ void MainWindow::stepLineHighLight(const QString &file, int line)
     {
         for(int i = 0; i<ui->tabWidget->count(); i++)
         {
-            CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(i));
+            CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->widget(i));
             if(tmp)
             {
                 if(tmp->getFilePath() == file)
@@ -909,7 +909,7 @@ void MainWindow::stepLineHighLight(const QString &file, int line)
     }
     else
     {
-        CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+        CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
         if(tmp)
         {
             tmp->stepLineHightlight(line);
@@ -996,14 +996,14 @@ void MainWindow::showSearch()
 {
     if(ui->searchWidget->isVisible())
     {
-        CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+        CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
         if(tmp)
             tmp->clearSearchFormatting();
         ui->searchWidget->setVisible(false);
     }
     else
     {
-        CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+        CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
         if(tmp)
             tmp->highlightTextSequence(ui->searchWidget->getSearchFieldText(), ui->searchWidget->isCaseSensitive());
         ui->searchWidget->setVisible(true);
@@ -1166,7 +1166,7 @@ void MainWindow::openHelp()
 {
     if(ui->tabWidget->count() > 0)
     {
-        CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+        CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
         if(tmp)
         {
             QString instruction = tmp->getInstructionFromSelectedLine();
@@ -1229,7 +1229,7 @@ void MainWindow::openHelpPageInst(const QString &instruction)
 
 void MainWindow::save()
 {
-    CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* ce = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(ce)
         save(ce);
 }
@@ -1306,7 +1306,7 @@ void MainWindow::saveas()
             file.close();
             IDESettings::fileLastLocation = QFileInfo(path).dir().absolutePath();
             saveFileToRecentFiles(path);
-            CodeEditor* ce = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+            CodeEditor* ce = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
             if(ce)
             {
                 ce->setFilePath(path);
@@ -1462,7 +1462,7 @@ void MainWindow::closeTab(int index)
 }
 void MainWindow::tabChanged()
 {
-    CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
     {
         if(ui->searchWidget->isVisible())
@@ -1484,13 +1484,13 @@ void MainWindow::tabChanged()
 }
 void MainWindow::undo()
 {
-    CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
         tmp->undo();
 }
 void MainWindow::redo()
 {
-    CodeEditor* tmp = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* tmp = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(tmp)
         tmp->redo();
 }
@@ -1498,7 +1498,7 @@ void MainWindow::redo()
 QString MainWindow::getPlainTextFromTab(int index)
 {
     QWidget* ce = ui->tabWidget->widget(index);
-    CodeEditor* c = dynamic_cast<CodeEditor*>(ce);
+    CodeEditor* c = qobject_cast<CodeEditor*>(ce);
     if(c)
         return c->toPlainText();
     else
@@ -1512,7 +1512,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::copy()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         widget->copy();
@@ -1521,7 +1521,7 @@ void MainWindow::copy()
 
 void MainWindow::selectAll()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         widget->selectAll();
@@ -1530,7 +1530,7 @@ void MainWindow::selectAll()
 
 void MainWindow::cut()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         widget->cut();
@@ -1539,7 +1539,7 @@ void MainWindow::cut()
 
 void MainWindow::paste()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         widget->paste();
@@ -1553,7 +1553,7 @@ void MainWindow::fontSizeChanged(int size)
 
 void MainWindow::openPasteFromFile()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         const QStringList paths = QFileDialog::getOpenFileNames(this, tr("Paste from file"), QDir::homePath());
@@ -1575,7 +1575,7 @@ void MainWindow::openPasteFromFile()
 
 void MainWindow::setLineWrap(bool val)
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         widget->setLineWrapMode(val ? CodeEditor::LineWrapMode::WidgetWidth : CodeEditor::LineWrapMode::NoWrap);
@@ -1584,7 +1584,7 @@ void MainWindow::setLineWrap(bool val)
 
 void MainWindow::increaseFontSize()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         widget->increaseFontSize();
@@ -1593,7 +1593,7 @@ void MainWindow::increaseFontSize()
 
 void MainWindow::decreaseFontSize()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         widget->decreaseFontSize();
@@ -1602,7 +1602,7 @@ void MainWindow::decreaseFontSize()
 
 void MainWindow::resetFontSize()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         widget->setFontSize(10);
@@ -1611,7 +1611,7 @@ void MainWindow::resetFontSize()
 
 void MainWindow::setFontSize()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         QDialog* dialog = new QDialog(this);
@@ -1648,7 +1648,7 @@ void MainWindow::closeAllButThis()
 
 void MainWindow::reloadCurrent()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget && !widget->getFilePath().isEmpty())
     {
         if(!widget->isSaved())
@@ -1670,7 +1670,7 @@ void MainWindow::reloadAll()
 {
     for(int i=0; i<ui->tabWidget->count(); i++)
     {
-        CodeEditor* editor = dynamic_cast<CodeEditor*>(ui->tabWidget->widget(i));
+        CodeEditor* editor = qobject_cast<CodeEditor*>(ui->tabWidget->widget(i));
         if(editor && !editor->getFilePath().isEmpty())
         {
             if(!editor->isSaved())
@@ -1691,7 +1691,7 @@ void MainWindow::reloadAll()
 
 void MainWindow::openPrint()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         QPrinter printer(QPrinter::HighResolution);
@@ -1705,7 +1705,7 @@ void MainWindow::openPrint()
 
 void MainWindow::overwriteModeChanged(bool val)
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         widget->setOverwriteMode(val);
@@ -1714,7 +1714,7 @@ void MainWindow::overwriteModeChanged(bool val)
 
 void MainWindow::readOnlyChanget(bool val)
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         widget->setReadOnly(val);
@@ -1723,7 +1723,7 @@ void MainWindow::readOnlyChanget(bool val)
 
 void MainWindow::mergeLines()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         widget->mergeSelectedLines();
@@ -1732,7 +1732,7 @@ void MainWindow::mergeLines()
 
 void MainWindow::deleteSelected()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         widget->deleteSelected();
@@ -1741,7 +1741,7 @@ void MainWindow::deleteSelected()
 
 void MainWindow::deleteAll()
 {
-    CodeEditor* widget = dynamic_cast<CodeEditor*>(ui->tabWidget->currentWidget());
+    CodeEditor* widget = qobject_cast<CodeEditor*>(ui->tabWidget->currentWidget());
     if(widget)
     {
         widget->deleteAll();
