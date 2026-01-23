@@ -595,24 +595,28 @@ void MainWindow::openScreen()
 {
     if(!screenWidget)
     {
-        screenWidget = new ScreenWidget(ui->tabWidget);
+        screenWidget = new ScreenWidget(this);
         simHandeler->setScreenWidget(screenWidget);
         switch(IDESettings::openScreenType)
         {
-        case IDESettings::OpenScreenType::window:
-        {
-            QDialog* dialog = new QDialog(this);
-            dialog->setAttribute(Qt::WA_DeleteOnClose);
-            dialog->resize(255, 255);
-            QHBoxLayout* layout = new QHBoxLayout(dialog);
-            dialog->setLayout(layout);
-            layout->addWidget(screenWidget);
-            dialog->show();
-        }
-            break;
-        case IDESettings::OpenScreenType::tab:
-            addTab(screenWidget, tr("Screen"));
-            break;
+            case IDESettings::OpenScreenType::window:
+            {
+                QDialog* dialog = new QDialog(this);
+                connect(dialog, &QDialog::finished, this, [this]{
+                    simHandeler->setScreenWidget(nullptr);
+                    screenWidget->deleteLater();
+                    screenWidget = nullptr;});
+                dialog->setAttribute(Qt::WA_DeleteOnClose);
+                dialog->resize(255, 255);
+                QHBoxLayout* layout = new QHBoxLayout(dialog);
+                dialog->setLayout(layout);
+                layout->addWidget(screenWidget);
+                dialog->show();
+            }
+                break;
+            case IDESettings::OpenScreenType::tab:
+                addTab(screenWidget, tr("Screen"));
+                break;
         }
     }
 }
@@ -1450,6 +1454,7 @@ void MainWindow::closeTab(int index)
     else if(qobject_cast<ScreenWidget*>(widget))
     {
         simHandeler->setScreenWidget(nullptr);
+        screenWidget = nullptr;
     }
     ui->tabWidget->removeTab(index);
     if(widget)
