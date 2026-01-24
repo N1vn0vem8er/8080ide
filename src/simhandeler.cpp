@@ -4,15 +4,6 @@
 #include "idesettings.h"
 #include "8080/assembler.h"
 
-
-void SimHandeler::printOnScreen(char text)
-{
-    this->screen->insertPlainText(QString(text));
-}
-void SimHandeler::printOnScreen(const char* text)
-{
-    this->screen->insertPlainText(QString(text));
-}
 void SimHandeler::clearScreen()
 {
     textScreenWidget->clear();
@@ -41,10 +32,9 @@ QString SimHandeler::tohexASCII(unsigned short ch) const
     return QString::fromStdString(ss.str());
 }
 
-SimHandeler::SimHandeler(QPlainTextEdit* screen, QObject* parent) : QObject{parent}
+SimHandeler::SimHandeler(QObject* parent) : QObject{parent}
 {
     symulator = std::make_unique<Symulator>(256);
-    this->screen = screen;
     projectManager = new ProjectManager(this);
     projectLoaded = false;
 }
@@ -214,10 +204,6 @@ QString SimHandeler::memoryToString() const
         }
     return mem;
 }
-void SimHandeler::print(char ch)
-{
-    printOnScreen(ch);
-}
 
 void SimHandeler::printText(const QString &text)
 {
@@ -354,7 +340,7 @@ void SimHandeler::next()
     if(symulator->getHLT()) return;
     this->symulator->setHLTType(Symulator::SetHTLFlag);
     symulator->nextInst();
-    printOnScreen(symulator->getOutBuffer());
+    textScreenWidget->appendText(QChar(symulator->getOutBuffer()));
     symulator->setOutBuffer('\0');
     if(inputLine) symulator->getInBuffer() == 0x0 ? inputLine->clear() : inputLine->setText(QChar(symulator->getInBuffer()));
     updateRegistersLabels();
@@ -376,11 +362,6 @@ void SimHandeler::next()
             break;
         }
     }
-}
-
-void SimHandeler::setScreen(QPlainTextEdit *screen)
-{
-    this->screen = screen;
 }
 
 void SimHandeler::setTextScreen(TextScreenWidget *screen)

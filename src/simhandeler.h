@@ -15,9 +15,6 @@ class SimHandeler : public QObject
     Q_OBJECT
 private:
     std::string code;
-    QPlainTextEdit* screen;
-    void printOnScreen(char text);
-    void printOnScreen(const char* text);
     void clearScreen();
     void updateRegistersLabels();
     QString tohexASCII(unsigned char ch) const;
@@ -49,7 +46,7 @@ private slots:
     void screenSetPixel(int x, int y, int color);
 
 public:
-    explicit SimHandeler(QPlainTextEdit* screen, QObject* parent = nullptr);
+    explicit SimHandeler(QObject* parent = nullptr);
     ~SimHandeler();
     void setInputLine(QLineEdit* lineEdit);
     void updateCode(const QString& code);
@@ -58,7 +55,6 @@ public:
     void load();
     void clr();
     void next();
-    void setScreen(QPlainTextEdit* screen);
     void setTextScreen(TextScreenWidget* screen);
     void reset();
     void restart();
@@ -102,7 +98,6 @@ signals:
     void setProjectNameLabel(const QString& name);
 
 public slots:
-    void print(char ch);
     void printText(const QString& text);
     void registersChanged(const Globals::SimStatus& status);
     void inputOut(char ch);

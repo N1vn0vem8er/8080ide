@@ -52,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent)
     runningProcessesLabel = new RunningProcessesLabel("", ui->statusbar);
     ui->statusbar->addPermanentWidget(runningProcessesLabel);
 
-    simHandeler = new SimHandeler(ui->screen, this);
+    simHandeler = new SimHandeler(this);
     simHandeler->setTextScreen(ui->textScreen);
     projectInfoLabel = new QLabel(tr("No Project"), ui->statusbar);
     ui->statusbar->addPermanentWidget(projectInfoLabel);
