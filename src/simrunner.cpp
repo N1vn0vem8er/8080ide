@@ -112,6 +112,19 @@ void SimRunner::changeRegisters(unsigned char a, unsigned char b, unsigned char 
 void SimRunner::run()
 {
     Globals::SimStatus registersState;
+    QString outputBuffer;
+    outputBuffer.reserve(4096);
+    QElapsedTimer flushTimer;
+    flushTimer.start();
+    auto flushOutput = [&]() {
+        if(!outputBuffer.isEmpty())
+        {
+            emit outReady(outputBuffer);
+            outputBuffer.clear();
+            flushTimer.restart();
+        }
+    };
+
     if(sim != nullptr)
     {
         sim->setHLTType(Symulator::SetHTLFlag);
@@ -120,6 +133,7 @@ void SimRunner::run()
             auto tmp = std::find_if(breakpoints.begin(), breakpoints.end(), [this](const std::pair<unsigned short, int>& element){return element.first == sim->getPC();});
             if(tmp != breakpoints.end())
             {
+                flushOutput();
                 bpContinue = false;
                 emit breakpointStop(tmp->second, tmp->first);
                 while(!bpContinue && !QThread::currentThread()->isInterruptionRequested()){}
@@ -131,10 +145,17 @@ void SimRunner::run()
             }
             sim->nextInst();
             if(sim->getOutBuffer() != '\0')
-                emit charOut(sim->getOutBuffer());
-            sim->setOutBuffer('\0');
+            {
+                outputBuffer.append(QChar(sim->getOutBuffer()));
+                sim->setOutBuffer('\0');
+            }
+            if (!outputBuffer.isEmpty() && (outputBuffer.size() > 1000 || flushTimer.elapsed() > 30))
+            {
+                flushOutput();
+            }
             if(!fullSpeed)
             {
+                flushOutput();
                 registersState = getRegisterList(sim);
                 if(oldRegistersState != registersState)
                     emit stateChanged(registersState);
@@ -151,6 +172,7 @@ void SimRunner::run()
             emit memoryChanged(memoryToString(), sim->getMemSize());
             if(!fullSpeed) QThread::msleep(2);
         }
+        flushOutput();
     }
 }
 

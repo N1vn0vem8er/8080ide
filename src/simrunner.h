@@ -29,7 +29,7 @@ private:
     std::vector<std::pair<unsigned short, int>> breakpoints;
     std::vector<std::pair<unsigned short, int>> lineAddrInsts;
     QString memoryToString() const;
-    bool fullSpeed {false};
+    bool fullSpeed {true};
 public slots:
     void input(char in);
     unsigned char* getMemoryFromSim();
@@ -45,6 +45,7 @@ signals:
     void memoryChanged(QString memory, int size);
     void stateChanged(const Globals::SimStatus& status);
     void screenSetPixel(int x, int y, int color);
+    void outReady(const QString& text);
 
 protected:
     void run() override;

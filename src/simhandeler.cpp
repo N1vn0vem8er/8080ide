@@ -186,7 +186,7 @@ void SimHandeler::setInputLine(QLineEdit *lineEdit)
 void SimHandeler::run()
 {
     sr = new SimRunner(this);
-    connect(sr, &SimRunner::charOut, this, &SimHandeler::print);
+    connect(sr, &SimRunner::outReady, this, &SimHandeler::printText);
     connect(sr, &SimRunner::stateChanged, this, &SimHandeler::registersChanged);
     connect(this, &SimHandeler::inputToSim, sr, &SimRunner::input);
     connect(sr, &SimRunner::inputOut, this, &SimHandeler::inputOut);
@@ -217,6 +217,11 @@ QString SimHandeler::memoryToString() const
 void SimHandeler::print(char ch)
 {
     printOnScreen(ch);
+}
+
+void SimHandeler::printText(const QString &text)
+{
+    screen->insertPlainText(text);
 }
 
 void SimHandeler::registersChanged(const Globals::SimStatus &status)

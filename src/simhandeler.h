@@ -100,6 +100,7 @@ signals:
 
 public slots:
     void print(char ch);
+    void printText(const QString& text);
     void registersChanged(const Globals::SimStatus& status);
     void inputOut(char ch);
     void breakpointCodeLocation(int line, unsigned short address);
