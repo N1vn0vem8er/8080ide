@@ -14,12 +14,19 @@ TextScreenWidget::TextScreenWidget(QWidget *parent)
 
 void TextScreenWidget::appendText(const QString &text)
 {
-    const QStringList newLines = text.split('\n', Qt::SkipEmptyParts);
-    for(const QString& line : newLines)
+    if(!lines.isEmpty() && !text.contains("\n") && lines.last().size() < verticalScreenSize)
     {
-        if(lines.size() >= maxLines)
-            lines.removeFirst();
-        lines.append(line);
+        lines.last().append(text);
+    }
+    else
+    {
+        const QStringList newLines = text.split('\n', Qt::SkipEmptyParts);
+        for(const QString& line : newLines)
+        {
+            if(lines.size() >= maxLines)
+                lines.removeFirst();
+            lines.append(line);
+        }
     }
     updateScrollBars();
     QScrollBar* vBar = verticalScrollBar();
@@ -58,6 +65,7 @@ void TextScreenWidget::paintEvent(QPaintEvent *event)
 void TextScreenWidget::resizeEvent(QResizeEvent *event)
 {
     updateScrollBars();
+    verticalScreenSize = viewport()->width() / 5;
     QAbstractScrollArea::resizeEvent(event);
 }
 

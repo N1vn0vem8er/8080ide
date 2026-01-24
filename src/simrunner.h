@@ -29,7 +29,7 @@ private:
     std::vector<std::pair<unsigned short, int>> breakpoints;
     std::vector<std::pair<unsigned short, int>> lineAddrInsts;
     QString memoryToString() const;
-    bool fullSpeed {true};
+    bool fullSpeed {false};
 public slots:
     void input(char in);
     unsigned char* getMemoryFromSim();

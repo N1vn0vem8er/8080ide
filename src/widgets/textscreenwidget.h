@@ -20,6 +20,7 @@ private:
     void updateScrollBars();
     QStringList lines;
     int lineHeight;
+    int verticalScreenSize {0};
     int maxLines = 5000;
 };
 

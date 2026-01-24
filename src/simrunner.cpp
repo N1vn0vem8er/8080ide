@@ -136,6 +136,14 @@ void SimRunner::run()
                 flushOutput();
                 bpContinue = false;
                 emit breakpointStop(tmp->second, tmp->first);
+                flushOutput();
+                registersState = getRegisterList(sim);
+                if(oldRegistersState != registersState)
+                {
+                    oldRegistersState = registersState;
+                    emit stateChanged(registersState);
+                }
+                emit memoryChanged(memoryToString(), sim->getMemSize());
                 while(!bpContinue && !QThread::currentThread()->isInterruptionRequested()){}
             }
             if(inputBuffer!=0x0)
@@ -156,9 +164,13 @@ void SimRunner::run()
             if(!fullSpeed)
             {
                 flushOutput();
+                emit memoryChanged(memoryToString(), sim->getMemSize());
                 registersState = getRegisterList(sim);
                 if(oldRegistersState != registersState)
+                {
+                    oldRegistersState = registersState;
                     emit stateChanged(registersState);
+                }
             }
             if(sim->getInBuffer() != oldInBuffer)
             {
@@ -169,10 +181,11 @@ void SimRunner::run()
             {
                 emit screenSetPixel(sim->getScreenX(), sim->getScreenY(), sim->getScreenColor(true));
             }
-            emit memoryChanged(memoryToString(), sim->getMemSize());
             if(!fullSpeed) QThread::msleep(2);
         }
         flushOutput();
     }
+    emit stateChanged(getRegisterList(sim));
+    emit memoryChanged(memoryToString(), sim->getMemSize());
 }
 
