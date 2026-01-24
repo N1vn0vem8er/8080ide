@@ -133,9 +133,12 @@ void SimRunner::run()
             if(sim->getOutBuffer() != '\0')
                 emit charOut(sim->getOutBuffer());
             sim->setOutBuffer('\0');
-            registersState = getRegisterList(sim);
-            if(oldRegistersState != registersState)
-                emit stateChanged(registersState);
+            if(!fullSpeed)
+            {
+                registersState = getRegisterList(sim);
+                if(oldRegistersState != registersState)
+                    emit stateChanged(registersState);
+            }
             if(sim->getInBuffer() != oldInBuffer)
             {
                 oldInBuffer = sim->getInBuffer();
@@ -146,7 +149,7 @@ void SimRunner::run()
                 emit screenSetPixel(sim->getScreenX(), sim->getScreenY(), sim->getScreenColor(true));
             }
             emit memoryChanged(memoryToString(), sim->getMemSize());
-            QThread::msleep(2);
+            if(!fullSpeed) QThread::msleep(2);
         }
     }
 }
