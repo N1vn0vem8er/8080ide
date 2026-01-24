@@ -463,6 +463,7 @@
     <addaction name="actionReset"/>
     <addaction name="actionPami"/>
     <addaction name="actionScreen"/>
+    <addaction name="actionFull_speed"/>
    </widget>
    <widget class="QMenu" name="menuWidok">
     <property name="title">
@@ -1384,6 +1385,14 @@
   <action name="actionScreen">
    <property name="text">
     <string>Screen</string>
+   </property>
+  </action>
+  <action name="actionFull_speed">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Full speed</string>
    </property>
   </action>
  </widget>

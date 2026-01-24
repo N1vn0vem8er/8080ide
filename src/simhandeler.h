@@ -41,6 +41,7 @@ private:
     std::vector<std::pair<unsigned short, int>> lineAddrInsts;
     ScreenWidget* screenWidget {nullptr};
     TextScreenWidget* textScreenWidget {nullptr};
+    bool simFullSpeed {false};
 
 private slots:
     void screenSetPixel(int x, int y, int color);
@@ -81,6 +82,8 @@ public:
     void setFileBreakpoints(const std::vector<std::pair<QString, std::vector<int>>>& bp);
     QString memoryToString() const;
     void setScreenWidget(ScreenWidget *newScreenWidget);
+
+    void setSimFullSpeed(bool newSimFullSpeed);
 
 signals:
     void startSim(Symulator* sim);

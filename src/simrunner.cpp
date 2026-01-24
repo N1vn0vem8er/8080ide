@@ -109,6 +109,11 @@ void SimRunner::changeRegisters(unsigned char a, unsigned char b, unsigned char 
     emit stateChanged(getRegisterList(sim));
 }
 
+void SimRunner::setFullSpeed(bool val)
+{
+    fullSpeed = val;
+}
+
 void SimRunner::run()
 {
     Globals::SimStatus registersState;

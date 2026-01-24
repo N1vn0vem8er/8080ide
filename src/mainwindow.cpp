@@ -57,6 +57,7 @@ MainWindow::MainWindow(QWidget *parent)
     projectInfoLabel = new QLabel(tr("No Project"), ui->statusbar);
     ui->statusbar->addPermanentWidget(projectInfoLabel);
     simHandeler->setInputLine(ui->simulatorInput);
+    simHandeler->setSimFullSpeed(ui->actionFull_speed->isChecked());
 
     connect(simHandeler, &SimHandeler::setProjectNameLabel, this, [&](const QString& name){projectInfoLabel->setText(name);});
     connect(simHandeler, &SimHandeler::displayRegisters, this, &MainWindow::displayRegisters);
@@ -186,6 +187,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionConfigureProject, &QAction::triggered, this, &MainWindow::openConfigureProject);
     connect(ui->actionClear_diagnostics, &QAction::triggered, ui->logsOutputWidget, &QPlainTextEdit::clear);
     connect(ui->actionScreen, &QAction::triggered, this, &MainWindow::openScreen);
+    connect(ui->actionFull_speed, &QAction::triggered, this, [&](bool val){simHandeler->setSimFullSpeed(val);});
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;

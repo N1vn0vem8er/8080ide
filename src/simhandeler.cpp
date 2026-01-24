@@ -76,6 +76,11 @@ void SimHandeler::log(const QString &text)
     }
 }
 
+void SimHandeler::setSimFullSpeed(bool newSimFullSpeed)
+{
+    simFullSpeed = newSimFullSpeed;
+}
+
 void SimHandeler::setScreenWidget(ScreenWidget *newScreenWidget)
 {
     screenWidget = newScreenWidget;
@@ -187,6 +192,7 @@ void SimHandeler::run()
     connect(this, &SimHandeler::memoryChangedByUserSignal, sr, &SimRunner::memoryChangedByUser);
     connect(this, &SimHandeler::changeRegisters, sr, &SimRunner::changeRegisters);
     connect(sr, &SimRunner::screenSetPixel, this, &SimHandeler::screenSetPixel);
+    sr->setFullSpeed(simFullSpeed);
     sr->setSymulator(this->symulator.get());
     sr->setBreakPoints(breakpointsLocations);
     sr->setLineAddrInsts(lineAddrInsts);

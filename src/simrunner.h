@@ -37,6 +37,7 @@ public slots:
     void nextStep();
     void memoryChangedByUser(const QString& memory, int size);
     void changeRegisters(unsigned char a, unsigned char b, unsigned char c, unsigned char d, unsigned char e, unsigned char h, unsigned char l, unsigned short pc, unsigned short sp);
+    void setFullSpeed(bool val);
 
 signals:
     void charOut(char ch);
