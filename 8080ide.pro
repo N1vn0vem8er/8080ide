@@ -60,7 +60,8 @@ SOURCES += \
     src/utils/git/gitfilestatusitemdelegate.cpp \
     src/utils/git/gitfilestatusmodel.cpp \
     src/utils/git/gitwidget.cpp \
-    src/utils/git/gitfilesview.cpp
+    src/utils/git/gitfilesview.cpp \
+    src/widgets/textscreenwidget.cpp
 
 HEADERS += \
     src/8080/assembler.h \
@@ -118,7 +119,8 @@ HEADERS += \
     src/utils/git/gitfilestatusitemdelegate.h \
     src/utils/git/gitfilestatusmodel.h \
     src/utils/git/gitwidget.h \
-    src/utils/git/gitfilesview.h
+    src/utils/git/gitfilesview.h \
+    src/widgets/textscreenwidget.h
 
 FORMS += \
     src/dialogs/projectconfigurationwidget.ui \

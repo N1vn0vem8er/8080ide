@@ -15,7 +15,7 @@ void SimHandeler::printOnScreen(const char* text)
 }
 void SimHandeler::clearScreen()
 {
-    this->screen->clear();
+    textScreenWidget->clear();
 }
 void SimHandeler::updateRegistersLabels()
 {
@@ -221,7 +221,7 @@ void SimHandeler::print(char ch)
 
 void SimHandeler::printText(const QString &text)
 {
-    screen->insertPlainText(text);
+    textScreenWidget->appendText(text);
 }
 
 void SimHandeler::registersChanged(const Globals::SimStatus &status)
@@ -382,6 +382,11 @@ void SimHandeler::setScreen(QPlainTextEdit *screen)
 {
     this->screen = screen;
 }
+
+void SimHandeler::setTextScreen(TextScreenWidget *screen)
+{
+    textScreenWidget = screen;
+}
 void SimHandeler::reset()
 {
     if(sr)
@@ -391,7 +396,7 @@ void SimHandeler::reset()
         sr->deleteLater();
         sr = nullptr;
     }
-    this->screen->clear();
+    textScreenWidget->clear();
     symulator.reset();
     this->symulator = std::make_unique<Symulator>(Ssettings::memSize);
     this->symulator->setPC(Ssettings::memStart);
@@ -410,7 +415,7 @@ void SimHandeler::restart()
         sr->deleteLater();
         sr = nullptr;
     }
-    this->screen->clear();
+    textScreenWidget->clear();
     symulator->setHLT(false);
     symulator->setPC(Ssettings::memStart);
     if(inputLine) inputLine->clear();

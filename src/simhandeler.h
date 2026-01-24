@@ -8,6 +8,7 @@
 #include "qthread.h"
 #include "simrunner.h"
 #include "widgets/screenwidget.h"
+#include "widgets/textscreenwidget.h"
 
 class SimHandeler : public QObject
 {
@@ -42,6 +43,7 @@ private:
     QList<Globals::FileMemoryStartEnd> fileMemoryRanges;
     std::vector<std::pair<unsigned short, int>> lineAddrInsts;
     ScreenWidget* screenWidget {nullptr};
+    TextScreenWidget* textScreenWidget {nullptr};
 
 private slots:
     void screenSetPixel(int x, int y, int color);
@@ -57,6 +59,7 @@ public:
     void clr();
     void next();
     void setScreen(QPlainTextEdit* screen);
+    void setTextScreen(TextScreenWidget* screen);
     void reset();
     void restart();
     void input(const QString& input);
