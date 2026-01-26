@@ -59,7 +59,14 @@ void ScreenWidget::setPixelColor(int x, int y, int color)
 
 void ScreenWidget::executeCommand(int x, int y, Commands command)
 {
-
+    switch(command)
+    {
+    case Commands::CLEAR:
+        imageBuffer.fill(Qt::black);
+        break;
+    case Commands::END:
+        break;
+    }
 }
 
 void ScreenWidget::scheduleRepaint()
