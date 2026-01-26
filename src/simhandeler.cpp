@@ -92,6 +92,12 @@ void SimHandeler::screenSetPixel(int x, int y, int color)
         screenWidget->setPixelColor(x, y, color);
 }
 
+void SimHandeler::screenCommand(int x, int y, ScreenWidget::Commands command)
+{
+    if(screenWidget)
+        screenWidget->executeCommand(x, y, command);
+}
+
 QString SimHandeler::getFilename() const
 {
     return filename;
@@ -180,6 +186,8 @@ void SimHandeler::setInputLine(QLineEdit *lineEdit)
 }
 void SimHandeler::run()
 {
+    if(sr)
+        reset();
     sr = new SimRunner(this);
     connect(sr, &SimRunner::outReady, this, &SimHandeler::printText);
     connect(sr, &SimRunner::stateChanged, this, &SimHandeler::registersChanged);
@@ -192,6 +200,7 @@ void SimHandeler::run()
     connect(this, &SimHandeler::memoryChangedByUserSignal, sr, &SimRunner::memoryChangedByUser);
     connect(this, &SimHandeler::changeRegisters, sr, &SimRunner::changeRegisters);
     connect(sr, &SimRunner::screenSetPixel, this, &SimHandeler::screenSetPixel);
+    connect(sr, &SimRunner::screenCommand, this, &SimHandeler::screenCommand);
     sr->setFullSpeed(simFullSpeed);
     sr->setSymulator(this->symulator.get());
     sr->setBreakPoints(breakpointsLocations);

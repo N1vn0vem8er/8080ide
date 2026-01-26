@@ -3,6 +3,7 @@
 
 #include "8080/Symulator.h"
 #include "globals.h"
+#include "widgets/screenwidget.h"
 #include <QObject>
 #include <QThread>
 
@@ -46,6 +47,7 @@ signals:
     void memoryChanged(QString memory, int size);
     void stateChanged(const Globals::SimStatus& status);
     void screenSetPixel(int x, int y, int color);
+    void screenCommand(int x, int y, ScreenWidget::Commands command);
     void outReady(const QString& text);
 
 protected:

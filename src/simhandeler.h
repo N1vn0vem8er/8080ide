@@ -45,6 +45,7 @@ private:
 
 private slots:
     void screenSetPixel(int x, int y, int color);
+    void screenCommand(int x, int y, ScreenWidget::Commands command);
 
 public:
     explicit SimHandeler(QObject* parent = nullptr);

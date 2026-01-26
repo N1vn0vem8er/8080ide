@@ -186,6 +186,12 @@ void SimRunner::run()
             {
                 emit screenSetPixel(sim->getScreenX(), sim->getScreenY(), sim->getScreenColor(true));
             }
+            if(!sim->getScreenActionRead())
+            {
+                int val = sim->getScreenAction(true);
+                if(val < static_cast<int>(ScreenWidget::Commands::END))
+                    emit screenCommand(sim->getScreenX(), sim->getScreenX(), static_cast<ScreenWidget::Commands>(val));
+            }
             if(!fullSpeed) QThread::msleep(2);
         }
         flushOutput();

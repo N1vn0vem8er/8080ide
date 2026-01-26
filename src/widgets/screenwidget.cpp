@@ -57,6 +57,11 @@ void ScreenWidget::setPixelColor(int x, int y, int color)
     }
 }
 
+void ScreenWidget::executeCommand(int x, int y, Commands command)
+{
+
+}
+
 void ScreenWidget::scheduleRepaint()
 {
     if(repaintScheduled) return;

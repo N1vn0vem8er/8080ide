@@ -13,9 +13,14 @@ public:
     void setWidth(int newWidth);
     int getHeight() const;
     void setHeight(int newHeight);
+    enum class Commands{
+        CLEAR,
+        END
+    };
 
 public slots:
     void setPixelColor(int x, int y, int color);
+    void executeCommand(int x, int y, Commands command);
 
 private:
     int width;
