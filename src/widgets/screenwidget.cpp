@@ -64,6 +64,7 @@ void ScreenWidget::setPixelColor(int x, int y, int color)
             QPainter painter(&imageBuffer);
             painter.setPen(QColor(colors[color]));
             painter.drawLine(lineSelect1.first, lineSelect1.second, lineSelect2.first, lineSelect2.second);
+            mode = Modes::PIXEL;
         }
             break;
         }
