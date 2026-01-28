@@ -51,8 +51,22 @@ void ScreenWidget::setPixelColor(int x, int y, int color)
 {
     if(x < width && y < height)
     {
-        QRgb* line = reinterpret_cast<QRgb*>(imageBuffer.scanLine(y));
-        line[x] = colors[color & 0xFF];
+        switch(mode)
+        {
+        case Modes::PIXEL:
+        {
+            QRgb* line = reinterpret_cast<QRgb*>(imageBuffer.scanLine(y));
+            line[x] = colors[color & 0xFF];
+        }
+            break;
+        case Modes::LINE:
+        {
+            QPainter painter(&imageBuffer);
+            painter.setPen(QColor(colors[color]));
+            painter.drawLine(lineSelect1.first, lineSelect1.second, lineSelect2.first, lineSelect2.second);
+        }
+            break;
+        }
         scheduleRepaint();
     }
 }
@@ -64,7 +78,15 @@ void ScreenWidget::executeCommand(int x, int y, Commands command)
     case Commands::CLEAR:
         imageBuffer.fill(Qt::black);
         break;
-    case Commands::END:
+    case Commands::CANCEL:
+        mode = Modes::PIXEL;
+        break;
+    case Commands::LINESELECT1:
+        lineSelect1 = QPair(x, y);
+        break;
+    case Commands::LINESELECT2:
+        lineSelect2 = QPair(x, y);
+        mode = Modes::LINE;
         break;
     }
 }

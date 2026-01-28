@@ -15,12 +15,14 @@ public:
     void setHeight(int newHeight);
     enum class Commands{
         CLEAR,
-        END
+        LINESELECT1,
+        LINESELECT2,
+        CANCEL = 0xff
     };
 
 public slots:
     void setPixelColor(int x, int y, int color);
-    void executeCommand(int x, int y, Commands command);
+    void executeCommand(int x, int y, ScreenWidget::Commands command);
 
 private:
     int width;
@@ -28,6 +30,14 @@ private:
     QImage imageBuffer;
     std::array<QRgb, 256> colors;
     bool repaintScheduled = false;
+    QPair<int, int> lineSelect1 {0, 0};
+    QPair<int, int> lineSelect2 {0, 0};
+    enum class Modes{
+        PIXEL,
+        LINE,
+    };
+
+    Modes mode {Modes::PIXEL};
 
 private:
     void scheduleRepaint();
