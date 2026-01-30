@@ -1,5 +1,6 @@
 #include "screenwidget.h"
 #include "qpainter.h"
+#include <QPainterPath>
 #include <QTimer>
 
 ScreenWidget::ScreenWidget(QWidget *parent)
@@ -67,6 +68,21 @@ void ScreenWidget::setPixelColor(int x, int y, int color)
             mode = Modes::PIXEL;
         }
             break;
+        case Modes::FILL:
+        {
+            QPainter painter(&imageBuffer);
+            painter.setBrush(QBrush(QColor(colors[color])));
+            painter.setPen(QColor(colors[color]));
+            QPolygon polygon;
+            for(const auto& point : std::as_const(select))
+            {
+                polygon.append(QPoint(point.first, point.second));
+            }
+            painter.drawPolygon(polygon);
+            select.clear();
+            mode = Modes::PIXEL;
+        }
+            break;
         }
         scheduleRepaint();
     }
@@ -88,6 +104,10 @@ void ScreenWidget::executeCommand(int x, int y, Commands command)
     case Commands::LINESELECT2:
         lineSelect2 = QPair(x, y);
         mode = Modes::LINE;
+        break;
+    case Commands::FILLSELECT:
+        select.append(QPair(x, y));
+        mode = Modes::FILL;
         break;
     }
 }

@@ -17,6 +17,7 @@ public:
         CLEAR,
         LINESELECT1,
         LINESELECT2,
+        FILLSELECT,
         CANCEL = 0xff
     };
 
@@ -35,8 +36,9 @@ private:
     enum class Modes{
         PIXEL,
         LINE,
+        FILL,
     };
-
+    QList<QPair<int, int>> select;
     Modes mode {Modes::PIXEL};
 
 private:
