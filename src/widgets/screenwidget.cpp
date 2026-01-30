@@ -68,6 +68,20 @@ void ScreenWidget::setPixelColor(int x, int y, int color)
             mode = Modes::PIXEL;
         }
             break;
+        case Modes::FIGURE:
+        {
+            QPainter painter(&imageBuffer);
+            painter.setPen(QColor(colors[color]));
+            QPolygon polygon;
+            for(const auto& point : std::as_const(select))
+            {
+                polygon.append(QPoint(point.first, point.second));
+            }
+            painter.drawPolygon(polygon);
+            select.clear();
+            mode = Modes::PIXEL;
+        }
+            break;
         case Modes::FILL:
         {
             QPainter painter(&imageBuffer);
@@ -108,6 +122,10 @@ void ScreenWidget::executeCommand(int x, int y, Commands command)
     case Commands::FILLSELECT:
         select.append(QPair(x, y));
         mode = Modes::FILL;
+        break;
+    case Commands::FIGURESELECT:
+        select.append(QPair(x, y));
+        mode = Modes::FIGURE;
         break;
     }
 }

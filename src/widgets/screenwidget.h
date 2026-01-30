@@ -18,6 +18,7 @@ public:
         LINESELECT1,
         LINESELECT2,
         FILLSELECT,
+        FIGURESELECT,
         CANCEL = 0xff
     };
 
@@ -36,6 +37,7 @@ private:
     enum class Modes{
         PIXEL,
         LINE,
+        FIGURE,
         FILL,
     };
     QList<QPair<int, int>> select;

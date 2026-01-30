@@ -189,7 +189,7 @@ void SimRunner::run()
             if(!sim->getScreenActionRead())
             {
                 int val = sim->getScreenAction(true);
-                if(val < 4)
+                if(val < 5)
                     emit screenCommand(sim->getScreenX(), sim->getScreenY(), static_cast<ScreenWidget::Commands>(val));
             }
             if(!fullSpeed) QThread::msleep(2);
