@@ -29,7 +29,7 @@
      <item>
       <widget class="QStackedWidget" name="stackedWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>6</number>
        </property>
        <widget class="StyleSettingsPage" name="stylePage">
         <property name="enabled">
@@ -45,6 +45,7 @@
        <widget class="SyntaxHighlightingSettings" name="syntaxPage"/>
        <widget class="StartupSettingsPage" name="startupPage"/>
        <widget class="TerminalSettingsPage" name="terminalPage"/>
+       <widget class="ScreenSettingsPage" name="screenSettingsPage"/>
       </widget>
      </item>
     </layout>
@@ -86,6 +87,12 @@
    <class>TerminalSettingsPage</class>
    <extends>QWidget</extends>
    <header>settingsPages/terminalsettingspage.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ScreenSettingsPage</class>
+   <extends>QWidget</extends>
+   <header>settingsPages/screensettingspage.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

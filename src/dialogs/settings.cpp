@@ -9,7 +9,7 @@ Settings::Settings(QWidget *parent) :
 {
     ui->setupUi(this);
     QStringList items;
-    items << tr("Appearance") << tr("Simulator") << tr("Help settings") << tr("Syntax Highlighting") << tr("After startup") << tr("Terminal");
+    items << tr("Appearance") << tr("Simulator") << tr("Help settings") << tr("Syntax Highlighting") << tr("After startup") << tr("Terminal") << tr("Screens");
     QStringListModel* model = new QStringListModel(ui->settingsSelector);
     model->setStringList(items);
     ui->settingsSelector->setModel(model);

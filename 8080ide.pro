@@ -13,6 +13,7 @@ SOURCES += \
     src/editor/hovertooltipwidget.cpp \
     src/idesettings.cpp \
     src/processmanager.cpp \
+    src/settingsPages/screensettingspage.cpp \
     src/settingsPages/simsettingspage.cpp \
     src/settingsPages/startupsettingspage.cpp \
     src/settingsPages/terminalsettingspage.cpp \
@@ -71,6 +72,7 @@ HEADERS += \
     src/editor/hovertooltipwidget.h \
     src/idesettings.h \
     src/processmanager.h \
+    src/settingsPages/screensettingspage.h \
     src/settingsPages/simsettingspage.h \
     src/settingsPages/startupsettingspage.h \
     src/settingsPages/terminalsettingspage.h \
@@ -124,6 +126,7 @@ HEADERS += \
 
 FORMS += \
     src/dialogs/projectconfigurationwidget.ui \
+    src/settingsPages/screensettingspage.ui \
     src/settingsPages/simsettingspage.ui \
     src/settingsPages/startupsettingspage.ui \
     src/settingsPages/terminalsettingspage.ui \
