@@ -73,6 +73,7 @@ void IDESettings::saveSettings()
     settings.setValue("createProjectLastLocation", IDESettings::createProjectLastLocation);
     settings.setValue("openProjectLastLocation", IDESettings::openProjectLastLocation);
     settings.setValue("fileLastLocation", IDESettings::fileLastLocation);
+    settings.setValue("openScreenType", static_cast<int>(IDESettings::openScreenType));
 
     settings.beginWriteArray("recentFiles");
     for(int i = 0; i<recentFiles.size(); i++)
@@ -150,6 +151,8 @@ void IDESettings::loadSettings()
     IDESettings::fileLastLocation = settings.value("fileLastLocation", QDir::homePath()).toString();
 
     IDESettings::lineHighlightColor = QColor::fromRgb(settings.value("lineHighlightColor.r", 255).toInt(), settings.value("lineHighlightColor.g", 255).toInt(), settings.value("lineHighlightColor.b", 0).toInt());
+
+    IDESettings::openScreenType = static_cast<IDESettings::OpenScreenType>(settings.value("openScreenType", static_cast<int>(IDESettings::OpenScreenType::window)).toInt());
 
     simMemorySize = settings.value("simMemorySize", 1024).toInt();
     simStartAddress = settings.value("simStartAddress", 0).toInt();
