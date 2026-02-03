@@ -1457,6 +1457,7 @@ void MainWindow::tabChanged()
         ui->actionLine_wrap->setChecked(tmp->lineWrapMode() == CodeEditor::NoWrap ? false : true);
         showMessage(tr("Font Size: %1").arg(tmp->font().pointSize()));
         savedLabel->setText(tmp->isSaved() ? tr("Saved") : tr("Not saved"));
+        lastEditor = ui->tabWidget->currentIndex();
     }
     else
     {
@@ -1478,6 +1479,9 @@ void MainWindow::redo()
 
 QString MainWindow::getPlainTextFromTab(int index)
 {
+    ScreenWidget* screen = qobject_cast<ScreenWidget*>(ui->tabWidget->currentWidget());
+    if(screen)
+        index = lastEditor;
     QWidget* ce = ui->tabWidget->widget(index);
     CodeEditor* c = qobject_cast<CodeEditor*>(ce);
     if(c)

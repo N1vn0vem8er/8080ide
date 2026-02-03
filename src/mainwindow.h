@@ -33,6 +33,7 @@ private:
     const QString geometryAndStateConfig {"8080idegeometryandstate"};
     QFlags<Qt::WindowState> stateBeforeFullscreen;
     ScreenWidget* screenWidget {nullptr};
+    int lastEditor {-1};
 
 private:
     std::string getStdStringFromTab(int index);
