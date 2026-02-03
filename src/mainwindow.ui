@@ -456,6 +456,12 @@
     <property name="title">
      <string>Simulator</string>
     </property>
+    <widget class="QMenu" name="menuScreenActions">
+     <property name="title">
+      <string>Screen</string>
+     </property>
+     <addaction name="actionClearScreen"/>
+    </widget>
     <addaction name="actionCompile"/>
     <addaction name="actionLoad"/>
     <addaction name="actionRun"/>
@@ -463,6 +469,7 @@
     <addaction name="actionReset"/>
     <addaction name="actionPami"/>
     <addaction name="actionScreen"/>
+    <addaction name="menuScreenActions"/>
     <addaction name="actionFull_speed"/>
    </widget>
    <widget class="QMenu" name="menuWidok">
@@ -1393,6 +1400,11 @@
    </property>
    <property name="text">
     <string>Full speed</string>
+   </property>
+  </action>
+  <action name="actionClearScreen">
+   <property name="text">
+    <string>Clear</string>
    </property>
   </action>
  </widget>

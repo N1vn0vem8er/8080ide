@@ -233,6 +233,7 @@ MainWindow::MainWindow(QWidget *parent)
     refreshRecentFiles();
     refreshRecentProjects();
     refreshRecentDirs();
+    ui->menuScreenActions->menuAction()->setVisible(false);
 }
 
 void MainWindow::b_run()
@@ -600,6 +601,8 @@ void MainWindow::openScreen()
     {
         screenWidget = new ScreenWidget(this);
         simHandeler->setScreenWidget(screenWidget);
+        ui->menuScreenActions->menuAction()->setVisible(true);
+        ui->actionScreen->setVisible(false);
         switch(IDESettings::openScreenType)
         {
             case IDESettings::OpenScreenType::window:
@@ -607,6 +610,8 @@ void MainWindow::openScreen()
                 QDialog* dialog = new QDialog(this);
                 connect(dialog, &QDialog::finished, this, [this]{
                     simHandeler->setScreenWidget(nullptr);
+                    ui->menuScreenActions->menuAction()->setVisible(false);
+                    ui->actionScreen->setVisible(true);
                     screenWidget->deleteLater();
                     screenWidget = nullptr;});
                 dialog->setAttribute(Qt::WA_DeleteOnClose);
@@ -1419,6 +1424,8 @@ void MainWindow::closeTab(int index)
     else if(qobject_cast<ScreenWidget*>(widget))
     {
         simHandeler->setScreenWidget(nullptr);
+        ui->menuScreenActions->menuAction()->setVisible(false);
+        ui->actionScreen->setVisible(true);
         screenWidget = nullptr;
     }
     ui->tabWidget->removeTab(index);
