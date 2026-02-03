@@ -188,6 +188,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionClear_diagnostics, &QAction::triggered, ui->logsOutputWidget, &QPlainTextEdit::clear);
     connect(ui->actionScreen, &QAction::triggered, this, &MainWindow::openScreen);
     connect(ui->actionFull_speed, &QAction::triggered, this, [&](bool val){simHandeler->setSimFullSpeed(val);});
+    connect(ui->actionClearScreen, &QAction::triggered, this, &MainWindow::clearGraphicsScreen);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
@@ -626,6 +627,14 @@ void MainWindow::openScreen()
                 addTab(screenWidget, tr("Screen"));
                 break;
         }
+    }
+}
+
+void MainWindow::clearGraphicsScreen()
+{
+    if(screenWidget)
+    {
+        screenWidget->executeCommand(0, 0, ScreenWidget::Commands::CLEAR);
     }
 }
 

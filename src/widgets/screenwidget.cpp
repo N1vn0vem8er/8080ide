@@ -108,6 +108,7 @@ void ScreenWidget::executeCommand(int x, int y, Commands command)
     {
     case Commands::CLEAR:
         imageBuffer.fill(Qt::black);
+        scheduleRepaint();
         break;
     case Commands::CANCEL:
         mode = Modes::PIXEL;

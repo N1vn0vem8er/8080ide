@@ -160,6 +160,7 @@ private slots:
     void fullScreen();
     void openConfigureProject();
     void openScreen();
+    void clearGraphicsScreen();
 
 protected:
     void dropEvent(QDropEvent* event) override;
