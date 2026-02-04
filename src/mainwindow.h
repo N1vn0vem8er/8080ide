@@ -162,6 +162,7 @@ private slots:
     void openConfigureProject();
     void openScreen();
     void clearGraphicsScreen();
+    void openScreenColorsPalette();
 
 protected:
     void dropEvent(QDropEvent* event) override;

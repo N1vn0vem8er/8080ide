@@ -27,6 +27,7 @@
 #include <QSettings>
 #include <QStyleFactory>
 #include <QFontComboBox>
+#include <QScrollArea>
 #include "idesettings.h"
 #include "processmanager.h"
 #include <widgets/searchwidget.h>
@@ -189,6 +190,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionScreen, &QAction::triggered, this, &MainWindow::openScreen);
     connect(ui->actionFull_speed, &QAction::triggered, this, [&](bool val){simHandeler->setSimFullSpeed(val);});
     connect(ui->actionClearScreen, &QAction::triggered, this, &MainWindow::clearGraphicsScreen);
+    connect(ui->actionScreen_Colors_Palette, &QAction::triggered, this, &MainWindow::openScreenColorsPalette);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
@@ -636,6 +638,20 @@ void MainWindow::clearGraphicsScreen()
     {
         screenWidget->executeCommand(0, 0, ScreenWidget::Commands::CLEAR);
     }
+}
+
+void MainWindow::openScreenColorsPalette()
+{
+    QDialog* dialog = new QDialog(this);
+    dialog->setAttribute(Qt::WA_DeleteOnClose);
+    QHBoxLayout* layout = new QHBoxLayout(dialog);
+    QScrollArea* scrollArea = new QScrollArea(dialog);
+    QLabel* label = new QLabel(dialog);
+    label->setPixmap(QPixmap::fromImage(QImage(":/images/colors_palette.svg")));
+    scrollArea->setWidget(label);
+    layout->addWidget(scrollArea);
+    dialog->setLayout(layout);
+    dialog->show();
 }
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)
