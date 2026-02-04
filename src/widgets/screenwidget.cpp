@@ -63,7 +63,7 @@ void ScreenWidget::setPixelColor(int x, int y, int color)
         case Modes::LINE:
         {
             QPainter painter(&imageBuffer);
-            painter.setPen(QColor(colors[color]));
+            painter.setPen(QColor(colors[color & 0xFF]));
             painter.drawLine(lineSelect1.first, lineSelect1.second, lineSelect2.first, lineSelect2.second);
             mode = Modes::PIXEL;
         }
@@ -71,7 +71,7 @@ void ScreenWidget::setPixelColor(int x, int y, int color)
         case Modes::FIGURE:
         {
             QPainter painter(&imageBuffer);
-            painter.setPen(QColor(colors[color]));
+            painter.setPen(QColor(colors[color & 0xFF]));
             QPolygon polygon;
             for(const auto& point : std::as_const(select))
             {
@@ -85,8 +85,8 @@ void ScreenWidget::setPixelColor(int x, int y, int color)
         case Modes::FILL:
         {
             QPainter painter(&imageBuffer);
-            painter.setBrush(QBrush(QColor(colors[color])));
-            painter.setPen(QColor(colors[color]));
+            painter.setBrush(QBrush(QColor(colors[color & 0xFF])));
+            painter.setPen(QColor(colors[color & 0xFF]));
             QPolygon polygon;
             for(const auto& point : std::as_const(select))
             {
@@ -99,7 +99,7 @@ void ScreenWidget::setPixelColor(int x, int y, int color)
             break;
         case Modes::FILLSCREEN:
         {
-            imageBuffer.fill(QColor(colors[color]));
+            imageBuffer.fill(QColor(colors[color & 0xFF]));
             mode = Modes::PIXEL;
         }
             break;
