@@ -201,6 +201,7 @@ void SimHandeler::run()
     connect(this, &SimHandeler::changeRegisters, sr, &SimRunner::changeRegisters);
     connect(sr, &SimRunner::screenSetPixel, this, &SimHandeler::screenSetPixel);
     connect(sr, &SimRunner::screenCommand, this, &SimHandeler::screenCommand);
+    connect(this, &SimHandeler::nextStep, sr, &SimRunner::nextStep);
     sr->setFullSpeed(simFullSpeed);
     sr->setSymulator(this->symulator.get());
     sr->setBreakPoints(breakpointsLocations);
@@ -360,6 +361,16 @@ void SimHandeler::next()
     if(inputLine) symulator->getInBuffer() == 0x0 ? inputLine->clear() : inputLine->setText(QChar(symulator->getInBuffer()));
     updateRegistersLabels();
     emit memoryChanged(memoryToString(), symulator->getMemSize());
+    if(!symulator->getScreenColorRead())
+    {
+        screenSetPixel(symulator->getScreenX(), symulator->getScreenY(), symulator->getScreenColor(true));
+    }
+    if(!symulator->getScreenActionRead())
+    {
+        int val = symulator->getScreenAction(true);
+        if(val <= static_cast<int>(ScreenWidget::Commands::CANCEL))
+            screenCommand(symulator->getScreenX(), symulator->getScreenY(), static_cast<ScreenWidget::Commands>(val));
+    }
     QString fName;
     for(const auto& i : std::as_const(fileMemoryRanges))
     {

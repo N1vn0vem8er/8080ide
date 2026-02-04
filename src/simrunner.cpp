@@ -18,6 +18,7 @@ SimRunner::~SimRunner()
 void SimRunner::setSymulator(Symulator *sim)
 {
     this->sim = sim;
+    this->sim->setHLTType(Symulator::SetHTLFlag);
 }
 
 void SimRunner::setBreakPoints(std::vector<std::pair<unsigned short, int>> breakPoints)
@@ -27,10 +28,15 @@ void SimRunner::setBreakPoints(std::vector<std::pair<unsigned short, int>> break
 
 Globals::SimStatus SimRunner::getRegisterList(Symulator *sim)
 {
-    Globals::SimStatus status(tohexASCII(sim->getAreg()), tohexASCII(sim->getBreg()), tohexASCII(sim->getCreg()), tohexASCII(sim->getDreg()), tohexASCII(sim->getEreg()), tohexASCII(sim->getHreg()),
+    if(sim)
+    {
+        Globals::SimStatus status(tohexASCII(sim->getAreg()), tohexASCII(sim->getBreg()), tohexASCII(sim->getCreg()), tohexASCII(sim->getDreg()), tohexASCII(sim->getEreg()), tohexASCII(sim->getHreg()),
                               tohexASCII(sim->getLreg()), tohexASCII(sim->getPC()), tohexASCII(sim->getSP()), QString::number(sim->getCF()), QString::number(sim->getS())
                                 ,QString::number(sim->getP()),QString::number(sim->getZ()),QString::number(sim->getAC()), tohexASCII(sim->getMreg()));
-    return status;
+        return status;
+    }
+    else
+        return Globals::SimStatus();
 }
 
 QString SimRunner::tohexASCII(unsigned char ch) const
@@ -130,9 +136,8 @@ void SimRunner::run()
         }
     };
 
-    if(sim != nullptr)
+    if(sim)
     {
-        sim->setHLTType(Symulator::SetHTLFlag);
         while(!sim->getHLT() && sim->getPC() <= sim->getMemSize() && !QThread::currentThread()->isInterruptionRequested())
         {
             auto tmp = std::find_if(breakpoints.begin(), breakpoints.end(), [this](const std::pair<unsigned short, int>& element){return element.first == sim->getPC();});
