@@ -20,12 +20,17 @@ void TextScreenWidget::appendText(const QString &text)
     }
     else
     {
-        const QStringList newLines = text.split('\n', Qt::SkipEmptyParts);
-        for(const QString& line : newLines)
+        if(text == "\n")
+            lines.append("");
+        else
         {
-            if(lines.size() >= maxLines)
-                lines.removeFirst();
-            lines.append(line);
+            const QStringList newLines = text.split('\n', Qt::SkipEmptyParts);
+            for(const QString& line : newLines)
+            {
+                if(lines.size() >= maxLines)
+                    lines.removeFirst();
+                lines.append(line);
+            }
         }
     }
     updateScrollBars();
