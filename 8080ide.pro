@@ -173,9 +173,9 @@ target.path = /usr/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    src/resources/helpPages.qrc \
-    src/resources/hintFiles.qrc \
-    src/resources/icons/icons.qrc
+    resources/helpPages.qrc \
+    resources/hintFiles.qrc \
+    resources/icons/icons.qrc
 
 LIBS += -lqtermwidget6
 
