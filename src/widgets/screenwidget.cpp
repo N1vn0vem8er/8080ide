@@ -97,6 +97,12 @@ void ScreenWidget::setPixelColor(int x, int y, int color)
             mode = Modes::PIXEL;
         }
             break;
+        case Modes::FILLSCREEN:
+        {
+            imageBuffer.fill(QColor(colors[color]));
+            mode = Modes::PIXEL;
+        }
+            break;
         }
         scheduleRepaint();
     }
@@ -127,6 +133,9 @@ void ScreenWidget::executeCommand(int x, int y, Commands command)
     case Commands::FIGURESELECT:
         select.append(QPair(x, y));
         mode = Modes::FIGURE;
+        break;
+    case Commands::FILLSCREEN:
+        mode = Modes::FILLSCREEN;
         break;
     }
 }

@@ -19,6 +19,7 @@ public:
         LINESELECT2,
         FILLSELECT,
         FIGURESELECT,
+        FILLSCREEN,
         CANCEL = 0xff
     };
 
@@ -39,6 +40,7 @@ private:
         LINE,
         FIGURE,
         FILL,
+        FILLSCREEN,
     };
     QList<QPair<int, int>> select;
     Modes mode {Modes::PIXEL};
