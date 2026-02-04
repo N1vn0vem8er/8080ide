@@ -14,7 +14,11 @@ TextScreenWidget::TextScreenWidget(QWidget *parent)
 
 void TextScreenWidget::appendText(const QString &text)
 {
-    if(!lines.isEmpty() && !text.contains("\n") && lines.last().size() < verticalScreenSize)
+    if(text.contains("\f"))
+    {
+        lines.clear();
+    }
+    else if(!lines.isEmpty() && !text.contains("\n") && lines.last().size() < verticalScreenSize)
     {
         lines.last().append(text);
     }
