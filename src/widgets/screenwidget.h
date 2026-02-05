@@ -22,6 +22,7 @@ public:
         FILLSCREEN,
         CANCEL = 0xff
     };
+    QImage getImageBuffer() const;
 
 public slots:
     void setPixelColor(int x, int y, int color);

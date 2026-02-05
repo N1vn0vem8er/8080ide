@@ -460,6 +460,7 @@
      <property name="title">
       <string>Screen</string>
      </property>
+     <addaction name="actionScreenSave_As"/>
      <addaction name="actionClearScreen"/>
     </widget>
     <addaction name="actionCompile"/>
@@ -1404,6 +1405,9 @@
    </property>
   </action>
   <action name="actionClearScreen">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::EditClear"/>
+   </property>
    <property name="text">
     <string>Clear</string>
    </property>
@@ -1411,6 +1415,14 @@
   <action name="actionScreen_Colors_Palette">
    <property name="text">
     <string>Screen Colors Palette</string>
+   </property>
+  </action>
+  <action name="actionScreenSave_As">
+   <property name="icon">
+    <iconset theme="QIcon::ThemeIcon::DocumentSaveAs"/>
+   </property>
+   <property name="text">
+    <string>Save As</string>
    </property>
   </action>
  </widget>

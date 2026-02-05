@@ -48,6 +48,11 @@ void ScreenWidget::setHeight(int newHeight)
     height = newHeight;
 }
 
+QImage ScreenWidget::getImageBuffer() const
+{
+    return imageBuffer;
+}
+
 void ScreenWidget::setPixelColor(int x, int y, int color)
 {
     if(x < width && y < height)

@@ -191,6 +191,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionFull_speed, &QAction::triggered, this, [&](bool val){simHandeler->setSimFullSpeed(val);});
     connect(ui->actionClearScreen, &QAction::triggered, this, &MainWindow::clearGraphicsScreen);
     connect(ui->actionScreen_Colors_Palette, &QAction::triggered, this, &MainWindow::openScreenColorsPalette);
+    connect(ui->actionScreenSave_As, &QAction::triggered, this, &MainWindow::screenSaveAs);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
@@ -652,6 +653,19 @@ void MainWindow::openScreenColorsPalette()
     layout->addWidget(scrollArea);
     dialog->setLayout(layout);
     dialog->show();
+}
+
+void MainWindow::screenSaveAs()
+{
+    if(screenWidget)
+    {
+        const QString path = QFileDialog::getSaveFileName(this, tr("Save As"), simHandeler->isProjectLoaded() ? simHandeler->getProjectPath() : IDESettings::fileLastLocation, "*.png");
+        if(!path.isEmpty())
+        {
+            screenWidget->getImageBuffer().save(path);
+            IDESettings::fileLastLocation = QFileInfo(path).dir().absolutePath();
+        }
+    }
 }
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)
