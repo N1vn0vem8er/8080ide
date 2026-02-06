@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+  <body>
+    <h1>Ekran graficzny</h1>
+    <p>Ekran graficzny umożliwia na wyświetlanie grafiki 256x256 pikseli w 256 kolorach. Aby otworzyć ekran należy wybrać z menu Symulator -> Ekran. Ekran jest obsługiwany przy pomocy czterech wyjść mikroprocesora. Są to następujące wyjścia:</p>
+
+    <table style="border-width: 1px;">
+    <thred>
+        <tr>
+            <th>Wyjście</th>
+            <th>Działanie</th>
+        </tr>
+        </thred>
+        <tbody>
+        <tr>
+            <td>02</td>
+            <td>Ustawienie pozycji x kursora</td>
+        </tr>
+        <tr>
+            <td>03</td>
+            <td>Ustawienie pozycji y kursora</td>
+        </tr>
+        <tr>
+            <td>04</td>
+            <td>Kolorowanie na podany kolor</td>
+        </tr>
+        <tr>
+            <td>05</td>
+            <td>Wybranie polecenia</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Rysowanie na ekranie polega na wybraniu pozycji kursora wyjściami 2 i 3 oraz podanie koloru na który chce się pokolorować na wyjściu 4. Kolory są zapisane w formacie rgb 3 3 2. Pierwsze trzy bity to kolor czerwony, drugie trzy bity to kolor niebieski, a ostatnie dwa to zielony. Wszystkie możliwe kolory można zobaczyć otwierając Pomoc -> Kolory Ekranu. Normalnie podanie na wyjściu 4 koloru sprawi, że pokolorowany zostanie pixel na który ustawiony jest kursor. Ekran posiada też szereg poleceń umożliwiających na łatwe kolorowanie całych figur. Używanie większości poleceń polega na wybraniu kształtów figury i w momencie podania koloru figura jest rysowana.</p>
+
+    <table style="border-width: 1px;">
+    <thred>
+        <tr>
+            <th>Polecenie</th>
+            <th>Działanie</th>
+        </tr>
+        </thred>
+        <tbody>
+        <tr>
+            <td>0</td>
+            <td>Wyczyszczenie ekranu</td>
+        </tr>
+        <tr>
+            <td>01</td>
+            <td>Ustawienie pierwszej pozycji do generowania linii w miejscu kursora.</td>
+        </tr>
+        <tr>
+            <td>02</td>
+            <td>Ustawienie drugiej pozycji do generowania linii w miejscu kursora.</td>
+        </tr>
+        <tr>
+            <td>03</td>
+            <td>Za każdym razem ustawia kolejną pozycje w miejscu kursora do wypełnienia obszaru.</td>
+        </tr>
+        <tr>
+            <td>04</td>
+            <td>Za każdym razem ustawia kolejną pozycje w miejscu kursora do narysowania dowolnego wielokątu.</td>
+        </tr>
+        <tr>
+            <td>05</td>
+            <td>Kolorowanie całego ekranu na podany kolor.</td>
+        </tr>
+        <tr>
+            <td>06</td>
+            <td>Zaznaczanie środka wypełnionej elipsy w miejscu kursora.</td>
+        </tr>
+        <tr>
+            <td>07</td>
+            <td>Zaznaczenie promienia wypełnionej elipsy w miejscu kursora.</td>
+        </tr>
+        <tr>
+            <td>08</td>
+            <td>Zaznaczanie środka nie wypełnionej elipsy w miejscu kursora.</td>
+        </tr>
+        <tr>
+            <td>09</td>
+            <td>Zaznaczenie promienia nie wypełnionej elipsy w miejscu kursora.</td>
+        </tr>
+        <tr>
+            <td>FF</td>
+            <td>Anulowanie polecenia.</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </body>
+</html>

@@ -161,6 +161,8 @@
         <file>helpPages/ide/labels_pl.html</file>
         <file>helpPages/ide/assembler_pl.html</file>
         <file>helpPages/ide/assembler_en.html</file>
+        <file>helpPages/ide/graphics_screen_pl.html</file>
+        <file>helpPages/ide/graphics_screen_en.html</file>
     </qresource>
     <qresource prefix="/pseudoinst">
         <file>helpPages/pseudoinstructions/array_en.html</file>

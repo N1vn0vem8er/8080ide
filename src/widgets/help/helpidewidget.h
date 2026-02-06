@@ -19,8 +19,8 @@ public:
 private:
     Ui::HelpIDEWidget *ui;
     QString language;
-    QStringList helpPagesList = {"Welcome", "Projects", "Assembler", "Labels"};
-    QStringList translations = {tr("Welcome"), tr("Projects"), tr("Assembler"), tr("Labels")};
+    QStringList helpPagesList = {"Welcome", "Projects", "Assembler", "Labels", "Graphics_Screen"};
+    QStringList translations = {tr("Welcome"), tr("Projects"), tr("Assembler"), tr("Labels"), tr("Graphics Screen")};
 };
 
 #endif // HELPIDEWIDGET_H
