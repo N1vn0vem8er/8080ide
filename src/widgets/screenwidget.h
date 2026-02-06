@@ -40,8 +40,8 @@ private:
     bool repaintScheduled = false;
     QPair<int, int> lineSelect1 {0, 0};
     QPair<int, int> lineSelect2 {0, 0};
-    QPair<int, int> circleCenter {0, 0};
-    QPair<int, int> circleRadii {0, 0};
+    QPair<int, int> ellipseCenter {0, 0};
+    QPair<int, int> ellipseRadii {0, 0};
     enum class Modes{
         PIXEL,
         LINE,

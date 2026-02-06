@@ -113,11 +113,17 @@ void ScreenWidget::setPixelColor(int x, int y, int color)
             QPainter painter(&imageBuffer);
             painter.setBrush(QBrush(QColor(colors[color & 0xFF])));
             painter.setPen(QColor(colors[color & 0xFF]));
-            painter.drawEllipse(QPoint(circleCenter.first, circleCenter.second), circleRadii.first, circleRadii.second);
+            painter.drawEllipse(QPoint(ellipseCenter.first, ellipseCenter.second), ellipseRadii.first, ellipseRadii.second);
             mode = Modes::PIXEL;
         }
             break;
         case Modes::EMPTYELLIPSE:
+        {
+            QPainter painter(&imageBuffer);
+            painter.setPen(QColor(colors[color & 0xFF]));
+            painter.drawEllipse(QPoint(ellipseCenter.first, ellipseCenter.second), ellipseRadii.first, ellipseRadii.second);
+            mode = Modes::PIXEL;
+        }
             break;
         }
         scheduleRepaint();
@@ -154,16 +160,20 @@ void ScreenWidget::executeCommand(int x, int y, Commands command)
         mode = Modes::FILLSCREEN;
         break;
     case Commands::ELLIPSECENTER:
-        circleCenter = QPair(x, y);
+        ellipseCenter = QPair(x, y);
         mode = Modes::ELLIPSE;
         break;
     case Commands::ELLIPSERADII:
-        circleRadii = QPair(x, y);
+        ellipseRadii = QPair(x, y);
         mode = Modes::ELLIPSE;
         break;
     case Commands::EMPTYELLIPSECENTER:
+        ellipseCenter = QPair(x, y);
+        mode = Modes::EMPTYELLIPSE;
         break;
     case Commands::EMPTYELLIPSERADII:
+        ellipseRadii = QPair(x, y);
+        mode = Modes::EMPTYELLIPSE;
         break;
     }
 }
