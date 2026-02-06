@@ -108,6 +108,17 @@ void ScreenWidget::setPixelColor(int x, int y, int color)
             mode = Modes::PIXEL;
         }
             break;
+        case Modes::ELLIPSE:
+        {
+            QPainter painter(&imageBuffer);
+            painter.setBrush(QBrush(QColor(colors[color & 0xFF])));
+            painter.setPen(QColor(colors[color & 0xFF]));
+            painter.drawEllipse(QPoint(circleCenter.first, circleCenter.second), circleRadii.first, circleRadii.second);
+            mode = Modes::PIXEL;
+        }
+            break;
+        case Modes::EMPTYELLIPSE:
+            break;
         }
         scheduleRepaint();
     }
@@ -141,6 +152,18 @@ void ScreenWidget::executeCommand(int x, int y, Commands command)
         break;
     case Commands::FILLSCREEN:
         mode = Modes::FILLSCREEN;
+        break;
+    case Commands::ELLIPSECENTER:
+        circleCenter = QPair(x, y);
+        mode = Modes::ELLIPSE;
+        break;
+    case Commands::ELLIPSERADII:
+        circleRadii = QPair(x, y);
+        mode = Modes::ELLIPSE;
+        break;
+    case Commands::EMPTYELLIPSECENTER:
+        break;
+    case Commands::EMPTYELLIPSERADII:
         break;
     }
 }

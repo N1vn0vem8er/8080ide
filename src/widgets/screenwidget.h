@@ -20,6 +20,10 @@ public:
         FILLSELECT,
         FIGURESELECT,
         FILLSCREEN,
+        ELLIPSECENTER,
+        ELLIPSERADII,
+        EMPTYELLIPSECENTER,
+        EMPTYELLIPSERADII,
         CANCEL = 0xff
     };
     QImage getImageBuffer() const;
@@ -36,12 +40,16 @@ private:
     bool repaintScheduled = false;
     QPair<int, int> lineSelect1 {0, 0};
     QPair<int, int> lineSelect2 {0, 0};
+    QPair<int, int> circleCenter {0, 0};
+    QPair<int, int> circleRadii {0, 0};
     enum class Modes{
         PIXEL,
         LINE,
         FIGURE,
         FILL,
         FILLSCREEN,
+        ELLIPSE,
+        EMPTYELLIPSE,
     };
     QList<QPair<int, int>> select;
     Modes mode {Modes::PIXEL};
