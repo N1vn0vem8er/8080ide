@@ -1,8 +1,92 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en-US">
   <body>
-    <header></header>
-    <main></main>
-    <footer></footer>
+    <h1>Graphical Screen</h1>
+    <p>The graphical screen allows for the display of 256x256 pixel graphics in 256 colors. To open the screen, select Simulator -> Screen from the menu. The screen is operated using four microprocessor outputs. These outputs are as follows:</p>
+
+    <table style="border-width: 1px;">
+      <thead>
+        <tr>
+          <th>Output</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>02</td>
+          <td>Set cursor x-position</td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td>Set cursor y-position</td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td>Apply specified color</td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td>Select command</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Drawing on the screen involves selecting the cursor position using outputs 2 and 3, and then providing the color you wish to use on output 4. Colors are stored in RGB 3-3-2 format. The first three bits represent red, the next three bits represent blue, and the last two represent green. All available colors can be viewed by opening Help -> Screen Colors Palette. Normally, sending a color to output 4 will color the pixel where the cursor is currently set. The screen also features a series of commands that allow for easy coloring of entire shapes. Using most commands involves selecting the shape's coordinates, the shape is drawn the moment the color is provided.</p>
+
+    <table style="border-width: 1px;">
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0</td>
+          <td>Clear screen</td>
+        </tr>
+        <tr>
+          <td>01</td>
+          <td>Set the first position for line generation at the cursor location.</td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td>Set the second position for line generation at the cursor location.</td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td>Sets the next position at the cursor location for area filling (repeatable).</td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td>Sets the next position at the cursor location for drawing an arbitrary polygon (repeatable).</td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td>Fill the entire screen with the specified color.</td>
+        </tr>
+        <tr>
+          <td>06</td>
+          <td>Mark the center of a filled ellipse at the cursor location.</td>
+        </tr>
+        <tr>
+          <td>07</td>
+          <td>Mark the radius of a filled ellipse at the cursor location.</td>
+        </tr>
+        <tr>
+          <td>08</td>
+          <td>Mark the center of an unfilled ellipse at the cursor location.</td>
+        </tr>
+        <tr>
+          <td>09</td>
+          <td>Mark the radius of an unfilled ellipse at the cursor location.</td>
+        </tr>
+        <tr>
+          <td>FF</td>
+          <td>Cancel command.</td>
+        </tr>
+      </tbody>
+    </table>
+
   </body>
 </html>
