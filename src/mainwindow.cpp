@@ -456,6 +456,7 @@ void MainWindow::openEditorFontSelectDialog()
     if(ce)
     {
         QDialog* dialog = new QDialog(this);
+        dialog->setWindowTitle(tr("Select Font"));
         QVBoxLayout* layout = new QVBoxLayout(dialog);
         QFontComboBox* comboBox = new QFontComboBox(dialog);
         layout->addWidget(comboBox);
@@ -481,6 +482,7 @@ void MainWindow::openEditorFontSelectDialog()
 void MainWindow::openTerminalFontSelectDialog()
 {
     QDialog* dialog = new QDialog(this);
+    dialog->setWindowTitle(tr("Select Font"));
     QVBoxLayout* layout = new QVBoxLayout(dialog);
     QFontComboBox* comboBox = new QFontComboBox(dialog);
     layout->addWidget(comboBox);
@@ -612,6 +614,7 @@ void MainWindow::openScreen()
             case IDESettings::OpenScreenType::window:
             {
                 QDialog* dialog = new QDialog(this);
+                dialog->setWindowTitle(tr("Screen"));
                 connect(dialog, &QDialog::finished, this, [this]{
                     simHandeler->setScreenWidget(nullptr);
                     ui->menuScreenActions->menuAction()->setVisible(false);
@@ -644,6 +647,7 @@ void MainWindow::clearGraphicsScreen()
 void MainWindow::openScreenColorsPalette()
 {
     QDialog* dialog = new QDialog(this);
+    dialog->setWindowTitle(tr("Screen Colors Palette"));
     dialog->setAttribute(Qt::WA_DeleteOnClose);
     QHBoxLayout* layout = new QHBoxLayout(dialog);
     QScrollArea* scrollArea = new QScrollArea(dialog);
@@ -1207,6 +1211,7 @@ void MainWindow::openHelpPageGeneral()
     else
     {
         QDialog* dialog = new QDialog(this);
+        dialog->setWindowTitle(tr("Help"));
         HelpWidget* widget = new HelpWidget(dialog);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
         QLayout* layout = new QHBoxLayout(dialog);
@@ -1229,6 +1234,7 @@ void MainWindow::openHelpPageInst(const QString &instruction)
     else
     {
         QDialog* dialog = new QDialog(this);
+        dialog->setWindowTitle(tr("Help"));
         HelpWidget* widget = new HelpWidget(dialog);
         dialog->setAttribute(Qt::WA_DeleteOnClose);
         QLayout* layout = new QHBoxLayout(dialog);
