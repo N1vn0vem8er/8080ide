@@ -1,8 +1,9 @@
 <RCC>
-    <qresource prefix="/new/prefix1">
+    <qresource prefix="/icons">
         <file>icon.png</file>
         <file>build.png</file>
         <file>load.png</file>
         <file>sim.png</file>
+        <file>graphics-screen.svg</file>
     </qresource>
 </RCC>

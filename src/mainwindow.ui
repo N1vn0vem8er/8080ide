@@ -18,7 +18,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../resources/icons/icons.qrc">
-    <normaloff>:/new/prefix1/icon.png</normaloff>:/new/prefix1/icon.png</iconset>
+    <normaloff>:/icons/icon.png</normaloff>:/icons/icon.png</iconset>
   </property>
   <property name="locale">
    <locale language="English" country="UnitedStates"/>
@@ -251,7 +251,7 @@
                 </property>
                 <property name="icon">
                  <iconset resource="../resources/icons/icons.qrc">
-                  <normaloff>:/new/prefix1/build.png</normaloff>:/new/prefix1/build.png</iconset>
+                  <normaloff>:/icons/build.png</normaloff>:/icons/build.png</iconset>
                 </property>
                </widget>
               </item>
@@ -337,7 +337,7 @@
         </property>
         <property name="icon">
          <iconset resource="../resources/icons/icons.qrc">
-          <normaloff>:/new/prefix1/sim.png</normaloff>:/new/prefix1/sim.png</iconset>
+          <normaloff>:/icons/sim.png</normaloff>:/icons/sim.png</iconset>
         </property>
         <property name="flat">
          <bool>true</bool>
@@ -459,6 +459,10 @@
     <widget class="QMenu" name="menuScreenActions">
      <property name="title">
       <string>Screen</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../resources/icons/icons.qrc">
+       <normaloff>:/icons/graphics-screen.svg</normaloff>:/icons/graphics-screen.svg</iconset>
      </property>
      <addaction name="actionScreenSave_As"/>
      <addaction name="actionClearScreen"/>
@@ -703,7 +707,7 @@
   <action name="actionCompile">
    <property name="icon">
     <iconset resource="../resources/icons/icons.qrc">
-     <normaloff>:/new/prefix1/build.png</normaloff>:/new/prefix1/build.png</iconset>
+     <normaloff>:/icons/build.png</normaloff>:/icons/build.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Assemble</string>
@@ -715,7 +719,7 @@
   <action name="actionLoad">
    <property name="icon">
     <iconset resource="../resources/icons/icons.qrc">
-     <normaloff>:/new/prefix1/load.png</normaloff>:/new/prefix1/load.png</iconset>
+     <normaloff>:/icons/load.png</normaloff>:/icons/load.png</iconset>
    </property>
    <property name="text">
     <string>&amp;Load to memory</string>
@@ -873,7 +877,7 @@
   </action>
   <action name="actionShowSim">
    <property name="icon">
-    <iconset resource="../resources/icons/icons.qrc">
+    <iconset>
      <normaloff>:/new/prefix1/sim.png</normaloff>:/new/prefix1/sim.png</iconset>
    </property>
    <property name="text">
@@ -1392,6 +1396,10 @@
    </property>
   </action>
   <action name="actionScreen">
+   <property name="icon">
+    <iconset resource="../resources/icons/icons.qrc">
+     <normaloff>:/icons/graphics-screen.svg</normaloff>:/icons/graphics-screen.svg</iconset>
+   </property>
    <property name="text">
     <string>Screen</string>
    </property>
