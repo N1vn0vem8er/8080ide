@@ -74,6 +74,7 @@ void IDESettings::saveSettings()
     settings.setValue("openProjectLastLocation", IDESettings::openProjectLastLocation);
     settings.setValue("fileLastLocation", IDESettings::fileLastLocation);
     settings.setValue("openScreenType", static_cast<int>(IDESettings::openScreenType));
+    settings.setValue("simFullSpeed", IDESettings::simFullSpeed);
 
     settings.beginWriteArray("recentFiles");
     for(int i = 0; i<recentFiles.size(); i++)
@@ -154,6 +155,8 @@ void IDESettings::loadSettings()
 
     IDESettings::openScreenType = static_cast<IDESettings::OpenScreenType>(settings.value("openScreenType", static_cast<int>(IDESettings::OpenScreenType::window)).toInt());
 
+    IDESettings::simFullSpeed = settings.value("simFullSpeed", false).toBool();
+
     simMemorySize = settings.value("simMemorySize", 1024).toInt();
     simStartAddress = settings.value("simStartAddress", 0).toInt();
 
@@ -215,6 +218,7 @@ QString IDESettings::defaultTerminalFont;
 QString IDESettings::createProjectLastLocation;
 QString IDESettings::openProjectLastLocation;
 QString IDESettings::fileLastLocation;
+bool IDESettings::simFullSpeed;
 QStringList IDESettings::recentFiles;
 QStringList IDESettings::recentProjects;
 QStringList IDESettings::recentDirs;

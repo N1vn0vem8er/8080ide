@@ -58,6 +58,7 @@ MainWindow::MainWindow(QWidget *parent)
     projectInfoLabel = new QLabel(tr("No Project"), ui->statusbar);
     ui->statusbar->addPermanentWidget(projectInfoLabel);
     simHandeler->setInputLine(ui->simulatorInput);
+    ui->actionFull_speed->setChecked(IDESettings::simFullSpeed);
     simHandeler->setSimFullSpeed(ui->actionFull_speed->isChecked());
 
     connect(simHandeler, &SimHandeler::setProjectNameLabel, this, [&](const QString& name){projectInfoLabel->setText(name);});
@@ -188,7 +189,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionConfigureProject, &QAction::triggered, this, &MainWindow::openConfigureProject);
     connect(ui->actionClear_diagnostics, &QAction::triggered, ui->logsOutputWidget, &QPlainTextEdit::clear);
     connect(ui->actionScreen, &QAction::triggered, this, &MainWindow::openScreen);
-    connect(ui->actionFull_speed, &QAction::triggered, this, [&](bool val){simHandeler->setSimFullSpeed(val);});
+    connect(ui->actionFull_speed, &QAction::triggered, this, [&](bool val){simHandeler->setSimFullSpeed(val); IDESettings::simFullSpeed = val;});
     connect(ui->actionClearScreen, &QAction::triggered, this, &MainWindow::clearGraphicsScreen);
     connect(ui->actionScreen_Colors_Palette, &QAction::triggered, this, &MainWindow::openScreenColorsPalette);
     connect(ui->actionScreenSave_As, &QAction::triggered, this, &MainWindow::screenSaveAs);

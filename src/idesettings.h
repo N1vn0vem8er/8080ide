@@ -71,6 +71,7 @@ public:
     static QStringList recentProjects;
     static QStringList recentDirs;
     static OpenScreenType openScreenType;
+    static bool simFullSpeed;
     const QString settingsDirName = "ide8080";
     const QString settingsFileName = "idssettings";
     static const QString dataPath;
