@@ -401,10 +401,16 @@
      <property name="title">
       <string>Recent Files</string>
      </property>
+     <property name="icon">
+      <iconset theme="QIcon::ThemeIcon::DocumentOpenRecent"/>
+     </property>
     </widget>
     <widget class="QMenu" name="menuRecent_Folders">
      <property name="title">
       <string>Recent Folders</string>
+     </property>
+     <property name="icon">
+      <iconset theme="folder"/>
      </property>
     </widget>
     <addaction name="actionNowy"/>
@@ -508,6 +514,9 @@
     <widget class="QMenu" name="menuRecent_Projects">
      <property name="title">
       <string>Recent Projects</string>
+     </property>
+     <property name="icon">
+      <iconset theme="QIcon::ThemeIcon::DocumentOpenRecent"/>
      </property>
     </widget>
     <addaction name="actionnewProject"/>

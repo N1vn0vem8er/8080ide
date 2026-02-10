@@ -1863,6 +1863,7 @@ void MainWindow::refreshRecentProjects()
         ui->menuRecent_Projects->addSeparator();
         QAction* action = new QAction(ui->menuRecent_Projects);
         action->setText(tr("Clear Recent"));
+        action->setIcon(QIcon::fromTheme("user-trash"));
         connect(action, &QAction::triggered, this, [this]{clearRecentProjects();});
         ui->menuRecent_Projects->addAction(action);
     }
@@ -1891,6 +1892,7 @@ void MainWindow::refreshRecentDirs()
         ui->menuRecent_Folders->addSeparator();
         QAction* action = new QAction(ui->menuRecent_Folders);
         action->setText(tr("Clear Recent"));
+        action->setIcon(QIcon::fromTheme("user-trash"));
         connect(action, &QAction::triggered, this, [this]{clearRecentDirs();});
         ui->menuRecent_Folders->addAction(action);
     }
@@ -1919,6 +1921,7 @@ void MainWindow::refreshRecentFiles()
         ui->menuRecent_Files->addSeparator();
         QAction* action = new QAction(ui->menuRecent_Files);
         action->setText(tr("Clear Recent"));
+        action->setIcon(QIcon::fromTheme("user-trash"));
         connect(action, &QAction::triggered, this, [this]{clearRecentFiles();});
         ui->menuRecent_Files->addAction(action);
     }
