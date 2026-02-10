@@ -163,6 +163,8 @@
         <file>helpPages/ide/assembler_en.html</file>
         <file>helpPages/ide/graphics_screen_pl.html</file>
         <file>helpPages/ide/graphics_screen_en.html</file>
+        <file>helpPages/ide/random_number_generator_en.html</file>
+        <file>helpPages/ide/random_number_generator_pl.html</file>
     </qresource>
     <qresource prefix="/pseudoinst">
         <file>helpPages/pseudoinstructions/array_en.html</file>
