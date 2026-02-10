@@ -1,9 +1,9 @@
 <RCC>
     <qresource prefix="/icons">
-        <file>icon.png</file>
         <file>build.png</file>
         <file>load.png</file>
         <file>sim.png</file>
         <file>graphics-screen.svg</file>
+        <file>8080ide.svg</file>
     </qresource>
 </RCC>
