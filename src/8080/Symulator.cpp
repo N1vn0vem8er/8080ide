@@ -1,5 +1,6 @@
 #include "Symulator.h"
 #include <iostream>
+#include <random>
 
 unsigned char Symulator::mreg() const
 {
@@ -309,6 +310,8 @@ void Symulator::output(unsigned char deviceNumber)
         screenActionRead = false;
         screenAction = areg;
         break;
+    case 0x6:
+        generatorMax = areg;
 	default:
 		break;
 	}
@@ -336,6 +339,12 @@ void Symulator::input(unsigned char deviceNumber)
     case 0x5:
         areg = screenAction;
         break;
+    case 0x6:
+    {
+        std::mt19937 generator(rd());
+        std::uniform_int_distribution<unsigned char> random(0, generatorMax);
+        areg = random(generator);
+    }
 	default:
 		break;
 	}

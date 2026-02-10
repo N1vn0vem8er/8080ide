@@ -1,4 +1,5 @@
 #pragma once
+#include <random>
 class Symulator
 {
 private:
@@ -10,6 +11,8 @@ private:
     bool interruptsEnabled = false;
     unsigned char screenX, screenY, screenColor, screenAction;
     bool screenXRead, screenYRead, screenColorRead, screenActionRead;
+    unsigned char generatorMax {0xff};
+    std::random_device rd;
 	void executeInstruction(unsigned char inst);
 	void halt();
     unsigned char mreg() const;
