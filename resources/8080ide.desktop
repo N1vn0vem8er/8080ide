@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=8080 IDE
+Comment=Integrated development enviroment for 8080 microprocessor
+Exec=8080ide
+Type=Application
+Categories=Utility;TextEditor;Development;
+Keywords=text;txt;editor;programming;programmer;development;developer;code;8080;
+Icon=8080ide.svg

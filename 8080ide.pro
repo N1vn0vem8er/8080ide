@@ -169,8 +169,20 @@ CONFIG += embed_translations
 
 TARGET = 8080ide
 
-target.path = /usr/bin
-!isEmpty(target.path): INSTALLS += target
+isEmpty(PREFIX): unix:PREFIX = /usr/local
+isEmpty(PREFIX): win32:PREFIX = $$shadowed($$PWD)/deploy
+
+target.path = $$PREFIX/bin
+win32: target.path = $$PREFIX
+INSTALLS += target
+
+unix:!macx {
+    icon.path = $$PREFIX/share/icons/hicolor/scalable/apps
+    icon.files = resources/icons/8080ide.svg
+    desktop.path = $$PREFIX/share/applications
+    desktop.files = resources/8080ide.desktop
+    INSTALLS += icon desktop
+}
 
 RESOURCES += \
     resources/helpPages.qrc \
