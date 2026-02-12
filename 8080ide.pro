@@ -190,5 +190,7 @@ RESOURCES += \
     resources/icons/icons.qrc \
     resources/images/images.qrc
 
-LIBS += -lqtermwidget6
+unix:!macx{
+    LIBS += -lqtermwidget6
+}
 

@@ -2,7 +2,11 @@
 #define TERMINALWIDGET_H
 
 #include <QWidget>
+#ifndef Q_OS_WIN
 #include <qtermwidget6/qtermwidget.h>
+#else
+class QLabel;
+#endif
 
 namespace Ui {
 class TerminalWidget;
@@ -38,7 +42,11 @@ public slots:
 
 private:
     Ui::TerminalWidget *ui;
+#ifndef Q_OS_WIN
     QTermWidget* terminal {nullptr};
+#else
+    QLabel* unsupportedLabel {nullptr};
+#endif
 
 protected:
     void wheelEvent(QWheelEvent *event) override;
