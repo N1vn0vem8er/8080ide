@@ -1400,6 +1400,9 @@
    </property>
   </action>
   <action name="actionClear_diagnostics">
+   <property name="icon">
+    <iconset theme="user-trash"/>
+   </property>
    <property name="text">
     <string>Clear diagnostics</string>
    </property>
