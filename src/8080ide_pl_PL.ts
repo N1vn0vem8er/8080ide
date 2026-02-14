@@ -985,7 +985,7 @@ W binarnym: %3</translation>
     </message>
     <message>
         <location filename="mainwindow.ui" line="467"/>
-        <location filename="mainwindow.ui" line="1413"/>
+        <location filename="mainwindow.ui" line="1416"/>
         <location filename="mainwindow.cpp" line="618"/>
         <location filename="mainwindow.cpp" line="634"/>
         <source>Screen</source>
@@ -1673,28 +1673,28 @@ W binarnym: %3</translation>
         <translation>ostatnie</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1404"/>
+        <location filename="mainwindow.ui" line="1407"/>
         <source>Clear diagnostics</source>
         <translation>Wyczyść diagnostykę</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1421"/>
+        <location filename="mainwindow.ui" line="1424"/>
         <source>Full speed</source>
         <translation>Pełna Prędkość</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1429"/>
+        <location filename="mainwindow.ui" line="1432"/>
         <source>Clear</source>
         <translation>Wyczyść</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1434"/>
+        <location filename="mainwindow.ui" line="1437"/>
         <location filename="mainwindow.cpp" line="651"/>
         <source>Screen Colors Palette</source>
         <translation>Kolory Ekranu</translation>
     </message>
     <message>
-        <location filename="mainwindow.ui" line="1442"/>
+        <location filename="mainwindow.ui" line="1445"/>
         <location filename="mainwindow.cpp" line="667"/>
         <source>Save As</source>
         <translation>Zapisz Jako</translation>
@@ -2362,22 +2362,22 @@ W binarnym: %3</translation>
         <translation></translation>
     </message>
     <message>
-        <location filename="settingsPages/simsettingspage.ui" line="23"/>
+        <location filename="settingsPages/simsettingspage.ui" line="27"/>
         <source>Simulator</source>
         <translation>Symulator</translation>
     </message>
     <message>
-        <location filename="settingsPages/simsettingspage.ui" line="35"/>
+        <location filename="settingsPages/simsettingspage.ui" line="39"/>
         <source>Start from address</source>
         <translation>Zacznij od adresu</translation>
     </message>
     <message>
-        <location filename="settingsPages/simsettingspage.ui" line="49"/>
+        <location filename="settingsPages/simsettingspage.ui" line="53"/>
         <source>Memory ammount</source>
         <translation>Ilość pamięci</translation>
     </message>
     <message>
-        <location filename="settingsPages/simsettingspage.ui" line="89"/>
+        <location filename="settingsPages/simsettingspage.ui" line="93"/>
         <source>Apply</source>
         <translation>Zastosuj</translation>
     </message>
@@ -2857,6 +2857,11 @@ CTRL + W - Zamknij Plik</translation>
         <location filename="widgets/terminalwidget.ui" line="59"/>
         <source>SIGQUIT</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="widgets/terminalwidget.cpp" line="18"/>
+        <source>Terminal unsupported on Windows</source>
+        <translation>Terminal jest nie wspierany na Windows</translation>
     </message>
 </context>
 <context>
