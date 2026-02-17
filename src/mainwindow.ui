@@ -325,6 +325,9 @@
         <property name="text">
          <string>Terminal</string>
         </property>
+        <property name="icon">
+         <iconset theme="utilities-terminal"/>
+        </property>
         <property name="flat">
          <bool>true</bool>
         </property>
@@ -536,6 +539,9 @@
      <property name="title">
       <string>&amp;Converters</string>
      </property>
+     <property name="icon">
+      <iconset theme="convert"/>
+     </property>
      <addaction name="actionOpenHexConverter"/>
      <addaction name="actionOpenInstInMemoryCounter"/>
     </widget>
@@ -543,12 +549,18 @@
      <property name="title">
       <string>&amp;Generators</string>
      </property>
+     <property name="icon">
+      <iconset theme="password-generate"/>
+     </property>
      <addaction name="actionStringGenerator"/>
      <addaction name="actionTable_DATA"/>
     </widget>
     <widget class="QMenu" name="menuGit">
      <property name="title">
       <string>Git</string>
+     </property>
+     <property name="icon">
+      <iconset theme="git"/>
      </property>
      <addaction name="actionGitCommit"/>
      <addaction name="actionGitLog"/>
@@ -563,6 +575,9 @@
     <widget class="QMenu" name="menuTerminal">
      <property name="title">
       <string>Terminal</string>
+     </property>
+     <property name="icon">
+      <iconset theme="utilities-terminal"/>
      </property>
      <widget class="QMenu" name="menuSend_signal">
       <property name="title">
@@ -789,6 +804,9 @@
    </property>
   </action>
   <action name="actionComment">
+   <property name="icon">
+    <iconset theme="comment-symbolic"/>
+   </property>
    <property name="text">
     <string>&amp;Comment/Uncomment</string>
    </property>
@@ -896,6 +914,9 @@
   <action name="actionEnableSyntaxHighLighting">
    <property name="checkable">
     <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="draw-highlight"/>
    </property>
    <property name="text">
     <string>Syntax &amp;Highlighting</string>
@@ -1433,6 +1454,9 @@
    </property>
   </action>
   <action name="actionScreen_Colors_Palette">
+   <property name="icon">
+    <iconset theme="palette-symbolic"/>
+   </property>
    <property name="text">
     <string>Screen Colors Palette</string>
    </property>
