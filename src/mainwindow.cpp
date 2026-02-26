@@ -594,8 +594,8 @@ void MainWindow::openConfigureProject()
             config.setMemorySize(widget.getMemorySize());
             config.setStartAt(widget.getStartAt());
             config.setFilesInMemory(widget.getFilesInMemory());
-            config.toFile(simHandeler->getProjectConfigPath());
             config.setStackPointer(widget.getStackPointer());
+            config.toFile(simHandeler->getProjectConfigPath());
         }
     }
     else
