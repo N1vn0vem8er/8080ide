@@ -30,7 +30,7 @@ This project was created with:
 
 ## Setup
 
-Make sure you have Qt installed and configured. Clone this repo and run `install.sh` or :
+Make sure you have Qt installed and configured. Clone this repo and run:
 
 ```
 $ mkdir build

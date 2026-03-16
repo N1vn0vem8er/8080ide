@@ -169,7 +169,7 @@ CONFIG += embed_translations
 
 TARGET = 8080ide
 
-isEmpty(PREFIX): unix:PREFIX = /usr/local
+isEmpty(PREFIX): unix:PREFIX = /usr
 isEmpty(PREFIX): win32:PREFIX = $$shadowed($$PWD)/deploy
 
 target.path = $$PREFIX/bin
