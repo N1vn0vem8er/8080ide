@@ -20,7 +20,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>3</number>
      </property>
      <widget class="HelpIDEWidget" name="tab">
       <attribute name="title">
@@ -35,6 +35,11 @@
      <widget class="HelpPseudoInstWidget" name="tab_3">
       <attribute name="title">
        <string>Pseudo Instructions</string>
+      </attribute>
+     </widget>
+     <widget class="ExamplesWidget" name="tab_4">
+      <attribute name="title">
+       <string>Examples</string>
       </attribute>
      </widget>
     </widget>
@@ -58,6 +63,12 @@
    <class>HelpPseudoInstWidget</class>
    <extends>QWidget</extends>
    <header>widgets/help/helppseudoinstwidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>ExamplesWidget</class>
+   <extends>QWidget</extends>
+   <header>widgets/help/exampleswidget.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
