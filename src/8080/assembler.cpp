@@ -524,6 +524,8 @@ bool Assembler::assemblePInst(std::string currentinst, std::vector<unsigned char
                     assembledCode.push_back(+currentinst[i]);
                     assemblerAddress++;
                 }
+                assembledCode.push_back('\0');
+                assemblerAddress++;
                 return true;
             }
             else
