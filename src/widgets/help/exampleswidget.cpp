@@ -24,11 +24,11 @@ ExamplesWidget::~ExamplesWidget()
 
 void ExamplesWidget::openInstructionHelp(QString instruction) const
 {
-    QDirIterator iterator(":/ide/helpPages/examples", QDirIterator::Subdirectories);
+    QDirIterator iterator(":/examples/helpPages/examples", QDirIterator::Subdirectories);
     while(iterator.hasNext())
     {
         QString fileName = iterator.next().remove(' ');
-        if(fileName == ":/ide/helpPages/examples/" + instruction + language)
+        if(fileName == ":/examples/helpPages/examples/" + instruction.remove(' ') + language)
         {
             QFile file(fileName);
             if(file.open(QFile::ReadOnly))

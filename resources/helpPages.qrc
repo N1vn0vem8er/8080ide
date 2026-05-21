@@ -191,7 +191,7 @@
         <file>helpPages/pseudoinstructions/db_en.html</file>
     </qresource>
     <qresource prefix="/examples">
-        <file>helpPages/examples/helloword_en.html</file>
-        <file>helpPages/examples/helloword_pl.html</file>
+        <file>helpPages/examples/helloworld_en.html</file>
+        <file>helpPages/examples/helloworld_pl.html</file>
     </qresource>
 </RCC>

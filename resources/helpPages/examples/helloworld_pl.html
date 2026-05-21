@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    body {
+        background-color: #161719;
+        color: #ffffff;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    .op-lxi { color: #56b6c2; }
+    .op-mvi { color: #61afef; }
+    .op-mov { color: #abb2bf; }
+    .op-out { color: #c678dd; }
+    .op-inr { color: #d19a66; }
+    .op-dcr { color: #d19a66; }
+    .op-jnz { color: #e5c07b; }
+    .op-hlt { color: #c678dd; }
+
+    .label { color: #61afef; }
+    .string-def { color: #4b5263; }
+    .string-val { color: #98c379; }
+    .register { color: #abb2bf; }
+</style>
+</head>
+<body>
+
+<div><span class="op-lxi">LXI</span> <span class="register">H,HELLO</span></div>
+<div><span class="op-mvi">MVI</span> <span class="register">B,0A</span></div>
+<div><span class="label">LOOP:</span> <span class="op-mov">MOV</span> <span class="register">A,M</span></div>
+<div><span class="op-out">OUT</span> 01</div>
+<div><span class="op-inr">INR</span> <span class="register">L</span></div>
+<div><span class="op-dcr">DCR</span> <span class="register">B</span></div>
+<div><span class="op-jnz">JNZ</span> LOOP</div>
+<div><span class="op-hlt">HLT</span></div>
+<div><span class="label">HELLO:</span> <span class="string-def">STRING</span> <span class="string-val">"hello word"</span></div>
+
+</body>
+</html>

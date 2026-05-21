@@ -15,7 +15,11 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout" stretch="0,1">
    <item>
-    <widget class="QListView" name="listView"/>
+    <widget class="QListView" name="listView">
+     <property name="editTriggers">
+      <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QTextBrowser" name="textBrowser"/>
