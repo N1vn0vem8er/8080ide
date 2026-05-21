@@ -2,7 +2,7 @@
 <html>
 <head>
 <style>
-    body {
+    code {
         background-color: #161719;
         color: #ffffff;
         font-family: 'Courier New', Courier, monospace;
@@ -26,15 +26,21 @@
 </head>
 <body>
 
-<div><span class="op-lxi">LXI</span> <span class="register">H,HELLO</span></div>
-<div><span class="op-mvi">MVI</span> <span class="register">B,0A</span></div>
-<div><span class="label">LOOP:</span> <span class="op-mov">MOV</span> <span class="register">A,M</span></div>
-<div><span class="op-out">OUT</span> 01</div>
-<div><span class="op-inr">INR</span> <span class="register">L</span></div>
-<div><span class="op-dcr">DCR</span> <span class="register">B</span></div>
-<div><span class="op-jnz">JNZ</span> LOOP</div>
-<div><span class="op-hlt">HLT</span></div>
-<div><span class="label">HELLO:</span> <span class="string-def">STRING</span> <span class="string-val">"hello word"</span></div>
+<h1>Hello World Example</h1>
+
+<p>This is a "Hello World" example that demonstrates using a loop and a string macro. The memory address of the string is loaded into the H and L registers. Inside the loop, the data from that address is moved to the accumulator and displayed. The memory address is then incremented by one for the next iteration.</p>
+
+<div class="code">
+    <div><span class="op-lxi">LXI</span> <span class="register">H,HELLO</span></div>
+    <div><span class="op-mvi">MVI</span> <span class="register">B,0A</span></div>
+    <div><span class="label">LOOP:</span> <span class="op-mov">MOV</span> <span class="register">A,M</span></div>
+    <div><span class="op-out">OUT</span> 01</div>
+    <div><span class="op-inr">INR</span> <span class="register">L</span></div>
+    <div><span class="op-dcr">DCR</span> <span class="register">B</span></div>
+    <div><span class="op-jnz">JNZ</span> LOOP</div>
+    <div><span class="op-hlt">HLT</span></div>
+    <div><span class="label">HELLO:</span> <span class="string-def">STRING</span> <span class="string-val">"hello word"</span></div>
+</div>
 
 </body>
 </html>
