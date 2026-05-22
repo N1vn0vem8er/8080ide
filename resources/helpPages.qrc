@@ -193,5 +193,7 @@
     <qresource prefix="/examples">
         <file>helpPages/examples/helloworld_en.html</file>
         <file>helpPages/examples/helloworld_pl.html</file>
+        <file>helpPages/examples/helloworld2_en.html</file>
+        <file>helpPages/examples/helloworld2_pl.html</file>
     </qresource>
 </RCC>
