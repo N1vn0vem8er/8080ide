@@ -195,5 +195,7 @@
         <file>helpPages/examples/helloworld_pl.html</file>
         <file>helpPages/examples/helloworld2_en.html</file>
         <file>helpPages/examples/helloworld2_pl.html</file>
+        <file>helpPages/examples/drawline_pl.html</file>
+        <file>helpPages/examples/drawline_en.html</file>
     </qresource>
 </RCC>
