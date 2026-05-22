@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    code {
+        background-color: #161719;
+        color: #ffffff;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    .op-lxi { color: #90EE90; }
+    .op-mov { color: #ADD8E6; }
+    .op-out { color: #7f007f; }
+    .op-inx { color: #FFC0CB; }
+    .op-cpi { color: #ffff00; }
+    .op-jnz { color: #FFA500; }
+    .op-hlt { color: #7f007f; }
+
+    .label { color: #1E90FF; }
+    .string-def { color: #483D8B; }
+    .string-val { color: #E9967A; }
+    .register { color: #ffffff; }
+</style>
+</head>
+<body>
+
+
+<h1>Hello World 2 example</h1>
+
+<p>This is a "Hello World" example that demonstrates using a loop and a string macro. The memory address of the string is loaded into the H and L registers. Inside the loop, the data from that address is moved to
+the accumulator and displayed. The memory address is then incremented by one for the next iteration. Since the string macro adds a 0 to the end of the string, you can find the end of the string using the CPI instruction.</p>
+
+
+<div class="code">
+    <div><span class="op-lxi">LXI</span> <span class="register">H,HELLO</span></div>
+    <div><span class="label">LOOP:</span> <span class="op-mov">MOV</span> <span class="register">A,M</span></div>
+    <div><span class="op-out">OUT</span> 01</div>
+    <div><span class="op-inx">INX</span> <span class="register">H</span></div>
+    <div><span class="op-cpi">CPI</span> <span class="register">0</span></div>
+    <div><span class="op-jnz">JNZ</span> LOOP</div>
+    <div><span class="op-hlt">HLT</span></div>
+    <div><span class="label">HELLO:</span> <span class="string-def">STRING</span> <span class="string-val">"hello word"</span></div>
+</div>
+
+</body>
+</html>

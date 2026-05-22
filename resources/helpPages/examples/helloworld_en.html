@@ -9,26 +9,27 @@
         font-size: 14px;
         line-height: 1.5;
     }
-    .op-lxi { color: #56b6c2; }
-    .op-mvi { color: #61afef; }
-    .op-mov { color: #abb2bf; }
-    .op-out { color: #c678dd; }
-    .op-inr { color: #d19a66; }
-    .op-dcr { color: #d19a66; }
-    .op-jnz { color: #e5c07b; }
-    .op-hlt { color: #c678dd; }
+    .op-lxi { color: #90EE90; }
+    .op-mvi { color: #ADD8E6; }
+    .op-mov { color: #ADD8E6; }
+    .op-out { color: #7f007f; }
+    .op-inr { color: #ffff00; }
+    .op-dcr { color: #ffff00; }
+    .op-jnz { color: #FFA500; }
+    .op-hlt { color: #7f007f; }
 
-    .label { color: #61afef; }
-    .string-def { color: #4b5263; }
-    .string-val { color: #98c379; }
-    .register { color: #abb2bf; }
+    .label { color: #1E90FF; }
+    .string-def { color: #483D8B; }
+    .string-val { color: #E9967A; }
+    .register { color: #ffffff; }
 </style>
 </head>
 <body>
 
 <h1>Hello World Example</h1>
 
-<p>This is a "Hello World" example that demonstrates using a loop and a string macro. The memory address of the string is loaded into the H and L registers. Inside the loop, the data from that address is moved to the accumulator and displayed. The memory address is then incremented by one for the next iteration.</p>
+<p>This is a "Hello World" example that demonstrates using a loop and a string macro. The memory address of the string is loaded into the H and L registers. Inside the loop, the data from that address is moved to
+the accumulator and displayed. The memory address is then incremented by one for the next iteration.</p>
 
 <div class="code">
     <div><span class="op-lxi">LXI</span> <span class="register">H,HELLO</span></div>
