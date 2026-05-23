@@ -199,5 +199,7 @@
         <file>helpPages/examples/drawline_en.html</file>
         <file>helpPages/examples/drawcircle_en.html</file>
         <file>helpPages/examples/drawcircle_pl.html</file>
+        <file>helpPages/examples/images/drawcircle.png</file>
+        <file>helpPages/examples/images/drawline.png</file>
     </qresource>
 </RCC>

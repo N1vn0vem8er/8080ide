@@ -19,7 +19,7 @@ public:
 private:
     Ui::ExamplesWidget *ui;
     QString language;
-    QStringList helpPagesList = {"helloworld", "helloworld", "drawline", "drawcircle"};
+    QStringList helpPagesList = {"helloworld", "helloworld2", "drawline", "drawcircle"};
     QStringList translations = {tr("Hello World"), tr("Hello World 2"), tr("Draw line"), tr("Draw circle")};
 };
 
