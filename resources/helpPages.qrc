@@ -201,5 +201,8 @@
         <file>helpPages/examples/drawcircle_pl.html</file>
         <file>helpPages/examples/images/drawcircle.png</file>
         <file>helpPages/examples/images/drawline.png</file>
+        <file>helpPages/examples/drawfigure_pl.html</file>
+        <file>helpPages/examples/drawfigure_en.html</file>
+        <file>helpPages/examples/images/drawfigure.png</file>
     </qresource>
 </RCC>

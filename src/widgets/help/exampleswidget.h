@@ -19,8 +19,8 @@ public:
 private:
     Ui::ExamplesWidget *ui;
     QString language;
-    QStringList helpPagesList = {"helloworld", "helloworld2", "drawline", "drawcircle"};
-    QStringList translations = {tr("Hello World"), tr("Hello World 2"), tr("Draw line"), tr("Draw circle")};
+    QStringList helpPagesList = {"helloworld", "helloworld2", "drawline", "drawcircle", "drawfigure"};
+    QStringList translations = {tr("Hello World"), tr("Hello World 2"), tr("Draw line"), tr("Draw circle"), tr("Draw figure")};
 };
 
 #endif // EXAMPLESWIDGET_H

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    code {
+        background-color: #161719;
+        color: #ffffff;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    .op-mvi { color: #ADD8E6; }
+    .op-out { color: #7f007f; }
+    .op-hlt { color: #7f007f; }
+
+    .label { color: #1E90FF; }
+    .register { color: #ffffff; }
+</style>
+</head>
+<body>
+
+
+<h1>Przykład rysowania figury</h1>
+
+<p>To jest przykład rysowania figury na ekranie. Na początku ustawiane są miejsca wierzchołków figury, w tym przypadku 4 wierzchołki. Po ustawieniu wierzchołków rysowana jest figura kolorem 0x43. Oczywiście można
+ustawić mniej wierzchołków - wtedy wyjdzie trójkąt, lub więcej wierzchołków.</p>
+
+<div class="code">
+    <div><span class="op-mvi">MVI</span> A,0</div>
+    <div><span class="op-out">OUT</span> 05</div>
+    <div><span class="op-out">OUT</span> 02</div>
+    <div><span class="op-out">OUT</span> 03</div>
+    <div><span class="op-mvi">MVI</span> A,4</div>
+    <div><span class="op-out">OUT</span> 05</div>
+    <div><span class="op-mvi">MVI</span> A,BC</div>
+    <div><span class="op-out">OUT</span> 02</div>
+    <div><span class="op-mvi">MVI</span> A,0</div>
+    <div><span class="op-out">OUT</span> 03</div>
+    <div><span class="op-mvi">MVI</span> A,4</div>
+    <div><span class="op-out">OUT</span> 05</div>
+    <div><span class="op-mvi">MVI</span> A,BC</div>
+    <div><span class="op-out">OUT</span> 02</div>
+    <div><span class="op-out">OUT</span> 03</div>
+    <div><span class="op-mvi">MVI</span> A,4</div>
+    <div><span class="op-out">OUT</span> 05</div>
+    <div><span class="op-mvi">MVI</span> A,0</div>
+    <div><span class="op-out">OUT</span> 02</div>
+    <div><span class="op-mvi">MVI</span> A,BC</div>
+    <div><span class="op-out">OUT</span> 03</div>
+    <div><span class="op-mvi">MVI</span> A,4</div>
+    <div><span class="op-out">OUT</span> 05</div>
+    <div><span class="op-mvi">MVI</span> A,43</div>
+    <div><span class="op-out">OUT</span> 04</div>
+    <div><span class="op-hlt">HLT</span></div>
+</div>
+
+<p align="center">
+    <img src=":/examples/helpPages/examples/images/drawfigure.png"/>
+</p>
+
+</body>
+</html>
