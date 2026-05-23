@@ -20,22 +20,22 @@
 <body>
 
 
-<h1>Przykład rysowanie linii</h1>
+<h1>Przykład rysowanie koła</h1>
 
-<p>To jest przykład rysowania linii na ekranie graficznym. Na początku kursor jest ustawiany na pozycji 0,0 na ekranie. Następnie ustawiany jest na pozycji 0xBC,0xBC i na koniec rysowana jest linia pomiędzy
-tymi punktami z kolorem 0x43.</p>
+<p>To jest przykład rysowania koła na ekranie graficznym. Na początku kursor jest ustawiany na pozycji 0,0 na ekranie. Następnie koniec promienia koła ustawiany jest na pozycji 0xBC,0xBC i na koniec rysowane
+jest koło z kolorem 0x43.</p>
 
 
 <div class="code">
-    <div><span class="op-mvi">MVI</span> A,0</div>
+    <div><span class="op-mvi">MVI</span> A,20</div>
     <div><span class="op-out">OUT</span> 02</div>
     <div><span class="op-out">OUT</span> 03</div>
-    <div><span class="op-mvi">MVI</span> A,1</div>
+    <div><span class="op-mvi">MVI</span> A,06</div>
     <div><span class="op-out">OUT</span> 05</div>
     <div><span class="op-mvi">MVI</span> A,BC</div>
     <div><span class="op-out">OUT</span> 02</div>
     <div><span class="op-out">OUT</span> 03</div>
-    <div><span class="op-mvi">MVI</span> A,2</div>
+    <div><span class="op-mvi">MVI</span> A,07</div>
     <div><span class="op-out">OUT</span> 05</div>
     <div><span class="op-mvi">MVI</span> A,43</div>
     <div><span class="op-out">OUT</span> 04</div>
