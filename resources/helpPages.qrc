@@ -1,6 +1,5 @@
 <RCC>
-    <qresource prefix="/">
-    </qresource>
+    <qresource prefix="/"/>
     <qresource prefix="/instructions">
         <file>helpPages/daa_en.html</file>
         <file>helpPages/daa_pl.html</file>
@@ -208,5 +207,8 @@
         <file>helpPages/examples/fillscreenwithcolors_en.html</file>
         <file>helpPages/examples/fillscreenwithcolors_pl.html</file>
         <file>helpPages/examples/images/fillscreenwithcolors.png</file>
+        <file>helpPages/examples/fillscreen_en.html</file>
+        <file>helpPages/examples/fillscreen_pl.html</file>
+        <file>helpPages/examples/images/fillscreen.png</file>
     </qresource>
 </RCC>
