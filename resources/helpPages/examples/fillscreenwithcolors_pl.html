@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    code {
+        background-color: #161719;
+        color: #ffffff;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    .op-mvi { color: #ADD8E6; }
+    .op-mov { color: #ADD8E6; }
+    .op-out { color: #7f007f; }
+    .op-hlt { color: #7f007f; }
+    .op-dcr { color: #ffff00; }
+    .op-jnz { color: #FFA500; }
+
+    .label { color: #1E90FF; }
+    .register { color: #ffffff; }
+</style>
+</head>
+<body>
+
+
+<h1>Przykład wypełniania ekranu kolorami</h1>
+
+<p>Ten przykład pokazuje jak można wypełnić ekran wszystkimi dostępnymi kolorami. Ekran będzie kolorowany przy pomocy poziomych linii. Na początku kursor jest stawiany na pozycji 0,0xFF i zaznaczana jest ta pozycja jako
+początek linii. Następnie kursor jest przesuwany na pozycje 0xFF,0xFF i ustawiany jest koniec linii. Na końcu rysowana jest linia z kolorem czytanym z rejestru B. W każdej kolejnej iteracji wartość w B jest zmniejszana.
+W ten właśnie sposób linia jest rysowana na kolejnych pozycjach za każdym razem z innym kolorem.</p>
+
+<div class="code">
+    <div><span class="op-mvi">MVI</span> B,FF</div>
+    <div><span class="label">loop:</span> <span class="op-mov">MOV</span> A,B</div>
+    <div><span class="op-out">OUT</span> 03</div>
+    <div><span class="op-mvi">MVI</span> A,0</div>
+    <div><span class="op-out">OUT</span> 02</div>
+    <div><span class="op-mvi">MVI</span> A,1</div>
+    <div><span class="op-out">OUT</span> 05</div>
+    <div><span class="op-mov">MOV</span> A,B</div>
+    <div><span class="op-out">OUT</span> 03</div>
+    <div><span class="op-mvi">MVI</span> A,FF</div>
+    <div><span class="op-out">OUT</span> 02</div>
+    <div><span class="op-mvi">MVI</span> A,2</div>
+    <div><span class="op-out">OUT</span> 05</div>
+    <div><span class="op-mov">MOV</span> A,B</div>
+    <div><span class="op-out">OUT</span> 04</div>
+    <div><span class="op-dcr">DCR</span> B</div>
+    <div><span class="op-jnz">JNZ</span> loop</div>
+    <div><span class="op-hlt">HLT</span></div>
+</div>
+
+<p align="center">
+    <img src=":/examples/helpPages/examples/images/fillscreenwithcolors.png"/>
+</p>
+
+</body>
+</html>
