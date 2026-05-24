@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    code {
+        background-color: #161719;
+        color: #ffffff;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    .op-mvi { color: #ADD8E6; }
+    .op-mov { color: #ADD8E6; }
+    .op-out { color: #7f007f; }
+    .op-hlt { color: #7f007f; }
+    .op-dcr { color: #ffff00; }
+    .op-jnz { color: #FFA500; }
+
+    .label { color: #1E90FF; }
+    .register { color: #ffffff; }
+</style>
+</head>
+<body>
+
+
+<h1>Generate random number</h1>
+
+<p>This example shows how to generate a random number using a random number generator. Output 6 sets the maximum number that can be generated. Then the random number is read at input 6.</p>
+
+
+<div class="code">
+    <div><span class="op-mvi">MVI</span> A,5</div>
+    <div><span class="op-out">OUT</span> 05</div>
+    <div><span class="op-mvi">MVI</span> A,43</div>
+    <div><span class="op-out">OUT</span> 04</div>
+    <div><span class="op-hlt">HLT</span></div>
+</div>
+
+</body>
+</html>

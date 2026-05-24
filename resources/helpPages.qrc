@@ -210,5 +210,7 @@
         <file>helpPages/examples/fillscreen_en.html</file>
         <file>helpPages/examples/fillscreen_pl.html</file>
         <file>helpPages/examples/images/fillscreen.png</file>
+        <file>helpPages/examples/generaterandomnumber_en.html</file>
+        <file>helpPages/examples/generaterandomnumber_pl.html</file>
     </qresource>
 </RCC>
