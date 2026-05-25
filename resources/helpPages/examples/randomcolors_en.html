@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    code {
+        background-color: #161719;
+        color: #ffffff;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    .op-mvi { color: #ADD8E6; }
+    .op-mov { color: #ADD8E6; }
+    .op-out { color: #7f007f; }
+    .op-hlt { color: #7f007f; }
+    .op-dcr { color: #ffff00; }
+    .op-jnz { color: #FFA500; }
+
+    .label { color: #1E90FF; }
+    .register { color: #ffffff; }
+</style>
+</head>
+<body>
+
+
+<h1>Drawing random colors on screen</h1>
+
+<p>This example shows how to draw random colors on screen. Colors will be drawn in random places. Firstly, max for random number generator is set. Then in loop cursor in moved to random position and random colors in
+painted.</p>
+
+
+<div class="code">
+    <div><span class="op-mvi">MVI</span> A,FF</div>
+    <div><span class="op-out">OUT</span> 06</div>
+    <div><span class="label">loop:</span> <span class="op-out">IN</span> 06</div>
+    <div><span class="op-out">OUT</span> 02</div>
+    <div><span class="op-out">IN</span> 06</div>
+    <div><span class="op-out">OUT</span> 03</div>
+    <div><span class="op-out">IN</span> 06</div>
+    <div><span class="op-out">OUT</span> 04</div>
+    <div><span class="op-jnz">JNZ</span> loop</div>
+    <div><span class="op-hlt">HLT</span></div>
+</div>
+
+<p align="center">
+    <img src=":/examples/helpPages/examples/images/randomcolors.png"/>
+</p>
+
+</body>
+</html>

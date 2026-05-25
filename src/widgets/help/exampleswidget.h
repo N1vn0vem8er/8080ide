@@ -19,8 +19,9 @@ public:
 private:
     Ui::ExamplesWidget *ui;
     QString language;
-    QStringList helpPagesList = {"helloworld", "helloworld2", "drawline", "drawcircle", "drawfigure", "fillscreen", "fillscreenwithcolors", "generaterandomnumber"};
-    QStringList translations = {tr("Hello World"), tr("Hello World 2"), tr("Draw line"), tr("Draw circle"), tr("Draw figure"), tr("Fill screen"), tr("Fill screen with colors"), tr("Generate random number")};
+    QStringList helpPagesList = {"helloworld", "helloworld2", "drawline", "drawcircle", "drawfigure", "fillscreen", "fillscreenwithcolors", "generaterandomnumber", "randomcolors"};
+    QStringList translations = {tr("Hello World"), tr("Hello World 2"), tr("Draw line"), tr("Draw circle"), tr("Draw figure"), tr("Fill screen"), tr("Fill screen with colors"), tr("Generate random number"),
+                                tr("Draw random colors on screen")};
 };
 
 #endif // EXAMPLESWIDGET_H
