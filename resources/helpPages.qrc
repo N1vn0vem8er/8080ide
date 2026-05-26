@@ -215,5 +215,7 @@
         <file>helpPages/examples/randomcolors_en.html</file>
         <file>helpPages/examples/randomcolors_pl.html</file>
         <file>helpPages/examples/images/randomcolors.png</file>
+        <file>helpPages/examples/guessinggame_en.html</file>
+        <file>helpPages/examples/guessinggame_pl.html</file>
     </qresource>
 </RCC>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    code {
+        background-color: #161719;
+        color: #ffffff;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+    .op-lxi { color: #90EE90; }
+    .op-mov { color: #ADD8E6; }
+    .op-mvi { color: #ADD8E6; }
+    .op-out { color: #7f007f; }
+    .op-inx { color: #FFC0CB; }
+    .op-cpi { color: #ffff00; }
+    .op-sui { color: #ffff00; }
+    .op-cmp { color: #ffff00; }
+    .op-jnz { color: #FFA500; }
+    .op-hlt { color: #7f007f; }
+
+    .label { color: #1E90FF; }
+    .string-def { color: #483D8B; }
+    .string-val { color: #E9967A; }
+    .register { color: #ffffff; }
+</style>
+</head>
+<body>
+
+
+<h1>Gra zgadywanie</h1>
+
+<p>To jest przykład gry w której zgaduję się losowo wybraną cyfrę. Na początku ustawiana jest maksymalna wartość dla generatora liczb losowych i losowana jest liczba. Ta liczba zapisywana jest do rejestru B. Potem w pętli
+odczytywana jest wartość z klawiatury i odejmowane jest od tej wartośc 0x30 aby otrzymać faktyczną cyfrę. Następnie jesżeli wpisana cyfra jest taka sama jak wylosowana to wypisywana jest wiadomość o wygranej i program się
+kończy, jeżeli nie to jeszcze raz odczytywany jest znak z klawiatury.</p>
+
+
+<div class="code">
+    <div><span class="op-mvi">MVI</span> A,09</div>
+    <div><span class="op-out">OUT</span> 06</div>
+    <div><span class="op-out">IN</span> 06</div>
+    <div><span class="op-mov">MOV</span> B,A</div>
+    <div><span class="label">loop:</span> IN 00</div>
+    <div><span class="op-sui">SUI</span> 30</div>
+    <div><span class="op-cmp">CMP</span>B</div>
+    <div><span class="op-jnz">JNZ</span> loop</div>
+    <div><span class="op-lxi">LXI</span> H,wonmsg</div>
+    <div><span class="label">loopwonmsg:</span> <span class="op-mov">MOV</span> A,M</div>
+    <div><span class="op-out">OUT</span> 01</div>
+    <div><span class="op-inx">INX</span> H</div>
+    <div><span class="op-cpi">CPI</span> 00</div>
+    <div><span class="op-jnz">JNZ</span> loopwonmsg</div>
+    <div><span class="op-hlt">HLT</span></div>
+    <div><span class="label">wonmsg:</span> <span class="string-def">DB</span> 0A</div>
+    <div><span class="string-def">STRING</span> <span class="string-val">"You won"</span></div>
+</div>
+
+</body>
+</html>
