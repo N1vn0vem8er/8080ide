@@ -754,6 +754,7 @@ int Assembler::getInstLength(const std::string &inst)
                     break;
                 count++;
             }
+            count++;
             return count;
         }
         else
