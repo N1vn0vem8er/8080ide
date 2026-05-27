@@ -228,8 +228,7 @@ MainWindow::MainWindow(QWidget *parent)
     for(const auto& i : hintFiles)
     {
         QFile file(hintFilesPath + i);
-        file.open(QIODevice::ReadOnly);
-        if(file.isOpen())
+        if(file.open(QIODevice::ReadOnly))
         {
             CodeEditor::hoverHints[QFileInfo(i).baseName()] = file.readAll();
             file.close();
@@ -518,8 +517,7 @@ void MainWindow::openInReadOnly()
         if(!path.isEmpty())
         {
             QFile file(path);
-            file.open(QIODevice::ReadOnly);
-            if(file.isOpen())
+            if(file.open(QIODevice::ReadOnly))
             {
                 QFileInfo info(path);
                 const QString content = file.readAll();
@@ -1057,8 +1055,7 @@ void MainWindow::openFileInNewTab(const QString &path)
    if(!path.isEmpty())
    {
         QFile file(path);
-        file.open(QIODevice::ReadOnly);
-        if(file.isOpen())
+        if(file.open(QIODevice::ReadOnly))
         {
             QFileInfo info(path);
             const QString content = file.readAll();
@@ -1261,8 +1258,7 @@ void MainWindow::save(CodeEditor *editor)
     else
     {
         QFile file(editor->getFilePath());
-        file.open(QIODevice::WriteOnly);
-        if(file.isOpen())
+        if(file.open(QIODevice::WriteOnly))
         {
             file.write(editor->toPlainText().toLatin1());
             file.close();
@@ -1319,8 +1315,7 @@ void MainWindow::saveas()
     if(!path.isEmpty())
     {
         QFile file(path);
-        file.open(QIODevice::WriteOnly);
-        if(file.isOpen())
+        if(file.open(QIODevice::WriteOnly))
         {
             file.write(getPlainTextFromTab(ui->tabWidget->currentIndex()).toUtf8());
             file.close();
@@ -1584,8 +1579,7 @@ void MainWindow::openPasteFromFile()
             for(const auto& path : paths)
             {
                 QFile file(path);
-                file.open(QIODevice::ReadOnly);
-                if(file.isOpen())
+                if(file.open(QIODevice::ReadOnly))
                 {
                     widget->appendPlainText(file.readAll());
                     file.close();
@@ -1678,8 +1672,7 @@ void MainWindow::reloadCurrent()
             openSaveWarningDialog(widget);
         }
         QFile file(widget->getFilePath());
-        file.open(QIODevice::ReadOnly);
-        if(file.isOpen())
+        if(file.open(QIODevice::ReadOnly))
         {
             widget->setPlainText(file.readAll());
             file.close();
@@ -1700,8 +1693,7 @@ void MainWindow::reloadAll()
                 openSaveWarningDialog(editor);
             }
             QFile file(editor->getFilePath());
-            file.open(QIODevice::ReadOnly);
-            if(file.isOpen())
+            if(file.open(QIODevice::ReadOnly))
             {
                 editor->setPlainText(file.readAll());
                 file.close();

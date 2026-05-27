@@ -106,6 +106,13 @@
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_4">
                 <item>
+                 <widget class="QCheckBox" name="keyboardInputCheckBox">
+                  <property name="text">
+                   <string>Keyboard input</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
                  <widget class="QLineEdit" name="simulatorInput">
                   <property name="maxLength">
                    <number>1</number>
