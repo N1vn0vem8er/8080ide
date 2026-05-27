@@ -1012,6 +1012,13 @@ void MainWindow::closeEvent(QCloseEvent *event)
     QMainWindow::closeEvent(event);
 }
 
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if(ui->keyboardInputCheckBox->isChecked() && !event->text().isEmpty())
+        simHandeler->input(event->text());
+    QMainWindow::keyPressEvent(event);
+}
+
 void MainWindow::showSearch()
 {
     if(ui->searchWidget->isVisible())
