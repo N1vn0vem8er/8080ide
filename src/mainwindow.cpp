@@ -193,6 +193,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionClearScreen, &QAction::triggered, this, &MainWindow::clearGraphicsScreen);
     connect(ui->actionScreen_Colors_Palette, &QAction::triggered, this, &MainWindow::openScreenColorsPalette);
     connect(ui->actionScreenSave_As, &QAction::triggered, this, &MainWindow::screenSaveAs);
+    connect(ui->actionShow_registers, &QAction::triggered, this, &MainWindow::onShowRegisters);
 
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
@@ -669,6 +670,22 @@ void MainWindow::screenSaveAs()
             IDESettings::fileLastLocation = QFileInfo(path).dir().absolutePath();
         }
     }
+}
+
+void MainWindow::onShowRegisters(bool val)
+{
+    ui->editRegistersButton->setVisible(val);
+    ui->Lreg->setVisible(val);
+    ui->Hreg->setVisible(val);
+    ui->Areg->setVisible(val);
+    ui->Breg->setVisible(val);
+    ui->Creg->setVisible(val);
+    ui->Dreg->setVisible(val);
+    ui->Ereg->setVisible(val);
+    ui->Mreg->setVisible(val);
+    ui->PC->setVisible(val);
+    ui->SPreg->setVisible(val);
+    ui->Flagsreg->setVisible(val);
 }
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)

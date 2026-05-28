@@ -164,6 +164,7 @@ private slots:
     void clearGraphicsScreen();
     void openScreenColorsPalette();
     void screenSaveAs();
+    void onShowRegisters(bool val);
 
 protected:
     void dropEvent(QDropEvent* event) override;
