@@ -195,6 +195,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionScreenSave_As, &QAction::triggered, this, &MainWindow::screenSaveAs);
     connect(ui->actionShow_registers, &QAction::triggered, this, &MainWindow::onShowRegisters);
 
+    ui->actionShow_registers->setChecked(IDESettings::showRegisters);
+    onShowRegisters(IDESettings::showRegisters);
+
     ui->gitBranchButton->setVisible(false);
     newFileLoaded = false;
     ui->treeView->open(QDir::homePath());
@@ -686,6 +689,7 @@ void MainWindow::onShowRegisters(bool val)
     ui->PC->setVisible(val);
     ui->SPreg->setVisible(val);
     ui->Flagsreg->setVisible(val);
+    IDESettings::showRegisters = val;
 }
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)

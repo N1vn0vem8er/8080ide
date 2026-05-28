@@ -75,6 +75,7 @@ void IDESettings::saveSettings()
     settings.setValue("fileLastLocation", IDESettings::fileLastLocation);
     settings.setValue("openScreenType", static_cast<int>(IDESettings::openScreenType));
     settings.setValue("simFullSpeed", IDESettings::simFullSpeed);
+    settings.setValue("showRegisters", IDESettings::showRegisters);
 
     settings.beginWriteArray("recentFiles");
     for(int i = 0; i<recentFiles.size(); i++)
@@ -150,6 +151,7 @@ void IDESettings::loadSettings()
     IDESettings::createProjectLastLocation = settings.value("createProjectLastLocation", QDir::homePath()).toString();
     IDESettings::openProjectLastLocation = settings.value("openProjectLastLocation", QDir::homePath()).toString();
     IDESettings::fileLastLocation = settings.value("fileLastLocation", QDir::homePath()).toString();
+    IDESettings::showRegisters = settings.value("showRegisters", true).toBool();
 
     IDESettings::lineHighlightColor = QColor::fromRgb(settings.value("lineHighlightColor.r", 255).toInt(), settings.value("lineHighlightColor.g", 255).toInt(), settings.value("lineHighlightColor.b", 0).toInt());
 
@@ -218,6 +220,7 @@ QString IDESettings::defaultTerminalFont;
 QString IDESettings::createProjectLastLocation;
 QString IDESettings::openProjectLastLocation;
 QString IDESettings::fileLastLocation;
+bool IDESettings::showRegisters;
 bool IDESettings::simFullSpeed;
 QStringList IDESettings::recentFiles;
 QStringList IDESettings::recentProjects;
