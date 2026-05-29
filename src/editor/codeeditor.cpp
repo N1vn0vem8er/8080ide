@@ -43,7 +43,7 @@ CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
                 "XRI" << "CPI" << "LXI" << "SHLD" << "LHLD" << "POP" <<
                 "PUSH" << "SPHL" << "XCHG"<< "NOP" << "HLT" << "OUT" <<
                 "IN" << "DI" << "EI" << "INX"<<"DAD"<<"DCX" << "DAA" <<
-                "STRING" << "ARRAY" << "EQU" << "SET" <<
+                "STRING" << "ARRAY" << "EQU" << "SET" << "XTHL" <<
                 "ENDIF" << "IF" << "ENDM" << "MACRO" << "DW" << "DB";
     wordsList << instructions;
     compliter = new QCompleter(wordsList, this);

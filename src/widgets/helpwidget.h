@@ -28,7 +28,7 @@ private:
                                           "RRC" , "RAR" , "CMA" , "CMC" , "ADD" , "SUB" ,
                                           "ADC" , "SBB" , "ANA" , "XRA" , "ORA" , "CMP" ,
                                           "ADI" , "SUI" , "ANI" , "ORI" , "ACI" , "SBI" ,
-                                          "XRI" , "CPI" , "LXI" , "SHLD" , "LHLD" , "POP" , "PUSH" , "SPHL" , "XCHG",
+                                          "XRI" , "CPI" , "LXI" , "SHLD" , "LHLD" , "POP" , "PUSH" , "SPHL" , "XCHG", "XTHL",
                                           "NOP" , "HLT" , "OUT" , "IN" , "DI" , "EI" ,
                                           "INX","DAD","DCX"};
     const QStringList helpPseudoInstructions = {"STRING", "ARRAY", "ENDIF", "ENDM", "END", "IF", "MACRO", "SET", "EQU", "DB", "DW"};
