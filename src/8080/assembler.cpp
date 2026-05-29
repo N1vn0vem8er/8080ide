@@ -31,7 +31,7 @@ std::vector<std::string> Assembler::toVector(const std::string &code)
         if(readingComment)
             continue;
 
-        if(ch == '\'')
+        if(ch == '\'' || ch == '\"')
             inCharLiteral = !inCharLiteral;
 
         if(!inCharLiteral)
