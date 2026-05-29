@@ -4,6 +4,7 @@
 #include <unordered_map>
 #include <vector>
 #include <string>
+#include <set>
 
 class Assembler
 {
@@ -31,11 +32,8 @@ public:
     void resetLineAddrInsts();
 
 private:
-    //labels <name,value>
-    std::vector<std::pair<std::string, std::string>> labels;
+    std::unordered_map<std::string, std::string> labels;
     std::vector<std::string> errorMessages;
-    //macros <name,code>
-    std::vector<std::pair<std::string, std::vector<std::string>>> macros;
     unsigned short assemblerAddress = 0;
     std::vector<int> breakpoints;
     std::vector<std::pair<unsigned short, int>> codeBreakpoints;
@@ -61,9 +59,15 @@ private:
     unsigned char* toUCharArray(const std::vector<unsigned char>& vector);
     bool isNumber(const std::string& val) const;
     int compCodeSize = 0;
+    std::unordered_map<std::string, std::vector<std::string>> macros{
+        {"PRINTCHAR", {"OUT 01\n"}},
+        {"INCHAR", {"IN 00\n"}},
+        {"GCLEAR", {"PUSH PSW\n", "MVI A,00\n", "OUT 05\n", "POP PSW\n"}},
+        {"GDRAW", {"OUT 05\n"}},
+    };
 
 
-    std::unordered_map<std::string, unsigned char> noargs = { {"NOP", 0x0} , {"RLC", 0x07}, {"RAL", 0x17}, {"DAA",0x27}, {"STC", 0x37},
+    std::unordered_map<std::string_view, unsigned char> noargs{ {"NOP", 0x0} , {"RLC", 0x07}, {"RAL", 0x17}, {"DAA",0x27}, {"STC", 0x37},
                                                              {"RRC",0x0f}, {"RAR", 0x1f},{"CMA",0x2f},{"CMC",0x3f},{"HLT",0x76},{"RNZ",0xc0},{"RNC",0xd0},{"RPO",0xe0},{"RP",0xf0},{"RZ",0xc8},
                                                              {"RC",0xd8},{"RPE",0xe8},{"RM",0xf8},{"XTHL",0xe3},{"PCHL",0xe9},{"SPHL",0xf9},{"XCHG",0xeb},{"DI",0xf3},{"EI",0xfb},{"STAX B",0x02},
                                                              {"STAX D",0x12},{"INX B",0x03},{"INX D",0x13},{"INX H",0x23},{"INX SP",0x33},{"INR B",0x04},{"INR D",0x14},{"INR H",0x24},{"INR M",0x34},
@@ -87,14 +91,36 @@ private:
                                                              {"MOV L,M",0x6e},{"MOV L,A",0x6f},{"MOV M,B",0x70},{"MOV M,C",0x71},{"MOV M,D",0x72},{"MOV M,E",0x73},{"MOV M,H",0x74},{"MOV M,L",0x75},
                                                              {"MOV M,A",0x77},{"MOV A,B",0x78},{"MOV A,C",0x79},{"MOV A,D",0x7a},{"MOV A,E",0x7b},{"MOV A,H",0x7c},{"MOV A,L",0x7d},{"MOV A,M",0x7e},
                                                              {"MOV A,A",0x7f}, {"RET",0xc9} };
-    std::unordered_map<std::string, unsigned char> oneargs = { {"MVI A,", 0x3e} , {"MVI B,", 0x06},{"MVI D,",0x16},{"MVI H,",0x26},
+    std::unordered_map<std::string_view, unsigned char> oneargs{ {"MVI A,", 0x3e} , {"MVI B,", 0x06},{"MVI D,",0x16},{"MVI H,",0x26},
                                                               {"MVI M,",0x36},{"MVI C,",0x0e},{"MVI E,",0x1e},{"MVI L,",0x2e},{"OUT ",0xd3},{"IN ",0xdb},{"ADI ",0xc6},{"SUI ",0xd6},{"ANI ",0xe6},{"ORI ",0xf6},
                                                               {"ACI ",0xce},{"SBI ",0xde},{"XRI ",0xee},{"CPI ",0xfe} };
-    std::unordered_map<std::string, unsigned char> twoargs = { {"LXI B,",0x01},{"LXI D,",0x11},{"LXI H,",0x21},{"LXI SP,",0x31},{"SHLD ",0x22},{"STA ",0x32},
+    std::unordered_map<std::string_view, unsigned char> twoargs{ {"LXI B,",0x01},{"LXI D,",0x11},{"LXI H,",0x21},{"LXI SP,",0x31},{"SHLD ",0x22},{"STA ",0x32},
                                                               {"LHLD ",0x2a}, {"LDA ", 0x3a} };
-    std::unordered_map<std::string, unsigned char> callsandjmps = { {"CNZ ",0xc4},{"CNC ",0xd4},
+    std::unordered_map<std::string_view, unsigned char> callsandjmps{ {"CNZ ",0xc4},{"CNC ",0xd4},
                                                                    {"CPO ",0xe4},{"CP ",0xf4},{"CZ ",0xcc},{"CC ",0xdc},{"CPE ",0xec},{"CM ",0xfc},{"CALL ",0xcd}, {"JNZ ",0xc2},{"JNC ",0xd2},{"JPO ",0xe2},{"JP ",0xf2},
-                                                                   {"JMP ",0xc3},{"JZ ",0xca}, {"JC ",0xda},{"JPE ",0xea},{"JM ",0xfa}  };
+                                                                   {"JMP ",0xc3},{"JZ ",0xca}, {"JC ",0xda},{"JPE ",0xea},{"JM ",0xfa} };
+
+    std::set<std::string_view> noargsMnemonics{
+        "NOP", "RLC", "RAL", "DAA", "STC", "RRC", "RAR", "CMA", "CMC", "HLT",
+        "RNZ", "RNC", "RPO", "RP", "RZ", "RC", "RPE", "RM", "XTHL", "PCHL",
+        "SPHL", "XCHG", "DI", "EI", "STAX", "INX", "INR", "DCR", "DAD", "LDAX",
+        "DCX", "ADD", "ADC", "SUB", "SBB", "ANA", "XRA", "ORA", "CMP", "POP",
+        "PUSH", "RST", "MOV", "RET"
+    };
+
+    std::set<std::string_view> oneargsMnemonics{
+        "MVI", "OUT", "IN", "ADI", "SUI", "ANI", "ORI", "ACI", "SBI", "XRI",
+        "CPI"
+    };
+
+    std::set<std::string_view> twoargsMnemonics{
+        "LXI", "SHLD", "STA", "LHLD", "LDA"
+    };
+
+    std::set<std::string_view> callsandjmpsMnemonics{
+        "CNZ", "CNC", "CPO", "CP", "CZ", "CC", "CPE", "CM", "CALL", "JNZ",
+        "JNC", "JPO", "JP", "JMP", "JZ", "JC", "JPE", "JM"
+    };
 };
 
 #endif // ASSEMBLER_H

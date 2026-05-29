@@ -127,7 +127,7 @@ std::vector<std::string> Assembler::decodeIfsAndMacros(const std::vector<std::st
         }
         if(contains(line, "ENDM"))
         {
-            macros.push_back(std::make_pair(macroName, macro));
+            macros[macroName] = macro;
             macroName.clear();
             macro.clear();
             readingMacro = false;
@@ -182,7 +182,7 @@ std::vector<std::string> Assembler::decodeLabels(const std::vector<std::string>&
         if(contains(line, ": ", position) || contains(line, ":\t", position))
         {
             std::string label = line.substr(0, position);
-            labels.push_back(std::make_pair(label, toHex(address)));
+            labels[label] = toHex(address);
             preprocesedCode.push_back(line.substr(position+2, line.length()));
             address += getInstLength(line);
             continue;
@@ -661,42 +661,18 @@ bool Assembler::contains(const std::string& string, const std::string& val, unsi
 
 void Assembler::addEQUConstToLabels(const std::string &name, const std::string &val)
 {
-    bool found = false;
-    for(const auto& i : labels)
-    {
-        if(i.first == name)
-        {
-            found = true;
-            return;
-        }
-    }
-    if(!found)
-        labels.push_back(std::make_pair(name, val));
+    labels[name] = val;
 }
 
 void Assembler::addSETConstToLabels(const std::string &name, const std::string &val)
 {
-    bool found = false;
-    for(auto& i : labels)
-    {
-        if(i.first == name)
-        {
-            i.second = val;
-            found = true;
-            return;
-        }
-    }
-    if(!found)
-        labels.push_back(std::make_pair(name, val));
+    labels[name] = val;
 }
 
 std::string Assembler::getValueFormLabel(const std::string& label) const
 {
-    for(const auto& i : labels)
-    {
-        if(i.first == label)
-            return i.second;
-    }
+    if(labels.contains(label))
+        return labels.at(label);
     return "";
 }
 
@@ -714,35 +690,29 @@ std::string Assembler::toHex(unsigned short val) const
 
 int Assembler::getInstLength(const std::string &inst)
 {
-    for(const auto& i : noargs)
-    {
-        if(inst.find(i.first) != std::string::npos)
-        {
-            return 1;
-        }
-    }
-    for(const auto& i : oneargs)
-    {
-        if(inst.find(i.first) != std::string::npos)
-        {
-            return 2;
-        }
-    }
-    for(const auto& i : twoargs)
-    {
-        if(inst.find(i.first) != std::string::npos)
-        {
-            return 3;
-        }
-    }
-    for(const auto& i : callsandjmps)
-    {
-        if(inst.find(i.first) != std::string::npos)
-        {
-            return 3;
-        }
-    }
-    if(contains(inst, "STRING"))
+    std::string cleanInst = inst;
+    unsigned long pos = cleanInst.find(':');
+    if(pos != std::string::npos)
+        cleanInst = cleanInst.substr(pos + 1);
+    std::stringstream ss(cleanInst);
+    std::string mnemonic;
+    ss >> mnemonic;
+
+    if(mnemonic.empty())
+        return -1;
+    if(noargsMnemonics.contains(mnemonic))
+        return 1;
+    if(oneargsMnemonics.contains(mnemonic))
+        return 2;
+    if(twoargsMnemonics.contains(mnemonic))
+        return 3;
+    if(callsandjmpsMnemonics.contains(mnemonic))
+        return 3;
+    if(mnemonic == "DW")
+        return 2;
+    if(mnemonic == "DB")
+        return 1;
+    if(mnemonic == "STRING")
     {
         unsigned long position = 0;
         if(contains(inst, "\"", position))
@@ -763,7 +733,7 @@ int Assembler::getInstLength(const std::string &inst)
         }
     }
     unsigned long position = 0;
-    if(contains(inst , "ARRAY", position))
+    if(mnemonic == "ARRAY")
     {
         int count = 0;
         for(auto i = position + 6; i < inst.length(); i++)
@@ -774,14 +744,7 @@ int Assembler::getInstLength(const std::string &inst)
         }
         return count;
     }
-    if(contains(inst, "DW"))
-    {
-        return 2;
-    }
-    if(contains(inst, "DB"))
-    {
-        return 1;
-    }
+
     return -1;
 }
 
