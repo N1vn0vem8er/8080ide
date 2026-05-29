@@ -9,26 +9,47 @@ Assembler::Assembler()
 
 std::vector<std::string> Assembler::toVector(const std::string &code)
 {
-    std::vector<std::string> preprocesedCode;
-    std::string line = "";
+    std::vector<std::string> preprocessedCode;
+    preprocessedCode.reserve(code.length() / 10);
+    std::string line;
+    line.reserve(10);
     bool readingComment = false;
-    for(unsigned long i=0;i<code.length();i++)
+    bool inCharLiteral = false;
+
+    for(unsigned long i = 0; i < code.length(); i++)
     {
-        if((code[i] == ';' && i > 1 && code[i-1] != '\'') || (code[i] == '/' && code[i+1] == '/'))
-        {
-            readingComment = true;
-        }
-        if(code[i] == '\n')
+        char ch = code[i];
+        if (ch == '\n')
         {
             readingComment = false;
-            preprocesedCode.push_back(line + '\n');
+            inCharLiteral = false;
+            preprocessedCode.push_back(std::move(line) + '\n');
             line.clear();
             continue;
         }
-        if(!readingComment)
-            line+=code[i];
+
+        if(readingComment)
+            continue;
+
+        if(ch == '\'')
+            inCharLiteral = !inCharLiteral;
+
+        if(!inCharLiteral)
+        {
+            if(ch == ';' || (ch == '/' && i + 1 < code.length() && code[i + 1] == '/'))
+            {
+                readingComment = true;
+                continue;
+            }
+        }
+        line += ch;
     }
-    return preprocesedCode;
+    if(!line.empty() || readingComment)
+    {
+        preprocessedCode.push_back(std::move(line) + '\n');
+    }
+
+    return preprocessedCode;
 }
 
 std::vector<std::string> Assembler::decodeConstants(const std::vector<std::string>& code)
