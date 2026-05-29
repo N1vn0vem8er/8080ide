@@ -30,6 +30,7 @@ public:
     void clearBreakpoints();
     std::vector<std::pair<unsigned short, int> > getLineAddrInsts() const;
     void resetLineAddrInsts();
+    void addMacros();
 
 private:
     std::unordered_map<std::string, std::string> labels;
@@ -59,12 +60,7 @@ private:
     unsigned char* toUCharArray(const std::vector<unsigned char>& vector);
     bool isNumber(const std::string& val) const;
     int compCodeSize = 0;
-    std::unordered_map<std::string, std::vector<std::string>> macros{
-        {"PRINTCHAR", {"OUT 01\n"}},
-        {"INCHAR", {"IN 00\n"}},
-        {"GCLEAR", {"PUSH PSW\n", "MVI A,00\n", "OUT 05\n", "POP PSW\n"}},
-        {"GDRAW", {"OUT 05\n"}},
-    };
+    std::unordered_map<std::string, std::vector<std::string>> macros;
 
 
     std::unordered_map<std::string_view, unsigned char> noargs{ {"NOP", 0x0} , {"RLC", 0x07}, {"RAL", 0x17}, {"DAA",0x27}, {"STC", 0x37},

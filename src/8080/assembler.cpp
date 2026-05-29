@@ -427,6 +427,14 @@ void Assembler::resetLineAddrInsts()
     lineAddrInsts.clear();
 }
 
+void Assembler::addMacros()
+{
+    macros["PRINTCHAR"] = {"OUT 01\n"};
+    macros["INCHAR"] = {"IN 00\n"};
+    macros["GCLEAR"] = {"PUSH PSW\n", "MVI A,00\n", "OUT 05\n", "POP PSW\n"};
+    macros["GDRAW"] = {"OUT 05\n"};
+}
+
 bool Assembler::assembleNoArgs(std::string currentinst, std::vector<unsigned char>& assembledCode)
 {
     if(contains(currentinst, "ADI"))
