@@ -23,8 +23,11 @@ std::vector<std::string> Assembler::toVector(const std::string &code)
         {
             readingComment = false;
             inCharLiteral = false;
-            preprocessedCode.push_back(std::move(line) + '\n');
-            line.clear();
+            if(!line.empty())
+            {
+                preprocessedCode.push_back(std::move(line) + '\n');
+                line.clear();
+            }
             continue;
         }
 
@@ -55,17 +58,14 @@ std::vector<std::string> Assembler::toVector(const std::string &code)
 std::vector<std::string> Assembler::decodeConstants(const std::vector<std::string>& code)
 {
     std::vector<std::string> preprocesedCode;
+    preprocesedCode.reserve(code.size());
     int lineNumber = 0;
-    for(std::string line : code)
+    for(const std::string& line : code)
     {
-        if(line.length() > 2 && line[0] == '/' && line[1] == '/')
-        {
-            continue;
-        }
         unsigned long position = 0;
         if(contains(line, "EQU ", position))
         {
-            std::string operand = line.substr(position+4, line.length());
+            std::string operand = line.substr(position + 4);
             if(!contains(line, ":", position))
             {
                 errorMessages.push_back("No label for EQU at line: "+std::to_string(lineNumber + 1) + "\n");
@@ -77,7 +77,7 @@ std::vector<std::string> Assembler::decodeConstants(const std::vector<std::strin
         }
         if(contains(line, "SET ", position))
         {
-            std::string operand = line.substr(position+4, line.length());
+            std::string operand = line.substr(position + 4);
             if(!contains(line, ":", position))
             {
                 errorMessages.push_back("No label for SET at line: "+std::to_string(lineNumber + 1) + "\n");
@@ -105,7 +105,6 @@ std::vector<std::string> Assembler::decodeIfsAndMacros(const std::vector<std::st
     for(const auto& line : code)
     {
         unsigned long position = 0;
-        if(line[0] == '\n') continue;
         if(contains(line, "IF ", position) || contains(line, "IF\t", position))
         {
             readingIf = true;
