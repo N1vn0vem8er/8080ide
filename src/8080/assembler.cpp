@@ -1,4 +1,5 @@
 #include "assembler.h"
+#include <format>
 #include <sstream>
 #include <algorithm>
 
@@ -95,76 +96,75 @@ std::vector<std::string> Assembler::decodeConstants(const std::vector<std::strin
 
 std::vector<std::string> Assembler::decodeIfsAndMacros(const std::vector<std::string>& code)
 {
-    std::vector<std::string> preprocesedCode;
+    std::vector<std::string> preprocessedCode;
+    preprocessedCode.reserve(code.size());
     bool readingIf = false;
     bool writingIf = true;
     bool readingMacro = false;
-    std::vector<std::string> macro;
+    std::vector<std::string> currentMacro;
     std::string macroName = "";
-    int lineNumber = 0;
-    for(const auto& line : code)
+
+    for(unsigned long lineIdx = 0; lineIdx < code.size(); lineIdx++)
     {
+        const auto& line = code[lineIdx];
         unsigned long position = 0;
         if(contains(line, "IF ", position) || contains(line, "IF\t", position))
         {
             readingIf = true;
-            std::string label = line.substr(position+3, line.length() - 1);
-            label = label.substr(0, label.length() - 1);
+            std::string label = line.substr(position + 3);
+            if(!label.empty())
+                label.pop_back();
+
             std::string val = getValueFormLabel(label);
             if(val.empty())
             {
-                errorMessages.push_back("Constant from if not found at line: " + std::to_string(lineNumber + 1) + "\n");
+                errorMessages.push_back(std::format("Constant from if not found at line: %1\n", lineIdx + 1));
                 writingIf = false;
                 continue;
             }
+
             if(fromHex(val) == 0)
             {
                 writingIf = false;
-                if(std::find(breakpoints.begin(), breakpoints.end(), lineNumber) != breakpoints.end())
-                {
-                    breakpoints.erase(std::remove(breakpoints.begin(), breakpoints.end(), lineNumber), breakpoints.end());
-                }
+                breakpoints.erase(std::remove(breakpoints.begin(), breakpoints.end(), static_cast<int>(lineIdx)), breakpoints.end());
             }
             else
                 writingIf = true;
             continue;
         }
+
         if(readingIf && contains(line, "ENDIF"))
         {
             readingIf = false;
             writingIf = true;
             continue;
         }
+
         if(contains(line, " MACRO") || contains(line, "\tMACRO"))
         {
             if(!contains(line, ":", position))
-            {
-                errorMessages.push_back("No label for macro at line: "+std::to_string(lineNumber + 1) + "\n");
-            }
+                errorMessages.push_back(std::format("No label for macro at line: %1\n", lineIdx + 1));
             macroName = line.substr(0, position);
             readingMacro = true;
             continue;
         }
+
         if(contains(line, "ENDM"))
         {
-            macros[macroName] = macro;
+            macros[macroName] = currentMacro;
             macroName.clear();
-            macro.clear();
+            currentMacro.clear();
             readingMacro = false;
             continue;
         }
         if(readingMacro)
-        {
-            macro.push_back(line);
-        }
+            currentMacro.push_back(line);
+
         if(!readingMacro && writingIf)
-        {
-            preprocesedCode.push_back(line);
-        }
-        lineNumber++;
+            preprocessedCode.push_back(line);
     }
 
-    return preprocesedCode;
+    return preprocessedCode;
 }
 
 std::vector<std::string> Assembler::applyMacros(const std::vector<std::string> &code)
