@@ -48,7 +48,7 @@ private:
     bool contains(const std::string &string, const std::string &val, unsigned long& position) const;
     void addEQUConstToLabels(const std::string& name, const std::string& val);
     void addSETConstToLabels(const std::string& name, const std::string& val);
-    std::string getValueFormLabel(const std::string& label) const;
+    std::string getValueForLabel(const std::string& label) const;
     unsigned long fromHex(const std::string& hex) const;
     std::string toHex(unsigned short val) const;
     int getInstLength(const std::string& inst);

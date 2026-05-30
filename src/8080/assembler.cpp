@@ -115,7 +115,7 @@ std::vector<std::string> Assembler::decodeIfsAndMacros(const std::vector<std::st
             if(!label.empty())
                 label.pop_back();
 
-            std::string val = getValueFormLabel(label);
+            std::string val = getValueForLabel(label);
             if(val.empty())
             {
                 errorMessages.push_back(std::format("Constant from if not found at line: %1\n", lineIdx + 1));
@@ -243,7 +243,7 @@ std::vector<std::string> Assembler::decodeOperands(const std::vector<std::string
             }
             else
             {
-                operand = getValueFormLabel(operand);
+                operand = getValueForLabel(operand);
             }
             if(operand.empty())
             {
@@ -277,7 +277,7 @@ std::vector<std::string> Assembler::decodeOperands(const std::vector<std::string
             }
             else
             {
-                operand = getValueFormLabel(operand);
+                operand = getValueForLabel(operand);
             }
             if(operand.empty())
             {
@@ -311,7 +311,7 @@ std::vector<std::string> Assembler::decodeOperands(const std::vector<std::string
             }
             else
             {
-                operand = getValueFormLabel(operand);
+                operand = getValueForLabel(operand);
             }
             if(operand.empty())
             {
@@ -594,7 +594,7 @@ std::string Assembler::mathOperand(const std::string &operand)
             }
             else
             {
-                std::string labelValue = getValueFormLabel(tmp);
+                std::string labelValue = getValueForLabel(tmp);
                 if(labelValue.empty())
                 {
                     errorMessages.push_back("Label not found");
@@ -616,7 +616,7 @@ std::string Assembler::mathOperand(const std::string &operand)
     }
     else
     {
-        std::string labelValue = getValueFormLabel(tmp);
+        std::string labelValue = getValueForLabel(tmp);
         if(labelValue.empty())
         {
             errorMessages.push_back("Label not found");
@@ -697,7 +697,7 @@ void Assembler::addSETConstToLabels(const std::string &name, const std::string &
     labels[name] = val;
 }
 
-std::string Assembler::getValueFormLabel(const std::string& label) const
+std::string Assembler::getValueForLabel(const std::string& label) const
 {
     if(labels.contains(label))
         return labels.at(label);
