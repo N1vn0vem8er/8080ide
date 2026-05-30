@@ -69,7 +69,7 @@ std::vector<std::string> Assembler::decodeConstants(const std::vector<std::strin
             std::string operand = line.substr(position + 4);
             if(!contains(line, ":", position))
             {
-                errorMessages.push_back("No label for EQU at line: "+std::to_string(lineNumber + 1) + "\n");
+                errorMessages.push_back(std::format("No label for EQU at line: {}\n", lineNumber + 1));
                 continue;
             }
             std::string label = line.substr(0, position);
@@ -81,7 +81,7 @@ std::vector<std::string> Assembler::decodeConstants(const std::vector<std::strin
             std::string operand = line.substr(position + 4);
             if(!contains(line, ":", position))
             {
-                errorMessages.push_back("No label for SET at line: "+std::to_string(lineNumber + 1) + "\n");
+                errorMessages.push_back(std::format("No label for SET at line: {}\n", lineNumber + 1));
                 continue;
             }
             std::string label = line.substr(0, position);
@@ -118,7 +118,7 @@ std::vector<std::string> Assembler::decodeIfsAndMacros(const std::vector<std::st
             std::string val = getValueForLabel(label);
             if(val.empty())
             {
-                errorMessages.push_back(std::format("Constant from if not found at line: %1\n", lineIdx + 1));
+                errorMessages.push_back(std::format("Constant from if not found at line: {}\n", lineIdx + 1));
                 writingIf = false;
                 continue;
             }
@@ -143,7 +143,7 @@ std::vector<std::string> Assembler::decodeIfsAndMacros(const std::vector<std::st
         if(contains(line, " MACRO") || contains(line, "\tMACRO"))
         {
             if(!contains(line, ":", position))
-                errorMessages.push_back(std::format("No label for macro at line: %1\n", lineIdx + 1));
+                errorMessages.push_back(std::format("No label for macro at line: {}\n", lineIdx + 1));
             macroName = line.substr(0, position);
             readingMacro = true;
             continue;
@@ -247,7 +247,7 @@ std::vector<std::string> Assembler::decodeOperands(const std::vector<std::string
             }
             if(operand.empty())
             {
-                errorMessages.push_back("Label not found or operand is incorrect at line: "+std::to_string(lineNumber + 1) + "\n");
+                errorMessages.push_back(std::format("Label not found or operand is incorrect at line: {}\n", lineNumber + 1));
             }
             std::string finished = line;
             finished = finished.substr(position, length);
@@ -281,7 +281,7 @@ std::vector<std::string> Assembler::decodeOperands(const std::vector<std::string
             }
             if(operand.empty())
             {
-                errorMessages.push_back("Label not found or operand is incorrect at line: "+std::to_string(lineNumber + 1) + "\n");
+                errorMessages.push_back(std::format("Label not found or operand is incorrect at line: {}\n", lineNumber + 1));
             }
             std::string finished = line;
             finished = finished.substr(position, length);
@@ -315,7 +315,7 @@ std::vector<std::string> Assembler::decodeOperands(const std::vector<std::string
             }
             if(operand.empty())
             {
-                errorMessages.push_back("Label not found or operand is incorrect at line: "+std::to_string(lineNumber + 1) + "\n");
+                errorMessages.push_back(std::format("Label not found or operand is incorrect at line: {}\n", lineNumber + 1));
             }
             std::string finished = line;
             finished = finished.substr(position, length);
@@ -366,7 +366,7 @@ unsigned char *Assembler::assemble(const std::vector<std::string>& code)
         else
         {
             if(line.length() != 1 && line[0] != '\n')
-                errorMessages.push_back("Unknown instruction " + line + " at line: "+std::to_string(lineNumber + 1) + "\n");
+                errorMessages.push_back(std::format("Unknown instruction {} at line: {}\n", line, lineNumber + 1));
         }
 
 
