@@ -185,6 +185,18 @@ std::vector<std::string> Assembler::applyMacros(const std::vector<std::string> &
                 break;
             }
         }
+        for(const auto& j : buildInMacros)
+        {
+            if(contains(line, j.first))
+            {
+                for(const auto& l : j.second)
+                {
+                    preprocesedCode.push_back(l);
+                }
+                found = true;
+                break;
+            }
+        }
         if(!found)
             preprocesedCode.push_back(line);
     }
@@ -445,14 +457,6 @@ std::vector<std::pair<unsigned short, int> > Assembler::getLineAddrInsts() const
 void Assembler::resetLineAddrInsts()
 {
     lineAddrInsts.clear();
-}
-
-void Assembler::addMacros()
-{
-    macros["PRINTCHAR"] = {"OUT 01\n"};
-    macros["INCHAR"] = {"IN 00\n"};
-    macros["GCLEAR"] = {"PUSH PSW\n", "MVI A,00\n", "OUT 05\n", "POP PSW\n"};
-    macros["GDRAW"] = {"OUT 05\n"};
 }
 
 bool Assembler::assembleNoArgs(std::string currentinst, std::vector<unsigned char>& assembledCode)

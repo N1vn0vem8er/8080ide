@@ -45,7 +45,6 @@ unsigned char* ProjectManager::compile()
     unsigned char* memory = new unsigned char[Ssettings::memSize];
     memset(memory, 0, Ssettings::memSize);
     Assembler a;
-    a.addMacros();
     std::vector<std::vector<std::string>> preComp;
     int index = 0;
     for(const auto &p : compileQueue)
