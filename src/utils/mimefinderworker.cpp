@@ -34,8 +34,7 @@ QList<FileSystemTree::MimeApplication> MimeFinderWorker::find(const QString &pat
     for(const auto& desktopFile : dirs)
     {
         QFile file(path + "/" + desktopFile);
-        file.open(QIODevice::ReadOnly);
-        if(file.isOpen())
+        if(file.open(QIODevice::ReadOnly))
         {
             const QString text = file.readAll();
             QRegularExpressionMatchIterator i = QRegularExpression(R"(MimeType=(.*))").globalMatch(text);

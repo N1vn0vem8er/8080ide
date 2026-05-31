@@ -30,8 +30,7 @@ void HelpInstructionsWidget::openInstructionHelp(QString instruction) const
         if(fileName == ":/instructions/helpPages/" + instruction + language)
         {
             QFile file(fileName);
-            file.open(QFile::ReadOnly);
-            if(file.isOpen())
+            if(file.open(QFile::ReadOnly))
             {
                 ui->instDescriptionLabel->setText(file.readAll());
                 file.close();

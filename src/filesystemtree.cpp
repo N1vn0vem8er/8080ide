@@ -200,8 +200,7 @@ void FileSystemTree::createFile() const
                 if(!name.isEmpty())
                 {
                     QFile file(path + '/' + name);
-                    file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate);
-                    if(file.isOpen())
+                    if(file.open(QIODevice::WriteOnly | QIODevice::Text | QIODevice::Truncate))
                     {
                         file.close();
                     }

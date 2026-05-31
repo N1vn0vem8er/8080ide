@@ -60,8 +60,7 @@ QStringList LabelFinder::readLabelsFromFile(const QString path) const
 {
     QStringList labels;
     QFile file(path);
-    file.open(QIODevice::ReadOnly);
-    if(file.isOpen())
+    if(file.open(QIODevice::ReadOnly))
     {
         QTextStream fileStream(&file);
         while(!fileStream.atEnd())

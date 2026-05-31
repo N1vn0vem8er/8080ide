@@ -29,8 +29,7 @@ void HelpPseudoInstWidget::openInstructionHelp(QString instruction) const
         if(fileName == ":/pseudoinst/helpPages/pseudoinstructions/" + instruction + language)
         {
             QFile file(fileName);
-            file.open(QFile::ReadOnly);
-            if(file.isOpen())
+            if(file.open(QFile::ReadOnly))
             {
                 ui->textBrowser->setText(file.readAll());
                 file.close();

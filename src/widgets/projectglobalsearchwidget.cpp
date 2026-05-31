@@ -57,8 +57,7 @@ void ProjectGlobalSearchWidget::replaceSelected()
         for(const QModelIndex& i : std::as_const(selected))
         {
             QFile file(pathsLocations[i.row()].first);
-            file.open(QIODevice::ReadWrite);
-            if(file.isOpen())
+            if(file.open(QIODevice::ReadWrite))
             {
                 QString content = file.readAll();
                 content.replace(pathsLocations[i.row()].second, ui->searchLine->text().length(), ui->replaceLine->text());
@@ -76,8 +75,7 @@ void ProjectGlobalSearchWidget::replaceAll()
     for(auto i : found.asKeyValueRange())
     {
         QFile file(i.first);
-        file.open(QIODevice::ReadWrite);
-        if(file.isOpen())
+        if(file.open(QIODevice::ReadWrite))
         {
             QString content = file.readAll();
             content.replace(ui->searchLine->text(), ui->replaceLine->text());
@@ -92,8 +90,7 @@ QList<int> ProjectGlobalSearchWidget::findInFile(const QString &path, const QStr
 {
     QList<int> found;
     QFile file(path);
-    file.open(QIODevice::ReadOnly);
-    if(file.isOpen())
+    if(file.open(QIODevice::ReadOnly))
     {
         QString content = file.readAll();
         int index = content.indexOf(text);

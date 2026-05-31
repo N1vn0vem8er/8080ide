@@ -29,8 +29,7 @@ void HelpIDEWidget::openInstructionHelp(QString instruction) const
         if(fileName == ":/ide/helpPages/ide/" + instruction + language)
         {
             QFile file(fileName);
-            file.open(QFile::ReadOnly);
-            if(file.isOpen())
+            if(file.open(QFile::ReadOnly))
             {
                 ui->textBrowser->setText(file.readAll());
                 file.close();

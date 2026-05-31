@@ -432,8 +432,7 @@ void CodeEditor::dropEvent(QDropEvent *event)
     if(mimeData->hasUrls())
     {
         QFile file(mimeData->urls().at(0).path());
-        file.open(QIODevice::ReadOnly);
-        if(file.isOpen())
+        if(file.open(QIODevice::ReadOnly))
         {
             appendPlainText(file.readAll());
             file.close();
@@ -778,8 +777,7 @@ void CodeEditor::setFilePath(QString path)
         codeFile = true;
     }
     QFile file(path);
-    file.open(QIODevice::ReadOnly);
-    if(file.isOpen())
+    if(file.open(QIODevice::ReadOnly))
     {
         orginalContent = file.readAll();
     }
