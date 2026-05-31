@@ -1,4 +1,5 @@
 #include "codeeditor.h"
+#include "8080/assembler.h"
 #include "LineNumberArea.h"
 #include "labelfinder.h"
 #include "qabstractitemview.h"
@@ -46,6 +47,10 @@ CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
                 "STRING" << "ARRAY" << "EQU" << "SET" << "XTHL" <<
                 "ENDIF" << "IF" << "ENDM" << "MACRO" << "DW" << "DB";
     wordsList << instructions;
+    for(const auto& macro : Assembler::buildInMacros)
+    {
+        wordsList.append(QString::fromStdString(macro.first));
+    }
     compliter = new QCompleter(wordsList, this);
     compliter->setWidget(this);
     compliter->setCompletionMode(QCompleter::PopupCompletion);
