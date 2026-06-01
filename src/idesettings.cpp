@@ -76,6 +76,7 @@ void IDESettings::saveSettings()
     settings.setValue("openScreenType", static_cast<int>(IDESettings::openScreenType));
     settings.setValue("simFullSpeed", IDESettings::simFullSpeed);
     settings.setValue("showRegisters", IDESettings::showRegisters);
+    settings.setValue("useBuildinMacros", IDESettings::useBuildinMacros);
 
     settings.beginWriteArray("recentFiles");
     for(int i = 0; i<recentFiles.size(); i++)
@@ -152,6 +153,7 @@ void IDESettings::loadSettings()
     IDESettings::openProjectLastLocation = settings.value("openProjectLastLocation", QDir::homePath()).toString();
     IDESettings::fileLastLocation = settings.value("fileLastLocation", QDir::homePath()).toString();
     IDESettings::showRegisters = settings.value("showRegisters", true).toBool();
+    IDESettings::useBuildinMacros = settings.value("useBuildinMacros", true).toBool();
 
     IDESettings::lineHighlightColor = QColor::fromRgb(settings.value("lineHighlightColor.r", 255).toInt(), settings.value("lineHighlightColor.g", 255).toInt(), settings.value("lineHighlightColor.b", 0).toInt());
 
@@ -222,6 +224,7 @@ QString IDESettings::openProjectLastLocation;
 QString IDESettings::fileLastLocation;
 bool IDESettings::showRegisters;
 bool IDESettings::simFullSpeed;
+bool IDESettings::useBuildinMacros;
 QStringList IDESettings::recentFiles;
 QStringList IDESettings::recentProjects;
 QStringList IDESettings::recentDirs;

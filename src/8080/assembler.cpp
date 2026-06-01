@@ -185,16 +185,19 @@ std::vector<std::string> Assembler::applyMacros(const std::vector<std::string> &
                 break;
             }
         }
-        for(const auto& j : buildInMacros)
+        if(useBuildinMacros)
         {
-            if(contains(line, j.first))
+            for(const auto& j : buildInMacros)
             {
-                for(const auto& l : j.second)
+                if(contains(line, j.first))
                 {
-                    preprocesedCode.push_back(l);
+                    for(const auto& l : j.second)
+                    {
+                        preprocesedCode.push_back(l);
+                    }
+                    found = true;
+                    break;
                 }
-                found = true;
-                break;
             }
         }
         if(!found)
@@ -678,6 +681,16 @@ bool Assembler::isNumber(const std::string &val) const
             return false;
     }
     return true;
+}
+
+bool Assembler::getUseBuildinMacros() const
+{
+    return useBuildinMacros;
+}
+
+void Assembler::setUseBuildinMacros(bool newUseBuildinMacros)
+{
+    useBuildinMacros = newUseBuildinMacros;
 }
 
 bool Assembler::contains(const std::string& string, const std::string& val) const

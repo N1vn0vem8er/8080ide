@@ -194,6 +194,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionScreen_Colors_Palette, &QAction::triggered, this, &MainWindow::openScreenColorsPalette);
     connect(ui->actionScreenSave_As, &QAction::triggered, this, &MainWindow::screenSaveAs);
     connect(ui->actionShow_registers, &QAction::triggered, this, &MainWindow::onShowRegisters);
+    connect(ui->actionUse_buildin_macros, &QAction::triggered, this, [](bool val){IDESettings::useBuildinMacros = val;});
+
+    ui->actionUse_buildin_macros->setChecked(IDESettings::useBuildinMacros);
 
     ui->actionShow_registers->setChecked(IDESettings::showRegisters);
     onShowRegisters(IDESettings::showRegisters);

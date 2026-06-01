@@ -30,6 +30,8 @@ public:
     void clearBreakpoints();
     std::vector<std::pair<unsigned short, int> > getLineAddrInsts() const;
     void resetLineAddrInsts();
+    bool getUseBuildinMacros() const;
+    void setUseBuildinMacros(bool newUseBuildinMacros);
 
 private:
     std::unordered_map<std::string, std::string> labels;
@@ -60,6 +62,7 @@ private:
     bool isNumber(const std::string& val) const;
     int compCodeSize = 0;
     std::unordered_map<std::string, std::vector<std::string>> macros;
+    bool useBuildinMacros {true};
 
 
     static inline std::unordered_map<std::string_view, unsigned char> noargs{ {"NOP", 0x0} , {"RLC", 0x07}, {"RAL", 0x17}, {"DAA",0x27}, {"STC", 0x37},

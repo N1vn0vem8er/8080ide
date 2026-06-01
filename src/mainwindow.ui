@@ -492,6 +492,7 @@
     <addaction name="actionScreen"/>
     <addaction name="menuScreenActions"/>
     <addaction name="actionFull_speed"/>
+    <addaction name="actionUse_buildin_macros"/>
    </widget>
    <widget class="QMenu" name="menuWidok">
     <property name="title">
@@ -1484,6 +1485,14 @@
    </property>
    <property name="text">
     <string>Show registers</string>
+   </property>
+  </action>
+  <action name="actionUse_buildin_macros">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Use buildin macros</string>
    </property>
   </action>
  </widget>

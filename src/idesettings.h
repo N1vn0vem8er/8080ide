@@ -73,6 +73,7 @@ public:
     static OpenScreenType openScreenType;
     static bool showRegisters;
     static bool simFullSpeed;
+    static bool useBuildinMacros;
     const QString settingsDirName = "ide8080";
     const QString settingsFileName = "idssettings";
     static const QString dataPath;

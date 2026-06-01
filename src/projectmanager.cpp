@@ -1,5 +1,6 @@
 #include "projectmanager.h"
 #include "8080/assembler.h"
+#include "idesettings.h"
 #include "qdir.h"
 #include "qfileinfo.h"
 #include "ssettings.h"
@@ -45,6 +46,7 @@ unsigned char* ProjectManager::compile()
     unsigned char* memory = new unsigned char[Ssettings::memSize];
     memset(memory, 0, Ssettings::memSize);
     Assembler a;
+    a.setUseBuildinMacros(IDESettings::useBuildinMacros);
     std::vector<std::vector<std::string>> preComp;
     int index = 0;
     for(const auto &p : compileQueue)

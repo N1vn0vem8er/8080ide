@@ -298,6 +298,7 @@ void SimHandeler::compile()
     if(!projectLoaded)
     {
         Assembler a;
+        a.setUseBuildinMacros(IDESettings::useBuildinMacros);
         std::vector<std::string> pre = a.toVector(code);
         a.setBreakpoints(breakpoints);
         pre = a.decodeConstants(pre);
