@@ -234,6 +234,18 @@ bool SyntaxHighLighter::getSpellcheckEnabled() const
     return spellcheckEnabled;
 }
 
+void SyntaxHighLighter::setBuildinMacros(const QStringList &list)
+{
+    for(const auto& i : list)
+    {
+        QString pattern = QString("^%1").arg(i);
+        HighlightingRule rule;
+        rule.pattern = QRegularExpression(pattern);
+        rule.format = spellCheckFormat;
+        spellCheckRules.append(rule);
+    }
+}
+
 void SyntaxHighLighter::updateLabels(const QStringList &resoults)
 {
     bool labelsChanged = false;

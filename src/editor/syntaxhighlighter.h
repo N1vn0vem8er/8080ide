@@ -13,6 +13,7 @@ public:
     SyntaxHighLighter(QTextDocument *parent = 0);
     void setSpellChackEnabled(bool val);
     bool getSpellcheckEnabled() const;
+    void setBuildinMacros(const QStringList& list);;
 
 protected:
     void highlightBlock(const QString &text) override;

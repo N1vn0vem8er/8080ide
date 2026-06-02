@@ -49,10 +49,13 @@ CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
     wordsList << instructions;
     if(IDESettings::useBuildinMacros)
     {
+        QStringList macros;
         for(const auto& macro : Assembler::buildInMacros)
         {
-            wordsList.append(QString::fromStdString(macro.first));
+            macros.append(QString::fromStdString(macro.first));
         }
+        wordsList << macros;
+        highLighter->setBuildinMacros(macros);
     }
     compliter = new QCompleter(wordsList, this);
     compliter->setWidget(this);
