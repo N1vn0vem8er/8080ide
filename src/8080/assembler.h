@@ -125,7 +125,13 @@ public:
         {"PRINTCHAR", {"OUT 01\n"}},
         {"INCHAR", {"IN 00\n"}},
         {"GCLEAR", {"PUSH PSW\n", "MVI A,00\n", "OUT 05\n", "POP PSW\n"}},
-        {"GDRAW", {"OUT 05\n"}},
+        {"GDRAW", {"OUT 04\n"}},
+        {"GX", {"OUT 02\n"}},
+        {"GY", {"OUT 03\n"}},
+        {"GSETX", {"OUT 02\n"}},
+        {"GSETY", {"OUT 03\n"}},
+        {"GLINE1", {"PUSH PSW\n", "MVI A,01\n", "OUT 05\n", "POP PSW\n"}},
+        {"GLINE2", {"PUSH PSW\n", "MVI A,02\n", "OUT 05\n", "POP PSW\n"}},
     };
 };
 
