@@ -165,6 +165,8 @@ private slots:
     void openScreenColorsPalette();
     void screenSaveAs();
     void onShowRegisters(bool val);
+    void simStarted();
+    void simStopped();
 
 protected:
     void dropEvent(QDropEvent* event) override;

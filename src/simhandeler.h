@@ -101,6 +101,8 @@ signals:
                           const QString &pc, const QString &cf, const QString &sf, const QString &pf, const QString &zf, const QString &acf, const QString &sp);
     void setProjectNameLabel(const QString& name);
     void nextStep();
+    void simStarted();
+    void simStopped();
 
 public slots:
     void printText(const QString& text);

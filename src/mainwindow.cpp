@@ -195,6 +195,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionScreenSave_As, &QAction::triggered, this, &MainWindow::screenSaveAs);
     connect(ui->actionShow_registers, &QAction::triggered, this, &MainWindow::onShowRegisters);
     connect(ui->actionUse_buildin_macros, &QAction::triggered, this, [](bool val){IDESettings::useBuildinMacros = val;});
+    connect(simHandeler, &SimHandeler::simStarted, this, &MainWindow::simStarted);
+    connect(simHandeler, &SimHandeler::simStopped, this, &MainWindow::simStopped);
 
     ui->actionUse_buildin_macros->setChecked(IDESettings::useBuildinMacros);
 
@@ -207,6 +209,7 @@ MainWindow::MainWindow(QWidget *parent)
     simHandeler->setLogsOutput(ui->logsOutputWidget);
 
     ui->registersEditor->setVisible(false);
+    ui->runningLabel->setVisible(false);
 
     ui->splitter->setStretchFactor(1, 3);
     ui->splitter_2->setStretchFactor(0, 2);
@@ -693,6 +696,16 @@ void MainWindow::onShowRegisters(bool val)
     ui->SPreg->setVisible(val);
     ui->Flagsreg->setVisible(val);
     IDESettings::showRegisters = val;
+}
+
+void MainWindow::simStarted()
+{
+    ui->runningLabel->setVisible(true);
+}
+
+void MainWindow::simStopped()
+{
+    ui->runningLabel->setVisible(false);
 }
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)

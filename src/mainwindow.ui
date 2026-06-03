@@ -238,6 +238,13 @@
                <widget class="RegistersEditor" name="registersEditor" native="true"/>
               </item>
               <item>
+               <widget class="QLabel" name="runningLabel">
+                <property name="text">
+                 <string>Running</string>
+                </property>
+               </widget>
+              </item>
+              <item>
                <widget class="QPushButton" name="clr_button">
                 <property name="text">
                  <string>Assemble Load Run</string>

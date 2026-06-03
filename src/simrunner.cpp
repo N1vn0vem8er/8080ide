@@ -1,5 +1,6 @@
 #include "simrunner.h"
 #include "qthread.h"
+#include <QElapsedTimer>
 #include <sstream>
 
 SimRunner::SimRunner(QObject *parent)

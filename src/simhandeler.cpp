@@ -202,6 +202,8 @@ void SimHandeler::run()
     connect(sr, &SimRunner::screenSetPixel, this, &SimHandeler::screenSetPixel);
     connect(sr, &SimRunner::screenCommand, this, &SimHandeler::screenCommand);
     connect(this, &SimHandeler::nextStep, sr, &SimRunner::nextStep);
+    connect(sr, &SimRunner::finished, this, [this]{emit simStopped();});
+    connect(sr, &SimRunner::started, this, [this]{emit simStarted();});
     sr->setFullSpeed(simFullSpeed);
     sr->setSymulator(this->symulator.get());
     sr->setBreakPoints(breakpointsLocations);
