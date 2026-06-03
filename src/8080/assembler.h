@@ -132,6 +132,14 @@ public:
         {"GSETY", {"OUT 03\n"}},
         {"GLINE1", {"PUSH PSW\n", "MVI A,01\n", "OUT 05\n", "POP PSW\n"}},
         {"GLINE2", {"PUSH PSW\n", "MVI A,02\n", "OUT 05\n", "POP PSW\n"}},
+        {"GPFILL", {"PUSH PSW\n", "MVI A,03\n", "OUT 05\n", "POP PSW\n"}},
+        {"GPFIGURE", {"PUSH PSW\n", "MVI A,04\n", "OUT 05\n", "POP PSW\n"}},
+        {"GFILL", {"PUSH PSW\n", "MVI A,05\n", "OUT 05\n", "POP PSW\n"}},
+        {"GCFELIPSE", {"PUSH PSW\n", "MVI A,06\n", "OUT 05\n", "POP PSW\n"}},
+        {"GPFELIPSE", {"PUSH PSW\n", "MVI A,07\n", "OUT 05\n", "POP PSW\n"}},
+        {"GCELIPSE", {"PUSH PSW\n", "MVI A,08\n", "OUT 05\n", "POP PSW\n"}},
+        {"GPELIPSE", {"PUSH PSW\n", "MVI A,09\n", "OUT 05\n", "POP PSW\n"}},
+        {"GCANCEL", {"PUSH PSW\n", "MVI A,FF\n", "OUT 05\n", "POP PSW\n"}},
     };
 };
 
