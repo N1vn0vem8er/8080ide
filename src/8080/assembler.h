@@ -140,6 +140,8 @@ public:
         {"GCELIPSE", {"PUSH PSW\n", "MVI A,08\n", "OUT 05\n", "POP PSW\n"}},
         {"GPELIPSE", {"PUSH PSW\n", "MVI A,09\n", "OUT 05\n", "POP PSW\n"}},
         {"GCANCEL", {"PUSH PSW\n", "MVI A,FF\n", "OUT 05\n", "POP PSW\n"}},
+        {"RANDSET", {"OUT 06\n"}},
+        {"RANDIN", {"IN 06\n"}},
     };
 };
 
