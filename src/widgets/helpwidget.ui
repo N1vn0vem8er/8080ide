@@ -20,7 +20,7 @@
    <item>
     <widget class="QTabWidget" name="tabWidget">
      <property name="currentIndex">
-      <number>3</number>
+      <number>4</number>
      </property>
      <widget class="HelpIDEWidget" name="tab">
       <attribute name="title">
@@ -40,6 +40,11 @@
      <widget class="ExamplesWidget" name="tab_4">
       <attribute name="title">
        <string>Examples</string>
+      </attribute>
+     </widget>
+     <widget class="BuildinMacros" name="tab_5">
+      <attribute name="title">
+       <string>Buildin Macros</string>
       </attribute>
      </widget>
     </widget>
@@ -69,6 +74,12 @@
    <class>ExamplesWidget</class>
    <extends>QWidget</extends>
    <header>widgets/help/exampleswidget.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>BuildinMacros</class>
+   <extends>QWidget</extends>
+   <header>widgets/help/buildinmacros.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

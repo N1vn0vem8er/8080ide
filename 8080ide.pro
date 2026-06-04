@@ -19,6 +19,7 @@ SOURCES += \
     src/settingsPages/terminalsettingspage.cpp \
     src/utils/projectconfig.cpp \
     src/widgets/guiprojectconfigwidget.cpp \
+    src/widgets/help/buildinmacros.cpp \
     src/widgets/help/exampleswidget.cpp \
     src/widgets/runningprocesseslabel.cpp \
     src/widgets/screenwidget.cpp \
@@ -80,6 +81,7 @@ HEADERS += \
     src/structs.h \
     src/utils/projectconfig.h \
     src/widgets/guiprojectconfigwidget.h \
+    src/widgets/help/buildinmacros.h \
     src/widgets/help/exampleswidget.h \
     src/widgets/runningprocesseslabel.h \
     src/widgets/screenwidget.h \
@@ -133,6 +135,7 @@ FORMS += \
     src/settingsPages/startupsettingspage.ui \
     src/settingsPages/terminalsettingspage.ui \
     src/widgets/guiprojectconfigwidget.ui \
+    src/widgets/help/buildinmacros.ui \
     src/widgets/help/exampleswidget.ui \
     src/widgets/terminalwidget.ui \
     src/utils/numberconverterwidget.ui \
