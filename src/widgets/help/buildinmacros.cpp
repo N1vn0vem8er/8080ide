@@ -25,11 +25,11 @@ BuildinMacros::~BuildinMacros()
 
 void BuildinMacros::openInstructionHelp(QString instruction) const
 {
-    QDirIterator iterator(":/examples/helpPages/examples", QDirIterator::Subdirectories);
+    QDirIterator iterator(":/buildinmacros/helpPages/buildinmacros", QDirIterator::Subdirectories);
     while(iterator.hasNext())
     {
         QString fileName = iterator.next();
-        if(fileName == ":/examples/helpPages/examples/" + instruction + language)
+        if(fileName == ":/buildinmacros/helpPages/buildinmacros/" + instruction + language)
         {
             QFile file(fileName);
             if(file.open(QFile::ReadOnly))

@@ -218,4 +218,8 @@
         <file>helpPages/examples/guessinggame_en.html</file>
         <file>helpPages/examples/guessinggame_pl.html</file>
     </qresource>
+    <qresource prefix="/buildinmacros">
+        <file>helpPages/buildinmacros/printchar_en.html</file>
+        <file>helpPages/buildinmacros/printchar_pl.html</file>
+    </qresource>
 </RCC>
