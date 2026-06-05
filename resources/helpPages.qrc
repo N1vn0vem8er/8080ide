@@ -223,5 +223,7 @@
         <file>helpPages/buildinmacros/printchar_pl.html</file>
         <file>helpPages/buildinmacros/inchar_en.html</file>
         <file>helpPages/buildinmacros/inchar_pl.html</file>
+        <file>helpPages/buildinmacros/gclear_en.html</file>
+        <file>helpPages/buildinmacros/gclear_pl.html</file>
     </qresource>
 </RCC>
