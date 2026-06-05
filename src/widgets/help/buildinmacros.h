@@ -19,8 +19,8 @@ public:
 private:
     Ui::BuildinMacros *ui;
     QString language;
-    QStringList helpPagesList{"printchar", "inchar", "gclear"};
-    QStringList translations{tr("PRINTCHAR"), tr("INCHAR"), tr("GCLEAR")};
+    QStringList helpPagesList{"printchar", "inchar", "gclear", "gdraw"};
+    QStringList translations{tr("PRINTCHAR"), tr("INCHAR"), tr("GCLEAR"), tr("GDRAW")};
 };
 
 #endif // BUILDINMACROS_H

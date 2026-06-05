@@ -225,5 +225,7 @@
         <file>helpPages/buildinmacros/inchar_pl.html</file>
         <file>helpPages/buildinmacros/gclear_en.html</file>
         <file>helpPages/buildinmacros/gclear_pl.html</file>
+        <file>helpPages/buildinmacros/gdraw_en.html</file>
+        <file>helpPages/buildinmacros/gdraw_pl.html</file>
     </qresource>
 </RCC>

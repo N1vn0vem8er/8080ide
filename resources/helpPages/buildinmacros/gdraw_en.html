@@ -10,20 +10,15 @@
             font-size: 14px;
             line-height: 1.5;
         }
-        .op-mvi { color: #ADD8E6; }
         .op-out { color: #7f007f; }
-        .op-push { color: #90EE90; }
     </style>
   </head>
   <body>
-    <h1>GCLEAR</h1>
-    <p>Macro clears graphical screen.</p>
+    <h1>GDRAW</h1>
+    <p>Macro colors/draws on graphical screen.</p>
     <h3>Macro code:</h3>
     <div class="code">
-        <div><span class="op-push">PUSH</span> PSW</div>
-        <div><span class="op-mvi">MVI </span> A,00</div>
-        <div><span class="op-out">OUT</span> 05</div>
-        <div><span class="op-push">POP</span> PSW</div>
+        <div><span class="op-out">OUT</span> 04</div>
     </div>
   </body>
 </html>
