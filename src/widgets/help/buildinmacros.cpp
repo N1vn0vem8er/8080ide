@@ -7,14 +7,14 @@
 BuildinMacros::BuildinMacros(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::BuildinMacros)
+    , model(new QStringListModel(this))
 {
     ui->setupUi(this);
-    QStringListModel* model = new QStringListModel(ui->listView);
-    model->setStringList(translations);
+    languageSuffix = (QLocale::system().name().startsWith("pl")) ? "_pl.html" : "_en.html";
+    initTranslations();
     ui->listView->setModel(model);
-    connect(ui->listView, &QListView::clicked, this, [&](const QModelIndex& index){openInstructionHelp(helpPagesList[index.row()].toLower());});
-    QLocale l;
-    language = l.name() == "pl_PL" ? "_pl.html" : "_en.html";
+
+    connect(ui->listView, &QListView::clicked, this, &BuildinMacros::onInstructionClicked);
 }
 
 BuildinMacros::~BuildinMacros()
@@ -23,20 +23,35 @@ BuildinMacros::~BuildinMacros()
 }
 
 
-void BuildinMacros::openInstructionHelp(QString instruction) const
+void BuildinMacros::initTranslations()
 {
-    QDirIterator iterator(":/buildinmacros/helpPages/buildinmacros", QDirIterator::Subdirectories);
-    while(iterator.hasNext())
-    {
-        QString fileName = iterator.next();
-        if(fileName == ":/buildinmacros/helpPages/buildinmacros/" + instruction + language)
-        {
-            QFile file(fileName);
-            if(file.open(QFile::ReadOnly))
-            {
-                ui->textBrowser->setText(file.readAll());
-                file.close();
-            }
-        }
+    QStringList translations{
+        tr("PRINTCHAR"),
+        tr("INCHAR"),
+        tr("GCLEAR"),
+        tr("GDRAW"),
+        tr("GX"),
+        tr("GY")
+    };
+    model->setStringList(translations);
+}
+
+void BuildinMacros::onInstructionClicked(const QModelIndex &index)
+{
+    if (!index.isValid() || index.row() >= helpPagesList.size()) {
+        return;
     }
+
+    loadInstructionHelp(helpPagesList[index.row()]);
+}
+
+void BuildinMacros::loadInstructionHelp(const QString &instruction)
+{
+    QString filePath = QString(":/buildinmacros/helpPages/buildinmacros/%1%2").arg(instruction.toLower(), languageSuffix);
+
+    QFile file(filePath);
+    if(file.open(QFile::ReadOnly | QFile::Text))
+        ui->textBrowser->setHtml(file.readAll());
+    else
+        ui->textBrowser->setText(tr("Help file not found."));
 }

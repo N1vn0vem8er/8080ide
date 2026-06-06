@@ -1,6 +1,7 @@
 #ifndef BUILDINMACROS_H
 #define BUILDINMACROS_H
 
+#include <QStringListModel>
 #include <QWidget>
 
 namespace Ui {
@@ -14,13 +15,19 @@ class BuildinMacros : public QWidget
 public:
     explicit BuildinMacros(QWidget *parent = nullptr);
     ~BuildinMacros();
-    void openInstructionHelp(QString instruction) const;
+    void loadInstructionHelp(const QString &instruction);
+
+private slots:
+    void onInstructionClicked(const QModelIndex &index);
+
+private:
+    void initTranslations();
 
 private:
     Ui::BuildinMacros *ui;
-    QString language;
-    QStringList helpPagesList{"printchar", "inchar", "gclear", "gdraw", "gx", "gy"};
-    QStringList translations{tr("PRINTCHAR"), tr("INCHAR"), tr("GCLEAR"), tr("GDRAW"), tr("GX"), tr("GY")};
+    QStringListModel* model;
+    QString languageSuffix;
+    const QStringList helpPagesList{"printchar", "inchar", "gclear", "gdraw", "gx", "gy"};
 };
 
 #endif // BUILDINMACROS_H
