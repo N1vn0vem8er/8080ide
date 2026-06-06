@@ -1,6 +1,7 @@
 #ifndef EXAMPLESWIDGET_H
 #define EXAMPLESWIDGET_H
 
+#include <QStringListModel>
 #include <QWidget>
 
 namespace Ui {
@@ -14,14 +15,19 @@ class ExamplesWidget : public QWidget
 public:
     explicit ExamplesWidget(QWidget *parent = nullptr);
     ~ExamplesWidget();
-    void openInstructionHelp(QString instruction) const;
+    void loadInstructionHelp(const QString &instruction);
+
+private slots:
+    void onInstructionClicked(const QModelIndex &index);
+
+private:
+    void initTranslations();
 
 private:
     Ui::ExamplesWidget *ui;
-    QString language;
-    QStringList helpPagesList = {"helloworld", "helloworld2", "drawline", "drawcircle", "drawfigure", "fillscreen", "fillscreenwithcolors", "generaterandomnumber", "randomcolors", "guessinggame"};
-    QStringList translations = {tr("Hello World"), tr("Hello World 2"), tr("Draw line"), tr("Draw circle"), tr("Draw figure"), tr("Fill screen"), tr("Fill screen with colors"), tr("Generate random number"),
-                                tr("Draw random colors on screen"), tr("Guessing game")};
+    QStringListModel* model;
+    QString languageSuffix;
+    const QStringList helpPagesList{"helloworld", "helloworld2", "drawline", "drawcircle", "drawfigure", "fillscreen", "fillscreenwithcolors", "generaterandomnumber", "randomcolors", "guessinggame"};
 };
 
 #endif // EXAMPLESWIDGET_H

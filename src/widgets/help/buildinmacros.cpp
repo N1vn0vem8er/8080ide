@@ -38,9 +38,8 @@ void BuildinMacros::initTranslations()
 
 void BuildinMacros::onInstructionClicked(const QModelIndex &index)
 {
-    if (!index.isValid() || index.row() >= helpPagesList.size()) {
+    if(!index.isValid() || index.row() >= helpPagesList.size())
         return;
-    }
 
     loadInstructionHelp(helpPagesList[index.row()]);
 }
