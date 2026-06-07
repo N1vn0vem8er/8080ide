@@ -35,7 +35,7 @@ void HelpInstructionsWidget::openInstructionHelp(const QString &instruction)
 
     QFile file(filePath);
     if(file.open(QFile::ReadOnly | QFile::Text))
-        ui->instDescriptionLabel->setHtml(file.readAll());
+        ui->textBrowser->setHtml(file.readAll());
     else
-        ui->instDescriptionLabel->setText(tr("Help file not found."));
+        ui->textBrowser->setText(tr("Help file not found."));
 }
