@@ -1,6 +1,7 @@
 #ifndef HELPPSEUDOINSTWIDGET_H
 #define HELPPSEUDOINSTWIDGET_H
 
+#include <QStringListModel>
 #include <QWidget>
 
 namespace Ui {
@@ -14,12 +15,16 @@ class HelpPseudoInstWidget : public QWidget
 public:
     explicit HelpPseudoInstWidget(QWidget *parent = nullptr);
     ~HelpPseudoInstWidget();
-    void openInstructionHelp(QString instruction) const;
+    void openInstructionHelp(const QString& instruction);
+
+private slots:
+    void onInstructionClicked(const QModelIndex &index);
 
 private:
     Ui::HelpPseudoInstWidget *ui;
-    QString language;
-    QStringList instructionList = {"ARRAY", "STRING", "IF", "ENDIF", "SET", "EQU", "MACRO", "ENDM", "END", "DB", "DW"};
+    QStringListModel* model;
+    QString languageSuffix;
+    QStringList instructionList{"ARRAY", "STRING", "IF", "ENDIF", "SET", "EQU", "MACRO", "ENDM", "END", "DB", "DW"};
 };
 
 #endif // HELPPSEUDOINSTWIDGET_H
