@@ -1,6 +1,7 @@
 #ifndef HELPINSTRUCTIONSWIDGET_H
 #define HELPINSTRUCTIONSWIDGET_H
 
+#include <QStringListModel>
 #include <QWidget>
 
 namespace Ui {
@@ -25,14 +26,18 @@ public:
 
     explicit HelpInstructionsWidget(QWidget *parent = nullptr);
     ~HelpInstructionsWidget();
-    void openInstructionHelp(QString instruction) const;
+    void openInstructionHelp(const QString &instruction);
+
+private slots:
+    void onInstructionClicked(const QModelIndex &index);
 
 private:
     Ui::HelpInstructionsWidget *ui;
-    QString language = "";
-    QStringList instructionList = {"NOP", "MVI", "MOV", "LXI", "STAX", "SHLD", "STA", "INX", "INR", "DCR", "RLC", "RAL", "RRC", "RAR", "DAA", "STC", "DAD", "LDA", "LDAX", "LHLD", "CMC", "CMA", "HLT", "ADD", "SUB", "DCX", "ADC", "SBB", "ANA",
-                                    "XRA", "ORA", "CMP", "RNZ", "RNC", "RPO", "RP", "POP", "PUSH", "ADI", "SUI", "ANI", "ORI", "ACI", "SBI", "XRI", "CPI", "OUT", "IN", "XTHL", "XCHG", "JNZ", "JNC", "JPO", "JP", "JMP", "CNZ", "CNC",
-                                    "CPO", "CP", "RST", "RC", "RM", "RPE", "RZ", "RET", "PCHL", "JC", "JM", "JPE", "JZ", "CPE", "CC", "CM", "CZ", "CALL"};
+    QStringListModel* model;
+    QString languageSuffix;
+    QStringList instructionList{"NOP", "MVI", "MOV", "LXI", "STAX", "SHLD", "STA", "INX", "INR", "DCR", "RLC", "RAL", "RRC", "RAR", "DAA", "STC", "DAD", "LDA", "LDAX", "LHLD", "CMC", "CMA", "HLT", "ADD", "SUB", "DCX", "ADC", "SBB", "ANA",
+                                "XRA", "ORA", "CMP", "RNZ", "RNC", "RPO", "RP", "POP", "PUSH", "ADI", "SUI", "ANI", "ORI", "ACI", "SBI", "XRI", "CPI", "OUT", "IN", "XTHL", "XCHG", "JNZ", "JNC", "JPO", "JP", "JMP", "CNZ", "CNC",
+                                "CPO", "CP", "RST", "RC", "RM", "RPE", "RZ", "RET", "PCHL", "JC", "JM", "JPE", "JZ", "CPE", "CC", "CM", "CZ", "CALL"};
 };
 
 #endif // HELPINSTRUCTIONSWIDGET_H

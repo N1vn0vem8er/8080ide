@@ -6,7 +6,7 @@
 HelpIDEWidget::HelpIDEWidget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::HelpIDEWidget)
-    , model(new QStringListModel)
+    , model(new QStringListModel(this))
 {
     ui->setupUi(this);
     languageSuffix = (QLocale::system().name().startsWith("pl")) ? "_pl.html" : "_en.html";

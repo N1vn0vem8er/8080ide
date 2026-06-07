@@ -1,19 +1,19 @@
 #include "helpinstructionswidget.h"
-#include "qdiriterator.h"
-#include "qstringlistmodel.h"
 #include "ui_helpinstructionswidget.h"
+
+#include <QFile>
 
 HelpInstructionsWidget::HelpInstructionsWidget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::HelpInstructionsWidget)
+    , model(new QStringListModel(this))
 {
     ui->setupUi(this);
-    QStringListModel* model = new QStringListModel(ui->listView);
+    languageSuffix = (QLocale::system().name().startsWith("pl")) ? "_pl.html" : "_en.html";
     model->setStringList(instructionList);
     ui->listView->setModel(model);
-    connect(ui->listView, &QListView::clicked, this, [&](const QModelIndex& index){openInstructionHelp(ui->listView->model()->data(index).toString().toLower());});
-    QLocale l;
-    language = l.name() == "pl_PL" ? "_pl.html" : "_en.html";
+
+    connect(ui->listView, &QListView::clicked, this, &HelpInstructionsWidget::onInstructionClicked);
 }
 
 HelpInstructionsWidget::~HelpInstructionsWidget()
@@ -21,20 +21,21 @@ HelpInstructionsWidget::~HelpInstructionsWidget()
     delete ui;
 }
 
-void HelpInstructionsWidget::openInstructionHelp(QString instruction) const
+void HelpInstructionsWidget::onInstructionClicked(const QModelIndex &index)
 {
-    QDirIterator iterator(":/instructions/helpPages", QDirIterator::Subdirectories);
-    while(iterator.hasNext())
-    {
-        QString fileName = iterator.next();
-        if(fileName == ":/instructions/helpPages/" + instruction + language)
-        {
-            QFile file(fileName);
-            if(file.open(QFile::ReadOnly))
-            {
-                ui->instDescriptionLabel->setText(file.readAll());
-                file.close();
-            }
-        }
-    }
+    if(!index.isValid() || index.row() >= instructionList.size())
+        return;
+
+    openInstructionHelp(instructionList[index.row()]);
+}
+
+void HelpInstructionsWidget::openInstructionHelp(const QString &instruction)
+{
+    QString filePath = QString(":/instructions/helpPages/%1%2").arg(instruction.toLower(), languageSuffix);
+
+    QFile file(filePath);
+    if(file.open(QFile::ReadOnly | QFile::Text))
+        ui->instDescriptionLabel->setHtml(file.readAll());
+    else
+        ui->instDescriptionLabel->setText(tr("Help file not found."));
 }
