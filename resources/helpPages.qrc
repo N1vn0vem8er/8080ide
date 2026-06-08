@@ -231,5 +231,7 @@
         <file>helpPages/buildinmacros/gx_pl.html</file>
         <file>helpPages/buildinmacros/gy_en.html</file>
         <file>helpPages/buildinmacros/gy_pl.html</file>
+        <file>helpPages/buildinmacros/gline_en.html</file>
+        <file>helpPages/buildinmacros/gline_pl.html</file>
     </qresource>
 </RCC>
