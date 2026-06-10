@@ -33,7 +33,8 @@ void BuildinMacros::initTranslations()
         tr("GX"),
         tr("GY"),
         tr("GLINE"),
-        tr("GPFILL")
+        tr("GPFILL"),
+        tr("GPFIGURE")
     };
     model->setStringList(translations);
 }
