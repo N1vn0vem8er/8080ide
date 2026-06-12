@@ -27,7 +27,7 @@ private:
     Ui::BuildinMacros *ui;
     QStringListModel* model;
     QString languageSuffix;
-    const QStringList helpPagesList{"printchar", "inchar", "gclear", "gdraw", "gx", "gy", "gline", "gpfill", "gpfigure", "gfill"};
+    const QStringList helpPagesList{"printchar", "inchar", "gclear", "gdraw", "gx", "gy", "gline", "gpfill", "gpfigure", "gfill", "gcfelipse"};
 };
 
 #endif // BUILDINMACROS_H

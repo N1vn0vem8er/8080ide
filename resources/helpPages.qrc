@@ -239,5 +239,7 @@
         <file>helpPages/buildinmacros/gpfigure_en.html</file>
         <file>helpPages/buildinmacros/gfill_en.html</file>
         <file>helpPages/buildinmacros/gfill_pl.html</file>
+        <file>helpPages/buildinmacros/gcfelipse_en.html</file>
+        <file>helpPages/buildinmacros/gcfelipse_pl.html</file>
     </qresource>
 </RCC>
