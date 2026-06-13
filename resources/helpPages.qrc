@@ -243,5 +243,7 @@
         <file>helpPages/buildinmacros/gcfelipse_pl.html</file>
         <file>helpPages/buildinmacros/gpfelipse_en.html</file>
         <file>helpPages/buildinmacros/gpfelipse_pl.html</file>
+        <file>helpPages/buildinmacros/gcelipse_en.html</file>
+        <file>helpPages/buildinmacros/gcelipse_pl.html</file>
     </qresource>
 </RCC>
