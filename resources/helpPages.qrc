@@ -249,5 +249,7 @@
         <file>helpPages/buildinmacros/gpelipse_pl.html</file>
         <file>helpPages/buildinmacros/randset_en.html</file>
         <file>helpPages/buildinmacros/randset_pl.html</file>
+        <file>helpPages/buildinmacros/randin_pl.html</file>
+        <file>helpPages/buildinmacros/randin_en.html</file>
     </qresource>
 </RCC>
