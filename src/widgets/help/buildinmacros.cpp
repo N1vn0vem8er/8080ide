@@ -40,6 +40,7 @@ void BuildinMacros::initTranslations()
         tr("GPFELIPSE"),
         tr("GCELIPSE"),
         tr("GPELIPSE"),
+        tr("RANDSET"),
     };
     model->setStringList(translations);
 }
