@@ -24,8 +24,11 @@ public:
 
 private:
     Ui::NumberConverterWidget *ui;
-    void input() const;
-    void changeMaxInLength() const;
+
+private slots:
+    void input();
+    void changeMaxInLength();
+    void swap();
 };
 
 #endif // NUMBERCONVERTERWIDGET_H

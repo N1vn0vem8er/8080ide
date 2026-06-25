@@ -37,6 +37,19 @@
     <widget class="QLineEdit" name="input"/>
    </item>
    <item>
+    <widget class="QPushButton" name="swapButton">
+     <property name="toolTip">
+      <string>Swap</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset theme="view-refresh"/>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QLabel" name="label">
      <property name="locale">
       <locale language="English" country="UnitedStates"/>

@@ -12,13 +12,14 @@ NumberConverterWidget::NumberConverterWidget(QWidget *parent)
     connect(ui->inComboBox, &QComboBox::currentIndexChanged, this, &NumberConverterWidget::input);
     connect(ui->outComboBox, &QComboBox::currentIndexChanged, this, &NumberConverterWidget::input);
     connect(ui->inComboBox, &QComboBox::currentIndexChanged, this, &NumberConverterWidget::changeMaxInLength);
+    connect(ui->swapButton, &QPushButton::clicked, this, &NumberConverterWidget::swap);
 }
 
 NumberConverterWidget::~NumberConverterWidget()
 {
     delete ui;
 }
-void NumberConverterWidget::input() const
+void NumberConverterWidget::input()
 {
     if(ui->input->text().isEmpty())
     {
@@ -98,7 +99,7 @@ void NumberConverterWidget::input() const
     }
 }
 
-void NumberConverterWidget::changeMaxInLength() const
+void NumberConverterWidget::changeMaxInLength()
 {
     ui->input->clear();
     switch(ui->inComboBox->currentIndex())
@@ -113,4 +114,19 @@ void NumberConverterWidget::changeMaxInLength() const
         ui->input->setMaxLength(64);
         break;
     }
+}
+
+void NumberConverterWidget::swap()
+{
+    ui->input->blockSignals(true);
+    ui->inComboBox->blockSignals(true);
+    ui->outComboBox->blockSignals(true);
+    ui->input->setText(ui->output->text());
+    const QString text = ui->inComboBox->currentText();
+    ui->inComboBox->setCurrentText(ui->outComboBox->currentText());
+    ui->outComboBox->setCurrentText(text);
+    ui->inComboBox->blockSignals(false);
+    ui->outComboBox->blockSignals(false);
+    ui->input->blockSignals(false);
+    input();
 }
