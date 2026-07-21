@@ -189,5 +189,22 @@
         <file>hintFiles/en_US/PRINTCHAR.html</file>
         <file>hintFiles/en_US/RANDIN.html</file>
         <file>hintFiles/en_US/RANDSET.html</file>
+        <file>hintFiles/pl_PL/GCANCEL.html</file>
+        <file>hintFiles/pl_PL/GCELIPSE.html</file>
+        <file>hintFiles/pl_PL/GCFELIPSE.html</file>
+        <file>hintFiles/pl_PL/GCLEAR.html</file>
+        <file>hintFiles/pl_PL/GDRAW.html</file>
+        <file>hintFiles/pl_PL/GFILL.html</file>
+        <file>hintFiles/pl_PL/GLINE.html</file>
+        <file>hintFiles/pl_PL/GPELIPSE.html</file>
+        <file>hintFiles/pl_PL/GPFELIPSE.html</file>
+        <file>hintFiles/pl_PL/GPFIGURE.html</file>
+        <file>hintFiles/pl_PL/GPFILL.html</file>
+        <file>hintFiles/pl_PL/GX.html</file>
+        <file>hintFiles/pl_PL/GY.html</file>
+        <file>hintFiles/pl_PL/INCHAR.html</file>
+        <file>hintFiles/pl_PL/PRINTCHAR.html</file>
+        <file>hintFiles/pl_PL/RANDIN.html</file>
+        <file>hintFiles/pl_PL/RANDSET.html</file>
     </qresource>
 </RCC>
