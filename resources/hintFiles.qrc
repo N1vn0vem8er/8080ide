@@ -172,5 +172,22 @@
         <file>hintFiles/en_US/XRA.html</file>
         <file>hintFiles/en_US/XRI.html</file>
         <file>hintFiles/en_US/XTHL.html</file>
+        <file>hintFiles/en_US/GCANCEL.html</file>
+        <file>hintFiles/en_US/GCELIPSE.html</file>
+        <file>hintFiles/en_US/GCFELIPSE.html</file>
+        <file>hintFiles/en_US/GCLEAR.html</file>
+        <file>hintFiles/en_US/GDRAW.html</file>
+        <file>hintFiles/en_US/GFILL.html</file>
+        <file>hintFiles/en_US/GLINE.html</file>
+        <file>hintFiles/en_US/GPELIPSE.html</file>
+        <file>hintFiles/en_US/GPFELIPSE.html</file>
+        <file>hintFiles/en_US/GPFIGURE.html</file>
+        <file>hintFiles/en_US/GPFILL.html</file>
+        <file>hintFiles/en_US/GX.html</file>
+        <file>hintFiles/en_US/GY.html</file>
+        <file>hintFiles/en_US/INCHAR.html</file>
+        <file>hintFiles/en_US/PRINTCHAR.html</file>
+        <file>hintFiles/en_US/RANDIN.html</file>
+        <file>hintFiles/en_US/RANDSET.html</file>
     </qresource>
 </RCC>
