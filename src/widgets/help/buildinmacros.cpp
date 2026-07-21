@@ -40,6 +40,7 @@ void BuildinMacros::initTranslations()
         tr("GPFELIPSE"),
         tr("GCELIPSE"),
         tr("GPELIPSE"),
+        tr("GCANCEL"),
         tr("RANDSET"),
         tr("RANDIN"),
     };

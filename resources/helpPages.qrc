@@ -251,5 +251,7 @@
         <file>helpPages/buildinmacros/randset_pl.html</file>
         <file>helpPages/buildinmacros/randin_pl.html</file>
         <file>helpPages/buildinmacros/randin_en.html</file>
+        <file>helpPages/buildinmacros/gcancel_en.html</file>
+        <file>helpPages/buildinmacros/gcancel_pl.html</file>
     </qresource>
 </RCC>
