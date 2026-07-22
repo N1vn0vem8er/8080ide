@@ -79,7 +79,22 @@
         <translation></translation>
     </message>
     <message>
-        <location filename="widgets/help/buildinmacros.cpp" line="63"/>
+        <location filename="widgets/help/buildinmacros.cpp" line="43"/>
+        <source>GCANCEL</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="widgets/help/buildinmacros.cpp" line="44"/>
+        <source>RANDSET</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="widgets/help/buildinmacros.cpp" line="45"/>
+        <source>RANDIN</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="widgets/help/buildinmacros.cpp" line="66"/>
         <source>Help file not found.</source>
         <translation>Nie znaleziono pliku.</translation>
     </message>
@@ -2186,24 +2201,29 @@ W binarnym: %3</translation>
     </message>
     <message>
         <location filename="utils/numberconverterwidget.ui" line="21"/>
-        <location filename="utils/numberconverterwidget.ui" line="58"/>
+        <location filename="utils/numberconverterwidget.ui" line="71"/>
         <source>DEC</source>
         <translation></translation>
     </message>
     <message>
         <location filename="utils/numberconverterwidget.ui" line="26"/>
-        <location filename="utils/numberconverterwidget.ui" line="53"/>
+        <location filename="utils/numberconverterwidget.ui" line="66"/>
         <source>HEX</source>
         <translation></translation>
     </message>
     <message>
         <location filename="utils/numberconverterwidget.ui" line="31"/>
-        <location filename="utils/numberconverterwidget.ui" line="63"/>
+        <location filename="utils/numberconverterwidget.ui" line="76"/>
         <source>BIN</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="utils/numberconverterwidget.ui" line="45"/>
+        <location filename="utils/numberconverterwidget.ui" line="42"/>
+        <source>Swap</source>
+        <translation>Zamień</translation>
+    </message>
+    <message>
+        <location filename="utils/numberconverterwidget.ui" line="58"/>
         <source>to</source>
         <translation>do</translation>
     </message>
