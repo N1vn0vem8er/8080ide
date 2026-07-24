@@ -248,9 +248,10 @@ std::vector<std::string> Assembler::decodeOperands(const std::vector<std::string
                 std::string ansi = operand.substr(apos + 1, 1);
                 operand = operand.replace(apos, apos+3, toHex(+ansi[0]));
             }
-            if(isNumber(operand))
+            auto val = parseNumber(operand);
+            if(val.has_value())
             {
-
+                operand = std::to_string(val.value());
             }
             else if(contains(operand, "+") || contains(operand, "-") || contains(operand, "*") || contains(operand, "/"))
             {
@@ -282,9 +283,10 @@ std::vector<std::string> Assembler::decodeOperands(const std::vector<std::string
                 std::string ansi = operand.substr(apos + 1, 1);
                 operand = operand.replace(apos, apos+3, toHex(+ansi[0]));
             }
-            if(isNumber(operand))
+            auto val = parseNumber(operand);
+            if(val.has_value())
             {
-
+                operand = std::to_string(val.value());
             }
             else if(contains(operand, "+") || contains(operand, "-") || contains(operand, "*") || contains(operand, "/"))
             {
@@ -316,9 +318,10 @@ std::vector<std::string> Assembler::decodeOperands(const std::vector<std::string
                 std::string ansi = operand.substr(apos + 1, 1);
                 operand = operand.replace(apos, apos+3, toHex(+ansi[0]));
             }
-            if(isNumber(operand))
+            auto val = parseNumber(operand);
+            if(val.has_value())
             {
-
+                operand = std::to_string(val.value());
             }
             else if(contains(operand, "+") || contains(operand, "-") || contains(operand, "*") || contains(operand, "/"))
             {
@@ -395,6 +398,58 @@ unsigned char *Assembler::assemble(const std::vector<std::string>& code)
     }
     compCodeSize = assembledCode.size();
     return toUCharArray(assembledCode);
+}
+
+std::optional<int> Assembler::parseNumber(std::string_view str)
+{
+    if(str.empty())
+        return std::nullopt;
+
+    std::string uppercaseStr(str);
+    for(char& c : uppercaseStr)
+    {
+        c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
+    }
+
+    int base = 10;
+    std::string_view numView = uppercaseStr;
+
+    char lastChar = uppercaseStr.back();
+    if(lastChar == 'H') {
+        base = 16;
+        numView.remove_suffix(1);
+    }
+    else if(lastChar == 'B') {
+        base = 2;
+        numView.remove_suffix(1);
+    }
+    else if(lastChar == 'O' || lastChar == 'Q') {
+        base = 8;
+        numView.remove_suffix(1);
+    }
+    else if(lastChar == 'D') {
+        base = 10;
+        numView.remove_suffix(1);
+    }
+    else if(uppercaseStr.rfind("0X", 0) == 0) {
+        base = 16;
+        numView.remove_prefix(2);
+    }
+    else if(uppercaseStr.front() == '$') {
+        base = 16;
+        numView.remove_prefix(1);
+    }
+
+    if(numView.empty())
+        return std::nullopt;
+
+    uint16_t value = 0;
+    auto [ptr, ec] = std::from_chars(numView.data(), numView.data() + numView.size(), value, base);
+
+    if(ec == std::errc{} && ptr == numView.data() + numView.size())
+        return value;
+
+    return std::nullopt;
 }
 
 int Assembler::getCompCodeSize()
