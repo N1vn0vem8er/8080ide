@@ -400,7 +400,7 @@ unsigned char *Assembler::assemble(const std::vector<std::string>& code)
     return toUCharArray(assembledCode);
 }
 
-std::optional<int> Assembler::parseNumber(std::string_view str)
+std::optional<int> parseNumber(std::string_view str)
 {
     if(str.empty())
         return std::nullopt;
