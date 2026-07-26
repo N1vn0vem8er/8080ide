@@ -20,7 +20,7 @@ std::vector<std::string> Assembler::toVector(const std::string &code)
     for(unsigned long i = 0; i < code.length(); i++)
     {
         char ch = code[i];
-        if (ch == '\n')
+        if(ch == '\n')
         {
             readingComment = false;
             inCharLiteral = false;
@@ -123,7 +123,7 @@ std::vector<std::string> Assembler::decodeIfsAndMacros(const std::vector<std::st
                 continue;
             }
 
-            if(fromHex(val) == 0)
+            if(numberFromString(val) == 0)
             {
                 writingIf = false;
                 breakpoints.erase(std::remove(breakpoints.begin(), breakpoints.end(), static_cast<int>(lineIdx)), breakpoints.end());
@@ -217,7 +217,7 @@ std::vector<std::string> Assembler::decodeLabels(const std::vector<std::string>&
         if(contains(line, ": ", position) || contains(line, ":\t", position))
         {
             std::string label = line.substr(0, position);
-            labels[label] = toHex(address);
+            labels[label] = stringFromNumber(address);
             preprocesedCode.push_back(line.substr(position+2, line.length()));
             address += getInstLength(line);
             continue;
@@ -246,7 +246,7 @@ std::vector<std::string> Assembler::decodeOperands(const std::vector<std::string
             if(operand.length() > 2 && contains(operand, "\'", apos))
             {
                 std::string ansi = operand.substr(apos + 1, 1);
-                operand = operand.replace(apos, apos+3, toHex(+ansi[0]));
+                operand = operand.replace(apos, apos+3, stringFromNumber(+ansi[0]));
             }
             auto val = parseNumber(operand);
             if(val.has_value())
@@ -281,7 +281,7 @@ std::vector<std::string> Assembler::decodeOperands(const std::vector<std::string
             if(operand.length() > 2 && contains(operand, "\'", apos))
             {
                 std::string ansi = operand.substr(apos + 1, 1);
-                operand = operand.replace(apos, apos+3, toHex(+ansi[0]));
+                operand = operand.replace(apos, apos+3, stringFromNumber(+ansi[0]));
             }
             auto val = parseNumber(operand);
             if(val.has_value())
@@ -316,7 +316,7 @@ std::vector<std::string> Assembler::decodeOperands(const std::vector<std::string
             if(operand.length() > 2 && contains(operand, "\'", apos))
             {
                 std::string ansi = operand.substr(apos + 1, 1);
-                operand = operand.replace(apos, apos+3, toHex(+ansi[0]));
+                operand = operand.replace(apos, apos+3, stringFromNumber(+ansi[0]));
             }
             auto val = parseNumber(operand);
             if(val.has_value())
@@ -521,9 +521,9 @@ bool Assembler::assembleNoArgs(std::string currentinst, std::vector<unsigned cha
 {
     if(contains(currentinst, "ADI"))
         return false;
-    for (const auto& j : noargs)
+    for(const auto& j : noargs)
     {
-        if (currentinst.find(j.first) != std::string::npos)
+        if(currentinst.find(j.first) != std::string::npos)
         {
             assembledCode.push_back(j.second);
             currentinst.clear();
@@ -536,12 +536,12 @@ bool Assembler::assembleNoArgs(std::string currentinst, std::vector<unsigned cha
 
 bool Assembler::assembleOneargs(std::string currentinst, std::vector<unsigned char>& assembledCode)
 {
-    for (const auto& j : oneargs)
+    for(const auto& j : oneargs)
     {
-        if (currentinst.find(j.first) != std::string::npos)
+        if(currentinst.find(j.first) != std::string::npos)
         {
             assembledCode.push_back(j.second);
-            assembledCode.push_back(fromHex(currentinst.substr(j.first.length(), currentinst.length())));
+            assembledCode.push_back(numberFromString(currentinst.substr(j.first.length(), currentinst.length())));
             currentinst.clear();
             assemblerAddress += 2;
             return true;
@@ -552,13 +552,13 @@ bool Assembler::assembleOneargs(std::string currentinst, std::vector<unsigned ch
 
 bool Assembler::assembleTwoargs(std::string currentinst, std::vector<unsigned char>& assembledCode)
 {
-    for (const auto& j : twoargs)
+    for(const auto& j : twoargs)
     {
-        if (currentinst.find(j.first) != std::string::npos)
+        if(currentinst.find(j.first) != std::string::npos)
         {
             assembledCode.push_back(j.second);
-            assembledCode.push_back(fromHex(currentinst.substr(j.first.length(), currentinst.length())));
-            assembledCode.push_back(fromHex(currentinst.substr(j.first.length(), currentinst.length())) >> 8);
+            assembledCode.push_back(numberFromString(currentinst.substr(j.first.length(), currentinst.length())));
+            assembledCode.push_back(numberFromString(currentinst.substr(j.first.length(), currentinst.length())) >> 8);
             currentinst.clear();
             assemblerAddress += 3;
             return true;
@@ -569,13 +569,13 @@ bool Assembler::assembleTwoargs(std::string currentinst, std::vector<unsigned ch
 
 bool Assembler::assembleCallsandjmps(std::string currentinst, std::vector<unsigned char>& assembledCode)
 {
-    for (const auto& j : callsandjmps)
+    for(const auto& j : callsandjmps)
     {
-        if (currentinst.find(j.first) != std::string::npos)
+        if(currentinst.find(j.first) != std::string::npos)
         {
             assembledCode.push_back(j.second);
-            assembledCode.push_back(fromHex(currentinst.substr(j.first.length(), currentinst.length())));
-            assembledCode.push_back(fromHex(currentinst.substr(j.first.length(), currentinst.length())) >> 8);
+            assembledCode.push_back(numberFromString(currentinst.substr(j.first.length(), currentinst.length())));
+            assembledCode.push_back(numberFromString(currentinst.substr(j.first.length(), currentinst.length())) >> 8);
             currentinst.clear();
             assemblerAddress += 3;
             return true;
@@ -591,13 +591,13 @@ bool Assembler::assemblePInst(std::string currentinst, std::vector<unsigned char
         unsigned long pos = 0;
         if(contains(currentinst, "DB", pos))
         {
-            assembledCode.push_back(fromHex(currentinst.substr(pos+2, currentinst.length())));
+            assembledCode.push_back(numberFromString(currentinst.substr(pos+2, currentinst.length())));
             return true;
         }
         if(contains(currentinst, "DW", pos))
         {
-            assembledCode.push_back(fromHex(currentinst.substr(pos+2, currentinst.length())));
-            assembledCode.push_back(fromHex(currentinst.substr(pos+2, currentinst.length())) >> 8);
+            assembledCode.push_back(numberFromString(currentinst.substr(pos+2, currentinst.length())));
+            assembledCode.push_back(numberFromString(currentinst.substr(pos+2, currentinst.length())) >> 8);
             return true;
         }
         if(contains(currentinst, "STRING", pos))
@@ -632,7 +632,7 @@ bool Assembler::assemblePInst(std::string currentinst, std::vector<unsigned char
                 std::string tmp = "";
                 tmp += currentinst[i];
                 tmp += currentinst[i+1];
-                assembledCode.push_back(fromHex(tmp));
+                assembledCode.push_back(numberFromString(tmp));
                 assemblerAddress++;
             }
         }
@@ -652,7 +652,7 @@ std::string Assembler::mathOperand(const std::string &operand)
         {
             if(isNumber(tmp))
             {
-                resoults += std::to_string(fromHex(tmp));
+                resoults += std::to_string(numberFromString(tmp));
             }
             else
             {
@@ -663,7 +663,7 @@ std::string Assembler::mathOperand(const std::string &operand)
                 }
                 else
                 {
-                    resoults += std::to_string(fromHex(labelValue));
+                    resoults += std::to_string(numberFromString(labelValue));
                 }
             }
             resoults += operand[i];
@@ -674,7 +674,7 @@ std::string Assembler::mathOperand(const std::string &operand)
     }
     if(isNumber(tmp))
     {
-        resoults += std::to_string(fromHex(tmp));
+        resoults += std::to_string(numberFromString(tmp));
     }
     else
     {
@@ -685,7 +685,7 @@ std::string Assembler::mathOperand(const std::string &operand)
         }
         else
         {
-            resoults += std::to_string(fromHex(labelValue));
+            resoults += std::to_string(numberFromString(labelValue));
         }
     }
     resoults.erase(std::remove(resoults.begin(), resoults.end(), '\n'), resoults.end());
@@ -716,7 +716,7 @@ std::string Assembler::mathOperand(const std::string &operand)
     {
         func(resoult, op, num);
     }
-    return toHex(resoult);
+    return stringFromNumber(resoult);
 }
 
 unsigned char *Assembler::toUCharArray(const std::vector<unsigned char> &vector)
@@ -776,16 +776,14 @@ std::string Assembler::getValueForLabel(const std::string& label) const
     return "";
 }
 
-unsigned long Assembler::fromHex(const std::string &hex) const
+unsigned long Assembler::numberFromString(const std::string &str) const
 {
-    return strtol(hex.c_str(), nullptr, 16);
+    return strtol(str.c_str(), nullptr, 10);
 }
 
-std::string Assembler::toHex(unsigned short val) const
+std::string Assembler::stringFromNumber(unsigned short val) const
 {
-    std::stringstream ss;
-    ss << std::hex << val;
-    return ss.str();
+    return std::to_string(val);
 }
 
 int Assembler::getInstLength(const std::string &inst)

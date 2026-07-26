@@ -53,8 +53,8 @@ private:
     void addEQUConstToLabels(const std::string& name, const std::string& val);
     void addSETConstToLabels(const std::string& name, const std::string& val);
     std::string getValueForLabel(const std::string& label) const;
-    unsigned long fromHex(const std::string& hex) const;
-    std::string toHex(unsigned short val) const;
+    unsigned long numberFromString(const std::string& str) const;
+    std::string stringFromNumber(unsigned short val) const;
     int getInstLength(const std::string& inst);
     bool isOneArgs(const std::string& inst, int &length, unsigned long& pos) const;
     bool isTwoArgs(const std::string& inst, int &length, unsigned long& pos) const;
@@ -142,7 +142,7 @@ public:
         {"GPFELIPSE", {"PUSH PSW\n", "MVI A,07\n", "OUT 05\n", "POP PSW\n"}},
         {"GCELIPSE", {"PUSH PSW\n", "MVI A,08\n", "OUT 05\n", "POP PSW\n"}},
         {"GPELIPSE", {"PUSH PSW\n", "MVI A,09\n", "OUT 05\n", "POP PSW\n"}},
-        {"GCANCEL", {"PUSH PSW\n", "MVI A,FF\n", "OUT 05\n", "POP PSW\n"}},
+        {"GCANCEL", {"PUSH PSW\n", "MVI A,FFH\n", "OUT 05\n", "POP PSW\n"}},
         {"RANDSET", {"OUT 06\n"}},
         {"RANDIN", {"IN 06\n"}},
     };
