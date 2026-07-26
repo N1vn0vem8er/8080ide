@@ -42,7 +42,7 @@ kończy, jeżeli nie to jeszcze raz odczytywany jest znak z klawiatury.</p>
     <div><span class="op-out">IN</span> 06</div>
     <div><span class="op-mov">MOV</span> B,A</div>
     <div><span class="label">loop:</span> IN 00</div>
-    <div><span class="op-sui">SUI</span> 30</div>
+    <div><span class="op-sui">SUI</span> 30H</div>
     <div><span class="op-cmp">CMP</span>B</div>
     <div><span class="op-jnz">JNZ</span> loop</div>
     <div><span class="op-lxi">LXI</span> H,wonmsg</div>
@@ -52,7 +52,7 @@ kończy, jeżeli nie to jeszcze raz odczytywany jest znak z klawiatury.</p>
     <div><span class="op-cpi">CPI</span> 00</div>
     <div><span class="op-jnz">JNZ</span> loopwonmsg</div>
     <div><span class="op-hlt">HLT</span></div>
-    <div><span class="label">wonmsg:</span> <span class="string-def">DB</span> 0A</div>
+    <div><span class="label">wonmsg:</span> <span class="string-def">DB</span> 0AH</div>
     <div><span class="string-def">STRING</span> <span class="string-val">"You won"</span></div>
 </div>
 
