@@ -27,11 +27,11 @@ void TableDataGeneratorDialog::generate() const
         if(text.length() % 2 == 1)
         {
             i = 1;
-            out+=QString("DB 0").append(text[0]).append('\n').toUpper();
+            out+=QString("DB 0%1H\n").arg(text[0]).toUpper();
         }
         for(; i<text.length() && i<text.length() + 1; i+=2)
         {
-            out += QString("DB ").append(text[i]).append(text[i+1]).append('\n').toUpper();
+            out += QString("DB %1%2H\n").arg(text[i], text[i+1]).toUpper();
         }
         ui->output->setPlainText(out);
     }

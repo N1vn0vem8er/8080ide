@@ -26,7 +26,7 @@ void StringTableGeneratorDialog::generate() const
         QString out;
         for(const auto& i : std::as_const(text))
         {
-            out += QString("DB ").append(toHex(i)).append('\n');
+            out += QString("DB %1H\n").arg(toHex(i));
         }
         ui->output->setPlainText(out);
     }
