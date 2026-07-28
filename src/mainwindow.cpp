@@ -710,7 +710,7 @@ void MainWindow::simStopped()
 
 void MainWindow::saveFileToRecentFiles(const QString &filePath)
 {
-    if(IDESettings::recentFiles.length() >= 10)
+    if(IDESettings::recentFiles.length() >= IDESettings::maxRecentFiles)
         IDESettings::recentFiles.removeFirst();
     if(!IDESettings::recentFiles.contains(filePath))
         IDESettings::recentFiles.append(filePath);
@@ -720,7 +720,7 @@ void MainWindow::saveFileToRecentFiles(const QString &filePath)
 
 void MainWindow::saveProjectToRecentProjects(const QString &projectPath)
 {
-    if(IDESettings::recentProjects.length() >= 10)
+    if(IDESettings::recentProjects.length() >= IDESettings::maxRecentProjects)
         IDESettings::recentProjects.removeFirst();
     if(!IDESettings::recentProjects.contains(projectPath))
         IDESettings::recentProjects.append(projectPath);

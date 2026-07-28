@@ -74,6 +74,8 @@ public:
     static bool showRegisters;
     static bool simFullSpeed;
     static bool useBuildinMacros;
+    static unsigned int maxRecentFiles;
+    static unsigned int maxRecentProjects;
     const QString settingsDirName = "ide8080";
     const QString settingsFileName = "idssettings";
     static const QString dataPath;

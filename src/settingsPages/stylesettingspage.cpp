@@ -15,6 +15,8 @@ StyleSettingsPage::StyleSettingsPage(QWidget *parent)
     ui->lineWrapCheckBox->setChecked(IDESettings::defaultLinesWrap);
     ui->fontLineEdit->setText(QString::number(IDESettings::defaultFontSize));
     ui->fontComboBox->setCurrentFont(QFont(IDESettings::defaultEditorFont));
+    ui->maxRecentFilesSpinBox->setValue(IDESettings::maxRecentFiles);
+    ui->maxRecentProjectsSpinBox->setValue(IDESettings::maxRecentProjects);
     if(QStyleFactory::keys().contains(IDESettings::theme))
     {
         ui->comboBox->setCurrentText(IDESettings::theme);
@@ -41,5 +43,9 @@ void StyleSettingsPage::apply() const
     IDESettings::defaultFontSize = ui->fontLineEdit->text().toInt();
     IDESettings::defaultLinesWrap = ui->lineWrapCheckBox->isChecked();
     IDESettings::defaultEditorFont = ui->fontComboBox->currentFont().family();
+    IDESettings::maxRecentFiles = ui->maxRecentFilesSpinBox->value();
+    IDESettings::maxRecentProjects = ui->maxRecentProjectsSpinBox->value();
+    IDESettings::recentFiles.resize(IDESettings::maxRecentFiles);
+    IDESettings::recentProjects.resize(IDESettings::maxRecentProjects);
     IDESettings().saveSettings();
 }
