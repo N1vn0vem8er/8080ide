@@ -323,61 +323,69 @@
 <context>
     <name>CodeEditor</name>
     <message>
-        <location filename="editor/codeeditor.cpp" line="508"/>
         <source>Value %1:
 In decimal: %2
 In binary: %3</source>
-        <translation>Liczba %1:
+        <translation type="vanished">Liczba %1:
 W dziesiętnym: %2
 W binarnym: %3</translation>
     </message>
     <message>
-        <location filename="editor/codeeditor.cpp" line="576"/>
+        <location filename="editor/codeeditor.cpp" line="507"/>
+        <source>In hex: %1
+In decimal: %2
+In binary: %3</source>
+        <translation>W heksadecymalnym %1:
+W dziesiętnym: %2
+W binarnym: %3</translation>
+    </message>
+    <message>
+        <location filename="editor/codeeditor.cpp" line="575"/>
         <source>Undo</source>
         <translation>Cofnij</translation>
     </message>
     <message>
-        <location filename="editor/codeeditor.cpp" line="581"/>
+        <location filename="editor/codeeditor.cpp" line="580"/>
         <source>Redo</source>
         <translation>Przywróć</translation>
     </message>
     <message>
-        <location filename="editor/codeeditor.cpp" line="587"/>
+        <location filename="editor/codeeditor.cpp" line="586"/>
         <source>Cut</source>
         <translation>Wytnij</translation>
     </message>
     <message>
-        <location filename="editor/codeeditor.cpp" line="592"/>
+        <location filename="editor/codeeditor.cpp" line="591"/>
         <source>Copy</source>
         <translation>Kopiuj</translation>
     </message>
     <message>
-        <location filename="editor/codeeditor.cpp" line="597"/>
+        <location filename="editor/codeeditor.cpp" line="596"/>
         <source>Paste</source>
         <translation>Wklej</translation>
     </message>
     <message>
-        <location filename="editor/codeeditor.cpp" line="602"/>
+        <location filename="editor/codeeditor.cpp" line="601"/>
         <source>Paste from file</source>
         <translation>Wklej z pliku</translation>
     </message>
     <message>
-        <location filename="editor/codeeditor.cpp" line="606"/>
+        <location filename="editor/codeeditor.cpp" line="605"/>
         <source>Delete</source>
         <translation>Usuń</translation>
     </message>
     <message>
-        <location filename="editor/codeeditor.cpp" line="610"/>
+        <location filename="editor/codeeditor.cpp" line="609"/>
         <source>Merge lines</source>
         <translation>Połącz linijki</translation>
     </message>
     <message>
-        <location filename="editor/codeeditor.cpp" line="614"/>
+        <location filename="editor/codeeditor.cpp" line="613"/>
         <source>Select All</source>
         <translation>Zaznacz wszystko</translation>
     </message>
     <message>
-        <location filename="editor/codeeditor.cpp" line="619"/>
+        <location filename="editor/codeeditor.cpp" line="618"/>
         <source>Breakpoint</source>
         <translation>Pułapka</translation>
     </message>
@@ -2809,7 +2817,17 @@ W binarnym: %3</translation>
         <translation>Domyślna czcionka edytora</translation>
     </message>
     <message>
-        <location filename="settingsPages/stylesettingspage.ui" line="114"/>
+        <location filename="settingsPages/stylesettingspage.ui" line="94"/>
+        <source>Max recent files</source>
+        <translation>Maksimum ostatnich plików</translation>
+    </message>
+    <message>
+        <location filename="settingsPages/stylesettingspage.ui" line="104"/>
+        <source>Max recent projects</source>
+        <translation>Maksimum ostatnich projektów</translation>
+    </message>
+    <message>
+        <location filename="settingsPages/stylesettingspage.ui" line="134"/>
         <source>Apply</source>
         <translation>Zastosuj</translation>
     </message>
