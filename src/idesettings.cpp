@@ -202,9 +202,6 @@ void IDESettings::loadSettings()
     Ssettings::memStart = simStartAddress;
 
     IDESettings::theme = settings.value("theme", "").toString();
-
-    IDESettings::recentFiles.resize(IDESettings::maxRecentFiles);
-    IDESettings::recentProjects.resize(IDESettings::maxRecentProjects);
 }
 
 QString IDESettings::theme;
